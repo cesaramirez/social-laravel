@@ -12214,5 +12214,8 @@ td.uk-text-break {
     page-break-after: avoid;
   }
 }
-
+html,
+body {
+  height: 100vh;
+}
 
