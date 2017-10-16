@@ -6,15 +6,15 @@
       <div class="uk-card-header">
         <div uk-grid>
           <div class="uk-button-group uk-width-1-1">
-            <button class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
+            <a href="{{ url('/login/github') }}" class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
               <span uk-icon="icon: github; ratio: 1.5"></span>
-            </button>
-            <button class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
-              <span uk-icon="icon: facebook; ratio: 1.5"></span>
-            </button>
-            <button class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
+            </a>
+            <a href="{{ url('/login/twitter') }}" class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
               <span uk-icon="icon: twitter; ratio: 1.5"></span>
-            </button>
+            </a>
+            <a href="{{ url('/login/facebook') }}" class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
+              <span uk-icon="icon: facebook; ratio: 1.5"></span>
+            </a>
           </div>
         </div>
         <h3 class="uk-card-title">Login</h3>

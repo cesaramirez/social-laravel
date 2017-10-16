@@ -40,8 +40,8 @@ class SocialLoginController extends Controller
 
     /**
      * [callback description]
-     * @param  [type]   $service [description]
-     * @return function          [description]
+     * @param  string   $service
+     * @return \Illuminate\Http\Response
      */
     public function callback($service)
     {
