@@ -26,7 +26,7 @@
                      autofocus>
             </div>
             @if ($errors->has('email'))
-              <p class="uk-text-small uk-text-danger">{{ $errors->first('email') }}</p>
+              <span class="uk-text-small uk-text-danger">{{ $errors->first('email') }}</span>
             @endif
           </div>
           <div class="uk-margin">
@@ -44,7 +44,7 @@
                      required>
             </div>
             @if ($errors->has('password'))
-              <p class="uk-text-small uk-text-danger">{{ $errors->first('password') }}</p>
+              <span class="uk-text-small uk-text-danger">{{ $errors->first('password') }}</span>
             @endif
           </div>
 
