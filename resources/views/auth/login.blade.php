@@ -4,6 +4,19 @@
   <div class="uk-container uk-margin-large uk-flex uk-flex-center">
     <div class="uk-card uk-card-default uk-width-1-2@s">
       <div class="uk-card-header">
+        <div uk-grid>
+          <div class="uk-button-group uk-width-1-1">
+            <button class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
+              <span uk-icon="icon: github; ratio: 1.5"></span>
+            </button>
+            <button class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
+              <span uk-icon="icon: facebook; ratio: 1.5"></span>
+            </button>
+            <button class="uk-button uk-button-default uk-width-1-3 uk-padding-small">
+              <span uk-icon="icon: twitter; ratio: 1.5"></span>
+            </button>
+          </div>
+        </div>
         <h3 class="uk-card-title">Login</h3>
       </div>
       <form class="uk-form-stacked" method="POST" action="{{ route('login') }}" novalidate>
