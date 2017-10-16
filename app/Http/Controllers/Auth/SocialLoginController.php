@@ -25,6 +25,7 @@ class SocialLoginController extends Controller
     {
         $this->socialite = $socialite;
         $this->user = $user;
+        $this->middleware(['social', 'guest']);
     }
 
     /**
