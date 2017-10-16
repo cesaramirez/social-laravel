@@ -11,10 +11,11 @@
 |
 */
 
-$router->get('/', function () {
-    return view('welcome');
-})->name('welcome');
+$router->view('/', 'welcome')->name('welcome');
 
 $router->auth();
 
 $router->get('/home', 'HomeController@index')->name('home');
+
+$router->get('/login/{service}', 'Auth\SocialLoginController@redirect');
+$router->get('/login/{service}/callback', 'Auth\SocialLoginController@callback');
