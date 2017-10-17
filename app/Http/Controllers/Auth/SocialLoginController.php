@@ -58,7 +58,7 @@ class SocialLoginController extends Controller
      */
     public function callback($service)
     {
-        if (! request()->has('code') || request()->has('denied')) {
+        if (request()->has('error') || request()->has('denied')) {
             return redirect()->intended('login');
         }
 

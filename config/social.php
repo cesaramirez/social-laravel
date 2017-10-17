@@ -9,7 +9,10 @@ return [
       'name' => 'Twitter',
     ],
     'facebook' => [
-      'name' => 'Facebook ',
+      'name' => 'Facebook',
+    ],
+    'google' => [
+      'name' => 'Google',
     ],
   ],
 ];
