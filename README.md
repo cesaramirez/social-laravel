@@ -1,4 +1,4 @@
-# The Majesty of Vue.js 2
+# Social Laravel
 
 > Creating beautifully flexible social authentication that automatically works with any service with [Socialite](https://github.com/laravel/socialite).
 
