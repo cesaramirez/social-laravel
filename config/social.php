@@ -20,5 +20,8 @@ return [
     'bitbucket' => [
       'name' => 'Bitbucket',
     ],
+    'gitlab' => [
+      'name' => 'GitLab',
+    ],
   ],
 ];

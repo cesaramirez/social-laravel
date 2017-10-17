@@ -6,23 +6,26 @@
       <div class="uk-card-header">
         <div uk-grid>
           <div class="uk-button-group uk-width-1-1">
-            <a href="{{ url('/login/github') }}" class="uk-button uk-button-default uk-width-1-6 uk-padding-small">
+            <a href="{{ url('/login/github') }}" class="uk-button uk-button-default uk-width-1-7 uk-padding-small">
               <span uk-icon="icon: github; ratio: 1.5"></span>
             </a>
-            <a href="{{ url('/login/twitter') }}" class="uk-button uk-button-default uk-width-1-6 uk-padding-small">
+            <a href="{{ url('/login/twitter') }}" class="uk-button uk-button-default uk-width-1-7 uk-padding-small">
               <span uk-icon="icon: twitter; ratio: 1.5"></span>
             </a>
-            <a href="{{ url('/login/facebook') }}" class="uk-button uk-button-default uk-width-1-6 uk-padding-small">
+            <a href="{{ url('/login/facebook') }}" class="uk-button uk-button-default uk-width-1-7 uk-padding-small">
               <span uk-icon="icon: facebook; ratio: 1.5"></span>
             </a>
-            <a href="{{ url('/login/google') }}" class="uk-button uk-button-default uk-width-1-6 uk-padding-small">
+            <a href="{{ url('/login/google') }}" class="uk-button uk-button-default uk-width-1-7 uk-padding-small">
               <span uk-icon="icon: google; ratio: 1.5"></span>
             </a>
-            <a href="{{ url('/login/linkedin') }}" class="uk-button uk-button-default uk-width-1-6 uk-padding-small">
+            <a href="{{ url('/login/linkedin') }}" class="uk-button uk-button-default uk-width-1-7 uk-padding-small">
               <span uk-icon="icon: linkedin; ratio: 1.5"></span>
             </a>
-            <a href="{{ url('/login/bitbucket') }}" class="uk-button uk-button-default uk-width-1-6 uk-padding-small">
+            <a href="{{ url('/login/bitbucket') }}" class="uk-button uk-button-default uk-width-1-7 uk-padding-small">
               <img src="{{ asset('images/bitbucket.svg') }}" alt="Bitbucket" height="25px" width="25px">
+            </a>
+            <a href="{{ url('/login/gitlab') }}" class="uk-button uk-button-default uk-width-1-7 uk-padding-small">
+              <img src="{{ asset('images/gitlab.svg') }}" alt="Bitbucket" height="25px" width="25px">
             </a>
           </div>
         </div>
