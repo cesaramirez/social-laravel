@@ -17,5 +17,8 @@ return [
     'linkedin' => [
       'name' => 'Linked In',
     ],
+    'bitbucket' => [
+      'name' => 'Bitbucket',
+    ],
   ],
 ];
