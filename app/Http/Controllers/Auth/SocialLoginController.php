@@ -2,37 +2,47 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Laravel\Socialite\Contracts\Factory as Socialite;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Contracts\Factory as Socialite;
 
 class SocialLoginController extends Controller
 {
     /**
-     * Socialite
+     * Socialite.
+     *
      * @var \Laravel\Socialite\Contracts\Factory
      */
     protected $socialite;
+
+    /**
+     * User.
+     *
+     * @var \App\User
+     */
     protected $user;
 
     /**
-     * [__construct description]
-     * @param Socialite $socialite [description]
-     * @param User      $user      [description]
+     * Social Login Controller Constructor.
+     *
+     * @param \Laravel\Socialite\Contracts\Factory $socialite
+     * @param \App\User                            $user
      */
     public function __construct(Socialite $socialite, User $user)
     {
         $this->socialite = $socialite;
-        $this->user = $user;
+        $this->user      = $user;
         $this->middleware(['social', 'guest']);
     }
 
     /**
-     * [redirect description]
-     * @param  [type]  $service [description]
-     * @param  Request $request [description]
-     * @return [type]           [description]
+     * Redirect the user to the Social App authentication page.
+     *
+     * @param string                   $service
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
      */
     public function redirect($service, Request $request)
     {
@@ -40,31 +50,33 @@ class SocialLoginController extends Controller
     }
 
     /**
-     * [callback description]
-     * @param  string   $service
+     * Obtain the user information from Social App.
+     *
+     * @param string $service
+     *
      * @return \Illuminate\Http\Response
      */
     public function callback($service)
     {
-        if (!request()->has('code') || request()->has('denied')) {
+        if (! request()->has('code') || request()->has('denied')) {
             return redirect()->intended('login');
         }
-        
+
         $serviceUser = $this->socialite->driver($service)->user();
 
         $user = $this->getExistingUser($serviceUser, $service);
 
-        if (!$user) {
+        if (! $user) {
             $user = $this->user->create([
-              'name' => $serviceUser->getName(),
-              'email' => $serviceUser->getEmail()
+              'name'  => $serviceUser->getName(),
+              'email' => $serviceUser->getEmail(),
             ]);
         }
 
         if ($this->needsToCreateSocial($user, $service)) {
             $user->social()->create([
               'social_id' => $serviceUser->getId(),
-              'service' => $service
+              'service'   => $service,
             ]);
         }
 
@@ -74,11 +86,27 @@ class SocialLoginController extends Controller
         return redirect()->intended('home');
     }
 
+    /**
+     * Check if need user create social register.
+     *
+     * @param \App\User $user
+     * @param string    $service
+     *
+     * @return [type] [description]
+     */
     protected function needsToCreateSocial(User $user, $service)
     {
-        return !$user->hasSocialLinked($service);
+        return ! $user->hasSocialLinked($service);
     }
 
+    /**
+     * Get if user existing with social app.
+     *
+     * @param \Laravel\Socialite\Contracts\Factory $serviceUser
+     * @param string                               $service
+     *
+     * @return \Illuminate\Http\Response
+     */
     protected function getExistingUser($serviceUser, $service)
     {
         return $this->user

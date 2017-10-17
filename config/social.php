@@ -3,13 +3,13 @@
 return [
   'services' => [
     'github' => [
-      'name' => 'GitHub'
+      'name' => 'GitHub',
     ],
     'twitter' => [
-      'name' => 'Twitter'
+      'name' => 'Twitter',
     ],
     'facebook' => [
-      'name' => 'Facebook '
+      'name' => 'Facebook ',
     ],
-  ]
+  ],
 ];

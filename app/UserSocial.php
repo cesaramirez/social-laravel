@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserSocial extends Model
 {
-
     /**
      * The table associated with the model.
      *
@@ -20,7 +19,12 @@ class UserSocial extends Model
      * @var array
      */
     protected $fillable = ['social_id', 'service'];
-    
+
+    /**
+     * Social user relation with user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
