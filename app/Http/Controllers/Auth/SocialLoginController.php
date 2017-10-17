@@ -46,6 +46,10 @@ class SocialLoginController extends Controller
      */
     public function callback($service)
     {
+        if (!request()->has('code') || request()->has('denied')) {
+            return redirect()->intended('login');
+        }
+        
         $serviceUser = $this->socialite->driver($service)->user();
 
         $user = $this->getExistingUser($serviceUser, $service);
@@ -63,6 +67,7 @@ class SocialLoginController extends Controller
               'service' => $service
             ]);
         }
+
 
         auth()->login($user);
 
