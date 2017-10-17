@@ -14,5 +14,8 @@ return [
     'google' => [
       'name' => 'Google',
     ],
+    'linkedin' => [
+      'name' => 'Linked In',
+    ],
   ],
 ];
