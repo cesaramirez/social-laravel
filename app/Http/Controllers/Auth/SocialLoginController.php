@@ -62,7 +62,7 @@ class SocialLoginController extends Controller
             return redirect()->intended('login');
         }
 
-        $serviceUser = $this->socialite->driver($service)->user();
+        $serviceUser = $this->socialite->driver($service)->stateless()->user();
 
         $user = $this->getExistingUser($serviceUser, $service);
 
