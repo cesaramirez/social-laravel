@@ -5,22 +5,60 @@
   <div class="uk-card uk-card-default uk-width-1-2@s">
     <div class="uk-card-header">
       <div uk-grid>
-        <div class="uk-button-group uk-width-1-1">
-          <a href="{{ url('/login/github') }}" class="uk-button uk-button-default uk-width-1-4 uk-padding-small">
+        <div class="uk-button-group uk-width-1-1" id="social-icons">
+          <a href="{{ url('/login/github') }}"
+             class="uk-button uk-button-default uk-width-1-7 uk-padding-small"
+             title="GitHub"
+             id="social-github"
+             uk-tooltip>
             <span uk-icon="icon: github; ratio: 1.5"></span>
           </a>
-          <a href="{{ url('/login/twitter') }}" class="uk-button uk-button-default uk-width-1-4 uk-padding-small">
+          <a href="{{ url('/login/twitter') }}"
+             class="uk-button uk-button-default uk-width-1-7 uk-padding-small"
+             title="Twitter"
+             id="social-twitter"
+             uk-tooltip>
             <span uk-icon="icon: twitter; ratio: 1.5"></span>
           </a>
-          <a href="{{ url('/login/facebook') }}" class="uk-button uk-button-default uk-width-1-4 uk-padding-small">
+          <a href="{{ url('/login/facebook') }}"
+             class="uk-button uk-button-default uk-width-1-7 uk-padding-small"
+             title="Facebook"
+             id="social-facebook"
+             uk-tooltip>
             <span uk-icon="icon: facebook; ratio: 1.5"></span>
           </a>
-          <a href="{{ url('/login/google') }}" class="uk-button uk-button-default uk-width-1-4 uk-padding-small">
+          <a href="{{ url('/login/google') }}"
+             class="uk-button uk-button-default uk-width-1-7 uk-padding-small"
+             title="Google"
+             id="social-google"
+             uk-tooltip>
             <span uk-icon="icon: google; ratio: 1.5"></span>
+          </a>
+          <a href="{{ url('/login/linkedin') }}"
+             class="uk-button uk-button-default uk-width-1-7 uk-padding-small"
+             title="LinkedIn"
+             id="social-linkedin"
+             uk-tooltip>
+            <span uk-icon="icon: linkedin; ratio: 1.5"></span>
+          </a>
+          <a href="{{ url('/login/bitbucket') }}"
+             class="uk-button uk-button-default uk-width-1-7 uk-padding-small"
+             title="Bitbucket"
+             id="social-bitbucket"
+             uk-tooltip>
+            <img src="{{ asset('images/bitbucket.svg') }}" alt="Bitbucket" height="25px" width="25px" uk-svg>
+          </a>
+          <a href="{{ url('/login/gitlab') }}"
+             class="uk-button uk-button-default uk-width-1-7 uk-padding-small"
+             title="GitLab"
+             id="social-gitlab"
+             uk-tooltip>
+            <span src="{{ asset('images/gitlab.svg') }}" alt="GitLab" height="25px" width="25px" uk-svg>
           </a>
         </div>
       </div>
-      <h3 class="uk-card-title">Register</h3>
+      <hr class="uk-divider-icon">
+      <h3 class="uk-card-title uk-margin-remove">Register</h3>
     </div>
     <form class="uk-form-stacked" method="POST" action="{{ route('register') }}" novalidate>
       {{ csrf_field() }}

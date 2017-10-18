@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,600,700);@charset "UTF-8";
 
 /* ========================================================================
    Component: Base
@@ -14654,5 +14654,61 @@ td.uk-text-break {
 html,
 body {
   height: 100vh;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Raleway', sans-serif;
+}
+
+#social-icons .uk-button-default {
+  border: 1.5px solid #e5e5e5;
+}
+
+#social-github:hover {
+  color: white;
+  background: black;
+  border: 1.5px solid black;
+}
+
+#social-twitter:hover {
+  color: #f5f8fa;
+  background: #1da1f2;
+  border: 1.5px solid #1da1f2;
+}
+
+#social-facebook:hover {
+  color: #3b5998;
+  background: transparent;
+  border: 1.5px solid #3b5998;
+}
+
+#social-google:hover {
+  color: #4285f4;
+  background: transparent;
+  border-top: 1.5px solid #4285f4;
+  border-left: 1.5px solid #34a853;
+  border-right: 1.5px solid #fbbc05;
+  border-bottom: 1.5px solid #ea4335;
+}
+
+#social-linkedin:hover {
+  color: white;
+  background: #0077b5;
+  border: 1.5px solid #0077b5;
+}
+
+#social-bitbucket:hover {
+  color: #0052CC;
+  background: transparent;
+  border: 1.5px solid #0052CC;
+}
+
+#social-gitlab:hover {
+  color: #fc6d26;
+  background: transparent;
+  border: 1.5px solid #fc6d26;
 }
 

@@ -1,15 +1,64 @@
-// 1. Your custom variables and variable overwrites.
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,600,700');
+
 $global-link-color: #DA7D02;
 
-// 2. Import default variables and available mixins.
 @import "~uikit/src/scss/variables-theme.scss";
 @import "~uikit/src/scss/mixins-theme.scss";
 
-// 3. Your custom mixin overwrites.
 @mixin hook-card() { color: #000; }
 
-// 4. Import UIkit.
 @import "~uikit/src/scss/uikit-theme.scss";
+
 html, body {
   height: 100vh;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Raleway', sans-serif;
+}
+
+#social {
+  &-icons .uk-button-default {
+    border: 1.5px solid #e5e5e5;
+  }
+  &-github:hover {
+    color: white;
+    background: black;
+    border: 1.5px solid black;
+  }
+  &-twitter:hover {
+    color: #f5f8fa;
+    background: #1da1f2;
+    border: 1.5px solid #1da1f2;
+  }
+  &-facebook:hover {
+    color: #3b5998;
+    background: transparent;
+    border: 1.5px solid #3b5998;
+  }
+  &-google:hover {
+    color: #4285f4;
+    background: transparent;
+    border-top: 1.5px solid #4285f4;
+    border-left: 1.5px solid #34a853;
+    border-right: 1.5px solid #fbbc05;
+    border-bottom: 1.5px solid #ea4335;
+  }
+  &-linkedin:hover {
+    color: white;
+    background: #0077b5;
+    border: 1.5px solid #0077b5;
+  }
+  &-bitbucket:hover {
+    color: #0052CC;
+    background: transparent;
+    border: 1.5px solid #0052CC;
+  }
+  &-gitlab:hover {
+    color: #fc6d26;
+    background: transparent;
+    border: 1.5px solid #fc6d26;
+  }
+
 }
