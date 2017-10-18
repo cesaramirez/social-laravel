@@ -80,7 +80,7 @@ class SocialLoginController extends Controller
             ]);
         }
 
-        auth()->login($user);
+        auth()->login($user, false);
 
         return redirect()->intended('home');
     }
