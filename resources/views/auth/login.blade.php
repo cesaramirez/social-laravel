@@ -114,9 +114,6 @@
           <button type="submit" class="uk-button uk-button-primary uk-box-shadow-medium">
             Login
           </button>
-            <a class="uk-float-right uk-link-reset" href="{{ route('password.request') }}">
-              Forgot Your Password?
-            </a>
         </div>
       </form>
       </div>
