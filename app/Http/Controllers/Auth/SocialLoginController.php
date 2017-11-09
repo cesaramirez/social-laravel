@@ -32,7 +32,7 @@ class SocialLoginController extends Controller
     public function __construct(Socialite $socialite, User $user)
     {
         $this->socialite = $socialite;
-        $this->user      = $user;
+        $this->user = $user;
         $this->middleware(['social', 'guest']);
     }
 
@@ -66,7 +66,7 @@ class SocialLoginController extends Controller
 
         $user = $this->getExistingUser($serviceUser, $service);
 
-        if (! $user) {
+        if (!$user) {
             $user = $this->user->create([
               'name'  => $serviceUser->getName(),
               'email' => $serviceUser->getEmail(),
@@ -95,7 +95,7 @@ class SocialLoginController extends Controller
      */
     protected function needsToCreateSocial(User $user, $service)
     {
-        return ! $user->hasSocialLinked($service);
+        return !$user->hasSocialLinked($service);
     }
 
     /**
