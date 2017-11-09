@@ -16,7 +16,7 @@ class Social
      */
     public function handle($request, Closure $next)
     {
-        if (! in_array(
+        if (!in_array(
             strtolower($request->service),
             array_keys(config('social.services'))
         )) {
