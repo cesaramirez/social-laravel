@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,600,700');
-
 $global-link-color: #DA7D02;
+@import "~uikit/src/scss/variables-theme";
+@import "~uikit/src/scss/mixins-theme";
+@mixin hook-card() {
+  color: #000;
+}
+@import "~uikit/src/scss/uikit-theme";
 
-@import "~uikit/src/scss/variables-theme.scss";
-@import "~uikit/src/scss/mixins-theme.scss";
-
-@mixin hook-card() { color: #000; }
-
-@import "~uikit/src/scss/uikit-theme.scss";
-
-html, body {
+body,
+html {
   height: 100vh;
   font-family: 'Raleway', sans-serif;
 }
 
-h1, h2, h3, a {
+a,
+h1,
+h2,
+h3 {
   font-family: 'Raleway', sans-serif;
 }
 
@@ -22,21 +24,25 @@ h1, h2, h3, a {
   &-icons .uk-button-default {
     border: 1.5px solid #e5e5e5;
   }
+
   &-github:hover {
     color: white;
     background: black;
     border: 1.5px solid black;
   }
+
   &-twitter:hover {
     color: #f5f8fa;
     background: #1da1f2;
     border: 1.5px solid #1da1f2;
   }
+
   &-facebook:hover {
     color: #3b5998;
     background: transparent;
     border: 1.5px solid #3b5998;
   }
+
   &-google:hover {
     color: #4285f4;
     background: transparent;
@@ -45,16 +51,19 @@ h1, h2, h3, a {
     border-right: 1.5px solid #fbbc05;
     border-bottom: 1.5px solid #ea4335;
   }
+
   &-linkedin:hover {
     color: white;
     background: #0077b5;
     border: 1.5px solid #0077b5;
   }
+
   &-bitbucket:hover {
     color: #0052CC;
     background: transparent;
     border: 1.5px solid #0052CC;
   }
+
   &-gitlab:hover {
     color: #fc6d26;
     background: transparent;

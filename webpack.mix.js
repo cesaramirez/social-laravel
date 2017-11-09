@@ -1,5 +1,6 @@
 let mix = require('laravel-mix');
-require('dotenv').config();
+require('dotenv')
+	.config();
 
 /*
  |--------------------------------------------------------------------------
@@ -13,6 +14,12 @@ require('dotenv').config();
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+	.extract(['uikit'])
+	.sass('resources/assets/sass/app.scss', 'public/css');
+
+if (mix.inProduction()) {
+	mix.version();
+}
+
 
 mix.browserSync(process.env.APP_URL);

@@ -1,1 +1,19019 @@
-!function(t){function e(i){if(n[i])return n[i].exports;var r=n[i]={i:i,l:!1,exports:{}};return t[i].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var n={};e.m=t,e.c=n,e.d=function(t,n,i){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:i})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=9)}([function(t,e,n){"use strict";function i(t){return"[object Array]"===l.call(t)}function r(t){return null!==t&&"object"==typeof t}function o(t){return"[object Function]"===l.call(t)}function s(t,e){if(null!==t&&void 0!==t)if("object"==typeof t||i(t)||(t=[t]),i(t))for(var n=0,r=t.length;n<r;n++)e.call(null,t[n],n,t);else for(var o in t)Object.prototype.hasOwnProperty.call(t,o)&&e.call(null,t[o],o,t)}function a(){for(var t={},e=0,n=arguments.length;e<n;e++)s(arguments[e],function(e,n){"object"==typeof t[n]&&"object"==typeof e?t[n]=a(t[n],e):t[n]=e});return t}var c=n(3),u=n(15),l=Object.prototype.toString;t.exports={isArray:i,isArrayBuffer:function(t){return"[object ArrayBuffer]"===l.call(t)},isBuffer:u,isFormData:function(t){return"undefined"!=typeof FormData&&t instanceof FormData},isArrayBufferView:function(t){return"undefined"!=typeof ArrayBuffer&&ArrayBuffer.isView?ArrayBuffer.isView(t):t&&t.buffer&&t.buffer instanceof ArrayBuffer},isString:function(t){return"string"==typeof t},isNumber:function(t){return"number"==typeof t},isObject:r,isUndefined:function(t){return void 0===t},isDate:function(t){return"[object Date]"===l.call(t)},isFile:function(t){return"[object File]"===l.call(t)},isBlob:function(t){return"[object Blob]"===l.call(t)},isFunction:o,isStream:function(t){return r(t)&&o(t.pipe)},isURLSearchParams:function(t){return"undefined"!=typeof URLSearchParams&&t instanceof URLSearchParams},isStandardBrowserEnv:function(){return("undefined"==typeof navigator||"ReactNative"!==navigator.product)&&"undefined"!=typeof window&&"undefined"!=typeof document},forEach:s,merge:a,extend:function(t,e,n){return s(e,function(e,i){t[i]=n&&"function"==typeof e?c(e,n):e}),t},trim:function(t){return t.replace(/^\s*/,"").replace(/\s*$/,"")}}},function(t,e,n){"use strict";(function(e){function i(t,e){!r.isUndefined(t)&&r.isUndefined(t["Content-Type"])&&(t["Content-Type"]=e)}var r=n(0),o=n(17),s={"Content-Type":"application/x-www-form-urlencoded"},a={adapter:function(){var t;return"undefined"!=typeof XMLHttpRequest?t=n(5):void 0!==e&&(t=n(5)),t}(),transformRequest:[function(t,e){return o(e,"Content-Type"),r.isFormData(t)||r.isArrayBuffer(t)||r.isBuffer(t)||r.isStream(t)||r.isFile(t)||r.isBlob(t)?t:r.isArrayBufferView(t)?t.buffer:r.isURLSearchParams(t)?(i(e,"application/x-www-form-urlencoded;charset=utf-8"),t.toString()):r.isObject(t)?(i(e,"application/json;charset=utf-8"),JSON.stringify(t)):t}],transformResponse:[function(t){if("string"==typeof t)try{t=JSON.parse(t)}catch(t){}return t}],timeout:0,xsrfCookieName:"XSRF-TOKEN",xsrfHeaderName:"X-XSRF-TOKEN",maxContentLength:-1,validateStatus:function(t){return t>=200&&t<300}};a.headers={common:{Accept:"application/json, text/plain, */*"}},r.forEach(["delete","get","head"],function(t){a.headers[t]={}}),r.forEach(["post","put","patch"],function(t){a.headers[t]=r.merge(s)}),t.exports=a}).call(e,n(4))},function(t,e){var n;n=function(){return this}();try{n=n||Function("return this")()||(0,eval)("this")}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){"use strict";t.exports=function(t,e){return function(){for(var n=new Array(arguments.length),i=0;i<n.length;i++)n[i]=arguments[i];return t.apply(e,n)}}},function(t,e){function n(){throw new Error("setTimeout has not been defined")}function i(){throw new Error("clearTimeout has not been defined")}function r(t){if(c===setTimeout)return setTimeout(t,0);if((c===n||!c)&&setTimeout)return c=setTimeout,setTimeout(t,0);try{return c(t,0)}catch(e){try{return c.call(null,t,0)}catch(e){return c.call(this,t,0)}}}function o(){if(!p){var t=r(function(){p&&h&&(p=!1,h.length?f=h.concat(f):d=-1,f.length&&o())});p=!0;for(var e=f.length;e;){for(h=f,f=[];++d<e;)h&&h[d].run();d=-1,e=f.length}h=null,p=!1,function(t){if(u===clearTimeout)return clearTimeout(t);if((u===i||!u)&&clearTimeout)return u=clearTimeout,clearTimeout(t);try{u(t)}catch(e){try{return u.call(null,t)}catch(e){return u.call(this,t)}}}(t)}}function s(t,e){this.fun=t,this.array=e}function a(){}var c,u,l=t.exports={};!function(){try{c="function"==typeof setTimeout?setTimeout:n}catch(t){c=n}try{u="function"==typeof clearTimeout?clearTimeout:i}catch(t){u=i}}();var h,f=[],p=!1,d=-1;l.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)e[n-1]=arguments[n];f.push(new s(t,e)),1!==f.length||p||r(o)},s.prototype.run=function(){this.fun.apply(null,this.array)},l.title="browser",l.browser=!0,l.env={},l.argv=[],l.version="",l.versions={},l.on=a,l.addListener=a,l.once=a,l.off=a,l.removeListener=a,l.removeAllListeners=a,l.emit=a,l.prependListener=a,l.prependOnceListener=a,l.listeners=function(t){return[]},l.binding=function(t){throw new Error("process.binding is not supported")},l.cwd=function(){return"/"},l.chdir=function(t){throw new Error("process.chdir is not supported")},l.umask=function(){return 0}},function(t,e,n){"use strict";var i=n(0),r=n(18),o=n(20),s=n(21),a=n(22),c=n(6),u="undefined"!=typeof window&&window.btoa&&window.btoa.bind(window)||n(23);t.exports=function(t){return new Promise(function(e,l){var h=t.data,f=t.headers;i.isFormData(h)&&delete f["Content-Type"];var p=new XMLHttpRequest,d="onreadystatechange",g=!1;if(window.XMLHttpRequest||"undefined"==typeof window||!window.XDomainRequest||"withCredentials"in p||a(t.url)||(p=new window.XDomainRequest,d="onload",g=!0,p.onprogress=function(){},p.ontimeout=function(){}),t.auth){var v=t.auth.username||"",m=t.auth.password||"";f.Authorization="Basic "+u(v+":"+m)}if(p.open(t.method.toUpperCase(),o(t.url,t.params,t.paramsSerializer),!0),p.timeout=t.timeout,p[d]=function(){if(p&&(4===p.readyState||g)&&(0!==p.status||p.responseURL&&0===p.responseURL.indexOf("file:"))){var n="getAllResponseHeaders"in p?s(p.getAllResponseHeaders()):null,i={data:t.responseType&&"text"!==t.responseType?p.response:p.responseText,status:1223===p.status?204:p.status,statusText:1223===p.status?"No Content":p.statusText,headers:n,config:t,request:p};r(e,l,i),p=null}},p.onerror=function(){l(c("Network Error",t,null,p)),p=null},p.ontimeout=function(){l(c("timeout of "+t.timeout+"ms exceeded",t,"ECONNABORTED",p)),p=null},i.isStandardBrowserEnv()){var w=n(24),y=(t.withCredentials||a(t.url))&&t.xsrfCookieName?w.read(t.xsrfCookieName):void 0;y&&(f[t.xsrfHeaderName]=y)}if("setRequestHeader"in p&&i.forEach(f,function(t,e){void 0===h&&"content-type"===e.toLowerCase()?delete f[e]:p.setRequestHeader(e,t)}),t.withCredentials&&(p.withCredentials=!0),t.responseType)try{p.responseType=t.responseType}catch(e){if("json"!==t.responseType)throw e}"function"==typeof t.onDownloadProgress&&p.addEventListener("progress",t.onDownloadProgress),"function"==typeof t.onUploadProgress&&p.upload&&p.upload.addEventListener("progress",t.onUploadProgress),t.cancelToken&&t.cancelToken.promise.then(function(t){p&&(p.abort(),l(t),p=null)}),void 0===h&&(h=null),p.send(h)})}},function(t,e,n){"use strict";var i=n(19);t.exports=function(t,e,n,r,o){var s=new Error(t);return i(s,e,n,r,o)}},function(t,e,n){"use strict";t.exports=function(t){return!(!t||!t.__CANCEL__)}},function(t,e,n){"use strict";function i(t){this.message=t}i.prototype.toString=function(){return"Cancel"+(this.message?": "+this.message:"")},i.prototype.__CANCEL__=!0,t.exports=i},function(t,e,n){n(10),t.exports=n(36)},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var i=n(11),r=n.n(i),o=n(13),s=n.n(o),a=n(32),c=n.n(a),u=n(35),l=n.n(u);c.a.use(l.a),window._=r.a,window.axios=s.a,window.axios.defaults.headers.common["X-Requested-With"]="XMLHttpRequest";var h=document.head.querySelector('meta[name="csrf-token"]');h&&(window.axios.defaults.headers.common["X-CSRF-TOKEN"]=h.content)},function(t,e,n){(function(t,i){var r;(function(){function o(t,e,n){switch(n.length){case 0:return t.call(e);case 1:return t.call(e,n[0]);case 2:return t.call(e,n[0],n[1]);case 3:return t.call(e,n[0],n[1],n[2])}return t.apply(e,n)}function s(t,e){for(var n=-1,i=null==t?0:t.length;++n<i&&!1!==e(t[n],n,t););return t}function a(t,e){for(var n=-1,i=null==t?0:t.length;++n<i;)if(!e(t[n],n,t))return!1;return!0}function c(t,e){for(var n=-1,i=null==t?0:t.length,r=0,o=[];++n<i;){var s=t[n];e(s,n,t)&&(o[r++]=s)}return o}function u(t,e){return!!(null==t?0:t.length)&&m(t,e,0)>-1}function l(t,e,n){for(var i=-1,r=null==t?0:t.length;++i<r;)if(n(e,t[i]))return!0;return!1}function h(t,e){for(var n=-1,i=null==t?0:t.length,r=Array(i);++n<i;)r[n]=e(t[n],n,t);return r}function f(t,e){for(var n=-1,i=e.length,r=t.length;++n<i;)t[r+n]=e[n];return t}function p(t,e,n,i){var r=-1,o=null==t?0:t.length;for(i&&o&&(n=t[++r]);++r<o;)n=e(n,t[r],r,t);return n}function d(t,e){for(var n=-1,i=null==t?0:t.length;++n<i;)if(e(t[n],n,t))return!0;return!1}function g(t,e,n){var i;return n(t,function(t,n,r){if(e(t,n,r))return i=n,!1}),i}function v(t,e,n,i){for(var r=t.length,o=n+(i?1:-1);i?o--:++o<r;)if(e(t[o],o,t))return o;return-1}function m(t,e,n){return e==e?function(t,e,n){var i=n-1,r=t.length;for(;++i<r;)if(t[i]===e)return i;return-1}(t,e,n):v(t,w,n)}function w(t){return t!=t}function y(t,e){var n=null==t?0:t.length;return n?k(t,e)/n:gt}function x(t){return function(e){return null==e?D:e[t]}}function b(t){return function(e){return null==t?D:t[e]}}function _(t,e,n,i,r){return r(t,function(t,r,o){n=i?(i=!1,t):e(n,t,r,o)}),n}function k(t,e){for(var n,i=-1,r=t.length;++i<r;){var o=e(t[i]);o!==D&&(n=n===D?o:n+o)}return n}function C(t,e){for(var n=-1,i=Array(t);++n<t;)i[n]=e(n);return i}function L(t){return function(e){return t(e)}}function $(t,e){return h(e,function(e){return t[e]})}function B(t,e){return t.has(e)}function M(t,e){for(var n=-1,i=t.length;++n<i&&m(e,t[n],0)>-1;);return n}function T(t,e){for(var n=t.length;n--&&m(e,t[n],0)>-1;);return n}function E(t){return nn.test(t)}function A(t){var e=-1,n=Array(t.size);return t.forEach(function(t,i){n[++e]=[i,t]}),n}function S(t,e){return function(n){return t(e(n))}}function I(t,e){for(var n=-1,i=t.length,r=0,o=[];++n<i;){var s=t[n];s!==e&&s!==F||(t[n]=F,o[r++]=n)}return o}function O(t){var e=-1,n=Array(t.size);return t.forEach(function(t){n[++e]=t}),n}function j(t){var e=-1,n=Array(t.size);return t.forEach(function(t){n[++e]=[t,t]}),n}function z(t){return E(t)?function(t){var e=tn.lastIndex=0;for(;tn.test(t);)++e;return e}(t):$n(t)}function N(t){return E(t)?function(t){return t.match(tn)||[]}(t):function(t){return t.split("")}(t)}var D,P=200,R="Unsupported core-js use. Try https://npms.io/search?q=ponyfill.",H="Expected a function",W="__lodash_hash_undefined__",U=500,F="__lodash_placeholder__",Z=1,q=2,V=4,Y=1,X=2,J=1,K=2,G=4,Q=8,tt=16,et=32,nt=64,it=128,rt=256,ot=512,st=30,at="...",ct=800,ut=16,lt=1,ht=2,ft=1/0,pt=9007199254740991,dt=1.7976931348623157e308,gt=NaN,vt=4294967295,mt=vt-1,wt=vt>>>1,yt=[["ary",it],["bind",J],["bindKey",K],["curry",Q],["curryRight",tt],["flip",ot],["partial",et],["partialRight",nt],["rearg",rt]],xt="[object Arguments]",bt="[object Array]",_t="[object AsyncFunction]",kt="[object Boolean]",Ct="[object Date]",Lt="[object DOMException]",$t="[object Error]",Bt="[object Function]",Mt="[object GeneratorFunction]",Tt="[object Map]",Et="[object Number]",At="[object Null]",St="[object Object]",It="[object Proxy]",Ot="[object RegExp]",jt="[object Set]",zt="[object String]",Nt="[object Symbol]",Dt="[object Undefined]",Pt="[object WeakMap]",Rt="[object WeakSet]",Ht="[object ArrayBuffer]",Wt="[object DataView]",Ut="[object Float32Array]",Ft="[object Float64Array]",Zt="[object Int8Array]",qt="[object Int16Array]",Vt="[object Int32Array]",Yt="[object Uint8Array]",Xt="[object Uint8ClampedArray]",Jt="[object Uint16Array]",Kt="[object Uint32Array]",Gt=/\b__p \+= '';/g,Qt=/\b(__p \+=) '' \+/g,te=/(__e\(.*?\)|\b__t\)) \+\n'';/g,ee=/&(?:amp|lt|gt|quot|#39);/g,ne=/[&<>"']/g,ie=RegExp(ee.source),re=RegExp(ne.source),oe=/<%-([\s\S]+?)%>/g,se=/<%([\s\S]+?)%>/g,ae=/<%=([\s\S]+?)%>/g,ce=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,ue=/^\w*$/,le=/^\./,he=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,fe=/[\\^$.*+?()[\]{}|]/g,pe=RegExp(fe.source),de=/^\s+|\s+$/g,ge=/^\s+/,ve=/\s+$/,me=/\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,we=/\{\n\/\* \[wrapped with (.+)\] \*/,ye=/,? & /,xe=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g,be=/\\(\\)?/g,_e=/\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,ke=/\w*$/,Ce=/^[-+]0x[0-9a-f]+$/i,Le=/^0b[01]+$/i,$e=/^\[object .+?Constructor\]$/,Be=/^0o[0-7]+$/i,Me=/^(?:0|[1-9]\d*)$/,Te=/[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g,Ee=/($^)/,Ae=/['\n\r\u2028\u2029\\]/g,Se="\\u0300-\\u036f\\ufe20-\\ufe2f\\u20d0-\\u20ff",Ie="\\xac\\xb1\\xd7\\xf7\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf\\u2000-\\u206f \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000",Oe="[\\ud800-\\udfff]",je="["+Ie+"]",ze="["+Se+"]",Ne="\\d+",De="[\\u2700-\\u27bf]",Pe="[a-z\\xdf-\\xf6\\xf8-\\xff]",Re="[^\\ud800-\\udfff"+Ie+Ne+"\\u2700-\\u27bfa-z\\xdf-\\xf6\\xf8-\\xffA-Z\\xc0-\\xd6\\xd8-\\xde]",He="\\ud83c[\\udffb-\\udfff]",We="[^\\ud800-\\udfff]",Ue="(?:\\ud83c[\\udde6-\\uddff]){2}",Fe="[\\ud800-\\udbff][\\udc00-\\udfff]",Ze="[A-Z\\xc0-\\xd6\\xd8-\\xde]",qe="(?:"+Pe+"|"+Re+")",Ve="(?:"+Ze+"|"+Re+")",Ye="(?:"+ze+"|"+He+")"+"?",Xe="[\\ufe0e\\ufe0f]?"+Ye+("(?:\\u200d(?:"+[We,Ue,Fe].join("|")+")[\\ufe0e\\ufe0f]?"+Ye+")*"),Je="(?:"+[De,Ue,Fe].join("|")+")"+Xe,Ke="(?:"+[We+ze+"?",ze,Ue,Fe,Oe].join("|")+")",Ge=RegExp("['’]","g"),Qe=RegExp(ze,"g"),tn=RegExp(He+"(?="+He+")|"+Ke+Xe,"g"),en=RegExp([Ze+"?"+Pe+"+(?:['’](?:d|ll|m|re|s|t|ve))?(?="+[je,Ze,"$"].join("|")+")",Ve+"+(?:['’](?:D|LL|M|RE|S|T|VE))?(?="+[je,Ze+qe,"$"].join("|")+")",Ze+"?"+qe+"+(?:['’](?:d|ll|m|re|s|t|ve))?",Ze+"+(?:['’](?:D|LL|M|RE|S|T|VE))?","\\d*(?:(?:1ST|2ND|3RD|(?![123])\\dTH)\\b)","\\d*(?:(?:1st|2nd|3rd|(?![123])\\dth)\\b)",Ne,Je].join("|"),"g"),nn=RegExp("[\\u200d\\ud800-\\udfff"+Se+"\\ufe0e\\ufe0f]"),rn=/[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/,on=["Array","Buffer","DataView","Date","Error","Float32Array","Float64Array","Function","Int8Array","Int16Array","Int32Array","Map","Math","Object","Promise","RegExp","Set","String","Symbol","TypeError","Uint8Array","Uint8ClampedArray","Uint16Array","Uint32Array","WeakMap","_","clearTimeout","isFinite","parseInt","setTimeout"],sn=-1,an={};an[Ut]=an[Ft]=an[Zt]=an[qt]=an[Vt]=an[Yt]=an[Xt]=an[Jt]=an[Kt]=!0,an[xt]=an[bt]=an[Ht]=an[kt]=an[Wt]=an[Ct]=an[$t]=an[Bt]=an[Tt]=an[Et]=an[St]=an[Ot]=an[jt]=an[zt]=an[Pt]=!1;var cn={};cn[xt]=cn[bt]=cn[Ht]=cn[Wt]=cn[kt]=cn[Ct]=cn[Ut]=cn[Ft]=cn[Zt]=cn[qt]=cn[Vt]=cn[Tt]=cn[Et]=cn[St]=cn[Ot]=cn[jt]=cn[zt]=cn[Nt]=cn[Yt]=cn[Xt]=cn[Jt]=cn[Kt]=!0,cn[$t]=cn[Bt]=cn[Pt]=!1;var un={"\\":"\\","'":"'","\n":"n","\r":"r","\u2028":"u2028","\u2029":"u2029"},ln=parseFloat,hn=parseInt,fn="object"==typeof t&&t&&t.Object===Object&&t,pn="object"==typeof self&&self&&self.Object===Object&&self,dn=fn||pn||Function("return this")(),gn="object"==typeof e&&e&&!e.nodeType&&e,vn=gn&&"object"==typeof i&&i&&!i.nodeType&&i,mn=vn&&vn.exports===gn,wn=mn&&fn.process,yn=function(){try{return wn&&wn.binding&&wn.binding("util")}catch(t){}}(),xn=yn&&yn.isArrayBuffer,bn=yn&&yn.isDate,_n=yn&&yn.isMap,kn=yn&&yn.isRegExp,Cn=yn&&yn.isSet,Ln=yn&&yn.isTypedArray,$n=x("length"),Bn=b({"À":"A","Á":"A","Â":"A","Ã":"A","Ä":"A","Å":"A","à":"a","á":"a","â":"a","ã":"a","ä":"a","å":"a","Ç":"C","ç":"c","Ð":"D","ð":"d","È":"E","É":"E","Ê":"E","Ë":"E","è":"e","é":"e","ê":"e","ë":"e","Ì":"I","Í":"I","Î":"I","Ï":"I","ì":"i","í":"i","î":"i","ï":"i","Ñ":"N","ñ":"n","Ò":"O","Ó":"O","Ô":"O","Õ":"O","Ö":"O","Ø":"O","ò":"o","ó":"o","ô":"o","õ":"o","ö":"o","ø":"o","Ù":"U","Ú":"U","Û":"U","Ü":"U","ù":"u","ú":"u","û":"u","ü":"u","Ý":"Y","ý":"y","ÿ":"y","Æ":"Ae","æ":"ae","Þ":"Th","þ":"th","ß":"ss","Ā":"A","Ă":"A","Ą":"A","ā":"a","ă":"a","ą":"a","Ć":"C","Ĉ":"C","Ċ":"C","Č":"C","ć":"c","ĉ":"c","ċ":"c","č":"c","Ď":"D","Đ":"D","ď":"d","đ":"d","Ē":"E","Ĕ":"E","Ė":"E","Ę":"E","Ě":"E","ē":"e","ĕ":"e","ė":"e","ę":"e","ě":"e","Ĝ":"G","Ğ":"G","Ġ":"G","Ģ":"G","ĝ":"g","ğ":"g","ġ":"g","ģ":"g","Ĥ":"H","Ħ":"H","ĥ":"h","ħ":"h","Ĩ":"I","Ī":"I","Ĭ":"I","Į":"I","İ":"I","ĩ":"i","ī":"i","ĭ":"i","į":"i","ı":"i","Ĵ":"J","ĵ":"j","Ķ":"K","ķ":"k","ĸ":"k","Ĺ":"L","Ļ":"L","Ľ":"L","Ŀ":"L","Ł":"L","ĺ":"l","ļ":"l","ľ":"l","ŀ":"l","ł":"l","Ń":"N","Ņ":"N","Ň":"N","Ŋ":"N","ń":"n","ņ":"n","ň":"n","ŋ":"n","Ō":"O","Ŏ":"O","Ő":"O","ō":"o","ŏ":"o","ő":"o","Ŕ":"R","Ŗ":"R","Ř":"R","ŕ":"r","ŗ":"r","ř":"r","Ś":"S","Ŝ":"S","Ş":"S","Š":"S","ś":"s","ŝ":"s","ş":"s","š":"s","Ţ":"T","Ť":"T","Ŧ":"T","ţ":"t","ť":"t","ŧ":"t","Ũ":"U","Ū":"U","Ŭ":"U","Ů":"U","Ű":"U","Ų":"U","ũ":"u","ū":"u","ŭ":"u","ů":"u","ű":"u","ų":"u","Ŵ":"W","ŵ":"w","Ŷ":"Y","ŷ":"y","Ÿ":"Y","Ź":"Z","Ż":"Z","Ž":"Z","ź":"z","ż":"z","ž":"z","Ĳ":"IJ","ĳ":"ij","Œ":"Oe","œ":"oe","ŉ":"'n","ſ":"s"}),Mn=b({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}),Tn=b({"&amp;":"&","&lt;":"<","&gt;":">","&quot;":'"',"&#39;":"'"}),En=function t(e){function n(t){if(Vr(t)&&!Na(t)&&!(t instanceof b)){if(t instanceof r)return t;if(No.call(t,"__wrapped__"))return mr(t)}return new r(t)}function i(){}function r(t,e){this.__wrapped__=t,this.__actions__=[],this.__chain__=!!e,this.__index__=0,this.__values__=D}function b(t){this.__wrapped__=t,this.__actions__=[],this.__dir__=1,this.__filtered__=!1,this.__iteratees__=[],this.__takeCount__=vt,this.__views__=[]}function Se(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var i=t[e];this.set(i[0],i[1])}}function Ie(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var i=t[e];this.set(i[0],i[1])}}function Oe(t){var e=-1,n=null==t?0:t.length;for(this.clear();++e<n;){var i=t[e];this.set(i[0],i[1])}}function je(t){var e=-1,n=null==t?0:t.length;for(this.__data__=new Oe;++e<n;)this.add(t[e])}function ze(t){var e=this.__data__=new Ie(t);this.size=e.size}function Ne(t,e){var n=Na(t),i=!n&&za(t),r=!n&&!i&&Pa(t),o=!n&&!i&&!r&&Fa(t),s=n||i||r||o,a=s?C(t.length,Eo):[],c=a.length;for(var u in t)!e&&!No.call(t,u)||s&&("length"==u||r&&("offset"==u||"parent"==u)||o&&("buffer"==u||"byteLength"==u||"byteOffset"==u)||ir(u,c))||a.push(u);return a}function De(t){var e=t.length;return e?t[Yn(0,e-1)]:D}function Pe(t,e,n){(n===D||Pr(t[e],n))&&(n!==D||e in t)||Ue(t,e,n)}function Re(t,e,n){var i=t[e];No.call(t,e)&&Pr(i,n)&&(n!==D||e in t)||Ue(t,e,n)}function He(t,e){for(var n=t.length;n--;)if(Pr(t[n][0],e))return n;return-1}function We(t,e){return t&&_i(e,ao(e),t)}function Ue(t,e,n){"__proto__"==e&&es?es(t,e,{configurable:!0,enumerable:!0,value:n,writable:!0}):t[e]=n}function Fe(t,e){for(var n=-1,i=e.length,r=ko(i),o=null==t;++n<i;)r[n]=o?D:oo(t,e[n]);return r}function Ze(t,e,n){return t==t&&(n!==D&&(t=t<=n?t:n),e!==D&&(t=t>=e?t:e)),t}function qe(t,e,n,i,r,o){var a,c=e&Z,u=e&q,l=e&V;if(n&&(a=r?n(t,i,r,o):n(t)),a!==D)return a;if(!qr(t))return t;var h=Na(t);if(h){if(a=function(t){var e=t.length,n=t.constructor(e);return e&&"string"==typeof t[0]&&No.call(t,"index")&&(n.index=t.index,n.input=t.input),n}(t),!c)return bi(t,a)}else{var f=Vs(t),d=f==Bt||f==Mt;if(Pa(t))return gi(t,c);if(f==St||f==xt||d&&!r){if(a=u||d?{}:nr(t),!c)return u?function(t,e){return _i(t,qs(t),e)}(t,function(t,e){return t&&_i(e,co(e),t)}(a,t)):function(t,e){return _i(t,Zs(t),e)}(t,We(a,t))}else{if(!cn[f])return r?t:{};a=function(t,e,n,i){var r=t.constructor;switch(e){case Ht:return vi(t);case kt:case Ct:return new r(+t);case Wt:return function(t,e){var n=e?vi(t.buffer):t.buffer;return new t.constructor(n,t.byteOffset,t.byteLength)}(t,i);case Ut:case Ft:case Zt:case qt:case Vt:case Yt:case Xt:case Jt:case Kt:return mi(t,i);case Tt:return function(t,e,n){return p(e?n(A(t),Z):A(t),function(t,e){return t.set(e[0],e[1]),t},new t.constructor)}(t,i,n);case Et:case zt:return new r(t);case Ot:return function(t){var e=new t.constructor(t.source,ke.exec(t));return e.lastIndex=t.lastIndex,e}(t);case jt:return function(t,e,n){return p(e?n(O(t),Z):O(t),function(t,e){return t.add(e),t},new t.constructor)}(t,i,n);case Nt:return function(t){return Ss?Mo(Ss.call(t)):{}}(t)}}(t,f,qe,c)}}o||(o=new ze);var g=o.get(t);if(g)return g;o.set(t,a);var v=h?D:(l?u?Yi:Vi:u?co:ao)(t);return s(v||t,function(i,r){v&&(i=t[r=i]),Re(a,r,qe(i,e,n,r,t,o))}),a}function Ve(t,e,n){var i=n.length;if(null==t)return!i;for(t=Mo(t);i--;){var r=n[i],o=e[r],s=t[r];if(s===D&&!(r in t)||!o(s))return!1}return!0}function Ye(t,e,n){if("function"!=typeof t)throw new Ao(H);return Js(function(){t.apply(D,n)},e)}function Xe(t,e,n,i){var r=-1,o=u,s=!0,a=t.length,c=[],f=e.length;if(!a)return c;n&&(e=h(e,L(n))),i?(o=l,s=!1):e.length>=P&&(o=B,s=!1,e=new je(e));t:for(;++r<a;){var p=t[r],d=null==n?p:n(p);if(p=i||0!==p?p:0,s&&d==d){for(var g=f;g--;)if(e[g]===d)continue t;c.push(p)}else o(e,d,i)||c.push(p)}return c}function Je(t,e,n){for(var i=-1,r=t.length;++i<r;){var o=t[i],s=e(o);if(null!=s&&(a===D?s==s&&!Kr(s):n(s,a)))var a=s,c=o}return c}function Ke(t,e){var n=[];return js(t,function(t,i,r){e(t,i,r)&&n.push(t)}),n}function tn(t,e,n,i,r){var o=-1,s=t.length;for(n||(n=function(t){return Na(t)||za(t)||!!(Go&&t&&t[Go])}),r||(r=[]);++o<s;){var a=t[o];e>0&&n(a)?e>1?tn(a,e-1,n,i,r):f(r,a):i||(r[r.length]=a)}return r}function nn(t,e){return t&&Ns(t,e,ao)}function fn(t,e){return t&&Ds(t,e,ao)}function pn(t,e){return c(e,function(e){return Ur(t[e])})}function gn(t,e){for(var n=0,i=(e=pi(e,t)).length;null!=t&&n<i;)t=t[gr(e[n++])];return n&&n==i?t:D}function vn(t,e,n){var i=e(t);return Na(t)?i:f(i,n(t))}function wn(t){return null==t?t===D?Dt:At:ts&&ts in Mo(t)?function(t){var e=No.call(t,ts),n=t[ts];try{t[ts]=D;var i=!0}catch(t){}var r=Ro.call(t);return i&&(e?t[ts]=n:delete t[ts]),r}(t):function(t){return Ro.call(t)}(t)}function yn(t,e){return t>e}function $n(t,e,n){for(var i=n?l:u,r=t[0].length,o=t.length,s=o,a=ko(o),c=1/0,f=[];s--;){var p=t[s];s&&e&&(p=h(p,L(e))),c=ps(p.length,c),a[s]=!n&&(e||r>=120&&p.length>=120)?new je(s&&p):D}p=t[0];var d=-1,g=a[0];t:for(;++d<r&&f.length<c;){var v=p[d],m=e?e(v):v;if(v=n||0!==v?v:0,!(g?B(g,m):i(f,m,n))){for(s=o;--s;){var w=a[s];if(!(w?B(w,m):i(t[s],m,n)))continue t}g&&g.push(m),f.push(v)}}return f}function An(t,e,n){var i=null==(t=hr(t,e=pi(e,t)))?t:t[gr(_r(e))];return null==i?D:o(i,t,n)}function Sn(t){return Vr(t)&&wn(t)==xt}function In(t,e,n,i,r){return t===e||(null==t||null==e||!Vr(t)&&!Vr(e)?t!=t&&e!=e:function(t,e,n,i,r,o){var s=Na(t),a=Na(e),c=s?bt:Vs(t),u=a?bt:Vs(e),l=(c=c==xt?St:c)==St,h=(u=u==xt?St:u)==St,f=c==u;if(f&&Pa(t)){if(!Pa(e))return!1;s=!0,l=!1}if(f&&!l)return o||(o=new ze),s||Fa(t)?Zi(t,e,n,i,r,o):function(t,e,n,i,r,o,s){switch(c){case Wt:if(t.byteLength!=e.byteLength||t.byteOffset!=e.byteOffset)return!1;t=t.buffer,e=e.buffer;case Ht:return!(t.byteLength!=e.byteLength||!o(new qo(t),new qo(e)));case kt:case Ct:case Et:return Pr(+t,+e);case $t:return t.name==e.name&&t.message==e.message;case Ot:case zt:return t==e+"";case Tt:var a=A;case jt:var u=i&Y;if(a||(a=O),t.size!=e.size&&!u)return!1;var l=s.get(t);if(l)return l==e;i|=X,s.set(t,e);var h=Zi(a(t),a(e),i,r,o,s);return s.delete(t),h;case Nt:if(Ss)return Ss.call(t)==Ss.call(e)}return!1}(t,e,0,n,i,r,o);if(!(n&Y)){var p=l&&No.call(t,"__wrapped__"),d=h&&No.call(e,"__wrapped__");if(p||d){var g=p?t.value():t,v=d?e.value():e;return o||(o=new ze),r(g,v,n,i,o)}}return!!f&&(o||(o=new ze),function(t,e,n,i,r,o){var s=n&Y,a=Vi(t),c=a.length,u=Vi(e).length;if(c!=u&&!s)return!1;for(var l=c;l--;){var h=a[l];if(!(s?h in e:No.call(e,h)))return!1}var f=o.get(t);if(f&&o.get(e))return f==e;var p=!0;o.set(t,e),o.set(e,t);for(var d=s;++l<c;){h=a[l];var g=t[h],v=e[h];if(i)var m=s?i(v,g,h,e,t,o):i(g,v,h,t,e,o);if(!(m===D?g===v||r(g,v,n,i,o):m)){p=!1;break}d||(d="constructor"==h)}if(p&&!d){var w=t.constructor,y=e.constructor;w!=y&&"constructor"in t&&"constructor"in e&&!("function"==typeof w&&w instanceof w&&"function"==typeof y&&y instanceof y)&&(p=!1)}return o.delete(t),o.delete(e),p}(t,e,n,i,r,o))}(t,e,n,i,In,r))}function On(t,e,n,i){var r=n.length,o=r,s=!i;if(null==t)return!o;for(t=Mo(t);r--;){var a=n[r];if(s&&a[2]?a[1]!==t[a[0]]:!(a[0]in t))return!1}for(;++r<o;){var c=(a=n[r])[0],u=t[c],l=a[1];if(s&&a[2]){if(u===D&&!(c in t))return!1}else{var h=new ze;if(i)var f=i(u,l,c,t,e,h);if(!(f===D?In(l,u,Y|X,i,h):f))return!1}}return!0}function jn(t){return!(!qr(t)||!!Po&&Po in t)&&(Ur(t)?Uo:$e).test(vr(t))}function zn(t){return"function"==typeof t?t:null==t?vo:"object"==typeof t?Na(t)?Hn(t[0],t[1]):Rn(t):xo(t)}function Nn(t){if(!ar(t))return hs(t);var e=[];for(var n in Mo(t))No.call(t,n)&&"constructor"!=n&&e.push(n);return e}function Dn(t,e){return t<e}function Pn(t,e){var n=-1,i=Rr(t)?ko(t.length):[];return js(t,function(t,r,o){i[++n]=e(t,r,o)}),i}function Rn(t){var e=Qi(t);return 1==e.length&&e[0][2]?ur(e[0][0],e[0][1]):function(n){return n===t||On(n,t,e)}}function Hn(t,e){return or(t)&&cr(e)?ur(gr(t),e):function(n){var i=oo(n,t);return i===D&&i===e?so(n,t):In(e,i,Y|X)}}function Wn(t,e,n,i,r){t!==e&&Ns(e,function(o,s){if(qr(o))r||(r=new ze),function(t,e,n,i,r,o,s){var a=t[n],c=e[n],u=s.get(c);if(u)Pe(t,n,u);else{var l=o?o(a,c,n+"",t,e,s):D,h=l===D;if(h){var f=Na(c),p=!f&&Pa(c),d=!f&&!p&&Fa(c);l=c,f||p||d?Na(a)?l=a:Hr(a)?l=bi(a):p?(h=!1,l=gi(c,!0)):d?(h=!1,l=mi(c,!0)):l=[]:Xr(c)||za(c)?(l=a,za(a)?l=io(a):(!qr(a)||i&&Ur(a))&&(l=nr(c))):h=!1}h&&(s.set(c,l),r(l,c,i,o,s),s.delete(c)),Pe(t,n,l)}}(t,e,s,n,Wn,i,r);else{var a=i?i(t[s],o,s+"",t,e,r):D;a===D&&(a=o),Pe(t,s,a)}},co)}function Un(t,e){var n=t.length;if(n)return e+=e<0?n:0,ir(e,n)?t[e]:D}function Fn(t,e,n){var i=-1;return e=h(e.length?e:[vo],L(Ki())),function(t,e){var n=t.length;for(t.sort(e);n--;)t[n]=t[n].value;return t}(Pn(t,function(t,n,r){return{criteria:h(e,function(e){return e(t)}),index:++i,value:t}}),function(t,e){return function(t,e,n){for(var i=-1,r=t.criteria,o=e.criteria,s=r.length,a=n.length;++i<s;){var c=wi(r[i],o[i]);if(c){if(i>=a)return c;var u=n[i];return c*("desc"==u?-1:1)}}return t.index-e.index}(t,e,n)})}function Zn(t,e,n){for(var i=-1,r=e.length,o={};++i<r;){var s=e[i],a=gn(t,s);n(a,s)&&Kn(o,pi(s,t),a)}return o}function qn(t,e,n,i){var r=i?function(t,e,n,i){for(var r=n-1,o=t.length;++r<o;)if(i(t[r],e))return r;return-1}:m,o=-1,s=e.length,a=t;for(t===e&&(e=bi(e)),n&&(a=h(t,L(n)));++o<s;)for(var c=0,u=e[o],l=n?n(u):u;(c=r(a,l,c,i))>-1;)a!==t&&Ko.call(a,c,1),Ko.call(t,c,1);return t}function Vn(t,e){for(var n=t?e.length:0,i=n-1;n--;){var r=e[n];if(n==i||r!==o){var o=r;ir(r)?Ko.call(t,r,1):oi(t,r)}}return t}function Yn(t,e){return t+ss(vs()*(e-t+1))}function Xn(t,e){var n="";if(!t||e<1||e>pt)return n;do{e%2&&(n+=t),(e=ss(e/2))&&(t+=t)}while(e);return n}function Jn(t,e){return Ks(lr(t,e,vo),t+"")}function Kn(t,e,n,i){if(!qr(t))return t;for(var r=-1,o=(e=pi(e,t)).length,s=o-1,a=t;null!=a&&++r<o;){var c=gr(e[r]),u=n;if(r!=s){var l=a[c];(u=i?i(l,c,a):D)===D&&(u=qr(l)?l:ir(e[r+1])?[]:{})}Re(a,c,u),a=a[c]}return t}function Gn(t,e,n){var i=-1,r=t.length;e<0&&(e=-e>r?0:r+e),(n=n>r?r:n)<0&&(n+=r),r=e>n?0:n-e>>>0,e>>>=0;for(var o=ko(r);++i<r;)o[i]=t[i+e];return o}function Qn(t,e,n){var i=0,r=null==t?i:t.length;if("number"==typeof e&&e==e&&r<=wt){for(;i<r;){var o=i+r>>>1,s=t[o];null!==s&&!Kr(s)&&(n?s<=e:s<e)?i=o+1:r=o}return r}return ti(t,e,vo,n)}function ti(t,e,n,i){e=n(e);for(var r=0,o=null==t?0:t.length,s=e!=e,a=null===e,c=Kr(e),u=e===D;r<o;){var l=ss((r+o)/2),h=n(t[l]),f=h!==D,p=null===h,d=h==h,g=Kr(h);if(s)var v=i||d;else v=u?d&&(i||f):a?d&&f&&(i||!p):c?d&&f&&!p&&(i||!g):!p&&!g&&(i?h<=e:h<e);v?r=l+1:o=l}return ps(o,mt)}function ei(t,e){for(var n=-1,i=t.length,r=0,o=[];++n<i;){var s=t[n],a=e?e(s):s;if(!n||!Pr(a,c)){var c=a;o[r++]=0===s?0:s}}return o}function ni(t){return"number"==typeof t?t:Kr(t)?gt:+t}function ii(t){if("string"==typeof t)return t;if(Na(t))return h(t,ii)+"";if(Kr(t))return Is?Is.call(t):"";var e=t+"";return"0"==e&&1/t==-ft?"-0":e}function ri(t,e,n){var i=-1,r=u,o=t.length,s=!0,a=[],c=a;if(n)s=!1,r=l;else if(o>=P){var h=e?null:Us(t);if(h)return O(h);s=!1,r=B,c=new je}else c=e?[]:a;t:for(;++i<o;){var f=t[i],p=e?e(f):f;if(f=n||0!==f?f:0,s&&p==p){for(var d=c.length;d--;)if(c[d]===p)continue t;e&&c.push(p),a.push(f)}else r(c,p,n)||(c!==a&&c.push(p),a.push(f))}return a}function oi(t,e){return e=pi(e,t),null==(t=hr(t,e))||delete t[gr(_r(e))]}function si(t,e,n,i){return Kn(t,e,n(gn(t,e)),i)}function ai(t,e,n,i){for(var r=t.length,o=i?r:-1;(i?o--:++o<r)&&e(t[o],o,t););return n?Gn(t,i?0:o,i?o+1:r):Gn(t,i?o+1:0,i?r:o)}function ci(t,e){var n=t;return n instanceof b&&(n=n.value()),p(e,function(t,e){return e.func.apply(e.thisArg,f([t],e.args))},n)}function ui(t,e,n){var i=t.length;if(i<2)return i?ri(t[0]):[];for(var r=-1,o=ko(i);++r<i;)for(var s=t[r],a=-1;++a<i;)a!=r&&(o[r]=Xe(o[r]||s,t[a],e,n));return ri(tn(o,1),e,n)}function li(t,e,n){for(var i=-1,r=t.length,o=e.length,s={};++i<r;){var a=i<o?e[i]:D;n(s,t[i],a)}return s}function hi(t){return Hr(t)?t:[]}function fi(t){return"function"==typeof t?t:vo}function pi(t,e){return Na(t)?t:or(t,e)?[t]:Gs(ro(t))}function di(t,e,n){var i=t.length;return n=n===D?i:n,!e&&n>=i?t:Gn(t,e,n)}function gi(t,e){if(e)return t.slice();var n=t.length,i=Vo?Vo(n):new t.constructor(n);return t.copy(i),i}function vi(t){var e=new t.constructor(t.byteLength);return new qo(e).set(new qo(t)),e}function mi(t,e){var n=e?vi(t.buffer):t.buffer;return new t.constructor(n,t.byteOffset,t.length)}function wi(t,e){if(t!==e){var n=t!==D,i=null===t,r=t==t,o=Kr(t),s=e!==D,a=null===e,c=e==e,u=Kr(e);if(!a&&!u&&!o&&t>e||o&&s&&c&&!a&&!u||i&&s&&c||!n&&c||!r)return 1;if(!i&&!o&&!u&&t<e||u&&n&&r&&!i&&!o||a&&n&&r||!s&&r||!c)return-1}return 0}function yi(t,e,n,i){for(var r=-1,o=t.length,s=n.length,a=-1,c=e.length,u=fs(o-s,0),l=ko(c+u),h=!i;++a<c;)l[a]=e[a];for(;++r<s;)(h||r<o)&&(l[n[r]]=t[r]);for(;u--;)l[a++]=t[r++];return l}function xi(t,e,n,i){for(var r=-1,o=t.length,s=-1,a=n.length,c=-1,u=e.length,l=fs(o-a,0),h=ko(l+u),f=!i;++r<l;)h[r]=t[r];for(var p=r;++c<u;)h[p+c]=e[c];for(;++s<a;)(f||r<o)&&(h[p+n[s]]=t[r++]);return h}function bi(t,e){var n=-1,i=t.length;for(e||(e=ko(i));++n<i;)e[n]=t[n];return e}function _i(t,e,n,i){var r=!n;n||(n={});for(var o=-1,s=e.length;++o<s;){var a=e[o],c=i?i(n[a],t[a],a,n,t):D;c===D&&(c=t[a]),r?Ue(n,a,c):Re(n,a,c)}return n}function ki(t,e){return function(n,i){var r=Na(n)?function(t,e,n,i){for(var r=-1,o=null==t?0:t.length;++r<o;){var s=t[r];e(i,s,n(s),t)}return i}:function(t,e,n,i){return js(t,function(t,r,o){e(i,t,n(t),o)}),i},o=e?e():{};return r(n,t,Ki(i,2),o)}}function Ci(t){return Jn(function(e,n){var i=-1,r=n.length,o=r>1?n[r-1]:D,s=r>2?n[2]:D;for(o=t.length>3&&"function"==typeof o?(r--,o):D,s&&rr(n[0],n[1],s)&&(o=r<3?D:o,r=1),e=Mo(e);++i<r;){var a=n[i];a&&t(e,a,i,o)}return e})}function Li(t,e){return function(n,i){if(null==n)return n;if(!Rr(n))return t(n,i);for(var r=n.length,o=e?r:-1,s=Mo(n);(e?o--:++o<r)&&!1!==i(s[o],o,s););return n}}function $i(t){return function(e,n,i){for(var r=-1,o=Mo(e),s=i(e),a=s.length;a--;){var c=s[t?a:++r];if(!1===n(o[c],c,o))break}return e}}function Bi(t){return function(e){var n=E(e=ro(e))?N(e):D,i=n?n[0]:e.charAt(0),r=n?di(n,1).join(""):e.slice(1);return i[t]()+r}}function Mi(t){return function(e){return p(po(fo(e).replace(Ge,"")),t,"")}}function Ti(t){return function(){var e=arguments;switch(e.length){case 0:return new t;case 1:return new t(e[0]);case 2:return new t(e[0],e[1]);case 3:return new t(e[0],e[1],e[2]);case 4:return new t(e[0],e[1],e[2],e[3]);case 5:return new t(e[0],e[1],e[2],e[3],e[4]);case 6:return new t(e[0],e[1],e[2],e[3],e[4],e[5]);case 7:return new t(e[0],e[1],e[2],e[3],e[4],e[5],e[6])}var n=Os(t.prototype),i=t.apply(n,e);return qr(i)?i:n}}function Ei(t){return function(e,n,i){var r=Mo(e);if(!Rr(e)){var o=Ki(n,3);e=ao(e),n=function(t){return o(r[t],t,r)}}var s=t(e,n,i);return s>-1?r[o?e[s]:s]:D}}function Ai(t){return qi(function(e){var n=e.length,i=n,o=r.prototype.thru;for(t&&e.reverse();i--;){var s=e[i];if("function"!=typeof s)throw new Ao(H);if(o&&!a&&"wrapper"==Xi(s))var a=new r([],!0)}for(i=a?i:n;++i<n;){var c=Xi(s=e[i]),u="wrapper"==c?Fs(s):D;a=u&&sr(u[0])&&u[1]==(it|Q|et|rt)&&!u[4].length&&1==u[9]?a[Xi(u[0])].apply(a,u[3]):1==s.length&&sr(s)?a[c]():a.thru(s)}return function(){var t=arguments,i=t[0];if(a&&1==t.length&&Na(i))return a.plant(i).value();for(var r=0,o=n?e[r].apply(this,t):i;++r<n;)o=e[r].call(this,o);return o}})}function Si(t,e,n,i,r,o,s,a,c,u){function l(){for(var m=arguments.length,w=ko(m),y=m;y--;)w[y]=arguments[y];if(d)var x=Ji(l),b=function(t,e){for(var n=t.length,i=0;n--;)t[n]===e&&++i;return i}(w,x);if(i&&(w=yi(w,i,r,d)),o&&(w=xi(w,o,s,d)),m-=b,d&&m<u){var _=I(w,x);return Pi(t,e,Si,l.placeholder,n,w,_,a,c,u-m)}var k=f?n:this,C=p?k[t]:t;return m=w.length,a?w=function(t,e){for(var n=t.length,i=ps(e.length,n),r=bi(t);i--;){var o=e[i];t[i]=ir(o,n)?r[o]:D}return t}(w,a):g&&m>1&&w.reverse(),h&&c<m&&(w.length=c),this&&this!==dn&&this instanceof l&&(C=v||Ti(C)),C.apply(k,w)}var h=e&it,f=e&J,p=e&K,d=e&(Q|tt),g=e&ot,v=p?D:Ti(t);return l}function Ii(t,e){return function(n,i){return function(t,e,n,i){return nn(t,function(t,r,o){e(i,n(t),r,o)}),i}(n,t,e(i),{})}}function Oi(t,e){return function(n,i){var r;if(n===D&&i===D)return e;if(n!==D&&(r=n),i!==D){if(r===D)return i;"string"==typeof n||"string"==typeof i?(n=ii(n),i=ii(i)):(n=ni(n),i=ni(i)),r=t(n,i)}return r}}function ji(t){return qi(function(e){return e=h(e,L(Ki())),Jn(function(n){var i=this;return t(e,function(t){return o(t,i,n)})})})}function zi(t,e){var n=(e=e===D?" ":ii(e)).length;if(n<2)return n?Xn(e,t):e;var i=Xn(e,os(t/z(e)));return E(e)?di(N(i),0,t).join(""):i.slice(0,t)}function Ni(t){return function(e,n,i){return i&&"number"!=typeof i&&rr(e,n,i)&&(n=i=D),e=Qr(e),n===D?(n=e,e=0):n=Qr(n),i=i===D?e<n?1:-1:Qr(i),function(t,e,n,i){for(var r=-1,o=fs(os((e-t)/(n||1)),0),s=ko(o);o--;)s[i?o:++r]=t,t+=n;return s}(e,n,i,t)}}function Di(t){return function(e,n){return"string"==typeof e&&"string"==typeof n||(e=no(e),n=no(n)),t(e,n)}}function Pi(t,e,n,i,r,o,s,a,c,u){var l=e&Q;e|=l?et:nt,(e&=~(l?nt:et))&G||(e&=~(J|K));var h=[t,e,r,l?o:D,l?s:D,l?D:o,l?D:s,a,c,u],f=n.apply(D,h);return sr(t)&&Xs(f,h),f.placeholder=i,fr(f,t,e)}function Ri(t){var e=Bo[t];return function(t,n){if(t=no(t),n=null==n?0:ps(to(n),292)){var i=(ro(t)+"e").split("e");return+((i=(ro(e(i[0]+"e"+(+i[1]+n)))+"e").split("e"))[0]+"e"+(+i[1]-n))}return e(t)}}function Hi(t){return function(e){var n=Vs(e);return n==Tt?A(e):n==jt?j(e):function(t,e){return h(e,function(e){return[e,t[e]]})}(e,t(e))}}function Wi(t,e,n,i,r,s,a,c){var u=e&K;if(!u&&"function"!=typeof t)throw new Ao(H);var l=i?i.length:0;if(l||(e&=~(et|nt),i=r=D),a=a===D?a:fs(to(a),0),c=c===D?c:to(c),l-=r?r.length:0,e&nt){var h=i,f=r;i=r=D}var p=u?D:Fs(t),d=[t,e,n,i,r,h,f,s,a,c];if(p&&function(t,e){var n=t[1],i=e[1],r=n|i,o=r<(J|K|it),s=i==it&&n==Q||i==it&&n==rt&&t[7].length<=e[8]||i==(it|rt)&&e[7].length<=e[8]&&n==Q;if(!o&&!s)return t;i&J&&(t[2]=e[2],r|=n&J?0:G);var a=e[3];if(a){var c=t[3];t[3]=c?yi(c,a,e[4]):a,t[4]=c?I(t[3],F):e[4]}(a=e[5])&&(c=t[5],t[5]=c?xi(c,a,e[6]):a,t[6]=c?I(t[5],F):e[6]),(a=e[7])&&(t[7]=a),i&it&&(t[8]=null==t[8]?e[8]:ps(t[8],e[8])),null==t[9]&&(t[9]=e[9]),t[0]=e[0],t[1]=r}(d,p),t=d[0],e=d[1],n=d[2],i=d[3],r=d[4],!(c=d[9]=d[9]===D?u?0:t.length:fs(d[9]-l,0))&&e&(Q|tt)&&(e&=~(Q|tt)),e&&e!=J)g=e==Q||e==tt?function(t,e,n){function i(){for(var s=arguments.length,a=ko(s),c=s,u=Ji(i);c--;)a[c]=arguments[c];var l=s<3&&a[0]!==u&&a[s-1]!==u?[]:I(a,u);return(s-=l.length)<n?Pi(t,e,Si,i.placeholder,D,a,l,D,D,n-s):o(this&&this!==dn&&this instanceof i?r:t,this,a)}var r=Ti(t);return i}(t,e,c):e!=et&&e!=(J|et)||r.length?Si.apply(D,d):function(t,e,n,i){function r(){for(var e=-1,c=arguments.length,u=-1,l=i.length,h=ko(l+c),f=this&&this!==dn&&this instanceof r?a:t;++u<l;)h[u]=i[u];for(;c--;)h[u++]=arguments[++e];return o(f,s?n:this,h)}var s=e&J,a=Ti(t);return r}(t,e,n,i);else var g=function(t,e,n){function i(){return(this&&this!==dn&&this instanceof i?o:t).apply(r?n:this,arguments)}var r=e&J,o=Ti(t);return i}(t,e,n);return fr((p?Ps:Xs)(g,d),t,e)}function Ui(t,e,n,i){return t===D||Pr(t,Oo[n])&&!No.call(i,n)?e:t}function Fi(t,e,n,i,r,o){return qr(t)&&qr(e)&&(o.set(e,t),Wn(t,e,D,Fi,o),o.delete(e)),t}function Zi(t,e,n,i,r,o){var s=n&Y,a=t.length,c=e.length;if(a!=c&&!(s&&c>a))return!1;var u=o.get(t);if(u&&o.get(e))return u==e;var l=-1,h=!0,f=n&X?new je:D;for(o.set(t,e),o.set(e,t);++l<a;){var p=t[l],g=e[l];if(i)var v=s?i(g,p,l,e,t,o):i(p,g,l,t,e,o);if(v!==D){if(v)continue;h=!1;break}if(f){if(!d(e,function(t,e){if(!B(f,e)&&(p===t||r(p,t,n,i,o)))return f.push(e)})){h=!1;break}}else if(p!==g&&!r(p,g,n,i,o)){h=!1;break}}return o.delete(t),o.delete(e),h}function qi(t){return Ks(lr(t,D,xr),t+"")}function Vi(t){return vn(t,ao,Zs)}function Yi(t){return vn(t,co,qs)}function Xi(t){for(var e=t.name+"",n=Ls[e],i=No.call(Ls,e)?n.length:0;i--;){var r=n[i],o=r.func;if(null==o||o==t)return r.name}return e}function Ji(t){return(No.call(n,"placeholder")?n:t).placeholder}function Ki(){var t=n.iteratee||mo;return t=t===mo?zn:t,arguments.length?t(arguments[0],arguments[1]):t}function Gi(t,e){var n=t.__data__;return function(t){var e=typeof t;return"string"==e||"number"==e||"symbol"==e||"boolean"==e?"__proto__"!==t:null===t}(e)?n["string"==typeof e?"string":"hash"]:n.map}function Qi(t){for(var e=ao(t),n=e.length;n--;){var i=e[n],r=t[i];e[n]=[i,r,cr(r)]}return e}function tr(t,e){var n=function(t,e){return null==t?D:t[e]}(t,e);return jn(n)?n:D}function er(t,e,n){for(var i=-1,r=(e=pi(e,t)).length,o=!1;++i<r;){var s=gr(e[i]);if(!(o=null!=t&&n(t,s)))break;t=t[s]}return o||++i!=r?o:!!(r=null==t?0:t.length)&&Zr(r)&&ir(s,r)&&(Na(t)||za(t))}function nr(t){return"function"!=typeof t.constructor||ar(t)?{}:Os(Yo(t))}function ir(t,e){return!!(e=null==e?pt:e)&&("number"==typeof t||Me.test(t))&&t>-1&&t%1==0&&t<e}function rr(t,e,n){if(!qr(n))return!1;var i=typeof e;return!!("number"==i?Rr(n)&&ir(e,n.length):"string"==i&&e in n)&&Pr(n[e],t)}function or(t,e){if(Na(t))return!1;var n=typeof t;return!("number"!=n&&"symbol"!=n&&"boolean"!=n&&null!=t&&!Kr(t))||ue.test(t)||!ce.test(t)||null!=e&&t in Mo(e)}function sr(t){var e=Xi(t),i=n[e];if("function"!=typeof i||!(e in b.prototype))return!1;if(t===i)return!0;var r=Fs(i);return!!r&&t===r[0]}function ar(t){var e=t&&t.constructor;return t===("function"==typeof e&&e.prototype||Oo)}function cr(t){return t==t&&!qr(t)}function ur(t,e){return function(n){return null!=n&&n[t]===e&&(e!==D||t in Mo(n))}}function lr(t,e,n){return e=fs(e===D?t.length-1:e,0),function(){for(var i=arguments,r=-1,s=fs(i.length-e,0),a=ko(s);++r<s;)a[r]=i[e+r];r=-1;for(var c=ko(e+1);++r<e;)c[r]=i[r];return c[e]=n(a),o(t,this,c)}}function hr(t,e){return e.length<2?t:gn(t,Gn(e,0,-1))}function fr(t,e,n){var i=e+"";return Ks(t,function(t,e){var n=e.length;if(!n)return t;var i=n-1;return e[i]=(n>1?"& ":"")+e[i],e=e.join(n>2?", ":" "),t.replace(me,"{\n/* [wrapped with "+e+"] */\n")}(i,function(t,e){return s(yt,function(n){var i="_."+n[0];e&n[1]&&!u(t,i)&&t.push(i)}),t.sort()}(function(t){var e=t.match(we);return e?e[1].split(ye):[]}(i),n)))}function pr(t){var e=0,n=0;return function(){var i=ds(),r=ut-(i-n);if(n=i,r>0){if(++e>=ct)return arguments[0]}else e=0;return t.apply(D,arguments)}}function dr(t,e){var n=-1,i=t.length,r=i-1;for(e=e===D?i:e;++n<e;){var o=Yn(n,r),s=t[o];t[o]=t[n],t[n]=s}return t.length=e,t}function gr(t){if("string"==typeof t||Kr(t))return t;var e=t+"";return"0"==e&&1/t==-ft?"-0":e}function vr(t){if(null!=t){try{return zo.call(t)}catch(t){}try{return t+""}catch(t){}}return""}function mr(t){if(t instanceof b)return t.clone();var e=new r(t.__wrapped__,t.__chain__);return e.__actions__=bi(t.__actions__),e.__index__=t.__index__,e.__values__=t.__values__,e}function wr(t,e,n){var i=null==t?0:t.length;if(!i)return-1;var r=null==n?0:to(n);return r<0&&(r=fs(i+r,0)),v(t,Ki(e,3),r)}function yr(t,e,n){var i=null==t?0:t.length;if(!i)return-1;var r=i-1;return n!==D&&(r=to(n),r=n<0?fs(i+r,0):ps(r,i-1)),v(t,Ki(e,3),r,!0)}function xr(t){return(null==t?0:t.length)?tn(t,1):[]}function br(t){return t&&t.length?t[0]:D}function _r(t){var e=null==t?0:t.length;return e?t[e-1]:D}function kr(t,e){return t&&t.length&&e&&e.length?qn(t,e):t}function Cr(t){return null==t?t:ms.call(t)}function Lr(t){if(!t||!t.length)return[];var e=0;return t=c(t,function(t){if(Hr(t))return e=fs(t.length,e),!0}),C(e,function(e){return h(t,x(e))})}function $r(t,e){if(!t||!t.length)return[];var n=Lr(t);return null==e?n:h(n,function(t){return o(e,D,t)})}function Br(t){var e=n(t);return e.__chain__=!0,e}function Mr(t,e){return e(t)}function Tr(t,e){return(Na(t)?s:js)(t,Ki(e,3))}function Er(t,e){return(Na(t)?function(t,e){for(var n=null==t?0:t.length;n--&&!1!==e(t[n],n,t););return t}:zs)(t,Ki(e,3))}function Ar(t,e){return(Na(t)?h:Pn)(t,Ki(e,3))}function Sr(t,e,n){return e=n?D:e,e=t&&null==e?t.length:e,Wi(t,it,D,D,D,D,e)}function Ir(t,e){var n;if("function"!=typeof e)throw new Ao(H);return t=to(t),function(){return--t>0&&(n=e.apply(this,arguments)),t<=1&&(e=D),n}}function Or(t,e,n){var i=Wi(t,Q,D,D,D,D,D,e=n?D:e);return i.placeholder=Or.placeholder,i}function jr(t,e,n){var i=Wi(t,tt,D,D,D,D,D,e=n?D:e);return i.placeholder=jr.placeholder,i}function zr(t,e,n){function i(e){var n=c,i=u;return c=u=D,d=e,h=t.apply(i,n)}function r(t){var n=t-p;return p===D||n>=e||n<0||v&&t-d>=l}function o(){var t=La();if(r(t))return s(t);f=Js(o,function(t){var n=e-(t-p);return v?ps(n,l-(t-d)):n}(t))}function s(t){return f=D,m&&c?i(t):(c=u=D,h)}function a(){var t=La(),n=r(t);if(c=arguments,u=this,p=t,n){if(f===D)return function(t){return d=t,f=Js(o,e),g?i(t):h}(p);if(v)return f=Js(o,e),i(p)}return f===D&&(f=Js(o,e)),h}var c,u,l,h,f,p,d=0,g=!1,v=!1,m=!0;if("function"!=typeof t)throw new Ao(H);return e=no(e)||0,qr(n)&&(g=!!n.leading,l=(v="maxWait"in n)?fs(no(n.maxWait)||0,e):l,m="trailing"in n?!!n.trailing:m),a.cancel=function(){f!==D&&Ws(f),d=0,c=p=u=f=D},a.flush=function(){return f===D?h:s(La())},a}function Nr(t,e){if("function"!=typeof t||null!=e&&"function"!=typeof e)throw new Ao(H);var n=function(){var i=arguments,r=e?e.apply(this,i):i[0],o=n.cache;if(o.has(r))return o.get(r);var s=t.apply(this,i);return n.cache=o.set(r,s)||o,s};return n.cache=new(Nr.Cache||Oe),n}function Dr(t){if("function"!=typeof t)throw new Ao(H);return function(){var e=arguments;switch(e.length){case 0:return!t.call(this);case 1:return!t.call(this,e[0]);case 2:return!t.call(this,e[0],e[1]);case 3:return!t.call(this,e[0],e[1],e[2])}return!t.apply(this,e)}}function Pr(t,e){return t===e||t!=t&&e!=e}function Rr(t){return null!=t&&Zr(t.length)&&!Ur(t)}function Hr(t){return Vr(t)&&Rr(t)}function Wr(t){if(!Vr(t))return!1;var e=wn(t);return e==$t||e==Lt||"string"==typeof t.message&&"string"==typeof t.name&&!Xr(t)}function Ur(t){if(!qr(t))return!1;var e=wn(t);return e==Bt||e==Mt||e==_t||e==It}function Fr(t){return"number"==typeof t&&t==to(t)}function Zr(t){return"number"==typeof t&&t>-1&&t%1==0&&t<=pt}function qr(t){var e=typeof t;return null!=t&&("object"==e||"function"==e)}function Vr(t){return null!=t&&"object"==typeof t}function Yr(t){return"number"==typeof t||Vr(t)&&wn(t)==Et}function Xr(t){if(!Vr(t)||wn(t)!=St)return!1;var e=Yo(t);if(null===e)return!0;var n=No.call(e,"constructor")&&e.constructor;return"function"==typeof n&&n instanceof n&&zo.call(n)==Ho}function Jr(t){return"string"==typeof t||!Na(t)&&Vr(t)&&wn(t)==zt}function Kr(t){return"symbol"==typeof t||Vr(t)&&wn(t)==Nt}function Gr(t){if(!t)return[];if(Rr(t))return Jr(t)?N(t):bi(t);if(Qo&&t[Qo])return function(t){for(var e,n=[];!(e=t.next()).done;)n.push(e.value);return n}(t[Qo]());var e=Vs(t);return(e==Tt?A:e==jt?O:lo)(t)}function Qr(t){return t?(t=no(t))===ft||t===-ft?(t<0?-1:1)*dt:t==t?t:0:0===t?t:0}function to(t){var e=Qr(t),n=e%1;return e==e?n?e-n:e:0}function eo(t){return t?Ze(to(t),0,vt):0}function no(t){if("number"==typeof t)return t;if(Kr(t))return gt;if(qr(t)){var e="function"==typeof t.valueOf?t.valueOf():t;t=qr(e)?e+"":e}if("string"!=typeof t)return 0===t?t:+t;t=t.replace(de,"");var n=Le.test(t);return n||Be.test(t)?hn(t.slice(2),n?2:8):Ce.test(t)?gt:+t}function io(t){return _i(t,co(t))}function ro(t){return null==t?"":ii(t)}function oo(t,e,n){var i=null==t?D:gn(t,e);return i===D?n:i}function so(t,e){return null!=t&&er(t,e,function(t,e){return null!=t&&e in Mo(t)})}function ao(t){return Rr(t)?Ne(t):Nn(t)}function co(t){return Rr(t)?Ne(t,!0):function(t){if(!qr(t))return function(t){var e=[];if(null!=t)for(var n in Mo(t))e.push(n);return e}(t);var e=ar(t),n=[];for(var i in t)("constructor"!=i||!e&&No.call(t,i))&&n.push(i);return n}(t)}function uo(t,e){if(null==t)return{};var n=h(Yi(t),function(t){return[t]});return e=Ki(e),Zn(t,n,function(t,n){return e(t,n[0])})}function lo(t){return null==t?[]:$(t,ao(t))}function ho(t){return vc(ro(t).toLowerCase())}function fo(t){return(t=ro(t))&&t.replace(Te,Bn).replace(Qe,"")}function po(t,e,n){return t=ro(t),(e=n?D:e)===D?function(t){return rn.test(t)}(t)?function(t){return t.match(en)||[]}(t):function(t){return t.match(xe)||[]}(t):t.match(e)||[]}function go(t){return function(){return t}}function vo(t){return t}function mo(t){return zn("function"==typeof t?t:qe(t,Z))}function wo(t,e,n){var i=ao(e),r=pn(e,i);null!=n||qr(e)&&(r.length||!i.length)||(n=e,e=t,t=this,r=pn(e,ao(e)));var o=!(qr(n)&&"chain"in n&&!n.chain),a=Ur(t);return s(r,function(n){var i=e[n];t[n]=i,a&&(t.prototype[n]=function(){var e=this.__chain__;if(o||e){var n=t(this.__wrapped__);return(n.__actions__=bi(this.__actions__)).push({func:i,args:arguments,thisArg:t}),n.__chain__=e,n}return i.apply(t,f([this.value()],arguments))})}),t}function yo(){}function xo(t){return or(t)?x(gr(t)):function(t){return function(e){return gn(e,t)}}(t)}function bo(){return[]}function _o(){return!1}var ko=(e=null==e?dn:En.defaults(dn.Object(),e,En.pick(dn,on))).Array,Co=e.Date,Lo=e.Error,$o=e.Function,Bo=e.Math,Mo=e.Object,To=e.RegExp,Eo=e.String,Ao=e.TypeError,So=ko.prototype,Io=$o.prototype,Oo=Mo.prototype,jo=e["__core-js_shared__"],zo=Io.toString,No=Oo.hasOwnProperty,Do=0,Po=function(){var t=/[^.]+$/.exec(jo&&jo.keys&&jo.keys.IE_PROTO||"");return t?"Symbol(src)_1."+t:""}(),Ro=Oo.toString,Ho=zo.call(Mo),Wo=dn._,Uo=To("^"+zo.call(No).replace(fe,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),Fo=mn?e.Buffer:D,Zo=e.Symbol,qo=e.Uint8Array,Vo=Fo?Fo.allocUnsafe:D,Yo=S(Mo.getPrototypeOf,Mo),Xo=Mo.create,Jo=Oo.propertyIsEnumerable,Ko=So.splice,Go=Zo?Zo.isConcatSpreadable:D,Qo=Zo?Zo.iterator:D,ts=Zo?Zo.toStringTag:D,es=function(){try{var t=tr(Mo,"defineProperty");return t({},"",{}),t}catch(t){}}(),ns=e.clearTimeout!==dn.clearTimeout&&e.clearTimeout,is=Co&&Co.now!==dn.Date.now&&Co.now,rs=e.setTimeout!==dn.setTimeout&&e.setTimeout,os=Bo.ceil,ss=Bo.floor,as=Mo.getOwnPropertySymbols,cs=Fo?Fo.isBuffer:D,us=e.isFinite,ls=So.join,hs=S(Mo.keys,Mo),fs=Bo.max,ps=Bo.min,ds=Co.now,gs=e.parseInt,vs=Bo.random,ms=So.reverse,ws=tr(e,"DataView"),ys=tr(e,"Map"),xs=tr(e,"Promise"),bs=tr(e,"Set"),_s=tr(e,"WeakMap"),ks=tr(Mo,"create"),Cs=_s&&new _s,Ls={},$s=vr(ws),Bs=vr(ys),Ms=vr(xs),Ts=vr(bs),Es=vr(_s),As=Zo?Zo.prototype:D,Ss=As?As.valueOf:D,Is=As?As.toString:D,Os=function(){function t(){}return function(e){if(!qr(e))return{};if(Xo)return Xo(e);t.prototype=e;var n=new t;return t.prototype=D,n}}();n.templateSettings={escape:oe,evaluate:se,interpolate:ae,variable:"",imports:{_:n}},(n.prototype=i.prototype).constructor=n,(r.prototype=Os(i.prototype)).constructor=r,(b.prototype=Os(i.prototype)).constructor=b,Se.prototype.clear=function(){this.__data__=ks?ks(null):{},this.size=0},Se.prototype.delete=function(t){var e=this.has(t)&&delete this.__data__[t];return this.size-=e?1:0,e},Se.prototype.get=function(t){var e=this.__data__;if(ks){var n=e[t];return n===W?D:n}return No.call(e,t)?e[t]:D},Se.prototype.has=function(t){var e=this.__data__;return ks?e[t]!==D:No.call(e,t)},Se.prototype.set=function(t,e){var n=this.__data__;return this.size+=this.has(t)?0:1,n[t]=ks&&e===D?W:e,this},Ie.prototype.clear=function(){this.__data__=[],this.size=0},Ie.prototype.delete=function(t){var e=this.__data__,n=He(e,t);return!(n<0||(n==e.length-1?e.pop():Ko.call(e,n,1),--this.size,0))},Ie.prototype.get=function(t){var e=this.__data__,n=He(e,t);return n<0?D:e[n][1]},Ie.prototype.has=function(t){return He(this.__data__,t)>-1},Ie.prototype.set=function(t,e){var n=this.__data__,i=He(n,t);return i<0?(++this.size,n.push([t,e])):n[i][1]=e,this},Oe.prototype.clear=function(){this.size=0,this.__data__={hash:new Se,map:new(ys||Ie),string:new Se}},Oe.prototype.delete=function(t){var e=Gi(this,t).delete(t);return this.size-=e?1:0,e},Oe.prototype.get=function(t){return Gi(this,t).get(t)},Oe.prototype.has=function(t){return Gi(this,t).has(t)},Oe.prototype.set=function(t,e){var n=Gi(this,t),i=n.size;return n.set(t,e),this.size+=n.size==i?0:1,this},je.prototype.add=je.prototype.push=function(t){return this.__data__.set(t,W),this},je.prototype.has=function(t){return this.__data__.has(t)},ze.prototype.clear=function(){this.__data__=new Ie,this.size=0},ze.prototype.delete=function(t){var e=this.__data__,n=e.delete(t);return this.size=e.size,n},ze.prototype.get=function(t){return this.__data__.get(t)},ze.prototype.has=function(t){return this.__data__.has(t)},ze.prototype.set=function(t,e){var n=this.__data__;if(n instanceof Ie){var i=n.__data__;if(!ys||i.length<P-1)return i.push([t,e]),this.size=++n.size,this;n=this.__data__=new Oe(i)}return n.set(t,e),this.size=n.size,this};var js=Li(nn),zs=Li(fn,!0),Ns=$i(),Ds=$i(!0),Ps=Cs?function(t,e){return Cs.set(t,e),t}:vo,Rs=es?function(t,e){return es(t,"toString",{configurable:!0,enumerable:!1,value:go(e),writable:!0})}:vo,Hs=Jn,Ws=ns||function(t){return dn.clearTimeout(t)},Us=bs&&1/O(new bs([,-0]))[1]==ft?function(t){return new bs(t)}:yo,Fs=Cs?function(t){return Cs.get(t)}:yo,Zs=as?function(t){return null==t?[]:(t=Mo(t),c(as(t),function(e){return Jo.call(t,e)}))}:bo,qs=as?function(t){for(var e=[];t;)f(e,Zs(t)),t=Yo(t);return e}:bo,Vs=wn;(ws&&Vs(new ws(new ArrayBuffer(1)))!=Wt||ys&&Vs(new ys)!=Tt||xs&&"[object Promise]"!=Vs(xs.resolve())||bs&&Vs(new bs)!=jt||_s&&Vs(new _s)!=Pt)&&(Vs=function(t){var e=wn(t),n=e==St?t.constructor:D,i=n?vr(n):"";if(i)switch(i){case $s:return Wt;case Bs:return Tt;case Ms:return"[object Promise]";case Ts:return jt;case Es:return Pt}return e});var Ys=jo?Ur:_o,Xs=pr(Ps),Js=rs||function(t,e){return dn.setTimeout(t,e)},Ks=pr(Rs),Gs=function(t){var e=Nr(t,function(t){return n.size===U&&n.clear(),t}),n=e.cache;return e}(function(t){var e=[];return le.test(t)&&e.push(""),t.replace(he,function(t,n,i,r){e.push(i?r.replace(be,"$1"):n||t)}),e}),Qs=Jn(function(t,e){return Hr(t)?Xe(t,tn(e,1,Hr,!0)):[]}),ta=Jn(function(t,e){var n=_r(e);return Hr(n)&&(n=D),Hr(t)?Xe(t,tn(e,1,Hr,!0),Ki(n,2)):[]}),ea=Jn(function(t,e){var n=_r(e);return Hr(n)&&(n=D),Hr(t)?Xe(t,tn(e,1,Hr,!0),D,n):[]}),na=Jn(function(t){var e=h(t,hi);return e.length&&e[0]===t[0]?$n(e):[]}),ia=Jn(function(t){var e=_r(t),n=h(t,hi);return e===_r(n)?e=D:n.pop(),n.length&&n[0]===t[0]?$n(n,Ki(e,2)):[]}),ra=Jn(function(t){var e=_r(t),n=h(t,hi);return(e="function"==typeof e?e:D)&&n.pop(),n.length&&n[0]===t[0]?$n(n,D,e):[]}),oa=Jn(kr),sa=qi(function(t,e){var n=null==t?0:t.length,i=Fe(t,e);return Vn(t,h(e,function(t){return ir(t,n)?+t:t}).sort(wi)),i}),aa=Jn(function(t){return ri(tn(t,1,Hr,!0))}),ca=Jn(function(t){var e=_r(t);return Hr(e)&&(e=D),ri(tn(t,1,Hr,!0),Ki(e,2))}),ua=Jn(function(t){var e=_r(t);return e="function"==typeof e?e:D,ri(tn(t,1,Hr,!0),D,e)}),la=Jn(function(t,e){return Hr(t)?Xe(t,e):[]}),ha=Jn(function(t){return ui(c(t,Hr))}),fa=Jn(function(t){var e=_r(t);return Hr(e)&&(e=D),ui(c(t,Hr),Ki(e,2))}),pa=Jn(function(t){var e=_r(t);return e="function"==typeof e?e:D,ui(c(t,Hr),D,e)}),da=Jn(Lr),ga=Jn(function(t){var e=t.length,n=e>1?t[e-1]:D;return n="function"==typeof n?(t.pop(),n):D,$r(t,n)}),va=qi(function(t){var e=t.length,n=e?t[0]:0,i=this.__wrapped__,o=function(e){return Fe(e,t)};return!(e>1||this.__actions__.length)&&i instanceof b&&ir(n)?((i=i.slice(n,+n+(e?1:0))).__actions__.push({func:Mr,args:[o],thisArg:D}),new r(i,this.__chain__).thru(function(t){return e&&!t.length&&t.push(D),t})):this.thru(o)}),ma=ki(function(t,e,n){No.call(t,n)?++t[n]:Ue(t,n,1)}),wa=Ei(wr),ya=Ei(yr),xa=ki(function(t,e,n){No.call(t,n)?t[n].push(e):Ue(t,n,[e])}),ba=Jn(function(t,e,n){var i=-1,r="function"==typeof e,s=Rr(t)?ko(t.length):[];return js(t,function(t){s[++i]=r?o(e,t,n):An(t,e,n)}),s}),_a=ki(function(t,e,n){Ue(t,n,e)}),ka=ki(function(t,e,n){t[n?0:1].push(e)},function(){return[[],[]]}),Ca=Jn(function(t,e){if(null==t)return[];var n=e.length;return n>1&&rr(t,e[0],e[1])?e=[]:n>2&&rr(e[0],e[1],e[2])&&(e=[e[0]]),Fn(t,tn(e,1),[])}),La=is||function(){return dn.Date.now()},$a=Jn(function(t,e,n){var i=J;if(n.length){var r=I(n,Ji($a));i|=et}return Wi(t,i,e,n,r)}),Ba=Jn(function(t,e,n){var i=J|K;if(n.length){var r=I(n,Ji(Ba));i|=et}return Wi(e,i,t,n,r)}),Ma=Jn(function(t,e){return Ye(t,1,e)}),Ta=Jn(function(t,e,n){return Ye(t,no(e)||0,n)});Nr.Cache=Oe;var Ea=Hs(function(t,e){var n=(e=1==e.length&&Na(e[0])?h(e[0],L(Ki())):h(tn(e,1),L(Ki()))).length;return Jn(function(i){for(var r=-1,s=ps(i.length,n);++r<s;)i[r]=e[r].call(this,i[r]);return o(t,this,i)})}),Aa=Jn(function(t,e){var n=I(e,Ji(Aa));return Wi(t,et,D,e,n)}),Sa=Jn(function(t,e){var n=I(e,Ji(Sa));return Wi(t,nt,D,e,n)}),Ia=qi(function(t,e){return Wi(t,rt,D,D,D,e)}),Oa=Di(yn),ja=Di(function(t,e){return t>=e}),za=Sn(function(){return arguments}())?Sn:function(t){return Vr(t)&&No.call(t,"callee")&&!Jo.call(t,"callee")},Na=ko.isArray,Da=xn?L(xn):function(t){return Vr(t)&&wn(t)==Ht},Pa=cs||_o,Ra=bn?L(bn):function(t){return Vr(t)&&wn(t)==Ct},Ha=_n?L(_n):function(t){return Vr(t)&&Vs(t)==Tt},Wa=kn?L(kn):function(t){return Vr(t)&&wn(t)==Ot},Ua=Cn?L(Cn):function(t){return Vr(t)&&Vs(t)==jt},Fa=Ln?L(Ln):function(t){return Vr(t)&&Zr(t.length)&&!!an[wn(t)]},Za=Di(Dn),qa=Di(function(t,e){return t<=e}),Va=Ci(function(t,e){if(ar(e)||Rr(e))_i(e,ao(e),t);else for(var n in e)No.call(e,n)&&Re(t,n,e[n])}),Ya=Ci(function(t,e){_i(e,co(e),t)}),Xa=Ci(function(t,e,n,i){_i(e,co(e),t,i)}),Ja=Ci(function(t,e,n,i){_i(e,ao(e),t,i)}),Ka=qi(Fe),Ga=Jn(function(t){return t.push(D,Ui),o(Xa,D,t)}),Qa=Jn(function(t){return t.push(D,Fi),o(rc,D,t)}),tc=Ii(function(t,e,n){t[e]=n},go(vo)),ec=Ii(function(t,e,n){No.call(t,e)?t[e].push(n):t[e]=[n]},Ki),nc=Jn(An),ic=Ci(function(t,e,n){Wn(t,e,n)}),rc=Ci(function(t,e,n,i){Wn(t,e,n,i)}),oc=qi(function(t,e){var n={};if(null==t)return n;var i=!1;e=h(e,function(e){return e=pi(e,t),i||(i=e.length>1),e}),_i(t,Yi(t),n),i&&(n=qe(n,Z|q|V,function(t){return Xr(t)?D:t}));for(var r=e.length;r--;)oi(n,e[r]);return n}),sc=qi(function(t,e){return null==t?{}:function(t,e){return Zn(t,e,function(e,n){return so(t,n)})}(t,e)}),ac=Hi(ao),cc=Hi(co),uc=Mi(function(t,e,n){return e=e.toLowerCase(),t+(n?ho(e):e)}),lc=Mi(function(t,e,n){return t+(n?"-":"")+e.toLowerCase()}),hc=Mi(function(t,e,n){return t+(n?" ":"")+e.toLowerCase()}),fc=Bi("toLowerCase"),pc=Mi(function(t,e,n){return t+(n?"_":"")+e.toLowerCase()}),dc=Mi(function(t,e,n){return t+(n?" ":"")+vc(e)}),gc=Mi(function(t,e,n){return t+(n?" ":"")+e.toUpperCase()}),vc=Bi("toUpperCase"),mc=Jn(function(t,e){try{return o(t,D,e)}catch(t){return Wr(t)?t:new Lo(t)}}),wc=qi(function(t,e){return s(e,function(e){e=gr(e),Ue(t,e,$a(t[e],t))}),t}),yc=Ai(),xc=Ai(!0),bc=Jn(function(t,e){return function(n){return An(n,t,e)}}),_c=Jn(function(t,e){return function(n){return An(t,n,e)}}),kc=ji(h),Cc=ji(a),Lc=ji(d),$c=Ni(),Bc=Ni(!0),Mc=Oi(function(t,e){return t+e},0),Tc=Ri("ceil"),Ec=Oi(function(t,e){return t/e},1),Ac=Ri("floor"),Sc=Oi(function(t,e){return t*e},1),Ic=Ri("round"),Oc=Oi(function(t,e){return t-e},0);return n.after=function(t,e){if("function"!=typeof e)throw new Ao(H);return t=to(t),function(){if(--t<1)return e.apply(this,arguments)}},n.ary=Sr,n.assign=Va,n.assignIn=Ya,n.assignInWith=Xa,n.assignWith=Ja,n.at=Ka,n.before=Ir,n.bind=$a,n.bindAll=wc,n.bindKey=Ba,n.castArray=function(){if(!arguments.length)return[];var t=arguments[0];return Na(t)?t:[t]},n.chain=Br,n.chunk=function(t,e,n){e=(n?rr(t,e,n):e===D)?1:fs(to(e),0);var i=null==t?0:t.length;if(!i||e<1)return[];for(var r=0,o=0,s=ko(os(i/e));r<i;)s[o++]=Gn(t,r,r+=e);return s},n.compact=function(t){for(var e=-1,n=null==t?0:t.length,i=0,r=[];++e<n;){var o=t[e];o&&(r[i++]=o)}return r},n.concat=function(){var t=arguments.length;if(!t)return[];for(var e=ko(t-1),n=arguments[0],i=t;i--;)e[i-1]=arguments[i];return f(Na(n)?bi(n):[n],tn(e,1))},n.cond=function(t){var e=null==t?0:t.length,n=Ki();return t=e?h(t,function(t){if("function"!=typeof t[1])throw new Ao(H);return[n(t[0]),t[1]]}):[],Jn(function(n){for(var i=-1;++i<e;){var r=t[i];if(o(r[0],this,n))return o(r[1],this,n)}})},n.conforms=function(t){return function(t){var e=ao(t);return function(n){return Ve(n,t,e)}}(qe(t,Z))},n.constant=go,n.countBy=ma,n.create=function(t,e){var n=Os(t);return null==e?n:We(n,e)},n.curry=Or,n.curryRight=jr,n.debounce=zr,n.defaults=Ga,n.defaultsDeep=Qa,n.defer=Ma,n.delay=Ta,n.difference=Qs,n.differenceBy=ta,n.differenceWith=ea,n.drop=function(t,e,n){var i=null==t?0:t.length;return i?(e=n||e===D?1:to(e),Gn(t,e<0?0:e,i)):[]},n.dropRight=function(t,e,n){var i=null==t?0:t.length;return i?(e=n||e===D?1:to(e),e=i-e,Gn(t,0,e<0?0:e)):[]},n.dropRightWhile=function(t,e){return t&&t.length?ai(t,Ki(e,3),!0,!0):[]},n.dropWhile=function(t,e){return t&&t.length?ai(t,Ki(e,3),!0):[]},n.fill=function(t,e,n,i){var r=null==t?0:t.length;return r?(n&&"number"!=typeof n&&rr(t,e,n)&&(n=0,i=r),function(t,e,n,i){var r=t.length;for((n=to(n))<0&&(n=-n>r?0:r+n),(i=i===D||i>r?r:to(i))<0&&(i+=r),i=n>i?0:eo(i);n<i;)t[n++]=e;return t}(t,e,n,i)):[]},n.filter=function(t,e){return(Na(t)?c:Ke)(t,Ki(e,3))},n.flatMap=function(t,e){return tn(Ar(t,e),1)},n.flatMapDeep=function(t,e){return tn(Ar(t,e),ft)},n.flatMapDepth=function(t,e,n){return n=n===D?1:to(n),tn(Ar(t,e),n)},n.flatten=xr,n.flattenDeep=function(t){return(null==t?0:t.length)?tn(t,ft):[]},n.flattenDepth=function(t,e){return(null==t?0:t.length)?(e=e===D?1:to(e),tn(t,e)):[]},n.flip=function(t){return Wi(t,ot)},n.flow=yc,n.flowRight=xc,n.fromPairs=function(t){for(var e=-1,n=null==t?0:t.length,i={};++e<n;){var r=t[e];i[r[0]]=r[1]}return i},n.functions=function(t){return null==t?[]:pn(t,ao(t))},n.functionsIn=function(t){return null==t?[]:pn(t,co(t))},n.groupBy=xa,n.initial=function(t){return(null==t?0:t.length)?Gn(t,0,-1):[]},n.intersection=na,n.intersectionBy=ia,n.intersectionWith=ra,n.invert=tc,n.invertBy=ec,n.invokeMap=ba,n.iteratee=mo,n.keyBy=_a,n.keys=ao,n.keysIn=co,n.map=Ar,n.mapKeys=function(t,e){var n={};return e=Ki(e,3),nn(t,function(t,i,r){Ue(n,e(t,i,r),t)}),n},n.mapValues=function(t,e){var n={};return e=Ki(e,3),nn(t,function(t,i,r){Ue(n,i,e(t,i,r))}),n},n.matches=function(t){return Rn(qe(t,Z))},n.matchesProperty=function(t,e){return Hn(t,qe(e,Z))},n.memoize=Nr,n.merge=ic,n.mergeWith=rc,n.method=bc,n.methodOf=_c,n.mixin=wo,n.negate=Dr,n.nthArg=function(t){return t=to(t),Jn(function(e){return Un(e,t)})},n.omit=oc,n.omitBy=function(t,e){return uo(t,Dr(Ki(e)))},n.once=function(t){return Ir(2,t)},n.orderBy=function(t,e,n,i){return null==t?[]:(Na(e)||(e=null==e?[]:[e]),n=i?D:n,Na(n)||(n=null==n?[]:[n]),Fn(t,e,n))},n.over=kc,n.overArgs=Ea,n.overEvery=Cc,n.overSome=Lc,n.partial=Aa,n.partialRight=Sa,n.partition=ka,n.pick=sc,n.pickBy=uo,n.property=xo,n.propertyOf=function(t){return function(e){return null==t?D:gn(t,e)}},n.pull=oa,n.pullAll=kr,n.pullAllBy=function(t,e,n){return t&&t.length&&e&&e.length?qn(t,e,Ki(n,2)):t},n.pullAllWith=function(t,e,n){return t&&t.length&&e&&e.length?qn(t,e,D,n):t},n.pullAt=sa,n.range=$c,n.rangeRight=Bc,n.rearg=Ia,n.reject=function(t,e){return(Na(t)?c:Ke)(t,Dr(Ki(e,3)))},n.remove=function(t,e){var n=[];if(!t||!t.length)return n;var i=-1,r=[],o=t.length;for(e=Ki(e,3);++i<o;){var s=t[i];e(s,i,t)&&(n.push(s),r.push(i))}return Vn(t,r),n},n.rest=function(t,e){if("function"!=typeof t)throw new Ao(H);return e=e===D?e:to(e),Jn(t,e)},n.reverse=Cr,n.sampleSize=function(t,e,n){return e=(n?rr(t,e,n):e===D)?1:to(e),(Na(t)?function(t,e){return dr(bi(t),Ze(e,0,t.length))}:function(t,e){var n=lo(t);return dr(n,Ze(e,0,n.length))})(t,e)},n.set=function(t,e,n){return null==t?t:Kn(t,e,n)},n.setWith=function(t,e,n,i){return i="function"==typeof i?i:D,null==t?t:Kn(t,e,n,i)},n.shuffle=function(t){return(Na(t)?function(t){return dr(bi(t))}:function(t){return dr(lo(t))})(t)},n.slice=function(t,e,n){var i=null==t?0:t.length;return i?(n&&"number"!=typeof n&&rr(t,e,n)?(e=0,n=i):(e=null==e?0:to(e),n=n===D?i:to(n)),Gn(t,e,n)):[]},n.sortBy=Ca,n.sortedUniq=function(t){return t&&t.length?ei(t):[]},n.sortedUniqBy=function(t,e){return t&&t.length?ei(t,Ki(e,2)):[]},n.split=function(t,e,n){return n&&"number"!=typeof n&&rr(t,e,n)&&(e=n=D),(n=n===D?vt:n>>>0)?(t=ro(t))&&("string"==typeof e||null!=e&&!Wa(e))&&!(e=ii(e))&&E(t)?di(N(t),0,n):t.split(e,n):[]},n.spread=function(t,e){if("function"!=typeof t)throw new Ao(H);return e=null==e?0:fs(to(e),0),Jn(function(n){var i=n[e],r=di(n,0,e);return i&&f(r,i),o(t,this,r)})},n.tail=function(t){var e=null==t?0:t.length;return e?Gn(t,1,e):[]},n.take=function(t,e,n){return t&&t.length?(e=n||e===D?1:to(e),Gn(t,0,e<0?0:e)):[]},n.takeRight=function(t,e,n){var i=null==t?0:t.length;return i?(e=n||e===D?1:to(e),e=i-e,Gn(t,e<0?0:e,i)):[]},n.takeRightWhile=function(t,e){return t&&t.length?ai(t,Ki(e,3),!1,!0):[]},n.takeWhile=function(t,e){return t&&t.length?ai(t,Ki(e,3)):[]},n.tap=function(t,e){return e(t),t},n.throttle=function(t,e,n){var i=!0,r=!0;if("function"!=typeof t)throw new Ao(H);return qr(n)&&(i="leading"in n?!!n.leading:i,r="trailing"in n?!!n.trailing:r),zr(t,e,{leading:i,maxWait:e,trailing:r})},n.thru=Mr,n.toArray=Gr,n.toPairs=ac,n.toPairsIn=cc,n.toPath=function(t){return Na(t)?h(t,gr):Kr(t)?[t]:bi(Gs(ro(t)))},n.toPlainObject=io,n.transform=function(t,e,n){var i=Na(t),r=i||Pa(t)||Fa(t);if(e=Ki(e,4),null==n){var o=t&&t.constructor;n=r?i?new o:[]:qr(t)&&Ur(o)?Os(Yo(t)):{}}return(r?s:nn)(t,function(t,i,r){return e(n,t,i,r)}),n},n.unary=function(t){return Sr(t,1)},n.union=aa,n.unionBy=ca,n.unionWith=ua,n.uniq=function(t){return t&&t.length?ri(t):[]},n.uniqBy=function(t,e){return t&&t.length?ri(t,Ki(e,2)):[]},n.uniqWith=function(t,e){return e="function"==typeof e?e:D,t&&t.length?ri(t,D,e):[]},n.unset=function(t,e){return null==t||oi(t,e)},n.unzip=Lr,n.unzipWith=$r,n.update=function(t,e,n){return null==t?t:si(t,e,fi(n))},n.updateWith=function(t,e,n,i){return i="function"==typeof i?i:D,null==t?t:si(t,e,fi(n),i)},n.values=lo,n.valuesIn=function(t){return null==t?[]:$(t,co(t))},n.without=la,n.words=po,n.wrap=function(t,e){return Aa(fi(e),t)},n.xor=ha,n.xorBy=fa,n.xorWith=pa,n.zip=da,n.zipObject=function(t,e){return li(t||[],e||[],Re)},n.zipObjectDeep=function(t,e){return li(t||[],e||[],Kn)},n.zipWith=ga,n.entries=ac,n.entriesIn=cc,n.extend=Ya,n.extendWith=Xa,wo(n,n),n.add=Mc,n.attempt=mc,n.camelCase=uc,n.capitalize=ho,n.ceil=Tc,n.clamp=function(t,e,n){return n===D&&(n=e,e=D),n!==D&&(n=(n=no(n))==n?n:0),e!==D&&(e=(e=no(e))==e?e:0),Ze(no(t),e,n)},n.clone=function(t){return qe(t,V)},n.cloneDeep=function(t){return qe(t,Z|V)},n.cloneDeepWith=function(t,e){return e="function"==typeof e?e:D,qe(t,Z|V,e)},n.cloneWith=function(t,e){return e="function"==typeof e?e:D,qe(t,V,e)},n.conformsTo=function(t,e){return null==e||Ve(t,e,ao(e))},n.deburr=fo,n.defaultTo=function(t,e){return null==t||t!=t?e:t},n.divide=Ec,n.endsWith=function(t,e,n){t=ro(t),e=ii(e);var i=t.length,r=n=n===D?i:Ze(to(n),0,i);return(n-=e.length)>=0&&t.slice(n,r)==e},n.eq=Pr,n.escape=function(t){return(t=ro(t))&&re.test(t)?t.replace(ne,Mn):t},n.escapeRegExp=function(t){return(t=ro(t))&&pe.test(t)?t.replace(fe,"\\$&"):t},n.every=function(t,e,n){var i=Na(t)?a:function(t,e){var n=!0;return js(t,function(t,i,r){return n=!!e(t,i,r)}),n};return n&&rr(t,e,n)&&(e=D),i(t,Ki(e,3))},n.find=wa,n.findIndex=wr,n.findKey=function(t,e){return g(t,Ki(e,3),nn)},n.findLast=ya,n.findLastIndex=yr,n.findLastKey=function(t,e){return g(t,Ki(e,3),fn)},n.floor=Ac,n.forEach=Tr,n.forEachRight=Er,n.forIn=function(t,e){return null==t?t:Ns(t,Ki(e,3),co)},n.forInRight=function(t,e){return null==t?t:Ds(t,Ki(e,3),co)},n.forOwn=function(t,e){return t&&nn(t,Ki(e,3))},n.forOwnRight=function(t,e){return t&&fn(t,Ki(e,3))},n.get=oo,n.gt=Oa,n.gte=ja,n.has=function(t,e){return null!=t&&er(t,e,function(t,e){return null!=t&&No.call(t,e)})},n.hasIn=so,n.head=br,n.identity=vo,n.includes=function(t,e,n,i){t=Rr(t)?t:lo(t),n=n&&!i?to(n):0;var r=t.length;return n<0&&(n=fs(r+n,0)),Jr(t)?n<=r&&t.indexOf(e,n)>-1:!!r&&m(t,e,n)>-1},n.indexOf=function(t,e,n){var i=null==t?0:t.length;if(!i)return-1;var r=null==n?0:to(n);return r<0&&(r=fs(i+r,0)),m(t,e,r)},n.inRange=function(t,e,n){return e=Qr(e),n===D?(n=e,e=0):n=Qr(n),t=no(t),function(t,e,n){return t>=ps(e,n)&&t<fs(e,n)}(t,e,n)},n.invoke=nc,n.isArguments=za,n.isArray=Na,n.isArrayBuffer=Da,n.isArrayLike=Rr,n.isArrayLikeObject=Hr,n.isBoolean=function(t){return!0===t||!1===t||Vr(t)&&wn(t)==kt},n.isBuffer=Pa,n.isDate=Ra,n.isElement=function(t){return Vr(t)&&1===t.nodeType&&!Xr(t)},n.isEmpty=function(t){if(null==t)return!0;if(Rr(t)&&(Na(t)||"string"==typeof t||"function"==typeof t.splice||Pa(t)||Fa(t)||za(t)))return!t.length;var e=Vs(t);if(e==Tt||e==jt)return!t.size;if(ar(t))return!Nn(t).length;for(var n in t)if(No.call(t,n))return!1;return!0},n.isEqual=function(t,e){return In(t,e)},n.isEqualWith=function(t,e,n){var i=(n="function"==typeof n?n:D)?n(t,e):D;return i===D?In(t,e,D,n):!!i},n.isError=Wr,n.isFinite=function(t){return"number"==typeof t&&us(t)},n.isFunction=Ur,n.isInteger=Fr,n.isLength=Zr,n.isMap=Ha,n.isMatch=function(t,e){return t===e||On(t,e,Qi(e))},n.isMatchWith=function(t,e,n){return n="function"==typeof n?n:D,On(t,e,Qi(e),n)},n.isNaN=function(t){return Yr(t)&&t!=+t},n.isNative=function(t){if(Ys(t))throw new Lo(R);return jn(t)},n.isNil=function(t){return null==t},n.isNull=function(t){return null===t},n.isNumber=Yr,n.isObject=qr,n.isObjectLike=Vr,n.isPlainObject=Xr,n.isRegExp=Wa,n.isSafeInteger=function(t){return Fr(t)&&t>=-pt&&t<=pt},n.isSet=Ua,n.isString=Jr,n.isSymbol=Kr,n.isTypedArray=Fa,n.isUndefined=function(t){return t===D},n.isWeakMap=function(t){return Vr(t)&&Vs(t)==Pt},n.isWeakSet=function(t){return Vr(t)&&wn(t)==Rt},n.join=function(t,e){return null==t?"":ls.call(t,e)},n.kebabCase=lc,n.last=_r,n.lastIndexOf=function(t,e,n){var i=null==t?0:t.length;if(!i)return-1;var r=i;return n!==D&&(r=(r=to(n))<0?fs(i+r,0):ps(r,i-1)),e==e?function(t,e,n){for(var i=n+1;i--;)if(t[i]===e)return i;return i}(t,e,r):v(t,w,r,!0)},n.lowerCase=hc,n.lowerFirst=fc,n.lt=Za,n.lte=qa,n.max=function(t){return t&&t.length?Je(t,vo,yn):D},n.maxBy=function(t,e){return t&&t.length?Je(t,Ki(e,2),yn):D},n.mean=function(t){return y(t,vo)},n.meanBy=function(t,e){return y(t,Ki(e,2))},n.min=function(t){return t&&t.length?Je(t,vo,Dn):D},n.minBy=function(t,e){return t&&t.length?Je(t,Ki(e,2),Dn):D},n.stubArray=bo,n.stubFalse=_o,n.stubObject=function(){return{}},n.stubString=function(){return""},n.stubTrue=function(){return!0},n.multiply=Sc,n.nth=function(t,e){return t&&t.length?Un(t,to(e)):D},n.noConflict=function(){return dn._===this&&(dn._=Wo),this},n.noop=yo,n.now=La,n.pad=function(t,e,n){t=ro(t);var i=(e=to(e))?z(t):0;if(!e||i>=e)return t;var r=(e-i)/2;return zi(ss(r),n)+t+zi(os(r),n)},n.padEnd=function(t,e,n){t=ro(t);var i=(e=to(e))?z(t):0;return e&&i<e?t+zi(e-i,n):t},n.padStart=function(t,e,n){t=ro(t);var i=(e=to(e))?z(t):0;return e&&i<e?zi(e-i,n)+t:t},n.parseInt=function(t,e,n){return n||null==e?e=0:e&&(e=+e),gs(ro(t).replace(ge,""),e||0)},n.random=function(t,e,n){if(n&&"boolean"!=typeof n&&rr(t,e,n)&&(e=n=D),n===D&&("boolean"==typeof e?(n=e,e=D):"boolean"==typeof t&&(n=t,t=D)),t===D&&e===D?(t=0,e=1):(t=Qr(t),e===D?(e=t,t=0):e=Qr(e)),t>e){var i=t;t=e,e=i}if(n||t%1||e%1){var r=vs();return ps(t+r*(e-t+ln("1e-"+((r+"").length-1))),e)}return Yn(t,e)},n.reduce=function(t,e,n){var i=Na(t)?p:_,r=arguments.length<3;return i(t,Ki(e,4),n,r,js)},n.reduceRight=function(t,e,n){var i=Na(t)?function(t,e,n,i){var r=null==t?0:t.length;for(i&&r&&(n=t[--r]);r--;)n=e(n,t[r],r,t);return n}:_,r=arguments.length<3;return i(t,Ki(e,4),n,r,zs)},n.repeat=function(t,e,n){return e=(n?rr(t,e,n):e===D)?1:to(e),Xn(ro(t),e)},n.replace=function(){var t=arguments,e=ro(t[0]);return t.length<3?e:e.replace(t[1],t[2])},n.result=function(t,e,n){var i=-1,r=(e=pi(e,t)).length;for(r||(r=1,t=D);++i<r;){var o=null==t?D:t[gr(e[i])];o===D&&(i=r,o=n),t=Ur(o)?o.call(t):o}return t},n.round=Ic,n.runInContext=t,n.sample=function(t){return(Na(t)?De:function(t){return De(lo(t))})(t)},n.size=function(t){if(null==t)return 0;if(Rr(t))return Jr(t)?z(t):t.length;var e=Vs(t);return e==Tt||e==jt?t.size:Nn(t).length},n.snakeCase=pc,n.some=function(t,e,n){var i=Na(t)?d:function(t,e){var n;return js(t,function(t,i,r){return!(n=e(t,i,r))}),!!n};return n&&rr(t,e,n)&&(e=D),i(t,Ki(e,3))},n.sortedIndex=function(t,e){return Qn(t,e)},n.sortedIndexBy=function(t,e,n){return ti(t,e,Ki(n,2))},n.sortedIndexOf=function(t,e){var n=null==t?0:t.length;if(n){var i=Qn(t,e);if(i<n&&Pr(t[i],e))return i}return-1},n.sortedLastIndex=function(t,e){return Qn(t,e,!0)},n.sortedLastIndexBy=function(t,e,n){return ti(t,e,Ki(n,2),!0)},n.sortedLastIndexOf=function(t,e){if(null==t?0:t.length){var n=Qn(t,e,!0)-1;if(Pr(t[n],e))return n}return-1},n.startCase=dc,n.startsWith=function(t,e,n){return t=ro(t),n=null==n?0:Ze(to(n),0,t.length),e=ii(e),t.slice(n,n+e.length)==e},n.subtract=Oc,n.sum=function(t){return t&&t.length?k(t,vo):0},n.sumBy=function(t,e){return t&&t.length?k(t,Ki(e,2)):0},n.template=function(t,e,i){var r=n.templateSettings;i&&rr(t,e,i)&&(e=D),t=ro(t),e=Xa({},e,r,Ui);var o,s,a=Xa({},e.imports,r.imports,Ui),c=ao(a),u=$(a,c),l=0,h=e.interpolate||Ee,f="__p += '",p=To((e.escape||Ee).source+"|"+h.source+"|"+(h===ae?_e:Ee).source+"|"+(e.evaluate||Ee).source+"|$","g"),d="//# sourceURL="+("sourceURL"in e?e.sourceURL:"lodash.templateSources["+ ++sn+"]")+"\n";t.replace(p,function(e,n,i,r,a,c){return i||(i=r),f+=t.slice(l,c).replace(Ae,function(t){return"\\"+un[t]}),n&&(o=!0,f+="' +\n__e("+n+") +\n'"),a&&(s=!0,f+="';\n"+a+";\n__p += '"),i&&(f+="' +\n((__t = ("+i+")) == null ? '' : __t) +\n'"),l=c+e.length,e}),f+="';\n";var g=e.variable;g||(f="with (obj) {\n"+f+"\n}\n"),f=(s?f.replace(Gt,""):f).replace(Qt,"$1").replace(te,"$1;"),f="function("+(g||"obj")+") {\n"+(g?"":"obj || (obj = {});\n")+"var __t, __p = ''"+(o?", __e = _.escape":"")+(s?", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n":";\n")+f+"return __p\n}";var v=mc(function(){return $o(c,d+"return "+f).apply(D,u)});if(v.source=f,Wr(v))throw v;return v},n.times=function(t,e){if((t=to(t))<1||t>pt)return[];var n=vt,i=ps(t,vt);e=Ki(e),t-=vt;for(var r=C(i,e);++n<t;)e(n);return r},n.toFinite=Qr,n.toInteger=to,n.toLength=eo,n.toLower=function(t){return ro(t).toLowerCase()},n.toNumber=no,n.toSafeInteger=function(t){return t?Ze(to(t),-pt,pt):0===t?t:0},n.toString=ro,n.toUpper=function(t){return ro(t).toUpperCase()},n.trim=function(t,e,n){if((t=ro(t))&&(n||e===D))return t.replace(de,"");if(!t||!(e=ii(e)))return t;var i=N(t),r=N(e);return di(i,M(i,r),T(i,r)+1).join("")},n.trimEnd=function(t,e,n){if((t=ro(t))&&(n||e===D))return t.replace(ve,"");if(!t||!(e=ii(e)))return t;var i=N(t);return di(i,0,T(i,N(e))+1).join("")},n.trimStart=function(t,e,n){if((t=ro(t))&&(n||e===D))return t.replace(ge,"");if(!t||!(e=ii(e)))return t;var i=N(t);return di(i,M(i,N(e))).join("")},n.truncate=function(t,e){var n=st,i=at;if(qr(e)){var r="separator"in e?e.separator:r;n="length"in e?to(e.length):n,i="omission"in e?ii(e.omission):i}var o=(t=ro(t)).length;if(E(t)){var s=N(t);o=s.length}if(n>=o)return t;var a=n-z(i);if(a<1)return i;var c=s?di(s,0,a).join(""):t.slice(0,a);if(r===D)return c+i;if(s&&(a+=c.length-a),Wa(r)){if(t.slice(a).search(r)){var u,l=c;for(r.global||(r=To(r.source,ro(ke.exec(r))+"g")),r.lastIndex=0;u=r.exec(l);)var h=u.index;c=c.slice(0,h===D?a:h)}}else if(t.indexOf(ii(r),a)!=a){var f=c.lastIndexOf(r);f>-1&&(c=c.slice(0,f))}return c+i},n.unescape=function(t){return(t=ro(t))&&ie.test(t)?t.replace(ee,Tn):t},n.uniqueId=function(t){var e=++Do;return ro(t)+e},n.upperCase=gc,n.upperFirst=vc,n.each=Tr,n.eachRight=Er,n.first=br,wo(n,function(){var t={};return nn(n,function(e,i){No.call(n.prototype,i)||(t[i]=e)}),t}(),{chain:!1}),n.VERSION="4.17.4",s(["bind","bindKey","curry","curryRight","partial","partialRight"],function(t){n[t].placeholder=n}),s(["drop","take"],function(t,e){b.prototype[t]=function(n){n=n===D?1:fs(to(n),0);var i=this.__filtered__&&!e?new b(this):this.clone();return i.__filtered__?i.__takeCount__=ps(n,i.__takeCount__):i.__views__.push({size:ps(n,vt),type:t+(i.__dir__<0?"Right":"")}),i},b.prototype[t+"Right"]=function(e){return this.reverse()[t](e).reverse()}}),s(["filter","map","takeWhile"],function(t,e){var n=e+1,i=n==lt||3==n;b.prototype[t]=function(t){var e=this.clone();return e.__iteratees__.push({iteratee:Ki(t,3),type:n}),e.__filtered__=e.__filtered__||i,e}}),s(["head","last"],function(t,e){var n="take"+(e?"Right":"");b.prototype[t]=function(){return this[n](1).value()[0]}}),s(["initial","tail"],function(t,e){var n="drop"+(e?"":"Right");b.prototype[t]=function(){return this.__filtered__?new b(this):this[n](1)}}),b.prototype.compact=function(){return this.filter(vo)},b.prototype.find=function(t){return this.filter(t).head()},b.prototype.findLast=function(t){return this.reverse().find(t)},b.prototype.invokeMap=Jn(function(t,e){return"function"==typeof t?new b(this):this.map(function(n){return An(n,t,e)})}),b.prototype.reject=function(t){return this.filter(Dr(Ki(t)))},b.prototype.slice=function(t,e){t=to(t);var n=this;return n.__filtered__&&(t>0||e<0)?new b(n):(t<0?n=n.takeRight(-t):t&&(n=n.drop(t)),e!==D&&(n=(e=to(e))<0?n.dropRight(-e):n.take(e-t)),n)},b.prototype.takeRightWhile=function(t){return this.reverse().takeWhile(t).reverse()},b.prototype.toArray=function(){return this.take(vt)},nn(b.prototype,function(t,e){var i=/^(?:filter|find|map|reject)|While$/.test(e),o=/^(?:head|last)$/.test(e),s=n[o?"take"+("last"==e?"Right":""):e],a=o||/^find/.test(e);s&&(n.prototype[e]=function(){var e=this.__wrapped__,c=o?[1]:arguments,u=e instanceof b,l=c[0],h=u||Na(e),p=function(t){var e=s.apply(n,f([t],c));return o&&d?e[0]:e};h&&i&&"function"==typeof l&&1!=l.length&&(u=h=!1);var d=this.__chain__,g=!!this.__actions__.length,v=a&&!d,m=u&&!g;if(!a&&h){e=m?e:new b(this);var w=t.apply(e,c);return w.__actions__.push({func:Mr,args:[p],thisArg:D}),new r(w,d)}return v&&m?t.apply(this,c):(w=this.thru(p),v?o?w.value()[0]:w.value():w)})}),s(["pop","push","shift","sort","splice","unshift"],function(t){var e=So[t],i=/^(?:push|sort|unshift)$/.test(t)?"tap":"thru",r=/^(?:pop|shift)$/.test(t);n.prototype[t]=function(){var t=arguments;if(r&&!this.__chain__){var n=this.value();return e.apply(Na(n)?n:[],t)}return this[i](function(n){return e.apply(Na(n)?n:[],t)})}}),nn(b.prototype,function(t,e){var i=n[e];if(i){var r=i.name+"";(Ls[r]||(Ls[r]=[])).push({name:e,func:i})}}),Ls[Si(D,K).name]=[{name:"wrapper",func:D}],b.prototype.clone=function(){var t=new b(this.__wrapped__);return t.__actions__=bi(this.__actions__),t.__dir__=this.__dir__,t.__filtered__=this.__filtered__,t.__iteratees__=bi(this.__iteratees__),t.__takeCount__=this.__takeCount__,t.__views__=bi(this.__views__),t},b.prototype.reverse=function(){if(this.__filtered__){var t=new b(this);t.__dir__=-1,t.__filtered__=!0}else(t=this.clone()).__dir__*=-1;return t},b.prototype.value=function(){var t=this.__wrapped__.value(),e=this.__dir__,n=Na(t),i=e<0,r=n?t.length:0,o=function(t,e,n){for(var i=-1,r=n.length;++i<r;){var o=n[i],s=o.size;switch(o.type){case"drop":t+=s;break;case"dropRight":e-=s;break;case"take":e=ps(e,t+s);break;case"takeRight":t=fs(t,e-s)}}return{start:t,end:e}}(0,r,this.__views__),s=o.start,a=o.end,c=a-s,u=i?a:s-1,l=this.__iteratees__,h=l.length,f=0,p=ps(c,this.__takeCount__);if(!n||!i&&r==c&&p==c)return ci(t,this.__actions__);var d=[];t:for(;c--&&f<p;){for(var g=-1,v=t[u+=e];++g<h;){var m=l[g],w=m.iteratee,y=m.type,x=w(v);if(y==ht)v=x;else if(!x){if(y==lt)continue t;break t}}d[f++]=v}return d},n.prototype.at=va,n.prototype.chain=function(){return Br(this)},n.prototype.commit=function(){return new r(this.value(),this.__chain__)},n.prototype.next=function(){this.__values__===D&&(this.__values__=Gr(this.value()));var t=this.__index__>=this.__values__.length;return{done:t,value:t?D:this.__values__[this.__index__++]}},n.prototype.plant=function(t){for(var e,n=this;n instanceof i;){var r=mr(n);r.__index__=0,r.__values__=D,e?o.__wrapped__=r:e=r;var o=r;n=n.__wrapped__}return o.__wrapped__=t,e},n.prototype.reverse=function(){var t=this.__wrapped__;if(t instanceof b){var e=t;return this.__actions__.length&&(e=new b(this)),(e=e.reverse()).__actions__.push({func:Mr,args:[Cr],thisArg:D}),new r(e,this.__chain__)}return this.thru(Cr)},n.prototype.toJSON=n.prototype.valueOf=n.prototype.value=function(){return ci(this.__wrapped__,this.__actions__)},n.prototype.first=n.prototype.head,Qo&&(n.prototype[Qo]=function(){return this}),n}();dn._=En,(r=function(){return En}.call(e,n,e,i))!==D&&(i.exports=r)}).call(this)}).call(e,n(2),n(12)(t))},function(t,e){t.exports=function(t){return t.webpackPolyfill||(t.deprecate=function(){},t.paths=[],t.children||(t.children=[]),Object.defineProperty(t,"loaded",{enumerable:!0,get:function(){return t.l}}),Object.defineProperty(t,"id",{enumerable:!0,get:function(){return t.i}}),t.webpackPolyfill=1),t}},function(t,e,n){t.exports=n(14)},function(t,e,n){"use strict";function i(t){var e=new s(t),n=o(s.prototype.request,e);return r.extend(n,s.prototype,e),r.extend(n,e),n}var r=n(0),o=n(3),s=n(16),a=n(1),c=i(a);c.Axios=s,c.create=function(t){return i(r.merge(a,t))},c.Cancel=n(8),c.CancelToken=n(30),c.isCancel=n(7),c.all=function(t){return Promise.all(t)},c.spread=n(31),t.exports=c,t.exports.default=c},function(t,e){function n(t){return!!t.constructor&&"function"==typeof t.constructor.isBuffer&&t.constructor.isBuffer(t)}t.exports=function(t){return null!=t&&(n(t)||function(t){return"function"==typeof t.readFloatLE&&"function"==typeof t.slice&&n(t.slice(0,0))}(t)||!!t._isBuffer)}},function(t,e,n){"use strict";function i(t){this.defaults=t,this.interceptors={request:new s,response:new s}}var r=n(1),o=n(0),s=n(25),a=n(26);i.prototype.request=function(t){"string"==typeof t&&(t=o.merge({url:arguments[0]},arguments[1])),(t=o.merge(r,this.defaults,{method:"get"},t)).method=t.method.toLowerCase();var e=[a,void 0],n=Promise.resolve(t);for(this.interceptors.request.forEach(function(t){e.unshift(t.fulfilled,t.rejected)}),this.interceptors.response.forEach(function(t){e.push(t.fulfilled,t.rejected)});e.length;)n=n.then(e.shift(),e.shift());return n},o.forEach(["delete","get","head","options"],function(t){i.prototype[t]=function(e,n){return this.request(o.merge(n||{},{method:t,url:e}))}}),o.forEach(["post","put","patch"],function(t){i.prototype[t]=function(e,n,i){return this.request(o.merge(i||{},{method:t,url:e,data:n}))}}),t.exports=i},function(t,e,n){"use strict";var i=n(0);t.exports=function(t,e){i.forEach(t,function(n,i){i!==e&&i.toUpperCase()===e.toUpperCase()&&(t[e]=n,delete t[i])})}},function(t,e,n){"use strict";var i=n(6);t.exports=function(t,e,n){var r=n.config.validateStatus;n.status&&r&&!r(n.status)?e(i("Request failed with status code "+n.status,n.config,null,n.request,n)):t(n)}},function(t,e,n){"use strict";t.exports=function(t,e,n,i,r){return t.config=e,n&&(t.code=n),t.request=i,t.response=r,t}},function(t,e,n){"use strict";function i(t){return encodeURIComponent(t).replace(/%40/gi,"@").replace(/%3A/gi,":").replace(/%24/g,"$").replace(/%2C/gi,",").replace(/%20/g,"+").replace(/%5B/gi,"[").replace(/%5D/gi,"]")}var r=n(0);t.exports=function(t,e,n){if(!e)return t;var o;if(n)o=n(e);else if(r.isURLSearchParams(e))o=e.toString();else{var s=[];r.forEach(e,function(t,e){null!==t&&void 0!==t&&(r.isArray(t)&&(e+="[]"),r.isArray(t)||(t=[t]),r.forEach(t,function(t){r.isDate(t)?t=t.toISOString():r.isObject(t)&&(t=JSON.stringify(t)),s.push(i(e)+"="+i(t))}))}),o=s.join("&")}return o&&(t+=(-1===t.indexOf("?")?"?":"&")+o),t}},function(t,e,n){"use strict";var i=n(0),r=["age","authorization","content-length","content-type","etag","expires","from","host","if-modified-since","if-unmodified-since","last-modified","location","max-forwards","proxy-authorization","referer","retry-after","user-agent"];t.exports=function(t){var e,n,o,s={};return t?(i.forEach(t.split("\n"),function(t){if(o=t.indexOf(":"),e=i.trim(t.substr(0,o)).toLowerCase(),n=i.trim(t.substr(o+1)),e){if(s[e]&&r.indexOf(e)>=0)return;s[e]="set-cookie"===e?(s[e]?s[e]:[]).concat([n]):s[e]?s[e]+", "+n:n}}),s):s}},function(t,e,n){"use strict";var i=n(0);t.exports=i.isStandardBrowserEnv()?function(){function t(t){var e=t;return n&&(r.setAttribute("href",e),e=r.href),r.setAttribute("href",e),{href:r.href,protocol:r.protocol?r.protocol.replace(/:$/,""):"",host:r.host,search:r.search?r.search.replace(/^\?/,""):"",hash:r.hash?r.hash.replace(/^#/,""):"",hostname:r.hostname,port:r.port,pathname:"/"===r.pathname.charAt(0)?r.pathname:"/"+r.pathname}}var e,n=/(msie|trident)/i.test(navigator.userAgent),r=document.createElement("a");return e=t(window.location.href),function(n){var r=i.isString(n)?t(n):n;return r.protocol===e.protocol&&r.host===e.host}}():function(){return!0}},function(t,e,n){"use strict";function i(){this.message="String contains an invalid character"}var r="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";(i.prototype=new Error).code=5,i.prototype.name="InvalidCharacterError",t.exports=function(t){for(var e,n,o=String(t),s="",a=0,c=r;o.charAt(0|a)||(c="=",a%1);s+=c.charAt(63&e>>8-a%1*8)){if((n=o.charCodeAt(a+=.75))>255)throw new i;e=e<<8|n}return s}},function(t,e,n){"use strict";var i=n(0);t.exports=i.isStandardBrowserEnv()?{write:function(t,e,n,r,o,s){var a=[];a.push(t+"="+encodeURIComponent(e)),i.isNumber(n)&&a.push("expires="+new Date(n).toGMTString()),i.isString(r)&&a.push("path="+r),i.isString(o)&&a.push("domain="+o),!0===s&&a.push("secure"),document.cookie=a.join("; ")},read:function(t){var e=document.cookie.match(new RegExp("(^|;\\s*)("+t+")=([^;]*)"));return e?decodeURIComponent(e[3]):null},remove:function(t){this.write(t,"",Date.now()-864e5)}}:{write:function(){},read:function(){return null},remove:function(){}}},function(t,e,n){"use strict";function i(){this.handlers=[]}var r=n(0);i.prototype.use=function(t,e){return this.handlers.push({fulfilled:t,rejected:e}),this.handlers.length-1},i.prototype.eject=function(t){this.handlers[t]&&(this.handlers[t]=null)},i.prototype.forEach=function(t){r.forEach(this.handlers,function(e){null!==e&&t(e)})},t.exports=i},function(t,e,n){"use strict";function i(t){t.cancelToken&&t.cancelToken.throwIfRequested()}var r=n(0),o=n(27),s=n(7),a=n(1),c=n(28),u=n(29);t.exports=function(t){i(t),t.baseURL&&!c(t.url)&&(t.url=u(t.baseURL,t.url)),t.headers=t.headers||{},t.data=o(t.data,t.headers,t.transformRequest),t.headers=r.merge(t.headers.common||{},t.headers[t.method]||{},t.headers||{}),r.forEach(["delete","get","head","post","put","patch","common"],function(e){delete t.headers[e]});return(t.adapter||a.adapter)(t).then(function(e){return i(t),e.data=o(e.data,e.headers,t.transformResponse),e},function(e){return s(e)||(i(t),e&&e.response&&(e.response.data=o(e.response.data,e.response.headers,t.transformResponse))),Promise.reject(e)})}},function(t,e,n){"use strict";var i=n(0);t.exports=function(t,e,n){return i.forEach(n,function(n){t=n(t,e)}),t}},function(t,e,n){"use strict";t.exports=function(t){return/^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(t)}},function(t,e,n){"use strict";t.exports=function(t,e){return e?t.replace(/\/+$/,"")+"/"+e.replace(/^\/+/,""):t}},function(t,e,n){"use strict";function i(t){if("function"!=typeof t)throw new TypeError("executor must be a function.");var e;this.promise=new Promise(function(t){e=t});var n=this;t(function(t){n.reason||(n.reason=new r(t),e(n.reason))})}var r=n(8);i.prototype.throwIfRequested=function(){if(this.reason)throw this.reason},i.source=function(){var t;return{token:new i(function(e){t=e}),cancel:t}},t.exports=i},function(t,e,n){"use strict";t.exports=function(t){return function(e){return t.apply(null,e)}}},function(t,e,n){(function(e){!function(e,n){t.exports=n()}(0,function(){"use strict";function t(t){this.state=Ee,this.value=void 0,this.deferred=[];var e=this;try{t(function(t){e.resolve(t)},function(t){e.reject(t)})}catch(t){e.reject(t)}}function n(t,e){return function(n){var i=arguments.length;return i?i>1?t.apply(e,arguments):t.call(e,n):t.call(e)}}function i(t,e){return ze.call(t,e)}function r(t){return t.replace(De,function(t,e){return e?e.toUpperCase():""})}function o(t){return t.replace(Pe,"$1-$2").toLowerCase()}function s(t){return t.replace(Re,a)}function a(t,e){return e?e.toUpperCase():""}function c(t){return t.length?a(0,t.charAt(0))+t.slice(1):""}function u(t,e){return We.call(t,e)}function l(t,e){return Ue.call(t,e)}function h(t,e){return t&&(w(t)?Ze:qe).call(t,e)}function f(t){return"function"==typeof t}function p(t){return null!==t&&"object"==typeof t}function d(t){return p(t)&&Object.getPrototypeOf(t)===Object.prototype}function g(t){return p(t)&&t===t.window}function v(t){return p(t)&&9===t.nodeType}function m(t){return"boolean"==typeof t}function w(t){return"string"==typeof t}function y(t){return"number"==typeof t}function x(t){return y(t)||w(t)&&!isNaN(t-parseFloat(t))}function b(t){return void 0===t}function _(t){return m(t)?t:"true"===t||"1"===t||""===t||"false"!==t&&"0"!==t&&t}function k(t){var e=Number(t);return!isNaN(e)&&e}function C(t){return parseFloat(t)||0}function L(t){return Ve(t)?t:w(t)?t.split(",").map(function(t){return x(t)?k(t):_(t.trim())}):[t]}function B(t){if(w(t))if("@"===t[0]){var e="media-"+t.substr(1);t=Ye[e]||(Ye[e]=C(Tt(e)))}else if(isNaN(t))return t;return!(!t||isNaN(t))&&"(min-width: "+t+"px)"}function M(t,e,n){return t===Boolean?_(e):t===Number?k(e):"query"===t?R(e,n):"list"===t?L(e):"media"===t?B(e):t?t(e):e}function T(t){return t?l(t,"ms")?C(t):1e3*C(t):0}function E(t,e,n){return t.replace(new RegExp(e+"|"+n,"mg"),function(t){return t===e?n:e})}function A(t,e){for(var n in t)if(!1===e.call(t[n],t[n],n))break}function S(t,e,n){return void 0===e&&(e=0),void 0===n&&(n=1),Math.min(Math.max(t,e),n)}function I(){}function O(t,e){return t.left<=e.right&&e.left<=t.right&&t.top<=e.bottom&&e.top<=t.bottom}function j(t,e){return O({top:t.y,bottom:t.y,left:t.x,right:t.x},e)}function z(t,e){return new Ne(function(n,i){var r=Xe({data:null,method:"GET",headers:{},xhr:new XMLHttpRequest,beforeSend:I,responseType:""},e),o=r.xhr;r.beforeSend(r);for(var s in r)if(s in o)try{o[s]=r[s]}catch(t){}o.open(r.method.toUpperCase(),t);for(var a in r.headers)o.setRequestHeader(a,r.headers[a]);Rt(o,"load",function(){0===o.status||o.status>=200&&o.status<300||304===o.status?n(o):i(Xe(Error(o.statusText),{xhr:o,status:o.status}))}),Rt(o,"error",function(){return i(Xe(Error("Network Error"),{xhr:o}))}),Rt(o,"timeout",function(){return i(Xe(Error("Network Timeout"),{xhr:o}))}),o.send(r.data)})}function N(t,e){return w(t)?P(t)?G(Ct(t)):function(t,e){return G(W(t,e,"querySelector"))}(t,e):G(t)}function D(t,e){return w(t)?P(t)?Q(Ct(t)):function(t,e){return Q(W(t,e,"querySelectorAll"))}(t,e):Q(t)}function P(t){return"<"===t[0]||t.match(/^\s*</)}function R(t,e){return N(t,Z(t)?e:rn)}function H(t,e){return D(t,Z(t)?e:rn)}function W(t,e,n){if(void 0===e&&(e=rn),!t||!w(t))return null;var i;Z(t=t.replace(Ge,"$1 *"))&&(i=[],t=t.split(",").map(function(t,n){var r=e;if("!"===(t=t.trim())[0]){var o=t.substr(1).trim().split(" ");r=V(e.parentNode,o[0]),t=o.slice(1).join(" ")}return r?(r.id||(r.id="uk-"+Date.now()+n,i.push(function(){return nt(r,"id")})),"#"+r.id+" "+t):null}).filter(Boolean).join(","),e=rn);try{return e[n](t)}catch(t){return null}finally{i&&i.forEach(function(t){return t()})}}function U(t,e){return D(t).filter(function(t){return q(t,e)})}function F(t,e){return w(e)?q(t,e)||V(t,e):t===e||G(e).contains(G(t))}function Z(t){return w(t)&&t.match(Ke)}function q(t,e){return Q(t).some(function(t){return tn.call(t,e)})}function V(t,e){return u(e,">")&&(e=e.slice(1)),J(t)?t.parentNode&&en.call(t,e):Q(t).map(function(t){return t.parentNode&&en.call(t,e)}).filter(Boolean)}function Y(t,e){for(var n=[],i=G(t).parentNode;i&&1===i.nodeType;)q(i,e)&&n.push(i),i=i.parentNode;return n}function X(t){return p(t)&&!!t.jquery}function J(t){return t instanceof Node||p(t)&&1===t.nodeType}function K(t){return t instanceof NodeList||t instanceof HTMLCollection}function G(t){return J(t)||g(t)||v(t)?t:K(t)||X(t)?t[0]:Ve(t)?G(t[0]):null}function Q(t){return J(t)?[t]:K(t)?Je.slice.call(t):Ve(t)?t.map(G).filter(Boolean):X(t)?t.toArray():[]}function tt(t,e,n){if(p(e))for(var i in e)tt(t,i,e[i]);else{if(b(n))return(t=G(t))&&t.getAttribute(e);Q(t).forEach(function(t){f(n)&&(n=n.call(t,tt(t,e))),null===n?nt(t,e):t.setAttribute(e,n)})}}function et(t,e){return Q(t).some(function(t){return t.hasAttribute(e)})}function nt(t,e){t=Q(t),e.split(" ").forEach(function(e){return t.forEach(function(t){return t.removeAttribute(e)})})}function it(t,e,n,i){tt(t,e,function(t){return t?t.replace(n,i):t})}function rt(t,e){for(var n=0,i=[e,"data-"+e];n<i.length;n++)if(et(t,i[n]))return tt(t,i[n])}function ot(){return"complete"===rn.readyState||"loading"!==rn.readyState&&!on.doScroll}function st(t){if(ot())t();else var e=function(){n(),i(),t()},n=Rt(rn,"DOMContentLoaded",e),i=Rt(nn,"load",e)}function at(t,e,n,i){return void 0===n&&(n=400),void 0===i&&(i="linear"),Ne.all(Q(t).map(function(t){return new Ne(function(r,o){for(var s in e){var a=$t(t,s);""===a&&$t(t,s,a)}var c=setTimeout(function(){return Ut(t,On)},n);Wt(t,On+" "+an,function(e){var n=e.type;clearTimeout(c),St(t,"uk-transition"),$t(t,"transition",""),n===an?o():r()},!1,function(e){var n=e.target;return t===n}),At(t,"uk-transition"),$t(t,Xe({transition:"all "+n+"ms "+i},e))})}))}function ct(t,e,n,i,r){var o=arguments;return void 0===n&&(n=200),Ne.all(Q(t).map(function(t){return new Ne(function(s,a){function c(){$t(t,"animationDuration",""),It(t,ln+"\\S*")}if(jt(t,hn))Ln(function(){return Ne.resolve().then(function(){return ct.apply(null,o).then(s,a)})});else{var l=e+" "+ln+(r?"leave":"enter");u(e,ln)&&(i&&(l+=" "+ln+i),r&&(l+=" "+ln+"reverse")),c(),Wt(t,(zn||"animationend")+" "+un,function(e){var n=!1;e.type===un?(a(),c()):(s(),Ne.resolve().then(function(){n=!0,c()})),Ln(function(){n||(At(t,hn),Ln(function(){return St(t,hn)}))})},!1,function(e){var n=e.target;return t===n}),$t(t,"animationDuration",n+"ms"),At(t,l),zn||Ln(function(){return pn.cancel(t)})}})}))}function ut(t,e,n){return void 0===e&&(e=0),void 0===n&&(n=0),O(G(t).getBoundingClientRect(),{top:e,left:n,bottom:e+Vn(nn),right:n+Yn(nn)})}function lt(t,e,n){void 0===n&&(n=0);var i=(e=Q(e)).length;return(t=(x(t)?k(t):"next"===t?n+1:"previous"===t?n-1:Lt(e,t))%i)<0?t+i:t}function ht(t){return dn[G(t).tagName.toLowerCase()]}function ft(t){return Q(t).some(function(t){return t.offsetHeight})}function pt(t){return Q(t).some(function(t){return q(t,vn)})}function dt(t){return t=G(t),t.innerHTML="",t}function gt(t,e){return t=G(t),b(e)?t.innerHTML:vt(t.hasChildNodes()?dt(t):t,e)}function vt(t,e){return t=G(t),yt(e,function(e){return t.appendChild(e)})}function mt(t,e){return t=G(t),yt(e,function(e){return t.parentNode.insertBefore(e,t)})}function wt(t,e){return t=G(t),yt(e,function(e){return t.nextSibling?mt(t.nextSibling,e):vt(t.parentNode,e)})}function yt(t,e){return"length"in(t=w(t)?Ct(t):t)?Q(t).map(e):e(t)}function xt(t){Q(t).map(function(t){return t.parentNode&&t.parentNode.removeChild(t)})}function bt(t,e){for(e=G(mt(t,e));e.firstChild;)e=e.firstChild;return vt(e,t),e}function _t(t,e){return Q(Q(t).map(function(t){return t.hasChildNodes?bt(Q(t.childNodes),e):vt(t,e)}))}function kt(t){Q(t).map(function(t){return t.parentNode}).filter(function(t,e,n){return n.indexOf(t)===e}).forEach(function(t){mt(t,t.childNodes),xt(t)})}function Ct(t){var e;if(e=wn.exec(t))return rn.createElement(e[1]);var n=rn.createElement("div");return mn.test(t)?n.insertAdjacentHTML("beforeend",t.trim()):n.textContent=t,n.childNodes.length>1?Q(n.childNodes):n.firstChild}function Lt(t,e){return e?Q(t).indexOf(G(e)):Q((t=G(t))&&t.parentNode.children).indexOf(t)}function $t(t,e,n){return Q(t).map(function(t){if(w(e)){if(e=Et(e),b(n))return Mt(t,e);n||0===n?t.style[e]=x(n)&&!yn[e]?n+"px":n:t.style.removeProperty(e)}else{if(Ve(e)){var i=Bt(t);return e.reduce(function(t,e){return t[e]=Et(i[e]),t},{})}p(e)&&A(e,function(e,n){return $t(t,n,e)})}return t})[0]}function Bt(t,e){return(t=G(t)).ownerDocument.defaultView.getComputedStyle(t,e)}function Mt(t,e,n){return Bt(t,n)[e]}function Tt(t){if(!(t in xn)){var e=vt(on,rn.createElement("div"));At(e,"var-"+t);try{xn[t]=Mt(e,"content",":before").replace(/^["'](.*)["']$/,"$1"),xn[t]=JSON.parse(xn[t])}catch(t){}on.removeChild(e)}return xn[t]}function Et(t){var e=bn[t];return e||(e=bn[t]=function(t){if((t=o(t))in kn)return t;var e,n=_n.length;for(;n--;)if((e="-"+_n[n]+t)in kn)return e}(t)||t),e}function At(t){for(var e=[],n=arguments.length-1;n-- >0;)e[n]=arguments[n+1];Nt(t,e,"add")}function St(t){for(var e=[],n=arguments.length-1;n-- >0;)e[n]=arguments[n+1];Nt(t,e,"remove")}function It(t,e){it(t,"class",new RegExp("(^|\\s)"+e+"(?!\\S)","g"),"")}function Ot(t){for(var e=[],n=arguments.length-1;n-- >0;)e[n]=arguments[n+1];e[0]&&St(t,e[0]),e[1]&&At(t,e[1])}function jt(t,e){return Ie&&Q(t).some(function(t){return t.classList.contains(e)})}function zt(t){for(var e=[],n=arguments.length-1;n-- >0;)e[n]=arguments[n+1];if(Ie&&e.length){var i=w((e=Dt(e))[e.length-1])?void 0:e.pop();Q(t).forEach(function(t){for(var n=t.classList,r=0;r<e.length;r++)je?n.toggle(e[r],i):n[(b(i)?!n.contains(e[r]):i)?"add":"remove"](e[r])})}}function Nt(t,e,n){e=Dt(e).filter(function(t){return t}),Ie&&e.length&&Q(t).forEach(function(t){var i=t.classList;Oe?i[n].apply(i,e):e.forEach(function(t){return i[n](t)})})}function Dt(t){return t.reduce(function(t,e){return t.push.apply(t,w(e)&&h(e," ")?e.trim().split(" "):[e]),t},[])}function Pt(t,e){var n,i=r(t),o=r(e).toLowerCase(),s=r(e),a=rn.body||on,c=(n={},n[t]=o,n["Webkit"+i]="webkit"+s,n["Moz"+i]=o,n["o"+i]="o"+s+" o"+o,n);for(t in c)if(void 0!==a.style[t])return c[t]}function Rt(){for(var t=[],e=arguments.length;e--;)t[e]=arguments[e];var n=Zt(t),i=n[0],r=n[1],o=n[2],s=n[3],a=n[4];return i=Vt(i),o&&(s=function(t,e,n){var i=this;return function(r){var o=r.target,s=">"===e[0]?D(e,t).filter(function(t){return F(o,t)})[0]:V(o,e);s&&(r.delegate=t,r.current=s,n.call(i,r))}}(i,o,s)),s.length>1&&(s=function(t){return function(e){return Ve(e.detail)?t.apply(t,[e].concat(e.detail)):t(e)}}(s)),r.split(" ").forEach(function(t){return i.addEventListener(t,s,a)}),function(){return Ht(i,r,s,a)}}function Ht(t,e,n,i){void 0===i&&(i=!1),e.split(" ").forEach(function(e){return Vt(t).removeEventListener(e,n,i)})}function Wt(){for(var t=[],e=arguments.length;e--;)t[e]=arguments[e];var n=Zt(t),i=n[0],r=n[1],o=n[2],s=n[3],a=n[4],c=n[5],u=Rt(i,r,o,function(t){var e=!c||c(t);e&&(u(),s(t,e))},a);return u}function Ut(t,e,n){return Yt(t).reduce(function(t,i){return t&&i.dispatchEvent(Ft(e,!0,!0,n))},!0)}function Ft(t,e,n,i){if(void 0===e&&(e=!0),void 0===n&&(n=!1),w(t)){var r=rn.createEvent("CustomEvent");r.initCustomEvent(t,e,n,i),t=r}return t}function Zt(t){return w(t[0])&&(t[0]=N(t[0])),f(t[2])&&t.splice(2,0,!1),t}function qt(t){return"EventTarget"in nn?t instanceof EventTarget:"addEventListener"in t}function Vt(t){return qt(t)?t:G(t)}function Yt(t){return qt(t)?[t]:Ve(t)?t.map(Vt).filter(Boolean):Q(t)}function Xt(){Nn.scheduled||(Nn.scheduled=!0,Ln(Nn.flush.bind(Nn)))}function Jt(t){for(var e;e=t.shift();)e()}function Kt(t,e){var n=t.indexOf(e);return!!~n&&!!t.splice(n,1)}function Gt(){}function Qt(t,e){return(e.y-t.y)/(e.x-t.x)}function te(t,e){function n(n){o[n]=(Dn[n]||Pn)(t[n],e[n])}var r,o={};if(e.mixins)for(var s=0,a=e.mixins.length;s<a;s++)t=te(t,e.mixins[s]);for(r in t)n(r);for(r in e)i(t,r)||n(r);return o}function ee(t,e){try{t.contentWindow.postMessage(JSON.stringify(Xe({event:"command"},e)),"*")}catch(t){}}function ne(t,e,n,i,r,o,s,a){n=le(n),i=le(i);var c={element:n,target:i};if(!t||!e)return c;var u=re(t),l=re(e),f=l;return ue(f,n,u,-1),ue(f,i,l,1),r=he(r,u.width,u.height),o=he(o,l.width,l.height),r.x+=o.x,r.y+=o.y,f.left+=r.x,f.top+=r.y,a=re(a||ce(t)),s&&A(qn,function(t,e){function o(t,n){var i=f[d]+t+n-2*r[p];if(i>=a[d]&&i+u[e]<=a[g])return f[d]=i,["element","target"].forEach(function(n){c[n][p]=t?c[n][p]===qn[e][1]?qn[e][2]:qn[e][1]:c[n][p]}),!0}var p=t[0],d=t[1],g=t[2];if(!0===s||h(s,p)){var v=n[p]===d?-u[e]:n[p]===g?u[e]:0,m=i[p]===d?l[e]:i[p]===g?-l[e]:0;if(f[d]<a[d]||f[d]+u[e]>a[g]){var w=u[e]/2,y="center"===i[p]?-l[e]/2:0;"center"===n[p]&&(o(w,y)||o(-w,-y))||o(v,m)}}}),ie(t,f),c}function ie(t,e){t=G(t);if(!e)return re(t);var n=ie(t),i=$t(t,"position");["left","top"].forEach(function(r){if(r in e){var o=$t(t,r);t.style[r]=e[r]-n[r]+C("absolute"===i&&"auto"===o?oe(t)[r]:o)+"px"}})}function re(t){var e=ce(t=G(t)),n=e.pageYOffset,i=e.pageXOffset;if(g(t)){var r=t.innerHeight,o=t.innerWidth;return{top:n,left:i,height:r,width:o,bottom:n+r,right:i+o}}var s=!1;ft(t)||(s=t.style.display,t.style.display="block");var a=t.getBoundingClientRect();return!1!==s&&(t.style.display=s),{height:a.height,width:a.width,top:a.top+n,left:a.left+i,bottom:a.bottom+n,right:a.right+i}}function oe(t){var e=function(t){var e=G(t).offsetParent;for(;e&&"static"===$t(e,"position");)e=e.offsetParent;return e||de(t)}(t=G(t)),n=e===de(t)?{top:0,left:0}:ie(e);return["top","left"].reduce(function(i,r){var o=c(r);return i[r]-=n[r]+(C($t(t,"margin"+o))||0)+(C($t(e,"border"+o+"Width"))||0),i},ie(t))}function se(t){var e=c(t);return function(n,i){if(n=G(n),b(i)){if(g(n))return n["inner"+e];if(v(n)){var r=n.documentElement;return Math.max(r.offsetHeight,r.scrollHeight)}return i=$t(n,t),i="auto"===i?n["offset"+e]:C(i)||0,ae(t,n,i)}$t(n,t,i||0===i?ae(t,n,i)+"px":"")}}function ae(t,e,n){return"border-box"===$t(e,"boxSizing")?qn[t].slice(1).map(c).reduce(function(t,n){return t-C($t(e,"padding"+n))-C($t(e,"border"+n+"Width"))},n):n}function ce(t){return g(t)?t:pe(t).defaultView}function ue(t,e,n,i){A(qn,function(r,o){var s=r[0],a=r[1],c=r[2];e[s]===c?t[a]+=n[o]*i:"center"===e[s]&&(t[a]+=n[o]*i/2)})}function le(t){var e=/left|center|right/,n=/top|center|bottom/;return 1===(t=(t||"").split(" ")).length&&(t=e.test(t[0])?t.concat(["center"]):n.test(t[0])?["center"].concat(t):["center","center"]),{x:e.test(t[0])?t[0]:"center",y:n.test(t[1])?t[1]:"center"}}function he(t,e,n){var i=(t||"").split(" "),r=i[0],o=i[1];return{x:r?C(r)*(l(r,"%")?e/100:1):0,y:o?C(o)*(l(o,"%")?n/100:1):0}}function fe(t){switch(t){case"left":return"right";case"right":return"left";case"top":return"bottom";case"bottom":return"top";default:return t}}function pe(t){return G(t).ownerDocument}function de(t){return pe(t).documentElement}function ge(){Wn&&clearTimeout(Wn),Un&&clearTimeout(Un),Fn&&clearTimeout(Fn),Wn=Un=Fn=null,Xn={}}function ve(t){return Jn||"touch"===t.pointerType}function me(t){var e=t.touches,n=t.changedTouches,i=e&&e[0]||n&&n[0]||t;return{x:i.pageX,y:i.pageY}}function we(t){if(!we.installed){var e=t.util,n=e.$,i=e.doc,r=e.empty,o=e.html;t.component("countdown",{mixins:[t.mixin.class],attrs:!0,props:{date:String,clsWrapper:String},defaults:{date:"",clsWrapper:".uk-countdown-%unit%"},computed:{date:function(t){var e=t.date;return Date.parse(e)},days:function(t,e){var i=t.clsWrapper;return n(i.replace("%unit%","days"),e)},hours:function(t,e){var i=t.clsWrapper;return n(i.replace("%unit%","hours"),e)},minutes:function(t,e){var i=t.clsWrapper;return n(i.replace("%unit%","minutes"),e)},seconds:function(t,e){var i=t.clsWrapper;return n(i.replace("%unit%","seconds"),e)},units:function(){var t=this;return["days","hours","minutes","seconds"].filter(function(e){return t[e]})}},connected:function(){this.start()},disconnected:function(){var t=this;this.stop(),this.units.forEach(function(e){return r(t[e])})},events:[{name:"visibilitychange",el:i,handler:function(){i.hidden?this.stop():this.start()}}],update:{write:function(){var t=this,e=function(t){var e=t-Date.now();return{total:e,seconds:e/1e3%60,minutes:e/1e3/60%60,hours:e/1e3/60/60%24,days:e/1e3/60/60/24}}(this.date);e.total<=0&&(this.stop(),e.days=e.hours=e.minutes=e.seconds=0),this.units.forEach(function(n){var i=String(Math.floor(e[n]));i=i.length<2?"0"+i:i;var r=t[n];r.textContent!==i&&((i=i.split("")).length!==r.children.length&&o(r,i.map(function(){return"<span></span>"}).join("")),i.forEach(function(t,e){return r.children[e].textContent=t}))})}},methods:{start:function(){var t=this;this.stop(),this.date&&this.units.length&&(this.$emit(),this.timer=setInterval(function(){return t.$emit()},1e3))},stop:function(){this.timer&&(clearInterval(this.timer),this.timer=null)}}})}}function ye(t){if(!ye.installed){var e=t.util,n=e.$$,i=e.addClass,r=e.css,o=e.scrolledOver,s=e.toFloat,a=e.toNodes;t.component("grid-parallax",t.components.grid.extend({props:{target:String,translate:Number},defaults:{target:!1,translate:150},computed:{translate:function(t){var e=t.translate;return Math.abs(e)},items:function(t,e){var i=t.target;return i?n(i,e):a(e.children)}},init:function(){i(this.$el,"uk-grid")},disconnected:function(){this.reset(),r(this.$el,"marginBottom","")},update:[{read:function(){this.columns=this.rows&&this.rows[0]&&this.rows[0].length||0,this.rows=this.rows&&this.rows.map(function(t){return function(t,e){return t.sort(function(t,n){return t[e]>n[e]?1:n[e]>t[e]?-1:0})}(t,"offsetLeft")})},write:function(){r(this.$el,"marginBottom",this.columns>1?this.translate+s(r(r(this.$el,"marginBottom",""),"marginBottom")):"")},events:["load","resize"]},{read:function(){this.scrolled=o(this.$el)*this.translate},write:function(){var t=this;if(!this.rows||1===this.columns||!this.scrolled)return this.reset();this.rows.forEach(function(e){return e.forEach(function(e,n){return r(e,"transform","translateY("+(n%2?t.scrolled:t.scrolled/8)+"px)")})})},events:["scroll","load","resize"]}],methods:{reset:function(){r(this.items,"transform","")}}})),t.component("grid-parallax").options.update.unshift({read:function(){this.reset()},events:["load","resize"]})}}function xe(t){return void 0===t&&(t=0),"translate("+t+(t?"%":"")+", 0)"}function be(t){return"scale3d("+t+", "+t+", 1)"}function _e(t){function e(t,e,i,r,o,s){var a=t.percent,c=t.translate,u=(0,t.show)(o);return{animation:t,dir:o,current:i,next:r,show:function(t,a,c){var l=this;void 0===a&&(a=0);var h=c?"linear":e;return t-=Math.round(t*a),this.translate(a),n(r,"itemin",{percent:a,duration:t,ease:h,dir:o}),i&&n(i,"itemout",{percent:1-a,duration:t,ease:h,dir:o}),B.all([A.start(r,u[1],t,h),i&&A.start(i,u[0],t,h)]).then(function(){l.reset(),s()},x)},stop:function(){return A.stop([r,i])},cancel:function(){A.cancel([r,i])},reset:function(){for(var t in u[0])l([r,i],t,"")},forward:function(t){var e=this.percent();A.cancel([r,i]),this.show(t,e,!0)},translate:function(t){var e=c(t,o);l(r,e[1]),i&&l(i,e[0]),n(r,"itemtranslatein",{percent:t,dir:o}),i&&n(i,"itemtranslateout",{percent:1-t,dir:o})},percent:function(){return a(i,r,o)}}}function n(t,e,n){S(t,u(e,!1,!1,n))}function i(t){return~~t}if(!_e.installed){var r=t.util,o=r.$$,s=r.$,a=r.addClass,c=r.assign,u=r.createEvent,l=r.css,h=r.data,f=r.doc,p=r.endsWith,d=r.fastdom,g=r.getIndex,v=r.getPos,m=r.hasClass,w=r.index,y=r.isTouch,x=r.noop,b=r.off,_=r.on,k=r.pointerDown,C=r.pointerMove,L=r.pointerUp,$=r.preventClick,B=r.Promise,M=r.removeClass,T=r.toggleClass,E=r.toNodes,A=r.Transition,S=r.trigger,I=r.win,O=Math.abs;t.mixin.slideshow={attrs:!0,props:{autoplay:Boolean,autoplayInterval:Number,pauseOnHover:Boolean,animation:String,easing:String,velocity:Number},defaults:{autoplay:!1,autoplayInterval:7e3,pauseOnHover:!0,animation:"slide",easing:"ease",velocity:1,index:0,stack:[],threshold:10,percent:0,clsActive:"uk-active",clsActivated:"uk-transition-active",initialAnimation:!1,Animations:ui(t)},computed:{list:function(t,e){var n=t.selList;return s(n,e)},slides:function(){return E(this.list.children)},animation:function(t){var e=t.animation,n=t.Animations;return c(e in n?n[e]:n.slide,{name:e})},duration:function(t,e){var n=t.velocity;return function(t){return.5*t+300}(e.offsetWidth/n)}},init:function(){var t=this;["start","move","end"].forEach(function(e){var n=t[e];t[e]=function(e){var i=v(e).x;t.prevPos=i!==t.pos?t.pos:t.prevPos,t.pos=i,n(e)}})},connected:function(){this.startAutoplay()},disconnected:function(){this.stopAutoplay()},update:[{read:function(){delete this._computeds.duration},events:["load","resize"]}],events:[{name:"click",delegate:function(){return"["+this.attrItem+"],[data-"+this.attrItem+"]"},handler:function(t){t.preventDefault(),t.current.blur(),this.show(h(t.current,this.attrItem))}},{name:k,delegate:function(){return this.selList+" > *"},handler:function(t){!y(t)&&function(t){return!t.children.length&&t.childNodes.length}(t.target)||this.start(t)}},{name:"visibilitychange",el:f,handler:function(){f.hidden?this.stopAutoplay():this.startAutoplay()}},{name:k,handler:"stopAutoplay"},{name:"mouseenter",filter:function(){return this.autoplay},handler:function(){this.isHovering=!0}},{name:"mouseleave",filter:function(){return this.autoplay},handler:function(){this.isHovering=!1}},{name:"beforeitemshow",self:!0,delegate:function(){return this.selList+" > *"},handler:function(t){var e=t.target;a(e,this.clsActive)}},{name:"itemshown",self:!0,delegate:function(){return this.selList+" > *"},handler:function(t){var e=t.target;a(e,this.clsActivated)}},{name:"itemshow itemhide",self:!0,delegate:function(){return this.selList+" > *"},handler:function(t){var e=t.type,n=t.target;T(o("["+this.attrItem+'="'+w(n)+'"],[data-'+this.attrItem+'="'+w(n)+'"]',this.$el),this.clsActive,p(e,"show"))}},{name:"itemhidden",self:!0,delegate:function(){return this.selList+" > *"},handler:function(t){var e=t.target;M(e,this.clsActive),M(e,this.clsActivated)}},{name:"itemshow itemhide itemshown itemhidden",self:!0,delegate:function(){return this.selList+" > *"},handler:function(e){var n=e.target;t.update(null,n)}},{name:"dragstart",handler:function(t){t.preventDefault()}}],methods:{start:function(t){if(!(t.button&&0!==t.button||this.slides.length<2||this._animation&&this._animation.animation!==this.animation)){var e=0;if(this.stack.length){var n=this._animation,i=n.dir,r=n.percent,o=n.cancel,s=n.translate;e=r()*i,this.percent=O(e)*-i,this.stack.splice(0,this.stack.length),o(),s(O(e)),this.index=this.getIndex(this.index-i),this.dragging=!0}this.unbindMove=_(f,C,this.move,{capture:!0,passive:!1}),_(I,"scroll",this.unbindMove),_(f,L,this.end,!0),this.drag=this.pos+this.$el.offsetWidth*e}},move:function(n){var r=this,o=this.pos-this.drag;if(!(this.prevPos===this.pos||!this.dragging&&O(o)<this.threshold)){n.cancelable&&n.preventDefault(),this.dragging=!0;var s=o/this.$el.offsetWidth;if(this.percent!==s){var a=this.getIndex(this.index-i(this.percent)),c=this.getIndex(this.index-i(s)),u=this.slides[c],l=s<0?1:-1,h=g(s<0?"next":"previous",this.slides,c),f=this.slides[h];this.slides.forEach(function(t,e){return T(t,r.clsActive,e===c||e===h)}),this._animation&&this._animation.reset(),c!==a&&(S(this.slides[a],"itemhide",[this]),S(u,"itemshow",[this])),this._animation=new e(this.animation,this.easing,u,f,l,x),this._animation.translate(O(s%1)),this.percent=s,t.update(null,u),t.update(null,f)}}},end:function(){if(b(I,"scroll",this.unbindMove),this.unbindMove(),b(f,L,this.end,!0),this.dragging){var t=this.percent;this.percent=O(this.percent)%1,this.index=this.getIndex(this.index-i(t)),(this.percent<.1||t<0==this.pos>this.prevPos)&&(this.index=this.getIndex(t>0?"previous":"next"),this.percent=1-this.percent,t*=-1),this._animation&&this._animation.reset(),this.show(t>0?"previous":"next",!0),$()}this.drag=this.dragging=this.percent=null},show:function(t,e){var n=this;if(void 0===e&&(e=!1),e||!this.drag)if(this.stack[e?"unshift":"push"](t),!e&&this.stack.length>1)2===this.stack.length&&this._animation.forward(250);else{var i=this.index,r=this.getIndex(t),o=m(this.slides,"uk-active")&&this.slides[i],s=this.slides[r];if(o!==s){o&&S(o,"beforeitemhide",[this]),S(s,"beforeitemshow",[this]),this.index=r;var a=function(){o&&S(o,"itemhidden",[n]),S(s,"itemshown",[n]),d.mutate(function(){n.stack.shift(),n.stack.length?n.show(n.stack.shift(),!0):n._animation=null})};(o||this.initialAnimation)&&this._show(o?this.animation:this.Animations[this.initialAnimation],e?"cubic-bezier(0.165, 0.840, 0.440, 1.000)":this.easing,o,s,function(t,e){return"next"===t?1:"previous"===t?-1:t<e?-1:1}(t,i),this.stack.length>1,a),o&&S(o,"itemhide",[this]),S(s,"itemshow",[this]),o||this.initialAnimation||a(),o&&d.flush()}else this.stack[e?"shift":"pop"]()}},_show:function(t,n,i,r,o,s,a){this._animation=new e(t,n,i,r,o,a),this._animation.show(i===r?300:s?150:this.duration,this.percent,s)},getIndex:function(t){return void 0===t&&(t=this.index),g(t,this.slides,this.index)},startAutoplay:function(){var t=this;this.stopAutoplay(),this.autoplay&&(this.interval=setInterval(function(){t.isHovering&&t.pauseOnHover||t.stack.length||t.show("next")},this.autoplayInterval))},stopAutoplay:function(){this.interval&&clearInterval(this.interval)}}}}}function ke(t){function e(t,e,n,i){return'<iframe src="'+t+'" width="'+e+'" height="'+n+'" style="max-width: 100%; box-sizing: border-box;" frameborder="0" allowfullscreen uk-video="autoplay: '+i+'" uk-responsive></iframe>'}if(!ke.installed){t.use(_e);var n=t.mixin,i=t.util,r=i.$,o=i.$$,s=i.addClass,a=i.ajax,c=i.append,u=i.assign,l=i.attr,h=i.css,f=i.doc,p=i.docEl,d=i.data,g=i.getImage,v=i.html,m=i.index,w=i.on,y=i.pointerDown,x=i.pointerMove,b=i.removeClass,_=i.Transition,k=i.trigger;t.component("lightbox",{attrs:!0,props:{animation:String,toggle:String,autoplay:Boolean,autoplayInterval:Number,videoAutoplay:Boolean},defaults:{animation:void 0,toggle:"a",autoplay:0,videoAutoplay:!1},computed:{toggles:function(t,e){var n=this,i=t.toggle,r=o(i,e);return this._changed=!this._toggles||r.length!==this._toggles.length||r.some(function(t,e){return t!==n._toggles[e]}),this._toggles=r}},disconnected:function(){this.panel&&(this.panel.$destroy(!0),this.panel=null)},events:[{name:"click",delegate:function(){return this.toggle+":not(.uk-disabled)"},handler:function(t){t.preventDefault(),t.current.blur(),this.show(m(this.toggles,t.current))}}],update:function(){this.panel&&this.animation&&(this.panel.$props.animation=this.animation,this.panel.$emit()),this.toggles.length&&this._changed&&this.panel&&(this.panel.$destroy(!0),this._init())},methods:{_init:function(){return this.panel=this.panel||t.lightboxPanel(u({},this.$props,{items:this.toggles.reduce(function(t,e){return t.push(["href","caption","type","poster"].reduce(function(t,n){return t["href"===n?"source":n]=d(e,n),t},{})),t},[])}))},show:function(t){return this.panel||this._init(),this.panel.show(t)},hide:function(){return this.panel&&this.panel.hide()}}}),t.component("lightbox-panel",{mixins:[n.container,n.togglable,n.slideshow],functional:!0,defaults:{preload:1,videoAutoplay:!1,delayControls:3e3,items:[],cls:"uk-open",clsPage:"uk-lightbox-page",selList:".uk-lightbox-items",attrItem:"uk-lightbox-item",initialAnimation:"scale",pauseOnHover:!1,velocity:2,Animations:li(t),template:'<div class="uk-lightbox uk-overflow-hidden"> <ul class="uk-lightbox-items"></ul> <div class="uk-lightbox-toolbar uk-position-top uk-text-right uk-transition-slide-top uk-transition-opaque"> <button class="uk-lightbox-toolbar-icon uk-close-large" type="button" uk-close uk-toggle="!.uk-lightbox"></button> </div> <a class="uk-lightbox-button uk-position-center-left uk-position-medium uk-transition-fade" href="#" uk-slidenav-previous uk-lightbox-item="previous"></a> <a class="uk-lightbox-button uk-position-center-right uk-position-medium uk-transition-fade" href="#" uk-slidenav-next uk-lightbox-item="next"></a> <div class="uk-lightbox-toolbar uk-lightbox-caption uk-position-bottom uk-text-center uk-transition-slide-bottom uk-transition-opaque"></div> </div>'},created:function(){var t=this;this.$mount(c(this.container,this.template)),this.caption=r(".uk-lightbox-caption",this.$el),this.items.forEach(function(e,n){return c(t.list,"<li></li>")})},events:[{name:x+" "+y+" keydown",handler:"showControls"},{name:"click",self:!0,delegate:function(){return this.selList+" > *"},handler:function(t){t.preventDefault(),this.hide()}},{name:"show",self:!0,handler:function(){s(p,this.clsPage)}},{name:"shown",self:!0,handler:"showControls"},{name:"hide",self:!0,handler:"hideControls"},{name:"hidden",self:!0,handler:function(){b(p,this.clsPage)}},{name:"keyup",el:function(){return f},handler:function(t){if(this.isToggled(this.$el))switch(t.keyCode){case 27:this.hide();break;case 37:this.show("previous");break;case 39:this.show("next")}}},{name:"toggle",handler:function(t){t.preventDefault(),this.toggle()}},{name:"beforeitemshow",self:!0,delegate:function(){return this.selList+" > *"},handler:function(){this.isToggled()||this.toggleNow(this.$el,!0)}},{name:"itemshow",self:!0,delegate:function(){return this.selList+" > *"},handler:function(t){var e=this,n=t.target,i=m(n),r=this.getItem(i).caption;h(this.caption,"display",r?"":"none"),v(this.caption,r);for(var o=0;o<=this.preload;o++)e.loadItem(e.getIndex(i+o)),e.loadItem(e.getIndex(i-o))}},{name:"itemload",handler:function(t,n){var i,o=this,s=n.source,c=n.type;if(this.setItem(n,"<span uk-spinner></span>"),s)if("image"===c||s.match(/\.(jp(e)?g|png|gif|svg)$/i))g(s).then(function(t){return o.setItem(n,'<img width="'+t.width+'" height="'+t.height+'" src="'+s+'">')},function(){return o.setError(n)});else if("video"===c||s.match(/\.(mp4|webm|ogv)$/i)){var u=r("<video controls playsinline"+(n.poster?' poster="'+n.poster+'"':"")+' uk-video="autoplay: '+this.videoAutoplay+'"></video>');l(u,"src",s),w(u,"error",function(){return o.setError(n)}),w(u,"loadedmetadata",function(){l(u,{width:u.videoWidth,height:u.videoHeight}),o.setItem(n,u)})}else if("iframe"===c)this.setItem(n,'<iframe class="uk-lightbox-iframe" src="'+s+'" frameborder="0" allowfullscreen></iframe>');else if(i=s.match(/\/\/.*?youtube\.[a-z]+\/watch\?v=([^&\s]+)/)||s.match(/youtu\.be\/(.*)/)){var h=i[1],f=function(t,i){return void 0===t&&(t=640),void 0===i&&(i=450),o.setItem(n,e("//www.youtube.com/embed/"+h,t,i,o.videoAutoplay))};g("//img.youtube.com/vi/"+h+"/maxresdefault.jpg").then(function(t){var e=t.width,n=t.height;120===e&&90===n?g("//img.youtube.com/vi/"+h+"/0.jpg").then(function(t){var e=t.width,n=t.height;return f(e,n)},f):f(e,n)},f)}else(i=s.match(/(\/\/.*?)vimeo\.[a-z]+\/([0-9]+).*?/))&&a("//vimeo.com/api/oembed.json?maxwidth=1920&url="+encodeURI(s),{responseType:"json"}).then(function(t){var r=t.response,s=r.height,a=r.width;return o.setItem(n,e("//player.vimeo.com/video/"+i[2],a,s,o.videoAutoplay))})}}],methods:{toggle:function(){return this.isToggled()?this.hide():this.show()},hide:function(){this.isToggled()&&this.toggleNow(this.$el,!1),b(this.slides,this.clsActive),_.stop(this.slides),delete this.index,delete this.percent,delete this._animation},loadItem:function(t){void 0===t&&(t=this.index);var e=this.getItem(t);e.content||k(this.$el,"itemload",[e])},getItem:function(t){return void 0===t&&(t=this.index),this.items[t]||{}},setItem:function(e,n){u(e,{content:n});var i=v(this.slides[this.items.indexOf(e)],n);k(this.$el,"itemloaded",[this,i]),t.update(null,i)},setError:function(t){this.setItem(t,'<span uk-icon="icon: bolt; ratio: 2"></span>')},showControls:function(){clearTimeout(this.controlsTimer),this.controlsTimer=setTimeout(this.hideControls,this.delayControls),l(o("["+this.attrItem+"],[data-"+this.attrItem+"]",this.$el),"hidden",this.items.length<2?"":null),s(this.$el,"uk-active uk-transition-active")},hideControls:function(){b(this.$el,"uk-active uk-transition-active")}}})}}function Ce(t){if(!Ce.installed){var e=t.util,n=e.append,i=e.closest,r=e.css,o=e.each,s=e.pointerEnter,a=e.pointerLeave,c=e.remove,u=e.toFloat,l=e.Transition,h=e.trigger,f={};t.component("notification",{functional:!0,args:["message","status"],defaults:{message:"",status:"",timeout:5e3,group:null,pos:"top-center",clsClose:"uk-notification-close",clsMsg:"uk-notification-message"},created:function(){f[this.pos]||(f[this.pos]=n(t.container,'<div class="uk-notification uk-notification-'+this.pos+'"></div>'));var e=r(f[this.pos],"display","block");this.$mount(n(e,'<div class="'+this.clsMsg+(this.status?" "+this.clsMsg+"-"+this.status:"")+'"> <a href="#" class="'+this.clsClose+'" data-uk-close></a> <div>'+this.message+"</div> </div>"))},ready:function(){var t=this,e=u(r(this.$el,"marginBottom"));l.start(r(this.$el,{opacity:0,marginTop:-1*this.$el.offsetHeight,marginBottom:0}),{opacity:1,marginTop:0,marginBottom:e}).then(function(){t.timeout&&(t.timer=setTimeout(t.close,t.timeout))})},events:(p={click:function(t){i(t.target,'a[href="#"]')&&t.preventDefault(),this.close()}},p[s]=function(){this.timer&&clearTimeout(this.timer)},p[a]=function(){this.timeout&&(this.timer=setTimeout(this.close,this.timeout))},p),methods:{close:function(t){var e=this,n=function(){h(e.$el,"close",[e]),c(e.$el),f[e.pos].children.length||r(f[e.pos],"display","none")};this.timer&&clearTimeout(this.timer),t?n():l.start(this.$el,{opacity:0,marginTop:-1*this.$el.offsetHeight,marginBottom:0}).then(n)}}});var p;t.notification.closeAll=function(e,n){o(t.instances,function(t){"notification"!==t.$options.name||e&&e!==t.group||t.close(n)})}}}function Le(t){function e(t,e){var n=t.length-1,i=Math.min(Math.floor(n*e),n-1),r=t.slice(i,i+2);return r.push(1===e?1:e%(1/n)*n),r}function n(t,n){var i=e(t,n),r=i[0],o=i[1],s=i[2];return(h(r)?r+Math.abs(r-o)*s*(r<o?1:-1):+o).toFixed(2)}if(!Le.installed){var i=t.mixin,r=t.util,o=r.clamp,s=r.css,a=r.Dimensions,c=r.each,u=r.getImage,l=r.includes,h=r.isNumber,f=r.isUndefined,p=r.scrolledOver,d=r.toFloat,g=r.query,v=r.win,m=["x","y","bgx","bgy","rotate","scale","color","backgroundColor","borderColor","opacity","blur","hue","grayscale","invert","saturate","sepia","fopacity"];i.parallax={props:m.reduce(function(t,e){return t[e]="list",t},{media:"media"}),defaults:m.reduce(function(t,e){return t[e]=void 0,t},{media:!1}),computed:{props:function(t,e){var n=this;return m.reduce(function(i,r){if(f(t[r]))return i;var o,a,c,u=r.match(/color/i),h=u||"opacity"===r,p=t[r].slice(0);h&&s(e,r,""),p.length<2&&p.unshift(("scale"===r?1:h?s(e,r):0)||0);var g=l(p.join(""),"%")?"%":"px";if(u){var v=e.style.color;p=p.map(function(t){return function(t,e){return s(s(t,"color",e),"color").split(/[(),]/g).slice(1,-1).concat(1).slice(0,4).map(function(t){return d(t)})}(e,t)}),e.style.color=v}else p=p.map(d);if(r.match(/^bg/))if(s(e,"background-position-"+r[2],""),a=s(e,"backgroundPosition").split(" ")["x"===r[2]?0:1],n.covers){var m=Math.min.apply(Math,p),w=Math.max.apply(Math,p),y=p.indexOf(m)<p.indexOf(w);c=w-m,p=p.map(function(t){return t-(y?m:w)}),o=(y?-c:0)+"px"}else o=a;return i[r]={steps:p,unit:g,pos:o,bgPos:a,diff:c},i},{})},bgProps:function(){var t=this;return["bgx","bgy"].filter(function(e){return e in t.props})},covers:function(t,e){return"cover"===s(""!==e.style.backgroundSize?s(e,"backgroundSize",""):e,"backgroundSize")}},disconnected:function(){delete this._image},update:[{read:function(){var t=this;if(delete this._computeds.props,this._active=!this.media||v.matchMedia(this.media).matches,this._image&&(this._image.dimEl={width:this.$el.offsetWidth,height:this.$el.offsetHeight}),f(this._image)&&this.covers&&this.bgProps.length){var e=s(this.$el,"backgroundImage").replace(/^none|url\(["']?(.+?)["']?\)$/,"$1");e&&(this._image=!1,u(e).then(function(e){t._image={width:e.naturalWidth,height:e.naturalHeight},t.$emit()}))}},write:function(){var t=this;if(this._image)if(this._active){var e=this._image,n=e.dimEl,i=a.cover(e,n);this.bgProps.forEach(function(r){var o=t.props[r],s=o.diff,c=o.bgPos,u=o.steps,l="bgy"===r?"height":"width",h=i[l]-n[l];c.match(/%$|0px/)&&(h<s?n[l]=i[l]+s-h:h>s&&(c=parseFloat(c))&&(t.props[r].steps=u.map(function(t){return t-(h-s)/(100/c)})),i=a.cover(e,n))}),s(this.$el,{backgroundSize:i.width+"px "+i.height+"px",backgroundRepeat:"no-repeat"})}else s(this.$el,{backgroundSize:"",backgroundRepeat:""})},events:["load","resize"]}],methods:{reset:function(){var t=this;c(this.getCss(0),function(e,n){return s(t.$el,n,"")})},getCss:function(t){var i=!1,r=this.props;return Object.keys(r).reduce(function(o,s){var a=r[s],c=a.steps,u=a.unit,l=a.pos,h=n(c,t);switch(s){case"x":case"y":if(i)break;var f=["x","y"].map(function(e){return s===e?h+u:r[e]?n(r[e].steps,t)+r[e].unit:0}),p=f[0],g=f[1];i=o.transform+=" translate3d("+p+", "+g+", 0)";break;case"rotate":o.transform+=" rotate("+h+"deg)";break;case"scale":o.transform+=" scale("+h+")";break;case"bgy":case"bgx":o["background-position-"+s[2]]="calc("+l+" + "+(h+u)+")";break;case"color":case"backgroundColor":case"borderColor":var v=e(c,t),m=v[0],w=v[1],y=v[2];o[s]="rgba("+m.map(function(t,e){return t+=y*(w[e]-t),3===e?d(t):parseInt(t,10)}).join(",")+")";break;case"blur":o.filter+=" blur("+h+"px)";break;case"hue":o.filter+=" hue-rotate("+h+"deg)";break;case"fopacity":o.filter+=" opacity("+h+"%)";break;case"grayscale":case"invert":case"saturate":case"sepia":o.filter+=" "+s+"("+h+"%)";break;default:o[s]=h}return o},{transform:"",filter:""})}}},t.component("parallax",{mixins:[i.parallax],props:{target:String,viewport:Number,easing:Number},defaults:{target:!1,viewport:1,easing:1},computed:{target:function(t,e){var n=t.target;return n&&g(n,e)||e}},disconnected:function(){delete this._prev},update:[{read:function(){this._percent=function(t,e){return o(t*(1-(e-e*t)))}(p(this.target)/(this.viewport||1),this.easing)},write:function(t){"scroll"!==t.type&&delete this._prev,this._active?this._prev!==this._percent&&(s(this.$el,this.getCss(this._percent)),this._prev=this._percent):this.reset()},events:["scroll","load","resize"]}]})}}function $e(t){function e(t){return c(t,"in")}function n(t,n,i){return i/=2,e(t)?n<0?1-i:i:n<0?i:1-i}if(!$e.installed){t.use(Le),t.use(_e);var i=t.mixin,r=t.util,o=r.closest,s=r.css,a=r.fastdom,c=r.endsWith,u=r.height,l=r.noop,h=r.Transition;t.component("slideshow",{mixins:[i.class,i.slideshow],props:{ratio:String,minHeight:Boolean,maxHeight:Boolean},defaults:{ratio:"16:9",minHeight:!1,maxHeight:!1,selList:".uk-slideshow-items",attrItem:"uk-slideshow-item",Animations:hi(t)},ready:function(){var t=this;a.mutate(function(){return t.show(t.index)})},update:{read:function(){var t=this.ratio.split(":").map(Number),e=t[0],n=t[1];this.height=n*this.$el.offsetWidth/e,this.minHeight&&(this.height=Math.max(this.minHeight,this.height)),this.maxHeight&&(this.height=Math.min(this.maxHeight,this.height))},write:function(){u(this.list,Math.floor(this.height))},events:["load","resize"]}}),t.component("slideshow-parallax",{mixins:[i.parallax],computed:{item:function(){var e=t.getComponent(o(this.$el,".uk-slideshow"),"slideshow");return e&&o(this.$el,e.selList+" > *")}},events:[{name:"itemshown",self:!0,el:function(){return this.item},handler:function(){s(this.$el,this.getCss(.5))}},{name:"itemin itemout",self:!0,el:function(){return this.item},handler:function(t){var i=t.type,r=t.detail,o=r.percent,a=r.duration,c=r.ease,u=r.dir;h.cancel(this.$el),s(this.$el,this.getCss(n(i,u,o))),h.start(this.$el,this.getCss(e(i)?.5:u>0?1:0),a,c).catch(l)}},{name:"transitioncanceled transitionend",self:!0,el:function(){return this.item},handler:function(){h.cancel(this.$el)}},{name:"itemtranslatein itemtranslateout",self:!0,el:function(){return this.item},handler:function(t){var e=t.type,i=t.detail,r=i.percent,o=i.dir;h.cancel(this.$el),s(this.$el,this.getCss(n(e,o,r)))}}]})}}function Be(t){function e(n){return n&&(t.getComponent(n,"sortable")||e(n.parentNode))}if(!Be.installed){var n=t.mixin,i=t.util,r=i.addClass,o=i.after,s=i.assign,a=i.append,c=i.attr,u=i.before,l=i.closest,h=i.css,f=i.doc,p=i.docEl,d=i.height,g=i.fastdom,v=i.getPos,m=i.includes,w=i.index,y=i.isInput,x=i.noop,b=i.offset,_=i.off,k=i.on,C=i.pointerDown,L=i.pointerMove,$=i.pointerUp,B=i.position,M=i.preventClick,T=i.Promise,E=i.remove,A=i.removeClass,S=i.toggleClass,I=i.toNodes,O=i.Transition,j=i.trigger,z=i.win,N=i.within;t.component("sortable",{mixins:[n.class],props:{group:String,animation:Number,threshold:Number,clsItem:String,clsPlaceholder:String,clsDrag:String,clsDragState:String,clsBase:String,clsNoDrag:String,clsEmpty:String,clsCustom:String,handle:String},defaults:{group:!1,animation:150,threshold:5,clsItem:"uk-sortable-item",clsPlaceholder:"uk-sortable-placeholder",clsDrag:"uk-sortable-drag",clsDragState:"uk-drag",clsBase:"uk-sortable",clsNoDrag:"uk-sortable-nodrag",clsEmpty:"uk-sortable-empty",clsCustom:"",handle:!1},init:function(){var t=this;["init","start","move","end"].forEach(function(e){var n=t[e];t[e]=function(e){t.scrollY=z.scrollY;var i=v(e),r=i.x,o=i.y;t.pos={x:r,y:o},n(e)}})},events:(D={},D[C]="init",D),update:{write:function(){if(this.clsEmpty&&S(this.$el,this.clsEmpty,!this.$el.children.length),this.drag){b(this.drag,{top:this.pos.y+this.origin.top,left:this.pos.x+this.origin.left});var t,e=b(this.drag).top,n=e+this.drag.offsetHeight;e>0&&e<this.scrollY?t=this.scrollY-5:n<d(f)&&n>d(z)+this.scrollY&&(t=this.scrollY+5),t&&setTimeout(function(){return z.scrollTo(z.scrollX,t)},5)}}},methods:{init:function(t){var e=t.target,n=t.button,i=t.defaultPrevented,r=I(this.$el.children).filter(function(t){return N(e,t)})[0];!r||y(t.target)||this.handle&&!N(e,this.handle)||0!==n||N(e,"."+this.clsNoDrag)||i||(t.preventDefault(),this.touched=[this],this.placeholder=r,this.origin=s({target:e,index:w(r)},this.pos),k(p,L,this.move),k(p,$,this.end),k(z,"scroll",this.scroll),this.threshold||this.start(t))},start:function(e){this.drag=a(t.container,this.placeholder.outerHTML.replace(/^<li/i,"<div").replace(/li>$/i,"div>")),h(this.drag,s({boxSizing:"border-box",width:this.placeholder.offsetWidth,height:this.placeholder.offsetHeight},h(this.placeholder,["paddingLeft","paddingRight","paddingTop","paddingBottom"]))),c(this.drag,"uk-no-boot",""),r(this.drag,this.clsDrag+" "+this.clsCustom),d(this.drag.firstElementChild,d(this.placeholder.firstElementChild));var n=b(this.placeholder),i=n.left,o=n.top;s(this.origin,{left:i-this.pos.x,top:o-this.pos.y}),r(this.placeholder,this.clsPlaceholder),r(this.$el.children,this.clsItem),r(p,this.clsDragState),j(this.$el,"start",[this,this.placeholder,this.drag]),this.move(e)},move:function(t){if(this.drag){this.$emit();var n="mousemove"===t.type?t.target:f.elementFromPoint(this.pos.x-f.body.scrollLeft,this.pos.y-f.body.scrollTop),i=e(n),r=e(this.placeholder),o=i!==r;if(i&&!N(n,this.placeholder)&&(!o||i.group&&i.group===r.group)){if(n=i.$el===n.parentNode&&n||I(i.$el.children).filter(function(t){return N(n,t)})[0],o)r.remove(this.placeholder);else if(!n)return;i.insert(this.placeholder,n),m(this.touched,i)||this.touched.push(i)}}else(Math.abs(this.pos.x-this.origin.x)>this.threshold||Math.abs(this.pos.y-this.origin.y)>this.threshold)&&this.start(t)},scroll:function(){var t=z.scrollY;t!==this.scrollY&&(this.pos.y+=t-this.scrollY,this.scrollY=t,this.$emit())},end:function(t){if(_(p,L,this.move),_(p,$,this.end),_(z,"scroll",this.scroll),this.drag){M();var n=e(this.placeholder);this===n?this.origin.index!==w(this.placeholder)&&j(this.$el,"moved",[this,this.placeholder]):(j(n.$el,"added",[n,this.placeholder]),j(this.$el,"removed",[this,this.placeholder])),j(this.$el,"stop",[this]),E(this.drag),this.drag=null;var i=this.touched.map(function(t){return t.clsPlaceholder+" "+t.clsItem}).join(" ");this.touched.forEach(function(t){return A(t.$el.children,i)}),A(p,this.clsDragState)}else"mouseup"!==t.type&&N(t.target,"a[href]")&&(location.href=l(t.target,"a[href]").href)},insert:function(t,e){var n=this;r(this.$el.children,this.clsItem);var i=function(){e?!N(t,n.$el)||function(t,e){return t.parentNode===e.parentNode&&w(t)>w(e)}(t,e)?u(e,t):o(e,t):a(n.$el,t)};this.animation?this.animate(i):i()},remove:function(t){N(t,this.$el)&&(this.animation?this.animate(function(){return E(t)}):E(t))},animate:function(t){var e=this,n=[],i=I(this.$el.children),r={position:"",width:"",height:"",pointerEvents:"",top:"",left:"",bottom:"",right:""};i.forEach(function(t){n.push(s({position:"absolute",pointerEvents:"none",width:t.offsetWidth,height:t.offsetHeight},B(t)))}),t(),i.forEach(O.cancel),h(this.$el.children,r),this.$update("update",!0),g.flush(),h(this.$el,"minHeight",d(this.$el));var o=i.map(function(t){return B(t)});T.all(i.map(function(t,i){return O.start(h(t,n[i]),o[i],e.animation)})).then(function(){h(e.$el,"minHeight",""),h(i,r),e.$update("update",!0),g.flush()},x)}}});var D}}function Me(t){if(!Me.installed){var e=t.util,n=t.mixin,i=e.append,r=e.attr,o=e.doc,s=e.fastdom,a=e.flipPosition,c=e.includes,u=e.isTouch,l=e.isVisible,h=e.matches,f=e.on,p=e.pointerDown,d=e.pointerEnter,g=e.pointerLeave,v=e.remove,m=e.within,w=[];t.component("tooltip",{attrs:!0,mixins:[n.container,n.togglable,n.position],props:{delay:Number,title:String},defaults:{pos:"top",title:"",delay:0,animation:["uk-animation-scale-up"],duration:100,cls:"uk-active",clsPos:"uk-tooltip"},connected:function(){var t=this;s.mutate(function(){return r(t.$el,{title:null,"aria-expanded":!1})})},disconnected:function(){this.hide()},methods:{show:function(){var t=this;c(w,this)||(w.forEach(function(t){return t.hide()}),w.push(this),this._unbind=f(o,"click",function(e){return!m(e.target,t.$el)&&t.hide()}),clearTimeout(this.showTimer),this.tooltip=i(this.container,'<div class="'+this.clsPos+'" aria-hidden><div class="'+this.clsPos+'-inner">'+this.title+"</div></div>"),r(this.$el,"aria-expanded",!0),this.positionAt(this.tooltip,this.$el),this.origin="y"===this.getAxis()?a(this.dir)+"-"+this.align:this.align+"-"+a(this.dir),this.showTimer=setTimeout(function(){t.toggleElement(t.tooltip,!0),t.hideTimer=setInterval(function(){l(t.$el)||t.hide()},150)},this.delay))},hide:function(){var t=w.indexOf(this);!~t||h(this.$el,"input")&&this.$el===o.activeElement||(w.splice(t,1),clearTimeout(this.showTimer),clearInterval(this.hideTimer),r(this.$el,"aria-expanded",!1),this.toggleElement(this.tooltip,!1),this.tooltip&&v(this.tooltip),this.tooltip=!1,this._unbind())}},events:(y={blur:"hide"},y["focus "+d+" "+p]=function(t){t.type===p&&u(t)||this.show()},y[g]=function(t){u(t)||this.hide()},y)});var y}}function Te(t){function e(t,e){return e.match(new RegExp("^"+t.replace(/\//g,"\\/").replace(/\*\*/g,"(\\/[^\\/]+)*").replace(/\*/g,"[^\\/]+").replace(/((?!\\))\?/g,"$1.")+"$","i"))}function n(t){t.preventDefault(),t.stopPropagation()}if(!Te.installed){var i=t.util,r=i.addClass,o=i.ajax,s=i.matches,a=i.noop,c=i.on,u=i.removeClass,l=i.trigger;t.component("upload",{props:{allow:String,clsDragover:String,concurrent:Number,mime:String,msgInvalidMime:String,msgInvalidName:String,multiple:Boolean,name:String,params:Object,type:String,url:String},defaults:{allow:!1,clsDragover:"uk-dragover",concurrent:1,mime:!1,msgInvalidMime:"Invalid File Type: %s",msgInvalidName:"Invalid File Name: %s",multiple:!1,name:"files[]",params:{},type:"POST",url:"",abort:a,beforeAll:a,beforeSend:a,complete:a,completeAll:a,error:a,fail:a,load:a,loadEnd:a,loadStart:a,progress:a},events:{change:function(t){s(t.target,'input[type="file"]')&&(t.preventDefault(),t.target.files&&this.upload(t.target.files),t.target.value="")},drop:function(t){n(t);var e=t.dataTransfer;e&&e.files&&(u(this.$el,this.clsDragover),this.upload(e.files))},dragenter:function(t){n(t)},dragover:function(t){n(t),r(this.$el,this.clsDragover)},dragleave:function(t){n(t),u(this.$el,this.clsDragover)}},methods:{upload:function(t){var n=this;if(t.length){l(this.$el,"upload",[t]);for(var i=0;i<t.length;i++){if(n.allow&&!e(n.allow,t[i].name))return void n.fail(n.msgInvalidName.replace(/%s/,n.allow));if(n.mime&&!e(n.mime,t[i].type))return void n.fail(n.msgInvalidMime.replace(/%s/,n.mime))}this.multiple||(t=[t[0]]),this.beforeAll(this,t);var r=function(t,e){for(var n=[],i=0;i<t.length;i+=e){for(var r=[],o=0;o<e;o++)r.push(t[i+o]);n.push(r)}return n}(t,this.concurrent),s=function(t){var e=new FormData;t.forEach(function(t){return e.append(n.name,t)});for(var i in n.params)e.append(i,n.params[i]);o(n.url,{data:e,method:n.type,beforeSend:function(t){var e=t.xhr;e.upload&&c(e.upload,"progress",n.progress),["loadStart","load","loadEnd","abort"].forEach(function(t){return c(e,t.toLowerCase(),n[t])}),n.beforeSend(t)}}).then(function(t){n.complete(t),r.length?s(r.shift()):n.completeAll(t)},function(t){return n.error(t.message)})};s(r.shift())}}}})}}var Ee=2,Ae="setImmediate"in window?e:setTimeout;t.reject=function(e){return new t(function(t,n){n(e)})},t.resolve=function(e){return new t(function(t,n){t(e)})},t.all=function(e){return new t(function(n,i){var r=0,o=[];0===e.length&&n(o);for(var s=0;s<e.length;s+=1)t.resolve(e[s]).then(function(t){return function(i){o[t]=i,(r+=1)===e.length&&n(o)}}(s),i)})},t.race=function(e){return new t(function(n,i){for(var r=0;r<e.length;r+=1)t.resolve(e[r]).then(n,i)})};var Se=t.prototype;Se.resolve=function(t){var e=this;if(e.state===Ee){if(t===e)throw new TypeError("Promise settled with itself.");var n=!1;try{var i=t&&t.then;if(null!==t&&p(t)&&f(i))return void i.call(t,function(t){n||e.resolve(t),n=!0},function(t){n||e.reject(t),n=!0})}catch(t){return void(n||e.reject(t))}e.state=0,e.value=t,e.notify()}},Se.reject=function(t){var e=this;if(e.state===Ee){if(t===e)throw new TypeError("Promise settled with itself.");e.state=1,e.value=t,e.notify()}},Se.notify=function(){var t=this;Ae(function(){if(t.state!==Ee)for(;t.deferred.length;){var e=t.deferred.shift(),n=e[0],i=e[1],r=e[2],o=e[3];try{0===t.state?r(f(n)?n.call(void 0,t.value):t.value):1===t.state&&(f(i)?r(i.call(void 0,t.value)):o(t.value))}catch(t){o(t)}}})},Se.then=function(e,n){var i=this;return new t(function(t,r){i.deferred.push([e,n,t,r]),i.notify()})},Se.catch=function(t){return this.then(void 0,t)};var Ie,Oe,je,ze=Object.prototype.hasOwnProperty,Ne="Promise"in window?window.Promise:t,De=/(?:^|[-_\/])(\w)/g,Pe=/([a-z\d])([A-Z])/g,Re=/-(\w)/g,He=String.prototype,We=He.startsWith||function(t){return 0===this.lastIndexOf(t,0)},Ue=He.endsWith||function(t){return this.substr(-1*t.length)===t},Fe=function(t){return~this.indexOf(t)},Ze=He.includes||Fe,qe=Array.prototype.includes||Fe,Ve=Array.isArray,Ye={},Xe=Object.assign||function(t){for(var e=[],n=arguments.length-1;n-- >0;)e[n]=arguments[n+1];t=Object(t);for(var r=0;r<e.length;r++){var o=e[r];if(null!==o)for(var s in o)i(o,s)&&(t[s]=o[s])}return t},Je=Array.prototype,Ke=/(^|,)\s*[!>+~]/,Ge=/([!>+~])(?=\s+[!>+~]|\s*$)/g,Qe=Element.prototype,tn=Qe.matches||Qe.msMatchesSelector,en=Qe.closest||function(t){var e=this;do{if(q(e,t))return e;e=e.parentNode}while(e&&1===e.nodeType)},nn=window,rn=document,on=rn.documentElement,sn="rtl"===tt(on,"dir"),an="transitioncanceled",cn={start:at,stop:function(t){return Ut(t,On),Ne.resolve()},cancel:function(t){Ut(t,an)},inProgress:function(t){return jt(t,"uk-transition")}},un="animationcancel",ln="uk-animation-",hn="uk-cancel-animation",fn=new RegExp(ln+"(enter|leave)"),pn={in:function(t,e,n,i){return ct(t,e,n,i,!1)},out:function(t,e,n,i){return ct(t,e,n,i,!0)},inProgress:function(t){return fn.test(tt(t,"class"))},cancel:function(t){Ut(t,un)}},dn={area:!0,base:!0,br:!0,col:!0,embed:!0,hr:!0,img:!0,input:!0,keygen:!0,link:!0,menuitem:!0,meta:!0,param:!0,source:!0,track:!0,wbr:!0},gn={ratio:function(t,e,n){var i="width"===e?"height":"width";return r={},r[i]=Math.round(n*t[i]/t[e]),r[e]=n,r;var r},contain:function(t,e){var n=this;return t=Xe({},t),A(t,function(i,r){return t=t[r]>e[r]?n.ratio(t,r,e[r]):t}),t},cover:function(t,e){var n=this;return t=this.contain(t,e),A(t,function(i,r){return t=t[r]<e[r]?n.ratio(t,r,e[r]):t}),t}},vn="input,select,textarea,button",mn=/^\s*<(\w+|!)[^>]*>/,wn=/^<(\w+)\s*\/?>(?:<\/\1>)?$/,yn={"animation-iteration-count":!0,"column-count":!0,"fill-opacity":!0,"flex-grow":!0,"flex-shrink":!0,"font-weight":!0,"line-height":!0,opacity:!0,order:!0,orphans:!0,widows:!0,"z-index":!0,zoom:!0},xn={},bn={},_n=["webkit","moz","ms"],kn=rn.createElement("div").style;!function(){var t=rn.createElement("_").classList;t&&(t.add("a","b"),t.toggle("c",!1),Oe=t.contains("b"),je=!t.contains("c"),Ie=!0),t=null}();var Cn=nn.MutationObserver||nn.WebKitMutationObserver,Ln=nn.requestAnimationFrame||function(t){return setTimeout(t,1e3/60)},$n="ontouchstart"in nn,Bn=nn.PointerEvent,Mn="ontouchstart"in nn||nn.DocumentTouch&&rn instanceof DocumentTouch||navigator.msPointerEnabled&&navigator.msMaxTouchPoints||navigator.pointerEnabled&&navigator.maxTouchPoints,Tn=Mn?"mousedown "+($n?"touchstart":"pointerdown"):"mousedown",En=Mn?"mousemove "+($n?"touchmove":"pointermove"):"mousemove",An=Mn?"mouseup "+($n?"touchend":"pointerup"):"mouseup",Sn=Mn&&Bn?"pointerenter":"mouseenter",In=Mn&&Bn?"pointerleave":"mouseleave",On=Pt("transition","transition-end"),jn=Pt("animation","animation-start"),zn=Pt("animation","animation-end"),Nn={reads:[],writes:[],measure:function(t){return this.reads.push(t),Xt(),t},mutate:function(t){return this.writes.push(t),Xt(),t},clear:function(t){return Kt(this.reads,t)||Kt(this.writes,t)},flush:function(){Jt(this.reads),Jt(this.writes.splice(0,this.writes.length)),this.scheduled=!1,(this.reads.length||this.writes.length)&&Xt()}};Gt.prototype={positions:[],position:null,init:function(){var t=this;this.positions=[],this.position=null;var e=!1;this.unbind=Rt(rn,"mousemove",function(n){e||(setTimeout(function(){var i=Date.now(),r=t.positions.length;r&&i-t.positions[r-1].time>100&&t.positions.splice(0,r),t.positions.push({time:i,x:n.pageX,y:n.pageY}),t.positions.length>5&&t.positions.shift(),e=!1},5),e=!0)})},cancel:function(){this.unbind&&this.unbind()},movesTo:function(t){if(this.positions.length<2)return!1;var e=ie(t),n=this.positions[this.positions.length-1],i=this.positions[0];if(e.left<=n.x&&n.x<=e.right&&e.top<=n.y&&n.y<=e.bottom)return!1;var r=[[{x:e.left,y:e.top},{x:e.right,y:e.bottom}],[{x:e.right,y:e.top},{x:e.left,y:e.bottom}]];return e.right<=n.x||(e.left>=n.x?(r[0].reverse(),r[1].reverse()):e.bottom<=n.y?r[0].reverse():e.top>=n.y&&r[1].reverse()),!!r.reduce(function(t,e){return t+(Qt(i,e[0])<Qt(n,e[0])&&Qt(i,e[1])>Qt(n,e[1]))},0)}};var Dn={};Dn.args=Dn.created=Dn.events=Dn.init=Dn.ready=Dn.connected=Dn.disconnected=Dn.destroy=function(t,e){return t=t&&!Ve(t)?[t]:t,e?t?t.concat(e):Ve(e)?e:[e]:t},Dn.update=function(t,e){return Dn.args(t,f(e)?{read:e}:e)},Dn.props=function(t,e){return Ve(e)&&(e=e.reduce(function(t,e){return t[e]=String,t},{})),Dn.methods(t,e)},Dn.computed=Dn.defaults=Dn.methods=function(t,e){return e?t?Xe({},t,e):e:t};var Pn=function(t,e){return b(e)?t:e},Rn=0,Hn=function(t){this.id=++Rn,this.el=G(t)};Hn.prototype.isVideo=function(){return this.isYoutube()||this.isVimeo()||this.isHTML5()},Hn.prototype.isHTML5=function(){return"VIDEO"===this.el.tagName},Hn.prototype.isIFrame=function(){return"IFRAME"===this.el.tagName},Hn.prototype.isYoutube=function(){return this.isIFrame()&&!!this.el.src.match(/\/\/.*?youtube\.[a-z]+\/(watch\?v=[^&\s]+|embed)|youtu\.be\/.*/)},Hn.prototype.isVimeo=function(){return this.isIFrame()&&!!this.el.src.match(/vimeo\.com\/video\/.*/)},Hn.prototype.enableApi=function(){var t=this;if(this.ready)return this.ready;var e,n=this.isYoutube(),i=this.isVimeo();return n||i?this.ready=new Ne(function(r){Wt(t.el,"load",function(){if(n){var i=function(){return ee(t.el,{event:"listening",id:t.id})};e=setInterval(i,100),i()}}),function(t){return new Ne(function(e){Wt(nn,"message",function(t,n){return e(n)},!1,function(e){var n=e.data;if(n&&w(n)){try{n=JSON.parse(n)}catch(t){return}return n&&t(n)}})})}(function(e){return n&&e.id===t.id&&"onReady"===e.event||i&&Number(e.player_id)===t.id}).then(function(){r(),e&&clearInterval(e)}),tt(t.el,"src",t.el.src+(h(t.el.src,"?")?"&":"?")+(n?"enablejsapi=1":"api=1&player_id="+Rn))}):Ne.resolve()},Hn.prototype.play=function(){var t=this;this.isVideo()&&(this.isIFrame()?this.enableApi().then(function(){return ee(t.el,{func:"playVideo",method:"play"})}):this.isHTML5()&&this.el.play())},Hn.prototype.pause=function(){var t=this;this.isVideo()&&(this.isIFrame()?this.enableApi().then(function(){return ee(t.el,{func:"pauseVideo",method:"pause"})}):this.isHTML5()&&this.el.pause())},Hn.prototype.mute=function(){var t=this;this.isVideo()&&(this.isIFrame()?this.enableApi().then(function(){return ee(t.el,{func:"mute",method:"setVolume",value:0})}):this.isHTML5()&&(this.el.muted=!0,tt(this.el,"muted","")))};var Wn,Un,Fn,Zn,qn={width:["x","left","right"],height:["y","top","bottom"]},Vn=se("height"),Yn=se("width"),Xn={};st(function(){Rt(rn,"click",function(){return Zn=!0},!0),Rt(rn,Tn,function(t){var e=t.target,n=me(t),i=n.x,r=n.y,o=Date.now();Xn.el="tagName"in e?e:e.parentNode,Wn&&clearTimeout(Wn),Xn.x1=i,Xn.y1=r,Xn.last&&o-Xn.last<=250&&(Xn={}),Xn.last=o,Zn=t.button>0}),Rt(rn,En,function(t){var e=me(t),n=e.x,i=e.y;Xn.x2=n,Xn.y2=i}),Rt(rn,An,function(t){var e=t.target;Xn.x2&&Math.abs(Xn.x1-Xn.x2)>30||Xn.y2&&Math.abs(Xn.y1-Xn.y2)>30?Un=setTimeout(function(){Xn.el&&(Ut(Xn.el,"swipe"),Ut(Xn.el,"swipe"+function(t){var e=t.x1,n=t.x2,i=t.y1,r=t.y2;return Math.abs(e-n)>=Math.abs(i-r)?e-n>0?"Left":"Right":i-r>0?"Up":"Down"}(Xn))),Xn={}}):"last"in Xn?(Fn=setTimeout(function(){return Xn.el&&Ut(Xn.el,"tap")}),Xn.el&&F(e,Xn.el)&&(Wn=setTimeout(function(){Wn=null,Xn.el&&!Zn&&Ut(Xn.el,"click"),Xn={}},350))):Xn={}}),Rt(rn,"touchcancel",ge),Rt(nn,"scroll",ge)});var Jn=!1;Rt(rn,"touchstart",function(){return Jn=!0},!0),Rt(rn,"click",function(){Jn=!1}),Rt(rn,"touchcancel",function(){return Jn=!1},!0);var Kn=Object.freeze({bind:n,hasOwn:i,Promise:Ne,classify:r,hyphenate:o,camelize:s,ucfirst:c,startsWith:u,endsWith:l,includes:h,isArray:Ve,isFunction:f,isObject:p,isPlainObject:d,isWindow:g,isDocument:v,isBoolean:m,isString:w,isNumber:y,isNumeric:x,isUndefined:b,toBoolean:_,toNumber:k,toFloat:C,toList:L,toMedia:B,coerce:M,toMs:T,swap:E,assign:Xe,each:A,clamp:S,noop:I,intersectRect:O,pointInRect:j,ajax:z,$:N,$$:D,query:R,queryAll:H,filter:U,within:F,matches:q,closest:V,parents:Y,isJQuery:X,toNode:G,toNodes:Q,attr:tt,hasAttr:et,removeAttr:nt,filterAttr:it,data:rt,win:nn,doc:rn,docEl:on,isRtl:sn,isReady:ot,ready:st,transition:at,Transition:cn,animate:ct,Animation:pn,isInView:ut,scrolledOver:function(t){var e=(t=G(t)).offsetHeight,n=function(t){var e=0;do{e+=t.offsetTop}while(t=t.offsetParent);return e}(t),i=Vn(nn),r=i+Math.min(0,n-i),o=Math.max(0,i-(Vn(rn)-(n+e)));return S((r+nn.pageYOffset-n)/((r+(e-(o<i?o:0)))/100)/100)},getIndex:lt,isVoidElement:ht,Dimensions:gn,preventClick:function(){var t=setTimeout(function(){return Ut(rn,"click")},0);Wt(rn,"click",function(e){e.preventDefault(),e.stopImmediatePropagation(),clearTimeout(t)},!0)},isVisible:ft,selInput:vn,isInput:pt,empty:dt,html:gt,prepend:function(t,e){return(t=G(t)).hasChildNodes()?yt(e,function(e){return t.insertBefore(e,t.firstChild)}):vt(t,e)},append:vt,before:mt,after:wt,remove:xt,wrapAll:bt,wrapInner:_t,unwrap:kt,fragment:Ct,index:Lt,css:$t,getStyles:Bt,getStyle:Mt,getCssVar:Tt,addClass:At,removeClass:St,removeClasses:It,replaceClass:Ot,hasClass:jt,toggleClass:zt,Observer:Cn,requestAnimationFrame:Ln,hasTouch:Mn,pointerDown:Tn,pointerMove:En,pointerUp:An,pointerEnter:Sn,pointerLeave:In,transitionend:On,animationstart:jn,animationend:zn,getImage:function(t){return new Ne(function(e,n){var i=new Image;i.onerror=n,i.onload=function(){return e(i)},i.src=t})},on:Rt,off:Ht,once:Wt,trigger:Ut,createEvent:Ft,toEventTargets:Yt,fastdom:Nn,MouseTracker:Gt,mergeOptions:te,Player:Hn,positionAt:ne,offset:ie,position:oe,height:Vn,width:Yn,flipPosition:fe,isTouch:ve,getPos:me}),Gn=function(t){this._init(t)};Gn.util=Kn,Gn.data="__uikit__",Gn.prefix="uk-",Gn.options={},Gn.instances={},Gn.elements=[],function(t){function e(t,n){if(1===t.nodeType)for(n(t),t=t.firstElementChild;t;)e(t,n),t=t.nextElementSibling}function n(t,e){if(t)for(var n in t)t[n]._isReady&&t[n]._callUpdate(e)}var i=t.data;t.use=function(t){if(!t.installed)return t.call(null,this),t.installed=!0,this},t.mixin=function(e,n){n=(w(n)?t.components[n]:n)||this,(e=te({},e)).mixins=n.options.mixins,delete n.options.mixins,n.options=te(e,n.options)},t.extend=function(t){var e=function(t){return new Function("return function "+r(t)+" (options) { this._init(options); }")()}((t=t||{}).name||this.options.name||"UIkitComponent");return e.prototype=Object.create(this.prototype),e.prototype.constructor=e,e.options=te(this.options,t),e.super=this,e.extend=this.extend,e},t.update=function(r,o,s){if(void 0===s&&(s=!1),r=Ft(r||"update"),o)if(o=G(o),s)do{n(o[i],r),o=o.parentNode}while(o);else e(o,function(t){return n(t[i],r)});else n(t.instances,r)};var o;Object.defineProperty(t,"container",{get:function(){return o||rn.body},set:function(t){o=t}})}(Gn),function(t){t.prototype._callHook=function(t){var e=this,n=this.$options[t];n&&n.forEach(function(t){return t.call(e)})},t.prototype._callReady=function(){this._isReady||(this._isReady=!0,this._callHook("ready"),this._callUpdate())},t.prototype._callConnected=function(){var e=this;this._connected||(h(t.elements,this.$options.el)||t.elements.push(this.$options.el),t.instances[this._uid]=this,this._initEvents(),this._callHook("connected"),this._connected=!0,this._initObserver(),this._isReady||st(function(){return e._callReady()}),this._callUpdate())},t.prototype._callDisconnected=function(){if(this._connected){this._observer&&(this._observer.disconnect(),this._observer=null);var e=t.elements.indexOf(this.$options.el);~e&&t.elements.splice(e,1),delete t.instances[this._uid],this._unbindEvents(),this._callHook("disconnected"),this._connected=!1}},t.prototype._callUpdate=function(t){var e=this,n=(t=Ft(t||"update")).type,i=t.detail;"update"===n&&i&&i.mutation&&(this._computeds={});var r=this.$options.update;r&&r.forEach(function(i,r){("update"===n||h(i.events,n))&&(i.read&&!h(Nn.reads,e._frames.reads[r])&&(e._frames.reads[r]=Nn.measure(function(){i.read.call(e,t),delete e._frames.reads[r]})),i.write&&!h(Nn.writes,e._frames.writes[r])&&(e._frames.writes[r]=Nn.mutate(function(){i.write.call(e,t),delete e._frames.writes[r]})))})}}(Gn),function(t){function e(t,e){var n={},i=t.args;void 0===i&&(i=[]);var r=t.props;void 0===r&&(r={});var a,c,l=t.el;if(!r)return n;for(a in r)if(c=o(a),et(l,c)){var f=M(r[a],tt(l,c),l);if("target"===c&&(!f||u(f,"_")))continue;n[a]=f}var p=function(t,e){void 0===e&&(e=[]);try{return t?u(t,"{")?JSON.parse(t):e.length&&!h(t,":")?(n={},n[e[0]]=t,n):t.split(";").reduce(function(t,e){var n=e.split(/:(.+)/),i=n[0],r=n[1];return i&&r&&(t[i.trim()]=r.trim()),t},{}):{};var n}catch(t){return{}}}(rt(l,e),i);for(a in p)void 0!==r[c=s(a)]&&(n[c]=M(r[c],p[a],l));return n}function r(t,e,i){d(e)||(e={name:i,handler:e});var o=e.name,s=e.el,a=e.delegate,c=e.self,u=e.filter,l=e.handler;s=f(s)?s.call(t):s||t.$el,Ve(s)?s.forEach(function(n){return r(t,Xe({},e,{el:n}),i)}):!s||u&&!u.call(t)||(l=function(t){return function(e){return Ve(e.detail)?t.apply(t,[e].concat(e.detail)):t(e)}}(w(l)?t[l]:n(l,t)),c&&(l=function(t){return function(e){if(e.target===e.currentTarget||e.target===e.current)return t.call(null,e)}}(l)),t._events.push(Rt(s,o,a?w(a)?a:a.call(t):null,l)))}var a=0;t.prototype.props={},t.prototype._init=function(e){e=e||{},e=this.$options=te(this.constructor.options,e),this.$el=null,this.$name=t.prefix+o(this.$options.name),this.$props={},this._frames={reads:{},writes:{}},this._events=[],this._uid=a++,this._initData(),this._initMethods(),this._initComputeds(),this._callHook("created"),e.el&&this.$mount(e.el)},t.prototype._initData=function(){var t=this,e=this.$options,n=e.defaults,r=e.data;void 0===r&&(r={});var o=e.args;void 0===o&&(o=[]);var s=e.props;void 0===s&&(s={});var a=e.el;o.length&&Ve(r)&&(r=r.slice(0,o.length).reduce(function(t,e,n){return d(e)?Xe(t,e):t[o[n]]=e,t},{}));for(var c in n)t.$props[c]=t[c]=i(r,c)&&!b(r[c])?M(s[c],r[c],a):Ve(n[c])?n[c].concat():n[c]},t.prototype._initMethods=function(){var t=this,e=this.$options.methods;if(e)for(var i in e)t[i]=n(e[i],t)},t.prototype._initComputeds=function(){var t=this,e=this.$options.computed;if(this._computeds={},e)for(var n in e)!function(t,e,n){Object.defineProperty(t,e,{enumerable:!0,get:function(){var r=t._computeds,o=t.$props,s=t.$el;return i(r,e)||(r[e]=n.call(t,o,s)),r[e]},set:function(n){t._computeds[e]=n}})}(t,n,e[n])},t.prototype._initProps=function(t){var n=this;this._computeds={},Xe(this.$props,t||e(this.$options,this.$name));var r=[this.$options.computed,this.$options.methods];for(var o in n.$props)(function(t,e){return r.every(function(t){return!t||!i(t,e)})})(0,o)&&(n[o]=n.$props[o])},t.prototype._initEvents=function(){var t=this,e=this.$options.events;e&&e.forEach(function(e){if(i(e,"handler"))r(t,e);else for(var n in e)r(t,e[n],n)})},t.prototype._unbindEvents=function(){this._events.forEach(function(t){return t()}),this._events=[]},t.prototype._initObserver=function(){var t=this,n=this.$options,i=n.attrs,r=n.props,s=n.el;!this._observer&&r&&i&&Cn&&(i=Ve(i)?i:Object.keys(r).map(function(t){return o(t)}),this._observer=new Cn(function(){var n=e(t.$options,t.$name);i.some(function(e){return!b(n[e])&&n[e]!==t.$props[e]})&&t.$reset(n)}),this._observer.observe(s,{attributes:!0,attributeFilter:i.concat([this.$name,"data-"+this.$name])}))}}(Gn),function(t){var e=t.data;t.prototype.$mount=function(t){var n=this.$options.name;t[e]||(t[e]={}),t[e][n]||(t[e][n]=this,this.$el=this.$options.el=this.$options.el||t,this._initProps(),this._callHook("init"),F(t,on)&&this._callConnected())},t.prototype.$emit=function(t){this._callUpdate(t)},t.prototype.$update=function(e,n){t.update(e,this.$options.el,n)},t.prototype.$reset=function(t){this._callDisconnected(),this._initProps(t),this._callConnected()},t.prototype.$destroy=function(t){void 0===t&&(t=!1);var n=this.$options,i=n.el,r=n.name;i&&this._callDisconnected(),this._callHook("destroy"),i&&i[e]&&(delete i[e][r],Object.keys(i[e]).length||delete i[e],t&&xt(this.$el))}}(Gn),function(t){var e=t.data;t.components={},t.component=function(e,n){var i=s(e);if(d(n))n.name=i,n=t.extend(n);else{if(b(n))return t.components[i];n.options.name=i}return t.components[i]=n,t[i]=function(e,n){function r(e){return t.getComponent(e,i)||new t.components[i]({el:e,data:n||{}})}for(var o=arguments.length,s=Array(o);o--;)s[o]=arguments[o];return d(e)?new t.components[i]({data:e}):t.components[i].options.functional?new t.components[i]({data:[].concat(s)}):e&&e.nodeType?r(e):D(e).map(r)[0]},t._initialized&&!n.options.functional&&Nn.measure(function(){return t[i]("[uk-"+e+"],[data-uk-"+e+"]")}),t.components[i]},t.getComponents=function(t){return t&&(t=X(t)?t[0]:t)&&t[e]||{}},t.getComponent=function(e,n){return t.getComponents(e)[n]},t.connect=function(n){var i;if(n[e])for(i in n[e])n[e][i]._callConnected();for(var r=0;r<n.attributes.length;r++)(u(i=n.attributes[r].name,"uk-")||u(i,"data-uk-"))&&(i=s(i.replace("data-uk-","").replace("uk-","")),t[i]&&t[i](n))},t.disconnect=function(t){for(var n in t[e])t[e][n]._callDisconnected()}}(Gn);var Qn,ti,ei,ni={init:function(){At(this.$el,this.$name)}},ii={props:{container:Boolean},defaults:{container:!0},computed:{container:function(t){var e=t.container;return!0===e&&Gn.container||e&&$(e)||Gn.container}}},ri={props:{cls:Boolean,animation:"list",duration:Number,origin:String,transition:String,queued:Boolean},defaults:{cls:!1,animation:[!1],duration:200,origin:!1,transition:"linear",queued:!1,initProps:{overflow:"",height:"",paddingTop:"",paddingBottom:"",marginTop:"",marginBottom:""},hideProps:{overflow:"hidden",height:0,paddingTop:0,paddingBottom:0,marginTop:0,marginBottom:0}},computed:{hasAnimation:function(t){return!!t.animation[0]},hasTransition:function(t){var e=t.animation;return this.hasAnimation&&!0===e[0]}},methods:{toggleElement:function(t,e,n){var i=this;return new Ne(function(r){var o,s=function(t){return Ne.all(t.map(function(t){return i._toggleElement(t,e,n)}))},a=(t=Q(t)).filter(function(t){return i.isToggled(t)}),c=t.filter(function(t){return!h(a,t)});if(i.queued&&b(n)&&b(e)&&i.hasAnimation&&!(t.length<2)){var u=rn.body,l=u.scrollTop,f=a[0],p=pn.inProgress(f)&&jt(f,"uk-animation-leave")||cn.inProgress(f)&&"0px"===f.style.height;o=s(a),p||(o=o.then(function(){var t=s(c);return u.scrollTop=l,t}))}else o=s(c.concat(a));o.then(r,I)})},toggleNow:function(t,e){var n=this;return new Ne(function(i){return Ne.all(Q(t).map(function(t){return n._toggleElement(t,e,!1)})).then(i,I)})},isToggled:function(t){var e=Q(t||this.$el);return this.cls?jt(e,this.cls.split(" ")[0]):!et(e,"hidden")},updateAria:function(t){!1===this.cls&&tt(t,"aria-hidden",!this.isToggled(t))},_toggleElement:function(t,e,n){var i=this;if(e=m(e)?e:pn.inProgress(t)?jt(t,"uk-animation-leave"):cn.inProgress(t)?"0px"===t.style.height:!this.isToggled(t),!Ut(t,"before"+(e?"show":"hide"),[this]))return Ne.reject();var r=(!1!==n&&this.hasAnimation?this.hasTransition?this._toggleHeight:this._toggleAnimation:this._toggleImmediate)(t,e);return Ut(t,e?"show":"hide",[this]),r.then(function(){Ut(t,e?"shown":"hidden",[i]),Gn.update(null,t)})},_toggle:function(t,e){this.cls?zt(t,this.cls,h(this.cls," ")?void 0:e):tt(t,"hidden",e?null:""),D("[autofocus]",t).some(function(t){return ft(t)&&(t.focus()||!0)}),this.updateAria(t),Gn.update(null,t)},_toggleImmediate:function(t,e){return this._toggle(t,e),Ne.resolve()},_toggleHeight:function(t,e){var n,i=this,r=cn.inProgress(t),o=t.hasChildNodes?C($t(t.firstElementChild,"marginTop"))+C($t(t.lastElementChild,"marginBottom")):0,s=ft(t)?Vn(t)+(r?0:o):0;return cn.cancel(t),this.isToggled(t)||this._toggle(t,!0),Vn(t,""),Nn.flush(),n=Vn(t)+(r?0:o),Vn(t,s),(e?cn.start(t,Xe({},this.initProps,{overflow:"hidden",height:n}),Math.round(this.duration*(1-s/n)),this.transition):cn.start(t,this.hideProps,Math.round(this.duration*(s/n)),this.transition).then(function(){return i._toggle(t,!1)})).then(function(){return $t(t,i.initProps)})},_toggleAnimation:function(t,e){var n=this;return pn.cancel(t),e?(this._toggle(t,!0),pn.in(t,this.animation[0],this.duration,this.origin)):pn.out(t,this.animation[1]||this.animation[0],this.duration,this.origin).then(function(){return n._toggle(t,!1)})}}},oi={mixins:[ni,ii,ri],props:{clsPanel:String,selClose:String,escClose:Boolean,bgClose:Boolean,stack:Boolean},defaults:{cls:"uk-open",escClose:!0,bgClose:!0,overlay:!0,stack:!1},computed:{panel:function(t,e){return N("."+t.clsPanel,e)},transitionElement:function(){return this.panel},transitionDuration:function(){return T($t(this.transitionElement,"transitionDuration"))}},events:[{name:"click",delegate:function(){return this.selClose},handler:function(t){t.preventDefault(),this.hide()}},{name:"toggle",handler:function(t){t.defaultPrevented||(t.preventDefault(),this.toggle())}},{name:"show",self:!0,handler:function(){jt(on,this.clsPage)||(this.scrollbarWidth=Yn(nn)-on.offsetWidth,$t(rn.body,"overflowY",this.scrollbarWidth&&this.overlay?"scroll":"")),At(on,this.clsPage)}},{name:"hidden",self:!0,handler:function(){for(var t,e=this,n=this.prev;n;){if(n.clsPage===e.clsPage){t=!0;break}n=n.prev}t||St(on,this.clsPage),!this.prev&&$t(rn.body,"overflowY","")}}],methods:{toggle:function(){return this.isToggled()?this.hide():this.show()},show:function(){if(!this.isToggled()){this.container&&this.$el.parentNode!==this.container&&(vt(this.container,this.$el),this._callConnected());var t=Qn&&Qn!==this&&Qn;if(Qn=this,t){if(!this.stack)return void t.hide().then(this.show);this.prev=t}return ti||(ti=[Rt(on,"click",function(t){var e=t.target,n=t.defaultPrevented;Qn&&Qn.bgClose&&!n&&!F(e,Qn.panel)&&Qn.hide()}),Rt(rn,"keydown",function(t){27===t.keyCode&&Qn&&Qn.escClose&&(t.preventDefault(),Qn.hide())})]),this.toggleNow(this.$el,!0)}},hide:function(){if(this.isToggled())return(Qn=Qn&&Qn!==this&&Qn||this.prev)||(ti&&ti.forEach(function(t){return t()}),ti=null),this.toggleNow(this.$el,!1)},getActive:function(){return Qn},_toggleImmediate:function(t,e){var n=this;return new Ne(function(i){return Ln(function(){n._toggle(t,e),n.transitionDuration?Wt(n.transitionElement,On,i,!1,function(t){return t.target===n.transitionElement}):i()})})}}},si={props:{pos:String,offset:null,flip:Boolean,clsPos:String},defaults:{pos:"bottom-"+(sn?"right":"left"),flip:!0,offset:!1,clsPos:""},computed:{pos:function(t){var e=t.pos;return(e+(h(e,"-")?"":"-center")).split("-")},dir:function(){return this.pos[0]},align:function(){return this.pos[1]}},methods:{positionAt:function(t,e,n){It(t,this.clsPos+"-(top|bottom|left|right)(-[a-z]+)?"),$t(t,{top:"",left:""});var i=k(this.offset)||0,r=this.getAxis(),o=ne(t,e,"x"===r?fe(this.dir)+" "+this.align:this.align+" "+fe(this.dir),"x"===r?this.dir+" "+this.align:this.align+" "+this.dir,"x"===r?""+("left"===this.dir?-1*i:i):" "+("top"===this.dir?-1*i:i),null,this.flip,n).target,s=o.x,a=o.y;this.dir="x"===r?s:a,this.align="x"===r?a:s,zt(t,this.clsPos+"-"+this.dir+"-"+this.align,!1===this.offset)},getAxis:function(){return"top"===this.dir||"bottom"===this.dir?"y":"x"}}},ai=function(t){t.component("offcanvas",{mixins:[oi],args:"mode",props:{content:String,mode:String,flip:Boolean,overlay:Boolean},defaults:{content:".uk-offcanvas-content",mode:"slide",flip:!1,overlay:!1,clsPage:"uk-offcanvas-page",clsContainer:"uk-offcanvas-container",clsPanel:"uk-offcanvas-bar",clsFlip:"uk-offcanvas-flip",clsContent:"uk-offcanvas-content",clsContentAnimation:"uk-offcanvas-content-animation",clsSidebarAnimation:"uk-offcanvas-bar-animation",clsMode:"uk-offcanvas",clsOverlay:"uk-offcanvas-overlay",selClose:".uk-offcanvas-close"},computed:{content:function(t){var e=t.content;return N(e)},clsFlip:function(t){var e=t.flip,n=t.clsFlip;return e?n:""},clsOverlay:function(t){var e=t.overlay,n=t.clsOverlay;return e?n:""},clsMode:function(t){var e=t.mode,n=t.clsMode;return n+"-"+e},clsSidebarAnimation:function(t){var e=t.mode,n=t.clsSidebarAnimation;return"none"===e||"reveal"===e?"":n},clsContentAnimation:function(t){var e=t.mode,n=t.clsContentAnimation;return"push"!==e&&"reveal"!==e?"":n},transitionElement:function(t){return"reveal"===t.mode?this.panel.parentNode:this.panel}},update:{write:function(){this.getActive()===this&&((this.overlay||this.clsContentAnimation)&&Yn(this.content,Yn(nn)-this.scrollbarWidth),this.overlay&&(Vn(this.content,Vn(nn)),ei&&(this.content.scrollTop=ei.y)))},events:["resize"]},events:[{name:"click",delegate:function(){return'a[href^="#"]'},handler:function(t){var e=t.current;e.hash&&N(e.hash,this.content)&&(ei=null,this.hide())}},{name:"beforescroll",filter:function(){return this.overlay},handler:function(t,e,n){e&&n&&this.isToggled()&&N(n,this.content)&&(Wt(this.$el,"hidden",function(){return e.scrollTo(n)}),t.preventDefault())}},{name:"show",self:!0,handler:function(){ei=ei||{x:nn.pageXOffset,y:nn.pageYOffset},"reveal"!==this.mode||jt(this.panel,this.clsMode)||(bt(this.panel,"<div>"),At(this.panel.parentNode,this.clsMode)),$t(on,"overflowY",(!this.clsContentAnimation||this.flip)&&this.scrollbarWidth&&this.overlay?"scroll":""),At(rn.body,this.clsContainer+" "+this.clsFlip+" "+this.clsOverlay),Vn(rn.body),At(this.content,this.clsContentAnimation),At(this.panel,this.clsSidebarAnimation+" "+("reveal"!==this.mode?this.clsMode:"")),At(this.$el,this.clsOverlay),$t(this.$el,"display","block"),Vn(this.$el)}},{name:"hide",self:!0,handler:function(){St(this.content,this.clsContentAnimation);var t=this.getActive();("none"===this.mode||t&&t!==this&&t!==this.prev)&&Ut(this.panel,On)}},{name:"hidden",self:!0,handler:function(){if("reveal"===this.mode&&kt(this.panel),this.overlay){if(!ei){var t=this.content,e=t.scrollLeft,n=t.scrollTop;ei={x:e,y:n}}}else ei={x:nn.pageXOffset,y:nn.pageYOffset};St(this.panel,this.clsSidebarAnimation+" "+this.clsMode),St(this.$el,this.clsOverlay),$t(this.$el,"display",""),St(rn.body,this.clsContainer+" "+this.clsFlip+" "+this.clsOverlay),rn.body.scrollTop=ei.y,$t(on,"overflow-y",""),Yn(this.content,""),Vn(this.content,""),nn.scrollTo(ei.x,ei.y),ei=null}},{name:"swipeLeft swipeRight",handler:function(t){this.isToggled()&&ve(t)&&("swipeLeft"===t.type&&!this.flip||"swipeRight"===t.type&&this.flip)&&this.hide()}}]})},ci={};Gn.version="3.0.0-beta.34",function(t){t.mixin.class=ni,t.mixin.container=ii,t.mixin.modal=oi,t.mixin.position=si,t.mixin.togglable=ri}(Gn),function(t){var e=0,n=0;Rt(nn,"load resize",t.update),Rt(nn,"scroll",function(n){n.dir=e<nn.pageYOffset?"down":"up",e=nn.pageYOffset,t.update(n),Nn.flush()}),jn&&Rt(rn,jn,function(t){var e=t.target;($t(e,"animationName")||"").match(/^uk-.*(left|right)/)&&(n++,rn.body.style.overflowX="hidden",setTimeout(function(){--n||(rn.body.style.overflowX="")},T($t(e,"animationDuration"))+100))},!0),t.use(function(t){t.component("toggle",{mixins:[t.mixin.togglable],args:"target",props:{href:String,target:null,mode:"list",media:"media"},defaults:{href:!1,target:!1,mode:"click",queued:!0,media:!1},computed:{target:function(t,e){var n=t.href,i=t.target;return i=H(i||n,e),i.length&&i||[e]}},events:[{name:Sn+" "+In,filter:function(){return h(this.mode,"hover")},handler:function(t){ve(t)||this.toggle("toggle"+(t.type===Sn?"show":"hide"))}},{name:"click",filter:function(){return h(this.mode,"click")||Mn},handler:function(t){if(ve(t)||h(this.mode,"click")){var e;(V(t.target,'a[href="#"], button')||(e=V(t.target,"a[href]"))&&(this.cls||!ft(this.target)||e.hash&&q(this.target,e.hash)))&&t.preventDefault(),this.toggle()}}}],update:{write:function(){if(h(this.mode,"media")&&this.media){var t=this.isToggled(this.target);(nn.matchMedia(this.media).matches?!t:t)&&this.toggle()}},events:["load","resize"]},methods:{toggle:function(t){Ut(this.target,t||"toggle",[this])&&this.toggleElement(this.target)}}})}),t.use(function(t){t.component("accordion",{mixins:[ni,ri],props:{targets:String,active:null,collapsible:Boolean,multiple:Boolean,toggle:String,content:String,transition:String},defaults:{targets:"> *",active:!1,animation:[!0],collapsible:!0,multiple:!1,clsOpen:"uk-open",toggle:"> .uk-accordion-title",content:"> .uk-accordion-content",transition:"ease"},computed:{items:function(t,e){return D(t.targets,e)}},events:[{name:"click",self:!0,delegate:function(){return this.targets+" "+this.$props.toggle},handler:function(t){t.preventDefault(),this.toggle(Lt(D(this.targets+" "+this.$props.toggle,this.$el),t.current))}}],ready:function(){var t=!1!==this.active&&this.items[Number(this.active)]&&!jt(t,this.clsOpen);t&&this.toggle(t,!1)},update:function(){var t=this;this.items.forEach(function(e){return t.toggleNow(N(t.content,e),jt(e,t.clsOpen))});var e=!this.collapsible&&!jt(this.items,this.clsOpen)&&this.items[0];e&&this.toggle(e,!1)},methods:{toggle:function(t,e){var n=this,i=lt(t,this.items),r=U(this.items,"."+this.clsOpen);(t=this.items[i])&&[t].concat(!this.multiple&&!h(r,t)&&r||[]).forEach(function(i){var o=i===t,s=o&&!jt(i,n.clsOpen);if(s||!o||n.collapsible||!(r.length<2)){zt(i,n.clsOpen,s);var a=i._wrapper?i._wrapper.firstElementChild:N(n.content,i);i._wrapper||(i._wrapper=bt(a,"<div>"),tt(i._wrapper,"hidden",s?"":null)),n._toggleImmediate(a,!0),n.toggleElement(i._wrapper,s,e).then(function(){jt(i,n.clsOpen)===s&&(s||n._toggleImmediate(a,!1),i._wrapper=null,kt(a))})}})}}})}),t.use(function(t){t.component("alert",{attrs:!0,mixins:[ni,ri],args:"animation",props:{close:String},defaults:{animation:[!0],selClose:".uk-alert-close",duration:150,hideProps:Xe({opacity:0},ri.defaults.hideProps)},events:[{name:"click",delegate:function(){return this.selClose},handler:function(t){t.preventDefault(),this.close()}}],methods:{close:function(){var t=this;this.toggleElement(this.$el).then(function(){return t.$destroy(!0)})}}})}),t.use(function(t){t.component("video",{props:{automute:Boolean,autoplay:Boolean},defaults:{automute:!1,autoplay:!0},ready:function(){this.player=new Hn(this.$el),this.automute&&this.player.mute()},update:{write:function(){this.player&&(ft(this.$el)&&"hidden"!==$t(this.$el,"visibility")?this.autoplay&&this.player.play():this.player.pause())},events:["load"]}})}),t.use(function(t){t.component("cover",{mixins:[ni,t.components.video.options],props:{width:Number,height:Number},defaults:{automute:!0},update:{write:function(){var t=this.$el;if(ft(t)){var e=t.parentNode,n=e.offsetHeight,i=e.offsetWidth;$t($t(t,{width:"",height:""}),gn.cover({width:this.width||t.clientWidth,height:this.height||t.clientHeight},{width:i+(i%2?1:0),height:n+(n%2?1:0)}))}},events:["load","resize"]},events:{loadedmetadata:function(){this.$emit()}}})}),t.use(function(t){var e;t.component("drop",{mixins:[si,ri],args:"pos",props:{mode:"list",toggle:Boolean,boundary:"query",boundaryAlign:Boolean,delayShow:Number,delayHide:Number,clsDrop:String},defaults:{mode:["click","hover"],toggle:!0,boundary:nn,boundaryAlign:!1,delayShow:0,delayHide:800,clsDrop:!1,hoverIdle:200,animation:["uk-animation-fade"],cls:"uk-open"},init:function(){this.tracker=new Gt,this.clsDrop=this.clsDrop||"uk-"+this.$options.name,this.clsPos=this.clsDrop,At(this.$el,this.clsDrop)},ready:function(){this.updateAria(this.$el),this.toggle&&(this.toggle=t.toggle(w(this.toggle)?R(this.toggle,this.$el):this.$el.previousElementSibling,{target:this.$el,mode:this.mode}))},events:[{name:"click",delegate:function(){return"."+this.clsDrop+"-close"},handler:function(t){t.preventDefault(),this.hide(!1)}},{name:"click",delegate:function(){return'a[href^="#"]'},handler:function(t){if(!t.defaultPrevented){var e=t.target.hash;e||t.preventDefault(),e&&F(e,this.$el)||this.hide(!1)}}},{name:"beforescroll",handler:function(){this.hide(!1)}},{name:"toggle",self:!0,handler:function(t,e){t.preventDefault(),this.isToggled()?this.hide(!1):this.show(e,!1)}},{name:Sn,filter:function(){return h(this.mode,"hover")},handler:function(t){ve(t)||(e&&e!==this&&e.toggle&&h(e.toggle.mode,"hover")&&!F(t.target,e.toggle.$el)&&!j({x:t.pageX,y:t.pageY},ie(e.$el))&&e.hide(!1),t.preventDefault(),this.show(this.toggle))}},{name:"toggleshow",handler:function(t,e){e&&!h(e.target,this.$el)||(t.preventDefault(),this.show(e||this.toggle))}},{name:"togglehide "+In,handler:function(t,e){ve(t)||e&&!h(e.target,this.$el)||(t.preventDefault(),this.toggle&&h(this.toggle.mode,"hover")&&this.hide())}},{name:"beforeshow",self:!0,handler:function(){this.clearTimers()}},{name:"show",self:!0,handler:function(){this.tracker.init(),At(this.toggle.$el,this.cls),tt(this.toggle.$el,"aria-expanded","true"),n||(n=!0,Rt(on,"click",function(t){var n,i=t.target;if(!t.defaultPrevented)for(;e&&e!==n&&!F(i,e.$el)&&(!e.toggle||!F(i,e.toggle.$el));)n=e,e.hide(!1)}))}},{name:"beforehide",self:!0,handler:function(){this.clearTimers()}},{name:"hide",handler:function(t){var n=t.target;this.$el===n?(e=this.isActive()?null:e,St(this.toggle.$el,this.cls),tt(this.toggle.$el,"aria-expanded","false"),this.toggle.$el.blur(),D("a, button",this.toggle.$el).forEach(function(t){return t.blur()}),this.tracker.cancel()):e=null===e&&F(n,this.$el)&&this.isToggled()?this:e}}],update:{write:function(){this.isToggled()&&!pn.inProgress(this.$el)&&this.position()},events:["resize"]},methods:{show:function(t,n){var i=this;void 0===n&&(n=!0);var r=function(){i.isToggled()||(i.position(),i.toggleElement(i.$el,!0))},o=function(){if(i.toggle=t||i.toggle,i.clearTimers(),!i.isActive())if(n&&e&&e!==i&&e.isDelaying)i.showTimer=setTimeout(i.show,10);else{if(i.isParentOf(e)){if(!e.hideTimer)return;e.hide(!1)}else if(e&&!i.isChildOf(e)&&!i.isParentOf(e))for(var o;e&&e!==o&&!i.isChildOf(e);)o=e,e.hide(!1);n&&i.delayShow?i.showTimer=setTimeout(r,i.delayShow):r(),e=i}};t&&this.toggle&&t.$el!==this.toggle.$el?(Wt(this.$el,"hide",o),this.hide(!1)):o()},hide:function(t){var e=this;void 0===t&&(t=!0);var n=function(){return e.toggleNow(e.$el,!1)};this.clearTimers(),this.isDelaying=this.tracker.movesTo(this.$el),t&&this.isDelaying?this.hideTimer=setTimeout(this.hide,this.hoverIdle):t&&this.delayHide?this.hideTimer=setTimeout(n,this.delayHide):n()},clearTimers:function(){clearTimeout(this.showTimer),clearTimeout(this.hideTimer),this.showTimer=null,this.hideTimer=null,this.isDelaying=!1},isActive:function(){return e===this},isChildOf:function(t){return t&&t!==this&&F(this.$el,t.$el)},isParentOf:function(t){return t&&t!==this&&F(t.$el,this.$el)},position:function(){It(this.$el,this.clsDrop+"-(stack|boundary)"),$t(this.$el,{top:"",left:"",display:"block"}),zt(this.$el,this.clsDrop+"-boundary",this.boundaryAlign);var t=ie(this.boundary),e=this.boundaryAlign?t:ie(this.toggle.$el);if("justify"===this.align){var n="y"===this.getAxis()?"width":"height";$t(this.$el,n,e[n])}else this.$el.offsetWidth>Math.max(t.right-e.left,e.right-t.left)&&(At(this.$el,this.clsDrop+"-stack"),Ut(this.$el,"stack",[this]));this.positionAt(this.$el,this.boundaryAlign?this.boundary:this.toggle.$el,this.boundary),$t(this.$el,"display","")}}}),t.drop.getActive=function(){return e};var n}),t.use(function(t){t.component("dropdown",t.components.drop.extend({name:"dropdown"}))}),t.use(function(t){t.component("form-custom",{mixins:[ni],args:"target",props:{target:Boolean},defaults:{target:!1},computed:{input:function(t,e){return N(vn,e)},state:function(){return this.input.nextElementSibling},target:function(t,e){var n=t.target;return n&&(!0===n&&this.input.parentNode===e&&this.input.nextElementSibling||R(n,e))}},connected:function(){Ut(this.input,"change")},events:[{name:"focusin focusout mouseenter mouseleave",delegate:vn,handler:function(t){var e=t.type;t.current===this.input&&zt(this.state,"uk-"+(h(e,"focus")?"focus":"hover"),h(["focusin","mouseenter"],e))}},{name:"change",handler:function(){var t,e=this.target,n=this.input;e&&(e[pt(e)?"value":"textContent"]=n.files&&n.files[0]?n.files[0].name:q(n,"select")&&(t=D("option",n).filter(function(t){return t.selected})[0])?t.textContent:n.value)}}]})}),t.use(function(t){t.component("height-match",{args:"target",props:{target:String,row:Boolean},defaults:{target:"> *",row:!0},computed:{elements:function(t,e){return D(t.target,e)}},update:{read:function(){var t=this,e=!1;$t(this.elements,"minHeight",""),this.rows=this.row?this.elements.reduce(function(t,n){return e!==n.offsetTop?t.push([n]):t[t.length-1].push(n),e=n.offsetTop,t},[]).map(function(e){return t.match(e)}):[this.match(this.elements)]},write:function(){this.rows.forEach(function(t){var e=t.height;return $t(t.elements,"minHeight",e)})},events:["load","resize"]},methods:{match:function(t){if(t.length<2)return{};var e=0,n=[];return t.forEach(function(t){var i,r;ft(t)||(i=tt(t,"style"),r=tt(t,"hidden"),tt(t,{style:(i||"")+";display:block !important;",hidden:null})),e=Math.max(e,t.offsetHeight),n.push(t.offsetHeight),b(i)||tt(t,{style:i,hidden:r})}),t=t.filter(function(t,i){return n[i]<e}),{height:e,elements:t}}}})}),t.use(function(t){function e(t){return t&&t.offsetHeight||0}t.component("height-viewport",{props:{expand:Boolean,offsetTop:Boolean,offsetBottom:Boolean,minHeight:Number},defaults:{expand:!1,offsetTop:!1,offsetBottom:!1,minHeight:0},update:{write:function(){$t(this.$el,"boxSizing","border-box");var t,n=Vn(nn),i=0;if(this.expand){$t(this.$el,{height:"",minHeight:""});var r=n-e(on);r>0&&(t=e(this.$el)+r)}else{var o=ie(this.$el).top;o<n/2&&this.offsetTop&&(i+=o),!0===this.offsetBottom?i+=e(this.$el.nextElementSibling):x(this.offsetBottom)?i+=n/100*this.offsetBottom:this.offsetBottom&&l(this.offsetBottom,"px")?i+=C(this.offsetBottom):w(this.offsetBottom)&&(i+=e(R(this.offsetBottom,this.$el))),t=i?"calc(100vh - "+i+"px)":"100vh"}if(t){$t(this.$el,{height:"",minHeight:t});var s=this.$el.offsetHeight;this.minHeight&&this.minHeight>s&&$t(this.$el,"minHeight",this.minHeight),n-i>=s&&$t(this.$el,"height",t)}},events:["load","resize"]}})}),t.use(function(t){st(function(){if(Mn){var e="uk-hover";Rt(rn,"tap",function(t){var n=t.target;return D("."+e).forEach(function(t,i){return!F(n,i)&&St(i,e)})}),Object.defineProperty(t,"hoverSelector",{set:function(t){Rt(rn,"tap",t,function(t){return At(t.current,e)})}}),t.hoverSelector=".uk-animation-toggle, .uk-transition-toggle, [uk-hover]"}})}),t.use(function(t){t.component("margin",{props:{margin:String,firstColumn:Boolean},defaults:{margin:"uk-margin-small-top",firstColumn:"uk-first-column"},update:{read:function(){var t=this,e=this.$el.children;if(e.length&&ft(this.$el)){this.stacks=!0;for(var n=[[]],i=0;i<e.length;i++){var r=e[i],o=r.getBoundingClientRect();if(o.height)for(var s=n.length-1;s>=0;s--){var a=n[s];if(!a[0]){a.push(r);break}var c=a[0].getBoundingClientRect();if(o.top>=Math.floor(c.bottom)){n.push([r]);break}if(Math.floor(o.bottom)>c.top){if(t.stacks=!1,o.left<c.left&&!sn){a.unshift(r);break}a.push(r);break}if(0===s){n.unshift([r]);break}}}this.rows=n}else this.rows=!1},write:function(){var t=this;this.rows&&this.rows.forEach(function(e,n){return e.forEach(function(e,i){zt(e,t.margin,0!==n),zt(e,t.firstColumn,0===i)})})},events:["load","resize"]}})}),t.use(function(t){t.component("gif",{update:{read:function(){var t=ut(this.$el);!this.isInView&&t&&(this.$el.src=this.$el.src),this.isInView=t},events:["scroll","load","resize"]}})}),t.use(function(t){t.component("grid",t.components.margin.extend({mixins:[ni],name:"grid",defaults:{margin:"uk-grid-margin",clsStack:"uk-grid-stack"},update:{write:function(){zt(this.$el,this.clsStack,this.stacks)},events:["load","resize"]}}))}),t.use(function(t){t.component("leader",{mixins:[ni],props:{fill:String,media:"media"},defaults:{fill:"",media:!1,clsWrapper:"uk-leader-fill",clsHide:"uk-leader-hide",attrFill:"data-fill"},computed:{fill:function(t){var e=t.fill;return e||Tt("leader-fill")}},connected:function(){this.wrapper=_t(this.$el,'<span class="'+this.clsWrapper+'">')[0]},disconnected:function(){kt(this.wrapper.childNodes),delete this._width},update:[{read:function(){var t=this._width;this._width=Math.floor(this.$el.offsetWidth/2),this._changed=t!==this._width,this._hide=this.media&&!nn.matchMedia(this.media).matches},write:function(){zt(this.wrapper,this.clsHide,this._hide),this._changed&&tt(this.wrapper,this.attrFill,new Array(this._width).join(this.fill))},events:["load","resize"]}]})}),t.use(function(t){t.component("modal",{mixins:[oi],defaults:{clsPage:"uk-modal-page",clsPanel:"uk-modal-dialog",selClose:".uk-modal-close, .uk-modal-close-default, .uk-modal-close-outside, .uk-modal-close-full"},events:[{name:"show",self:!0,handler:function(){jt(this.panel,"uk-margin-auto-vertical")?At(this.$el,"uk-flex"):$t(this.$el,"display","block"),Vn(this.$el)}},{name:"hidden",self:!0,handler:function(){$t(this.$el,"display",""),St(this.$el,"uk-flex")}}]}),t.component("overflow-auto",{mixins:[ni],computed:{modal:function(t,e){return V(e,".uk-modal")},panel:function(t,e){return V(e,".uk-modal-dialog")}},connected:function(){$t(this.$el,"minHeight",150)},update:{write:function(){if(this.panel&&this.modal){var t=$t(this.$el,"maxHeight");$t($t(this.$el,"maxHeight",150),"maxHeight",Math.max(150,150+Vn(this.modal)-this.panel.offsetHeight)),t!==$t(this.$el,"maxHeight")&&Ut(this.$el,"resize")}},events:["load","resize"]}}),t.modal.dialog=function(e,n){var i=t.modal(' <div class="uk-modal"> <div class="uk-modal-dialog">'+e+"</div> </div> ",n);return Rt(i.$el,"hidden",function(t){t.target===t.current&&i.$destroy(!0)}),i.show(),i},t.modal.alert=function(e,n){return n=Xe({bgClose:!1,escClose:!1,labels:t.modal.labels},n),new Ne(function(i){return Rt(t.modal.dialog(' <div class="uk-modal-body">'+(w(e)?e:gt(e))+'</div> <div class="uk-modal-footer uk-text-right"> <button class="uk-button uk-button-primary uk-modal-close" autofocus>'+n.labels.ok+"</button> </div> ",n).$el,"hide",i)})},t.modal.confirm=function(e,n){return n=Xe({bgClose:!1,escClose:!1,labels:t.modal.labels},n),new Ne(function(i,r){return Rt(t.modal.dialog(' <div class="uk-modal-body">'+(w(e)?e:gt(e))+'</div> <div class="uk-modal-footer uk-text-right"> <button class="uk-button uk-button-default uk-modal-close">'+n.labels.cancel+'</button> <button class="uk-button uk-button-primary uk-modal-close" autofocus>'+n.labels.ok+"</button> </div> ",n).$el,"click",".uk-modal-footer button",function(t){return 0===Lt(t.target)?r():i()})})},t.modal.prompt=function(e,n,i){return i=Xe({bgClose:!1,escClose:!1,labels:t.modal.labels},i),new Ne(function(r){var o=!1,s=t.modal.dialog(' <form class="uk-form-stacked"> <div class="uk-modal-body"> <label>'+(w(e)?e:gt(e))+'</label> <input class="uk-input" autofocus> </div> <div class="uk-modal-footer uk-text-right"> <button class="uk-button uk-button-default uk-modal-close" type="button">'+i.labels.cancel+'</button> <button class="uk-button uk-button-primary">'+i.labels.ok+"</button> </div> </form> ",i),a=N("input",s.$el);a.value=n,Rt(s.$el,"submit","form",function(t){t.preventDefault(),r(a.value),o=!0,s.hide()}),Rt(s.$el,"hide",function(){o||r(null)})})},t.modal.labels={ok:"Ok",cancel:"Cancel"}}),t.use(function(t){t.component("nav",t.components.accordion.extend({name:"nav",defaults:{targets:"> .uk-parent",toggle:"> a",content:"> ul"}}))}),t.use(function(t){t.component("navbar",{mixins:[ni],props:{dropdown:String,mode:"list",align:String,offset:Number,boundary:Boolean,boundaryAlign:Boolean,clsDrop:String,delayShow:Number,delayHide:Number,dropbar:Boolean,dropbarMode:String,dropbarAnchor:"query",duration:Number},defaults:{dropdown:".uk-navbar-nav > li",align:sn?"right":"left",clsDrop:"uk-navbar-dropdown",mode:void 0,offset:void 0,delayShow:void 0,delayHide:void 0,boundaryAlign:void 0,flip:"x",boundary:!0,dropbar:!1,dropbarMode:"slide",dropbarAnchor:!1,duration:200},computed:{boundary:function(t,e){var n=t.boundary,i=t.boundaryAlign;return!0===n||i?e:n},pos:function(t){return"bottom-"+t.align}},ready:function(){this.dropbar&&t.navbarDropbar(R(this.dropbar,this.$el)||wt(this.dropbarAnchor||this.$el,"<div></div>"),{clsDrop:this.clsDrop,mode:this.dropbarMode,duration:this.duration,navbar:this})},update:function(){t.drop(D(this.dropdown+" ."+this.clsDrop,this.$el).filter(function(e){return!t.getComponent(e,"dropdown")}),Xe({},this.$props,{boundary:this.boundary,pos:this.pos}))},events:[{name:"mouseover",delegate:function(){return this.dropdown},handler:function(t){var e=t.current,n=this.getActive();n&&n.toggle&&!F(n.toggle.$el,e)&&!n.tracker.movesTo(n.$el)&&n.hide(!1)}}],methods:{getActive:function(){var e=t.drop.getActive();return e&&h(e.mode,"hover")&&F(e.toggle.$el,this.$el)&&e}}}),t.component("navbar-dropbar",{mixins:[ni],defaults:{clsDrop:"",mode:"slide",navbar:null,duration:200},init:function(){"slide"===this.mode&&At(this.$el,"uk-navbar-dropbar-slide")},events:[{name:"beforeshow",el:function(){return this.navbar.$el},handler:function(t,e){var n=e.$el;"bottom"!==e.dir||F(n,this.$el)||(vt(this.$el,n),e.show(),t.preventDefault())}},{name:"mouseleave",handler:function(){var t=this.navbar.getActive();t&&!q(this.$el,":hover")&&t.hide()}},{name:"show",handler:function(t,e){var n=e.$el;this.clsDrop&&At(n,this.clsDrop+"-dropbar"),this.transitionTo(n.offsetHeight+C($t(n,"margin-top"))+C($t(n,"margin-bottom")))}},{name:"beforehide",handler:function(t,e){var n=e.$el,i=this.navbar.getActive();q(this.$el,":hover")&&i&&i.$el===n&&t.preventDefault()}},{name:"hide",handler:function(t,e){var n=e.$el,i=this.navbar.getActive();(!i||i&&i.$el===n)&&this.transitionTo(0)}}],methods:{transitionTo:function(t){return Vn(this.$el,ft(this.$el)?Vn(this.$el):0),cn.cancel(this.$el),cn.start(this.$el,{height:t},this.duration).catch(I)}}})}),t.use(ai),t.use(function(t){t.component("responsive",{props:["width","height"],init:function(){At(this.$el,"uk-responsive-width")},update:{read:function(){this.dim=!!(ft(this.$el)&&this.width&&this.height)&&{width:Yn(this.$el.parentNode),height:this.height}},write:function(){this.dim&&Vn(this.$el,gn.contain({height:this.height,width:this.width},this.dim).height)},events:["load","resize"]}})}),t.use(function(t){t.component("scroll",{props:{duration:Number,offset:Number},defaults:{duration:1e3,offset:0},methods:{scrollTo:function(t){var e=this,n=ie(t=t&&N(w(t)?t.replace(/\//g,"\\/"):t)||rn.body).top-this.offset,i=Vn(rn),r=Vn(nn);if(n+r>i&&(n=i-r),Ut(this.$el,"beforescroll",[this,t])){var o=Date.now(),s=nn.pageYOffset,a=function(){var i=s+(n-s)*function(t){return.5*(1-Math.cos(Math.PI*t))}(S((Date.now()-o)/e.duration));nn.scrollTo(nn.pageXOffset,i),i!==n?Ln(a):Ut(e.$el,"scrolled",[e,t])};a()}}},events:{click:function(t){t.defaultPrevented||(t.preventDefault(),this.scrollTo(this.$el.hash))}}})}),t.use(function(t){t.component("scrollspy",{args:"cls",props:{cls:"list",target:String,hidden:Boolean,offsetTop:Number,offsetLeft:Number,repeat:Boolean,delay:Number},defaults:{cls:["uk-scrollspy-inview"],target:!1,hidden:!0,offsetTop:0,offsetLeft:0,repeat:!1,delay:0,inViewClass:"uk-scrollspy-inview"},computed:{elements:function(t,e){var n=t.target;return n&&D(n,e)||[e]}},update:[{write:function(){this.hidden&&$t(U(this.elements,":not(."+this.inViewClass+")"),"visibility","hidden")}},{read:function(){var t=this;this.elements.forEach(function(e){if(!e._scrollspy){var n=tt(e,"uk-scrollspy-class");e._scrollspy={toggles:n&&n.split(",")||t.cls}}e._scrollspy.show=ut(e,t.offsetTop,t.offsetLeft)})},write:function(){var t=this,e=1===this.elements.length?1:0;this.elements.forEach(function(n,i){var r=n._scrollspy,o=r.toggles[i]||r.toggles[0];if(r.show){if(!r.inview&&!r.timer){var s=function(){$t(n,"visibility",""),At(n,t.inViewClass),zt(n,o),Ut(n,"inview"),t.$update(),r.inview=!0,delete r.timer};t.delay&&e?r.timer=setTimeout(s,t.delay*e):s(),e++}}else r.inview&&t.repeat&&(r.timer&&(clearTimeout(r.timer),delete r.timer),$t(n,"visibility",t.hidden?"hidden":""),St(n,t.inViewClass),zt(n,o),Ut(n,"outview"),t.$update(),r.inview=!1)})},events:["scroll","load","resize"]}]})}),t.use(function(t){t.component("scrollspy-nav",{props:{cls:String,closest:String,scroll:Boolean,overflow:Boolean,offset:Number},defaults:{cls:"uk-active",closest:!1,scroll:!1,overflow:!0,offset:0},computed:{links:function(t,e){return D('a[href^="#"]',e).filter(function(t){return t.hash})},elements:function(){return this.closest?V(this.links,this.closest):this.links},targets:function(){return D(this.links.map(function(t){return t.hash}).join(","))}},update:[{read:function(){this.scroll&&t.scroll(this.links,{offset:this.offset||0})}},{read:function(){var t=this,e=nn.pageYOffset+this.offset+1,n=Vn(rn)-Vn(nn)+this.offset;this.active=!1,this.targets.every(function(i,r){var o=ie(i).top,s=r+1===t.targets.length;if(!t.overflow&&(0===r&&o>e||s&&o+i.offsetTop<e))return!1;if(!s&&ie(t.targets[r+1]).top<=e)return!0;if(e>=n)for(var a=t.targets.length-1;a>r;a--)if(ut(t.targets[a])){i=t.targets[a];break}return!(t.active=N(U(t.links,'[href="#'+i.id+'"]')))})},write:function(){this.links.forEach(function(t){return t.blur()}),St(this.elements,this.cls),this.active&&Ut(this.$el,"active",[this.active,At(this.closest?V(this.active,this.closest):this.active,this.cls)])},events:["scroll","load","resize"]}]})}),t.use(function(t){t.component("sticky",{mixins:[ni],attrs:!0,props:{top:null,bottom:Boolean,offset:Number,animation:String,clsActive:String,clsInactive:String,clsFixed:String,clsBelow:String,selTarget:String,widthElement:"query",showOnUp:Boolean,media:"media",target:Number},defaults:{top:0,bottom:!1,offset:0,animation:"",clsActive:"uk-active",clsInactive:"",clsFixed:"uk-sticky-fixed",clsBelow:"uk-sticky-below",selTarget:"",widthElement:!1,showOnUp:!1,media:!1,target:!1},computed:{selTarget:function(t,e){var n=t.selTarget;return n&&N(n,e)||e}},connected:function(){this.placeholder=N('<div class="uk-sticky-placeholder"></div>'),this.widthElement=this.$props.widthElement||this.placeholder,this.isActive||this.hide()},disconnected:function(){this.isActive&&(this.isActive=!1,this.hide(),St(this.$el,this.clsInactive)),xt(this.placeholder),this.placeholder=null,this.widthElement=null},ready:function(){var t=this;if(this.target&&location.hash&&nn.pageYOffset>0){var e=N(location.hash);e&&Ln(function(){var n=ie(e).top,i=ie(t.$el).top,r=t.$el.offsetHeight;i+r>=n&&i<=n+e.offsetHeight&&nn.scrollTo(0,n-r-t.target-t.offset)})}},events:[{name:"active",self:!0,handler:function(){Ot(this.selTarget,this.clsInactive,this.clsActive)}},{name:"inactive",self:!0,handler:function(){Ot(this.selTarget,this.clsActive,this.clsInactive)}}],update:[{write:function(){var t,e=this,n=this.placeholder,i=(this.isActive?n:this.$el).offsetHeight;$t(n,Xe({height:"absolute"!==$t(this.$el,"position")?i:""},$t(this.$el,["marginTop","marginBottom","marginLeft","marginRight"]))),F(n,on)||(wt(this.$el,n),tt(n,"hidden","")),tt(this.widthElement,"hidden",null),this.width=this.widthElement.offsetWidth,tt(this.widthElement,"hidden",this.isActive?null:""),this.topOffset=ie(this.isActive?n:this.$el).top,this.bottomOffset=this.topOffset+i,["top","bottom"].forEach(function(n){e[n]=e.$props[n],e[n]&&(x(e[n])?e[n]=e[n+"Offset"]+C(e[n]):w(e[n])&&e[n].match(/^-?\d+vh$/)?e[n]=Vn(nn)*C(e[n])/100:(t=!0===e[n]?e.$el.parentNode:R(e[n],e.$el))&&(e[n]=ie(t).top+t.offsetHeight))}),this.top=Math.max(C(this.top),this.topOffset)-this.offset,this.bottom=this.bottom&&this.bottom-i,this.inactive=this.media&&!nn.matchMedia(this.media).matches,this.isActive&&this.update()},events:["load","resize"]},{read:function(){this.offsetTop=ie(this.$el).top,this.scroll=nn.pageYOffset,this.visible=ft(this.$el)},write:function(t){var e=this;void 0===t&&(t={});var n=t.dir,i=this.scroll;if(!(i<0||!this.visible||this.disabled||this.showOnUp&&!n))if(this.inactive||i<this.top||this.showOnUp&&(i<=this.top||"down"===n||"up"===n&&!this.isActive&&i<=this.bottomOffset)){if(!this.isActive)return;this.isActive=!1,this.animation&&i>this.topOffset?(pn.cancel(this.$el),pn.out(this.$el,this.animation).then(function(){return e.hide()},I)):this.hide()}else this.isActive?this.update():this.animation?(pn.cancel(this.$el),this.show(),pn.in(this.$el,this.animation).catch(I)):this.show()},events:["scroll"]}],methods:{show:function(){this.isActive=!0,this.update(),tt(this.placeholder,"hidden",null)},hide:function(){this.isActive&&!jt(this.selTarget,this.clsActive)||Ut(this.$el,"inactive"),St(this.$el,this.clsFixed,this.clsBelow),$t(this.$el,{position:"",top:"",width:""}),tt(this.placeholder,"hidden","")},update:function(){var t=Math.max(0,this.offset),e=this.scroll>this.top;this.bottom&&this.scroll>this.bottom-this.offset&&(t=this.bottom-this.scroll),$t(this.$el,{position:"fixed",top:t+"px",width:this.width}),jt(this.selTarget,this.clsActive)?e||Ut(this.$el,"inactive"):e&&Ut(this.$el,"active"),zt(this.$el,this.clsBelow,this.scroll>this.bottomOffset),At(this.$el,this.clsFixed)}}})}),t.use(function(t){t.component("svg",{attrs:!0,props:{id:String,icon:String,src:String,style:String,width:Number,height:Number,ratio:Number,class:String},defaults:{ratio:1,id:!1,exclude:["src"],class:""},init:function(){this.class+=" uk-svg"},connected:function(){var t=this;if(!this.icon&&h(this.src,"#")){var i=this.src.split("#");i.length>1&&(this.src=i[0],this.icon=i[1])}this.svg=this.getSvg().then(function(i){var r;if(w(i)?(t.icon&&h(i,"<symbol")&&(i=function(t,i){if(!n[t]){n[t]={};for(var r;r=e.exec(t);)n[t][r[3]]='<svg xmlns="http://www.w3.org/2000/svg"'+r[1]+"svg>"}return n[t][i]}(i,t.icon)||i),r=N(i.substr(i.indexOf("<svg")))):r=i.cloneNode(!0),!r)return Ne.reject("SVG not found.");var o=tt(r,"viewBox");o&&(o=o.split(" "),t.width=t.$props.width||o[2],t.height=t.$props.height||o[3]),t.width*=t.ratio,t.height*=t.ratio;for(var s in t.$options.props)t[s]&&!h(t.exclude,s)&&tt(r,s,t[s]);t.id||nt(r,"id"),t.width&&!t.height&&nt(r,"height"),t.height&&!t.width&&nt(r,"width");var a=t.$el;if(ht(a)||"CANVAS"===a.tagName){tt(a,{hidden:!0,id:null});var c=a.nextElementSibling;c&&r.isEqualNode(c)?r=c:wt(a,r)}else{var u=a.lastElementChild;u&&r.isEqualNode(u)?r=u:vt(a,r)}return t.svgEl=r,r},I)},disconnected:function(){var t=this;ht(this.$el)&&tt(this.$el,{hidden:null,id:this.id||null}),this.svg&&this.svg.then(function(e){return(!t._connected||e!==t.svgEl)&&xt(e)},I),this.svg=this.svgEl=null},methods:{getSvg:function(){var t=this;return this.src?ci[this.src]?ci[this.src]:(ci[this.src]=new Ne(function(e,n){u(t.src,"data:")?e(decodeURIComponent(t.src.split(",")[1])):z(t.src).then(function(t){return e(t.response)},function(){return n("SVG not found.")})}),ci[this.src]):Ne.reject()}}});var e=/<symbol(.*?id=(['"])(.*?)\2[^]*?<\/)symbol>/g,n={}}),t.use(function(t){function e(e,n){t.component(e,t.components.icon.extend({name:e,mixins:n?[n]:[],defaults:{icon:e}}))}var n={},i={spinner:'<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><circle fill="none" stroke="#000" cx="15" cy="15" r="14"></circle></svg>',totop:'<svg width="18" height="10" viewBox="0 0 18 10" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="#000" stroke-width="1.2" points="1 9 9 1 17 9 "></polyline></svg>',marker:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="4" width="1" height="11"></rect><rect x="4" y="9" width="11" height="1"></rect></svg>',"close-icon":'<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg>',"close-large":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><line fill="none" stroke="#000" stroke-width="1.4" x1="1" y1="1" x2="19" y2="19"></line><line fill="none" stroke="#000" stroke-width="1.4" x1="19" y1="1" x2="1" y2="19"></line></svg>',"navbar-toggle-icon":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect y="9" width="20" height="2"></rect><rect y="3" width="20" height="2"></rect><rect y="15" width="20" height="2"></rect></svg>',"overlay-icon":'<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect x="19" y="0" width="1" height="40"></rect><rect x="0" y="19" width="40" height="1"></rect></svg>',"pagination-next":'<svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="#000" stroke-width="1.2" points="1 1 6 6 1 11"></polyline></svg>',"pagination-previous":'<svg width="7" height="12" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="#000" stroke-width="1.2" points="6 1 1 6 6 11"></polyline></svg>',"search-icon":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle><path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg>',"search-large":'<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle fill="none" stroke="#000" stroke-width="1.8" cx="17.5" cy="17.5" r="16.5"></circle><line fill="none" stroke="#000" stroke-width="1.8" x1="38" y1="39" x2="29" y2="30"></line></svg>',"search-navbar":'<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle fill="none" stroke="#000" stroke-width="1.1" cx="10.5" cy="10.5" r="9.5"/><line fill="none" stroke="#000" stroke-width="1.1" x1="23" y1="23" x2="17" y2="17"/></svg>',"slidenav-next":'<svg width="14px" height="24px" viewBox="0 0 14 24" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="#000" stroke-width="1.4" points="1.225,23 12.775,12 1.225,1 "></polyline></svg>',"slidenav-next-large":'<svg width="25px" height="40px" viewBox="0 0 25 40" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="#000" stroke-width="2" points="4.002,38.547 22.527,20.024 4,1.5 "></polyline></svg>',"slidenav-previous":'<svg width="14px" height="24px" viewBox="0 0 14 24" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="#000" stroke-width="1.4" points="12.775,1 1.225,12 12.775,23 "></polyline></svg>',"slidenav-previous-large":'<svg width="25px" height="40px" viewBox="0 0 25 40" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke="#000" stroke-width="2" points="20.527,1.5 2,20.024 20.525,38.547 "></polyline></svg>'};t.component("icon",t.components.svg.extend({attrs:["icon","ratio"],mixins:[ni],name:"icon",args:"icon",props:["icon"],defaults:{exclude:["id","style","class","src","icon"]},init:function(){At(this.$el,"uk-icon"),sn&&(this.icon=E(E(this.icon,"left","right"),"previous","next"))},disconnected:function(){delete this.delay},methods:{getSvg:function(){var t=function(t){return i[t]?(n[t]||(n[t]=N(i[t].trim())),n[t]):null}(this.icon);return t?Ne.resolve(t):Ne.reject("Icon not found.")}}})),["marker","navbar-toggle-icon","overlay-icon","pagination-previous","pagination-next","totop"].forEach(function(t){return e(t)}),["slidenav-previous","slidenav-next"].forEach(function(t){return e(t,{init:function(){At(this.$el,"uk-slidenav"),jt(this.$el,"uk-slidenav-large")&&(this.icon+="-large")}})}),e("search-icon",{init:function(){jt(this.$el,"uk-search-icon")&&Y(this.$el,".uk-search-large").length?this.icon="search-large":Y(this.$el,".uk-search-navbar").length&&(this.icon="search-navbar")}}),e("close",{init:function(){this.icon="close-"+(jt(this.$el,"uk-close-large")?"large":"icon")}}),e("spinner",{connected:function(){var t=this;this.svg.then(function(e){return 1!==t.ratio&&$t(N("circle",e),"stroke-width",1/t.ratio)},I)}}),t.icon.add=function(e){Object.keys(e).forEach(function(t){i[t]=e[t],delete n[t]}),t._initialized&&A(t.instances,function(t){"icon"===t.$options.name&&t.$reset()})}}),t.use(function(t){t.component("switcher",{mixins:[ri],args:"connect",props:{connect:String,toggle:String,active:Number,swiping:Boolean},defaults:{connect:"~.uk-switcher",toggle:"> *",active:0,swiping:!0,cls:"uk-active",clsContainer:"uk-switcher",attrItem:"uk-switcher-item",queued:!0},computed:{connects:function(t,e){return H(t.connect,e)},toggles:function(t,e){return D(t.toggle,e)}},events:[{name:"click",delegate:function(){return this.toggle+":not(.uk-disabled)"},handler:function(t){t.preventDefault(),this.show(t.current)}},{name:"click",el:function(){return this.connects},delegate:function(){return"["+this.attrItem+"],[data-"+this.attrItem+"]"},handler:function(t){t.preventDefault(),this.show(rt(t.current,this.attrItem))}},{name:"swipeRight swipeLeft",filter:function(){return this.swiping},el:function(){return this.connects},handler:function(t){ve(t)&&(t.preventDefault(),nn.getSelection().toString()||this.show("swipeLeft"===t.type?"next":"previous"))}}],update:function(){var t=this;this.connects.forEach(function(e){return t.updateAria(e.children)}),this.show(U(this.toggles,"."+this.cls)[0]||this.toggles[this.active]||this.toggles[0])},methods:{show:function(t){for(var e,n=this,i=this.toggles.length,r=this.connects.length&&Lt(U(this.connects[0].children,"."+this.cls)[0]),o=r>=0,s=lt(t,this.toggles,r),a="previous"===t?-1:1,c=0;c<i;c++,s=(s+a+i)%i)if(!q(n.toggles[s],".uk-disabled, [disabled]")){e=n.toggles[s];break}!e||r>=0&&jt(e,this.cls)||r===s||(St(this.toggles,this.cls),tt(this.toggles,"aria-expanded",!1),At(e,this.cls),tt(e,"aria-expanded",!0),this.connects.forEach(function(t){o?n.toggleElement([t.children[r],t.children[s]]):n.toggleNow(t.children[s])}))}}})}),t.use(function(t){t.component("tab",t.components.switcher.extend({mixins:[ni],name:"tab",props:{media:"media"},defaults:{media:960,attrItem:"uk-tab-item"},init:function(){var e=jt(this.$el,"uk-tab-left")?"uk-tab-left":!!jt(this.$el,"uk-tab-right")&&"uk-tab-right";e&&t.toggle(this.$el,{cls:e,mode:"media",media:this.media})}}))})}(Gn);var ui=function(t){var e=t.util.css,n={slide:{show:function(t){return[{transform:xe(-100*t)},{transform:xe()}]},percent:function(t){return n.translated(t)},translate:function(t,e){return[{transform:xe(-100*e*t)},{transform:xe(100*e*(1-t))}]}},translated:function(t){return Math.abs(e(t,"transform").split(",")[4]/t.offsetWidth)}};return n},li=function(t){var e=t.mixin,n=t.util,i=n.assign,r=n.css;return i({},e.slideshow.defaults.Animations,{fade:{show:function(){return[{opacity:0},{opacity:1}]},percent:function(t){return 1-r(t,"opacity")},translate:function(t){return[{opacity:1-t},{opacity:t}]}},scale:{show:function(){return[{opacity:0,transform:be(.8)},{opacity:1,transform:be(1)}]},percent:function(t){return 1-r(t,"opacity")},translate:function(t){return[{opacity:1-t,transform:be(1-.2*t)},{opacity:t,transform:be(.8+.2*t)}]}}})},hi=function(t){var e=t.mixin,n=t.util,i=n.assign,r=n.css,o=i({},e.slideshow.defaults.Animations,{fade:{show:function(){return[{opacity:0,zIndex:0},{zIndex:-1}]},percent:function(t){return 1-r(t,"opacity")},translate:function(t){return[{opacity:1-t,zIndex:0},{zIndex:-1}]}},scale:{show:function(){return[{opacity:0,transform:be(1.5),zIndex:0},{zIndex:-1}]},percent:function(t){return 1-r(t,"opacity")},translate:function(t){return[{opacity:1-t,transform:be(1+.5*t),zIndex:0},{zIndex:-1}]}},pull:{show:function(t){return t<0?[{transform:xe(30),zIndex:-1},{transform:xe(),zIndex:0}]:[{transform:xe(-100),zIndex:0},{transform:xe(),zIndex:-1}]},percent:function(t,e,n){return n<0?1-o.translated(e):o.translated(t)},translate:function(t,e){return e<0?[{transform:xe(30*t),zIndex:-1},{transform:xe(-100*(1-t)),zIndex:0}]:[{transform:xe(100*-t),zIndex:0},{transform:xe(30*(1-t)),zIndex:-1}]}},push:{show:function(t){return t<0?[{transform:xe(100),zIndex:0},{transform:xe(),zIndex:-1}]:[{transform:xe(-30),zIndex:-1},{transform:xe(),zIndex:0}]},percent:function(t,e,n){return n>0?1-o.translated(e):o.translated(t)},translate:function(t,e){return e<0?[{transform:xe(100*t),zIndex:0},{transform:xe(-30*(1-t)),zIndex:-1}]:[{transform:xe(-30*t),zIndex:-1},{transform:xe(100*(1-t)),zIndex:0}]}}});return o};return Gn.use(we),Gn.use(ye),Gn.use(ke),Gn.use(Ce),Gn.use(Le),Gn.use($e),Gn.use(Be),Gn.use(Me),Gn.use(Te),function(t){function e(){n(rn.body,i),Nn.flush(),new Cn(function(e){return e.forEach(function(e){for(var o=e.addedNodes,s=e.removedNodes,a=e.target,c=0;c<o.length;c++)n(o[c],i);for(c=0;c<s.length;c++)n(s[c],r);t.update(Ft("update",!0,!1,{mutation:!0}),a,!0)})}).observe(on,{childList:!0,subtree:!0,characterData:!0,attributes:!0,attributeFilter:["href"]}),t._initialized=!0}function n(t,e){if(1===t.nodeType&&!et(t,"uk-no-boot"))for(e(t),t=t.firstElementChild;t;){var i=t.nextElementSibling;n(t,e),t=i}}var i=t.connect,r=t.disconnect;Cn?rn.body?e():new Cn(function(){rn.body&&(this.disconnect(),e())}).observe(on,{childList:!0,subtree:!0}):st(function(){n(rn.body,i),Rt(on,"DOMNodeInserted",function(t){return n(t.target,i)}),Rt(on,"DOMNodeRemoved",function(t){return n(t.target,r)})})}(Gn),Gn})}).call(e,n(33).setImmediate)},function(t,e,n){function i(t,e){this._id=t,this._clearFn=e}var r=Function.prototype.apply;e.setTimeout=function(){return new i(r.call(setTimeout,window,arguments),clearTimeout)},e.setInterval=function(){return new i(r.call(setInterval,window,arguments),clearInterval)},e.clearTimeout=e.clearInterval=function(t){t&&t.close()},i.prototype.unref=i.prototype.ref=function(){},i.prototype.close=function(){this._clearFn.call(window,this._id)},e.enroll=function(t,e){clearTimeout(t._idleTimeoutId),t._idleTimeout=e},e.unenroll=function(t){clearTimeout(t._idleTimeoutId),t._idleTimeout=-1},e._unrefActive=e.active=function(t){clearTimeout(t._idleTimeoutId);var e=t._idleTimeout;e>=0&&(t._idleTimeoutId=setTimeout(function(){t._onTimeout&&t._onTimeout()},e))},n(34),e.setImmediate=setImmediate,e.clearImmediate=clearImmediate},function(t,e,n){(function(t,e){!function(t,n){"use strict";function i(t){delete a[t]}function r(t){if(c)setTimeout(r,0,t);else{var e=a[t];if(e){c=!0;try{!function(t){var e=t.callback,i=t.args;switch(i.length){case 0:e();break;case 1:e(i[0]);break;case 2:e(i[0],i[1]);break;case 3:e(i[0],i[1],i[2]);break;default:e.apply(n,i)}}(e)}finally{i(t),c=!1}}}}if(!t.setImmediate){var o,s=1,a={},c=!1,u=t.document,l=Object.getPrototypeOf&&Object.getPrototypeOf(t);l=l&&l.setTimeout?l:t,"[object process]"==={}.toString.call(t.process)?o=function(t){e.nextTick(function(){r(t)})}:function(){if(t.postMessage&&!t.importScripts){var e=!0,n=t.onmessage;return t.onmessage=function(){e=!1},t.postMessage("","*"),t.onmessage=n,e}}()?function(){var e="setImmediate$"+Math.random()+"$",n=function(n){n.source===t&&"string"==typeof n.data&&0===n.data.indexOf(e)&&r(+n.data.slice(e.length))};t.addEventListener?t.addEventListener("message",n,!1):t.attachEvent("onmessage",n),o=function(n){t.postMessage(e+n,"*")}}():t.MessageChannel?function(){var t=new MessageChannel;t.port1.onmessage=function(t){r(t.data)},o=function(e){t.port2.postMessage(e)}}():u&&"onreadystatechange"in u.createElement("script")?function(){var t=u.documentElement;o=function(e){var n=u.createElement("script");n.onreadystatechange=function(){r(e),n.onreadystatechange=null,t.removeChild(n),n=null},t.appendChild(n)}}():o=function(t){setTimeout(r,0,t)},l.setImmediate=function(t){"function"!=typeof t&&(t=new Function(""+t));for(var e=new Array(arguments.length-1),n=0;n<e.length;n++)e[n]=arguments[n+1];var i={callback:t,args:e};return a[s]=i,o(s),s++},l.clearImmediate=i}}("undefined"==typeof self?void 0===t?this:t:self)}).call(e,n(2),n(4))},function(t,e,n){!function(e,n){t.exports=n()}(0,function(){"use strict";function t(n){t.installed||n.icon.add(e)}var e={album:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="5" y="2" width="10" height="1"></rect> <rect x="3" y="4" width="14" height="1"></rect> <rect fill="none" stroke="#000" x="1.5" y="6.5" width="17" height="11"></rect></svg>',ban:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle> <line fill="none" stroke="#000" stroke-width="1.1" x1="4" y1="3.5" x2="16" y2="16.5"></line></svg>',behance:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M9.5,10.6c-0.4-0.5-0.9-0.9-1.6-1.1c1.7-1,2.2-3.2,0.7-4.7C7.8,4,6.3,4,5.2,4C3.5,4,1.7,4,0,4v12c1.7,0,3.4,0,5.2,0 c1,0,2.1,0,3.1-0.5C10.2,14.6,10.5,12.3,9.5,10.6L9.5,10.6z M5.6,6.1c1.8,0,1.8,2.7-0.1,2.7c-1,0-2,0-2.9,0V6.1H5.6z M2.6,13.8v-3.1 c1.1,0,2.1,0,3.2,0c2.1,0,2.1,3.2,0.1,3.2L2.6,13.8z"></path> <path d="M19.9,10.9C19.7,9.2,18.7,7.6,17,7c-4.2-1.3-7.3,3.4-5.3,7.1c0.9,1.7,2.8,2.3,4.7,2.1c1.7-0.2,2.9-1.3,3.4-2.9h-2.2 c-0.4,1.3-2.4,1.5-3.5,0.6c-0.4-0.4-0.6-1.1-0.6-1.7H20C20,11.7,19.9,10.9,19.9,10.9z M13.5,10.6c0-1.6,2.3-2.7,3.5-1.4 c0.4,0.4,0.5,0.9,0.6,1.4H13.5L13.5,10.6z"></path> <rect x="13" y="4" width="5" height="1.4"></rect></svg>',bell:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.1" d="M17,15.5 L3,15.5 C2.99,14.61 3.79,13.34 4.1,12.51 C4.58,11.3 4.72,10.35 5.19,7.01 C5.54,4.53 5.89,3.2 7.28,2.16 C8.13,1.56 9.37,1.5 9.81,1.5 L9.96,1.5 C9.96,1.5 11.62,1.41 12.67,2.17 C14.08,3.2 14.42,4.54 14.77,7.02 C15.26,10.35 15.4,11.31 15.87,12.52 C16.2,13.34 17.01,14.61 17,15.5 L17,15.5 Z"></path> <path fill="none" stroke="#000" d="M12.39,16 C12.39,17.37 11.35,18.43 9.91,18.43 C8.48,18.43 7.42,17.37 7.42,16"></path></svg>',bold:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M5,15.3 C5.66,15.3 5.9,15 5.9,14.53 L5.9,5.5 C5.9,4.92 5.56,4.7 5,4.7 L5,4 L8.95,4 C12.6,4 13.7,5.37 13.7,6.9 C13.7,7.87 13.14,9.17 10.86,9.59 L10.86,9.7 C13.25,9.86 14.29,11.28 14.3,12.54 C14.3,14.47 12.94,16 9,16 L5,16 L5,15.3 Z M9,9.3 C11.19,9.3 11.8,8.5 11.85,7 C11.85,5.65 11.3,4.8 9,4.8 L7.67,4.8 L7.67,9.3 L9,9.3 Z M9.185,15.22 C11.97,15 12.39,14 12.4,12.58 C12.4,11.15 11.39,10 9,10 L7.67,10 L7.67,15 L9.18,15 Z"></path></svg>',bolt:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M4.74,20 L7.73,12 L3,12 L15.43,1 L12.32,9 L17.02,9 L4.74,20 L4.74,20 L4.74,20 Z M9.18,11 L7.1,16.39 L14.47,10 L10.86,10 L12.99,4.67 L5.61,11 L9.18,11 L9.18,11 L9.18,11 Z"></path></svg>',bookmark:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon fill="none" stroke="#000" points="5.5 1.5 15.5 1.5 15.5 17.5 10.5 12.5 5.5 17.5"></polygon></svg>',calendar:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M 2,3 2,17 18,17 18,3 2,3 Z M 17,16 3,16 3,8 17,8 17,16 Z M 17,7 3,7 3,4 17,4 17,7 Z"></path> <rect width="1" height="3" x="6" y="2"></rect> <rect width="1" height="3" x="13" y="2"></rect></svg>',camera:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10.8" r="3.8"></circle> <path fill="none" stroke="#000" d="M1,4.5 C0.7,4.5 0.5,4.7 0.5,5 L0.5,17 C0.5,17.3 0.7,17.5 1,17.5 L19,17.5 C19.3,17.5 19.5,17.3 19.5,17 L19.5,5 C19.5,4.7 19.3,4.5 19,4.5 L13.5,4.5 L13.5,2.9 C13.5,2.6 13.3,2.5 13,2.5 L7,2.5 C6.7,2.5 6.5,2.6 6.5,2.9 L6.5,4.5 L1,4.5 L1,4.5 Z"></path></svg>',cart:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="7.3" cy="17.3" r="1.4"></circle> <circle cx="13.3" cy="17.3" r="1.4"></circle> <polyline fill="none" stroke="#000" points="0 2 3.2 4 5.3 12.5 16 12.5 18 6.5 8 6.5"></polyline></svg>',check:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" stroke-width="1.1" points="4,10 8,15 17,4"></polyline></svg>',clock:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle> <rect x="9" y="4" width="1" height="7"></rect> <path fill="none" stroke="#000" stroke-width="1.1" d="M13.018,14.197 L9.445,10.625"></path></svg>',close:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.06" d="M16,16 L4,4"></path> <path fill="none" stroke="#000" stroke-width="1.06" d="M16,4 L4,16"></path></svg>',code:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" stroke-width="1.01" points="13,4 19,10 13,16"></polyline> <polyline fill="none" stroke="#000" stroke-width="1.01" points="7,4 1,10 7,16"></polyline></svg>',cog:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" cx="9.997" cy="10" r="3.31"></circle> <path fill="none" stroke="#000" d="M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z"></path></svg>',comment:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M6,18.71 L6,14 L1,14 L1,1 L19,1 L19,14 L10.71,14 L6,18.71 L6,18.71 Z M2,13 L7,13 L7,16.29 L10.29,13 L18,13 L18,2 L2,2 L2,13 L2,13 Z"></path></svg>',commenting:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon fill="none" stroke="#000" points="1.5,1.5 18.5,1.5 18.5,13.5 10.5,13.5 6.5,17.5 6.5,13.5 1.5,13.5"></polygon> <circle cx="10" cy="8" r="1"></circle> <circle cx="6" cy="8" r="1"></circle> <circle cx="14" cy="8" r="1"></circle></svg>',comments:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" points="2 0.5 19.5 0.5 19.5 13"></polyline> <path d="M5,19.71 L5,15 L0,15 L0,2 L18,2 L18,15 L9.71,15 L5,19.71 L5,19.71 L5,19.71 Z M1,14 L6,14 L6,17.29 L9.29,14 L17,14 L17,3 L1,3 L1,14 L1,14 L1,14 Z"></path></svg>',copy:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect fill="none" stroke="#000" x="3.5" y="2.5" width="12" height="16"></rect> <polyline fill="none" stroke="#000" points="5 0.5 17.5 0.5 17.5 17"></polyline></svg>',database:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <ellipse fill="none" stroke="#000" cx="10" cy="4.64" rx="7.5" ry="3.14"></ellipse> <path fill="none" stroke="#000" d="M17.5,8.11 C17.5,9.85 14.14,11.25 10,11.25 C5.86,11.25 2.5,9.84 2.5,8.11"></path> <path fill="none" stroke="#000" d="M17.5,11.25 C17.5,12.99 14.14,14.39 10,14.39 C5.86,14.39 2.5,12.98 2.5,11.25"></path> <path fill="none" stroke="#000" d="M17.49,4.64 L17.5,14.36 C17.5,16.1 14.14,17.5 10,17.5 C5.86,17.5 2.5,16.09 2.5,14.36 L2.5,4.64"></path></svg>',desktop:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="8" y="15" width="1" height="2"></rect> <rect x="11" y="15" width="1" height="2"></rect> <rect x="5" y="16" width="10" height="1"></rect> <rect fill="none" stroke="#000" x="1.5" y="3.5" width="17" height="11"></rect></svg>',download:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" points="14,10 9.5,14.5 5,10"></polyline> <rect x="3" y="17" width="13" height="1"></rect> <line fill="none" stroke="#000" x1="9.5" y1="13.91" x2="9.5" y2="3"></line></svg>',dribbble:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.4" d="M1.3,8.9c0,0,5,0.1,8.6-1c1.4-0.4,2.6-0.9,4-1.9 c1.4-1.1,2.5-2.5,2.5-2.5"></path> <path fill="none" stroke="#000" stroke-width="1.4" d="M3.9,16.6c0,0,1.7-2.8,3.5-4.2 c1.8-1.3,4-2,5.7-2.2C16,10,19,10.6,19,10.6"></path> <path fill="none" stroke="#000" stroke-width="1.4" d="M6.9,1.6c0,0,3.3,4.6,4.2,6.8 c0.4,0.9,1.3,3.1,1.9,5.2c0.6,2,0.9,4.4,0.9,4.4"></path> <circle fill="none" stroke="#000" stroke-width="1.4" cx="10" cy="10" r="9"></circle></svg>',expand:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="13 2 18 2 18 7 17 7 17 3 13 3"></polygon> <polygon points="2 13 3 13 3 17 7 17 7 18 2 18"></polygon> <path fill="none" stroke="#000" stroke-width="1.1" d="M11,9 L17,3"></path> <path fill="none" stroke="#000" stroke-width="1.1" d="M3,17 L9,11"></path></svg>',facebook:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M11,10h2.6l0.4-3H11V5.3c0-0.9,0.2-1.5,1.5-1.5H14V1.1c-0.3,0-1-0.1-2.1-0.1C9.6,1,8,2.4,8,5v2H5.5v3H8v8h3V10z"></path></svg>',file:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect fill="none" stroke="#000" x="3.5" y="1.5" width="13" height="17"></rect></svg>',flickr:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="5.5" cy="9.5" r="3.5"></circle> <circle cx="14.5" cy="9.5" r="3.5"></circle></svg>',folder:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon fill="none" stroke="#000" points="9.5 5.5 8.5 3.5 1.5 3.5 1.5 16.5 18.5 16.5 18.5 5.5"></polygon></svg>',forward:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M2.47,13.11 C4.02,10.02 6.27,7.85 9.04,6.61 C9.48,6.41 10.27,6.13 11,5.91 L11,2 L18.89,9 L11,16 L11,12.13 C9.25,12.47 7.58,13.19 6.02,14.25 C3.03,16.28 1.63,18.54 1.63,18.54 C1.63,18.54 1.38,15.28 2.47,13.11 L2.47,13.11 Z M5.3,13.53 C6.92,12.4 9.04,11.4 12,10.92 L12,13.63 L17.36,9 L12,4.25 L12,6.8 C11.71,6.86 10.86,7.02 9.67,7.49 C6.79,8.65 4.58,10.96 3.49,13.08 C3.18,13.7 2.68,14.87 2.49,16 C3.28,15.05 4.4,14.15 5.3,13.53 L5.3,13.53 Z"></path></svg>',foursquare:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M15.23,2 C15.96,2 16.4,2.41 16.5,2.86 C16.57,3.15 16.56,3.44 16.51,3.73 C16.46,4.04 14.86,11.72 14.75,12.03 C14.56,12.56 14.16,12.82 13.61,12.83 C13.03,12.84 11.09,12.51 10.69,13 C10.38,13.38 7.79,16.39 6.81,17.53 C6.61,17.76 6.4,17.96 6.08,17.99 C5.68,18.04 5.29,17.87 5.17,17.45 C5.12,17.28 5.1,17.09 5.1,16.91 C5.1,12.4 4.86,7.81 5.11,3.31 C5.17,2.5 5.81,2.12 6.53,2 L15.23,2 L15.23,2 Z M9.76,11.42 C9.94,11.19 10.17,11.1 10.45,11.1 L12.86,11.1 C13.12,11.1 13.31,10.94 13.36,10.69 C13.37,10.64 13.62,9.41 13.74,8.83 C13.81,8.52 13.53,8.28 13.27,8.28 C12.35,8.29 11.42,8.28 10.5,8.28 C9.84,8.28 9.83,7.69 9.82,7.21 C9.8,6.85 10.13,6.55 10.5,6.55 C11.59,6.56 12.67,6.55 13.76,6.55 C14.03,6.55 14.23,6.4 14.28,6.14 C14.34,5.87 14.67,4.29 14.67,4.29 C14.67,4.29 14.82,3.74 14.19,3.74 L7.34,3.74 C7,3.75 6.84,4.02 6.84,4.33 C6.84,7.58 6.85,14.95 6.85,14.99 C6.87,15 8.89,12.51 9.76,11.42 L9.76,11.42 Z"></path></svg>',future:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline points="19 2 18 2 18 6 14 6 14 7 19 7 19 2"></polyline> <path fill="none" stroke="#000" stroke-width="1.1" d="M18,6.548 C16.709,3.29 13.354,1 9.6,1 C4.6,1 0.6,5 0.6,10 C0.6,15 4.6,19 9.6,19 C14.6,19 18.6,15 18.6,10"></path> <rect x="9" y="4" width="1" height="7"></rect> <path d="M13.018,14.197 L9.445,10.625" fill="none" stroke="#000" stroke-width="1.1"></path></svg>',github:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M10,1 C5.03,1 1,5.03 1,10 C1,13.98 3.58,17.35 7.16,18.54 C7.61,18.62 7.77,18.34 7.77,18.11 C7.77,17.9 7.76,17.33 7.76,16.58 C5.26,17.12 4.73,15.37 4.73,15.37 C4.32,14.33 3.73,14.05 3.73,14.05 C2.91,13.5 3.79,13.5 3.79,13.5 C4.69,13.56 5.17,14.43 5.17,14.43 C5.97,15.8 7.28,15.41 7.79,15.18 C7.87,14.6 8.1,14.2 8.36,13.98 C6.36,13.75 4.26,12.98 4.26,9.53 C4.26,8.55 4.61,7.74 5.19,7.11 C5.1,6.88 4.79,5.97 5.28,4.73 C5.28,4.73 6.04,4.49 7.75,5.65 C8.47,5.45 9.24,5.35 10,5.35 C10.76,5.35 11.53,5.45 12.25,5.65 C13.97,4.48 14.72,4.73 14.72,4.73 C15.21,5.97 14.9,6.88 14.81,7.11 C15.39,7.74 15.73,8.54 15.73,9.53 C15.73,12.99 13.63,13.75 11.62,13.97 C11.94,14.25 12.23,14.8 12.23,15.64 C12.23,16.84 12.22,17.81 12.22,18.11 C12.22,18.35 12.38,18.63 12.84,18.54 C16.42,17.35 19,13.98 19,10 C19,5.03 14.97,1 10,1 L10,1 Z"></path></svg>',gitter:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="3.5" y="1" width="1.531" height="11.471"></rect> <rect x="7.324" y="4.059" width="1.529" height="15.294"></rect> <rect x="11.148" y="4.059" width="1.527" height="15.294"></rect> <rect x="14.971" y="4.059" width="1.529" height="8.412"></rect></svg>',google:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M17.86,9.09 C18.46,12.12 17.14,16.05 13.81,17.56 C9.45,19.53 4.13,17.68 2.47,12.87 C0.68,7.68 4.22,2.42 9.5,2.03 C11.57,1.88 13.42,2.37 15.05,3.65 C15.22,3.78 15.37,3.93 15.61,4.14 C14.9,4.81 14.23,5.45 13.5,6.14 C12.27,5.08 10.84,4.72 9.28,4.98 C8.12,5.17 7.16,5.76 6.37,6.63 C4.88,8.27 4.62,10.86 5.76,12.82 C6.95,14.87 9.17,15.8 11.57,15.25 C13.27,14.87 14.76,13.33 14.89,11.75 L10.51,11.75 L10.51,9.09 L17.86,9.09 L17.86,9.09 Z"></path></svg>',grid:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="2" y="2" width="3" height="3"></rect> <rect x="8" y="2" width="3" height="3"></rect> <rect x="14" y="2" width="3" height="3"></rect> <rect x="2" y="8" width="3" height="3"></rect> <rect x="8" y="8" width="3" height="3"></rect> <rect x="14" y="8" width="3" height="3"></rect> <rect x="2" y="14" width="3" height="3"></rect> <rect x="8" y="14" width="3" height="3"></rect> <rect x="14" y="14" width="3" height="3"></rect></svg>',happy:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="13" cy="7" r="1"></circle> <circle cx="7" cy="7" r="1"></circle> <circle fill="none" stroke="#000" cx="10" cy="10" r="8.5"></circle> <path fill="none" stroke="#000" d="M14.6,11.4 C13.9,13.3 12.1,14.5 10,14.5 C7.9,14.5 6.1,13.3 5.4,11.4"></path></svg>',hashtag:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M15.431,8 L15.661,7 L12.911,7 L13.831,3 L12.901,3 L11.98,7 L9.29,7 L10.21,3 L9.281,3 L8.361,7 L5.23,7 L5,8 L8.13,8 L7.21,12 L4.23,12 L4,13 L6.98,13 L6.061,17 L6.991,17 L7.911,13 L10.601,13 L9.681,17 L10.611,17 L11.531,13 L14.431,13 L14.661,12 L11.76,12 L12.681,8 L15.431,8 Z M10.831,12 L8.141,12 L9.061,8 L11.75,8 L10.831,12 Z"></path></svg>',heart:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.03" d="M10,4 C10,4 8.1,2 5.74,2 C3.38,2 1,3.55 1,6.73 C1,8.84 2.67,10.44 2.67,10.44 L10,18 L17.33,10.44 C17.33,10.44 19,8.84 19,6.73 C19,3.55 16.62,2 14.26,2 C11.9,2 10,4 10,4 L10,4 Z"></path></svg>',history:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="#000" points="1 2 2 2 2 6 6 6 6 7 1 7 1 2"></polyline> <path fill="none" stroke="#000" stroke-width="1.1" d="M2.1,6.548 C3.391,3.29 6.746,1 10.5,1 C15.5,1 19.5,5 19.5,10 C19.5,15 15.5,19 10.5,19 C5.5,19 1.5,15 1.5,10"></path> <rect x="9" y="4" width="1" height="7"></rect> <path fill="none" stroke="#000" stroke-width="1.1" d="M13.018,14.197 L9.445,10.625" id="Shape"></path></svg>',home:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="18.65 11.35 10 2.71 1.35 11.35 0.65 10.65 10 1.29 19.35 10.65"></polygon> <polygon points="15 4 18 4 18 7 17 7 17 5 15 5"></polygon> <polygon points="3 11 4 11 4 18 7 18 7 12 12 12 12 18 16 18 16 11 17 11 17 19 11 19 11 13 8 13 8 19 3 19"></polygon></svg>',image:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="16.1" cy="6.1" r="1.1"></circle> <rect fill="none" stroke="#000" x="0.5" y="2.5" width="19" height="15"></rect> <polyline fill="none" stroke="#000" stroke-width="1.01" points="4,13 8,9 13,14"></polyline> <polyline fill="none" stroke="#000" stroke-width="1.01" points="11,12 12.5,10.5 16,14"></polyline></svg>',info:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M12.13,11.59 C11.97,12.84 10.35,14.12 9.1,14.16 C6.17,14.2 9.89,9.46 8.74,8.37 C9.3,8.16 10.62,7.83 10.62,8.81 C10.62,9.63 10.12,10.55 9.88,11.32 C8.66,15.16 12.13,11.15 12.14,11.18 C12.16,11.21 12.16,11.35 12.13,11.59 C12.08,11.95 12.16,11.35 12.13,11.59 L12.13,11.59 Z M11.56,5.67 C11.56,6.67 9.36,7.15 9.36,6.03 C9.36,5 11.56,4.54 11.56,5.67 L11.56,5.67 Z"></path> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle></svg>',instagram:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M13.55,1H6.46C3.45,1,1,3.44,1,6.44v7.12c0,3,2.45,5.44,5.46,5.44h7.08c3.02,0,5.46-2.44,5.46-5.44V6.44 C19.01,3.44,16.56,1,13.55,1z M17.5,14c0,1.93-1.57,3.5-3.5,3.5H6c-1.93,0-3.5-1.57-3.5-3.5V6c0-1.93,1.57-3.5,3.5-3.5h8 c1.93,0,3.5,1.57,3.5,3.5V14z"></path> <circle cx="14.87" cy="5.26" r="1.09"></circle> <path d="M10.03,5.45c-2.55,0-4.63,2.06-4.63,4.6c0,2.55,2.07,4.61,4.63,4.61c2.56,0,4.63-2.061,4.63-4.61 C14.65,7.51,12.58,5.45,10.03,5.45L10.03,5.45L10.03,5.45z M10.08,13c-1.66,0-3-1.34-3-2.99c0-1.65,1.34-2.99,3-2.99s3,1.34,3,2.99 C13.08,11.66,11.74,13,10.08,13L10.08,13L10.08,13z"></path></svg>',italic:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M12.63,5.48 L10.15,14.52 C10,15.08 10.37,15.25 11.92,15.3 L11.72,16 L6,16 L6.2,15.31 C7.78,15.26 8.19,15.09 8.34,14.53 L10.82,5.49 C10.97,4.92 10.63,4.76 9.09,4.71 L9.28,4 L15,4 L14.81,4.69 C13.23,4.75 12.78,4.91 12.63,5.48 L12.63,5.48 Z"></path></svg>',joomla:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M7.8,13.4l1.7-1.7L5.9,8c-0.6-0.5-0.6-1.5,0-2c0.6-0.6,1.4-0.6,2,0l1.7-1.7c-1-1-2.3-1.3-3.6-1C5.8,2.2,4.8,1.4,3.7,1.4 c-1.3,0-2.3,1-2.3,2.3c0,1.1,0.8,2,1.8,2.3c-0.4,1.3-0.1,2.8,1,3.8L7.8,13.4L7.8,13.4z"></path> <path d="M10.2,4.3c1-1,2.5-1.4,3.8-1c0.2-1.1,1.1-2,2.3-2c1.3,0,2.3,1,2.3,2.3c0,1.2-0.9,2.2-2,2.3c0.4,1.3,0,2.8-1,3.8L13.9,8 c0.6-0.5,0.6-1.5,0-2c-0.5-0.6-1.5-0.6-2,0L8.2,9.7L6.5,8"></path> <path d="M14.1,16.8c-1.3,0.4-2.8,0.1-3.8-1l1.7-1.7c0.6,0.6,1.5,0.6,2,0c0.5-0.6,0.6-1.5,0-2l-3.7-3.7L12,6.7l3.7,3.7 c1,1,1.3,2.4,1,3.6c1.1,0.2,2,1.1,2,2.3c0,1.3-1,2.3-2.3,2.3C15.2,18.6,14.3,17.8,14.1,16.8"></path> <path d="M13.2,12.2l-3.7,3.7c-1,1-2.4,1.3-3.6,1c-0.2,1-1.2,1.8-2.2,1.8c-1.3,0-2.3-1-2.3-2.3c0-1.1,0.8-2,1.8-2.3 c-0.3-1.3,0-2.7,1-3.7l1.7,1.7c-0.6,0.6-0.6,1.5,0,2c0.6,0.6,1.4,0.6,2,0l3.7-3.7"></path></svg>',laptop:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect y="16" width="20" height="1"></rect> <rect fill="none" stroke="#000" x="2.5" y="4.5" width="15" height="10"></rect></svg>',lifesaver:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M10,0.5 C4.76,0.5 0.5,4.76 0.5,10 C0.5,15.24 4.76,19.5 10,19.5 C15.24,19.5 19.5,15.24 19.5,10 C19.5,4.76 15.24,0.5 10,0.5 L10,0.5 Z M10,1.5 C11.49,1.5 12.89,1.88 14.11,2.56 L11.85,4.82 C11.27,4.61 10.65,4.5 10,4.5 C9.21,4.5 8.47,4.67 7.79,4.96 L5.58,2.75 C6.87,1.95 8.38,1.5 10,1.5 L10,1.5 Z M4.96,7.8 C4.67,8.48 4.5,9.21 4.5,10 C4.5,10.65 4.61,11.27 4.83,11.85 L2.56,14.11 C1.88,12.89 1.5,11.49 1.5,10 C1.5,8.38 1.95,6.87 2.75,5.58 L4.96,7.79 L4.96,7.8 L4.96,7.8 Z M10,18.5 C8.25,18.5 6.62,17.97 5.27,17.06 L7.46,14.87 C8.22,15.27 9.08,15.5 10,15.5 C10.79,15.5 11.53,15.33 12.21,15.04 L14.42,17.25 C13.13,18.05 11.62,18.5 10,18.5 L10,18.5 Z M10,14.5 C7.52,14.5 5.5,12.48 5.5,10 C5.5,7.52 7.52,5.5 10,5.5 C12.48,5.5 14.5,7.52 14.5,10 C14.5,12.48 12.48,14.5 10,14.5 L10,14.5 Z M15.04,12.21 C15.33,11.53 15.5,10.79 15.5,10 C15.5,9.08 15.27,8.22 14.87,7.46 L17.06,5.27 C17.97,6.62 18.5,8.25 18.5,10 C18.5,11.62 18.05,13.13 17.25,14.42 L15.04,12.21 L15.04,12.21 Z"></path></svg>',link:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.1" d="M10.625,12.375 L7.525,15.475 C6.825,16.175 5.925,16.175 5.225,15.475 L4.525,14.775 C3.825,14.074 3.825,13.175 4.525,12.475 L7.625,9.375"></path> <path fill="none" stroke="#000" stroke-width="1.1" d="M9.325,7.375 L12.425,4.275 C13.125,3.575 14.025,3.575 14.724,4.275 L15.425,4.975 C16.125,5.675 16.125,6.575 15.425,7.275 L12.325,10.375"></path> <path fill="none" stroke="#000" stroke-width="1.1" d="M7.925,11.875 L11.925,7.975"></path></svg>',linkedin:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M5.77,17.89 L5.77,7.17 L2.21,7.17 L2.21,17.89 L5.77,17.89 L5.77,17.89 Z M3.99,5.71 C5.23,5.71 6.01,4.89 6.01,3.86 C5.99,2.8 5.24,2 4.02,2 C2.8,2 2,2.8 2,3.85 C2,4.88 2.77,5.7 3.97,5.7 L3.99,5.7 L3.99,5.71 L3.99,5.71 Z"></path> <path d="M7.75,17.89 L11.31,17.89 L11.31,11.9 C11.31,11.58 11.33,11.26 11.43,11.03 C11.69,10.39 12.27,9.73 13.26,9.73 C14.55,9.73 15.06,10.71 15.06,12.15 L15.06,17.89 L18.62,17.89 L18.62,11.74 C18.62,8.45 16.86,6.92 14.52,6.92 C12.6,6.92 11.75,7.99 11.28,8.73 L11.3,8.73 L11.3,7.17 L7.75,7.17 C7.79,8.17 7.75,17.89 7.75,17.89 L7.75,17.89 L7.75,17.89 Z"></path></svg>',list:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="6" y="4" width="12" height="1"></rect> <rect x="6" y="9" width="12" height="1"></rect> <rect x="6" y="14" width="12" height="1"></rect> <rect x="2" y="4" width="2" height="1"></rect> <rect x="2" y="9" width="2" height="1"></rect> <rect x="2" y="14" width="2" height="1"></rect></svg>',location:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.01" d="M10,0.5 C6.41,0.5 3.5,3.39 3.5,6.98 C3.5,11.83 10,19 10,19 C10,19 16.5,11.83 16.5,6.98 C16.5,3.39 13.59,0.5 10,0.5 L10,0.5 Z"></path> <circle fill="none" stroke="#000" cx="10" cy="6.8" r="2.3"></circle></svg>',lock:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect fill="none" stroke="#000" height="10" width="13" y="8.5" x="3.5"></rect> <path fill="none" stroke="#000" d="M6.5,8 L6.5,4.88 C6.5,3.01 8.07,1.5 10,1.5 C11.93,1.5 13.5,3.01 13.5,4.88 L13.5,8"></path></svg>',mail:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" points="1.4,6.5 10,11 18.6,6.5"></polyline> <path d="M 1,4 1,16 19,16 19,4 1,4 Z M 18,15 2,15 2,5 18,5 18,15 Z"></path></svg>',menu:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="2" y="4" width="16" height="1"></rect> <rect x="2" y="9" width="16" height="1"></rect> <rect x="2" y="14" width="16" height="1"></rect></svg>',minus:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect height="1" width="18" y="9" x="1"></rect></svg>',more:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="3" cy="10" r="2"></circle> <circle cx="10" cy="10" r="2"></circle> <circle cx="17" cy="10" r="2"></circle></svg>',move:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="4,5 1,5 1,9 2,9 2,6 4,6 "></polygon> <polygon points="1,16 2,16 2,18 4,18 4,19 1,19 "></polygon> <polygon points="14,16 14,19 11,19 11,18 13,18 13,16 "></polygon> <rect fill="none" stroke="#000" x="5.5" y="1.5" width="13" height="13"></rect> <rect x="1" y="11" width="1" height="3"></rect> <rect x="6" y="18" width="3" height="1"></rect></svg>',nut:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon fill="none" stroke="#000" points="2.5,5.7 10,1.3 17.5,5.7 17.5,14.3 10,18.7 2.5,14.3"></polygon> <circle fill="none" stroke="#000" cx="10" cy="10" r="3.5"></circle></svg>',pagekit:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="3,1 17,1 17,16 10,16 10,13 14,13 14,4 6,4 6,16 10,16 10,19 3,19 "></polygon></svg>',pencil:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" d="M17.25,6.01 L7.12,16.1 L3.82,17.2 L5.02,13.9 L15.12,3.88 C15.71,3.29 16.66,3.29 17.25,3.88 C17.83,4.47 17.83,5.42 17.25,6.01 L17.25,6.01 Z"></path> <path fill="none" stroke="#000" d="M15.98,7.268 L13.851,5.148"></path></svg>',phone:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" d="M15.5,17 C15.5,17.8 14.8,18.5 14,18.5 L7,18.5 C6.2,18.5 5.5,17.8 5.5,17 L5.5,3 C5.5,2.2 6.2,1.5 7,1.5 L14,1.5 C14.8,1.5 15.5,2.2 15.5,3 L15.5,17 L15.5,17 L15.5,17 Z"></path> <circle cx="10.5" cy="16.5" r="0.8"></circle></svg>',pinterest:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M10.21,1 C5.5,1 3,4.16 3,7.61 C3,9.21 3.85,11.2 5.22,11.84 C5.43,11.94 5.54,11.89 5.58,11.69 C5.62,11.54 5.8,10.8 5.88,10.45 C5.91,10.34 5.89,10.24 5.8,10.14 C5.36,9.59 5,8.58 5,7.65 C5,5.24 6.82,2.91 9.93,2.91 C12.61,2.91 14.49,4.74 14.49,7.35 C14.49,10.3 13,12.35 11.06,12.35 C9.99,12.35 9.19,11.47 9.44,10.38 C9.75,9.08 10.35,7.68 10.35,6.75 C10.35,5.91 9.9,5.21 8.97,5.21 C7.87,5.21 6.99,6.34 6.99,7.86 C6.99,8.83 7.32,9.48 7.32,9.48 C7.32,9.48 6.24,14.06 6.04,14.91 C5.7,16.35 6.08,18.7 6.12,18.9 C6.14,19.01 6.26,19.05 6.33,18.95 C6.44,18.81 7.74,16.85 8.11,15.44 C8.24,14.93 8.79,12.84 8.79,12.84 C9.15,13.52 10.19,14.09 11.29,14.09 C14.58,14.09 16.96,11.06 16.96,7.3 C16.94,3.7 14,1 10.21,1"></path></svg>',play:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon fill="none" stroke="#000" points="6.5,5 14.5,10 6.5,15"></polygon></svg>',plus:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="9" y="1" width="1" height="17"></rect> <rect x="1" y="9" width="17" height="1"></rect></svg>',pull:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="6.85,8 9.5,10.6 12.15,8 12.85,8.7 9.5,12 6.15,8.7"></polygon> <line fill="none" stroke="#000" x1="9.5" y1="11" x2="9.5" y2="2"></line> <polyline fill="none" stroke="#000" points="6,5.5 3.5,5.5 3.5,18.5 15.5,18.5 15.5,5.5 13,5.5"></polyline></svg>',push:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="12.15,4 9.5,1.4 6.85,4 6.15,3.3 9.5,0 12.85,3.3"></polygon> <line fill="none" stroke="#000" x1="9.5" y1="10" x2="9.5" y2="1"></line> <polyline fill="none" stroke="#000" points="6 5.5 3.5 5.5 3.5 18.5 15.5 18.5 15.5 5.5 13 5.5"></polyline></svg>',question:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle> <circle cx="10.44" cy="14.42" r="1.05"></circle> <path fill="none" stroke="#000" stroke-width="1.2" d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75"></path></svg>',receiver:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.01" d="M6.189,13.611C8.134,15.525 11.097,18.239 13.867,18.257C16.47,18.275 18.2,16.241 18.2,16.241L14.509,12.551L11.539,13.639L6.189,8.29L7.313,5.355L3.76,1.8C3.76,1.8 1.732,3.537 1.7,6.092C1.667,8.809 4.347,11.738 6.189,13.611"></path></svg>',refresh:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.1" d="M17.08,11.15 C17.09,11.31 17.1,11.47 17.1,11.64 C17.1,15.53 13.94,18.69 10.05,18.69 C6.16,18.68 3,15.53 3,11.63 C3,7.74 6.16,4.58 10.05,4.58 C10.9,4.58 11.71,4.73 12.46,5"></path> <polyline fill="none" stroke="#000" points="9.9 2 12.79 4.89 9.79 7.9"></polyline></svg>',reply:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M17.7,13.11 C16.12,10.02 13.84,7.85 11.02,6.61 C10.57,6.41 9.75,6.13 9,5.91 L9,2 L1,9 L9,16 L9,12.13 C10.78,12.47 12.5,13.19 14.09,14.25 C17.13,16.28 18.56,18.54 18.56,18.54 C18.56,18.54 18.81,15.28 17.7,13.11 L17.7,13.11 Z M14.82,13.53 C13.17,12.4 11.01,11.4 8,10.92 L8,13.63 L2.55,9 L8,4.25 L8,6.8 C8.3,6.86 9.16,7.02 10.37,7.49 C13.3,8.65 15.54,10.96 16.65,13.08 C16.97,13.7 17.48,14.86 17.68,16 C16.87,15.05 15.73,14.15 14.82,13.53 L14.82,13.53 Z"></path></svg>',rss:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="3.12" cy="16.8" r="1.85"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M1.5,8.2 C1.78,8.18 2.06,8.16 2.35,8.16 C7.57,8.16 11.81,12.37 11.81,17.57 C11.81,17.89 11.79,18.19 11.76,18.5"></path> <path fill="none" stroke="#000" stroke-width="1.1" d="M1.5,2.52 C1.78,2.51 2.06,2.5 2.35,2.5 C10.72,2.5 17.5,9.24 17.5,17.57 C17.5,17.89 17.49,18.19 17.47,18.5"></path></svg>',search:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg>',server:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="3" y="3" width="1" height="2"></rect> <rect x="5" y="3" width="1" height="2"></rect> <rect x="7" y="3" width="1" height="2"></rect> <rect x="16" y="3" width="1" height="1"></rect> <rect x="16" y="10" width="1" height="1"></rect> <circle fill="none" stroke="#000" cx="9.9" cy="17.4" r="1.4"></circle> <rect x="3" y="10" width="1" height="2"></rect> <rect x="5" y="10" width="1" height="2"></rect> <rect x="9.5" y="14" width="1" height="2"></rect> <rect x="3" y="17" width="6" height="1"></rect> <rect x="11" y="17" width="6" height="1"></rect> <rect fill="none" stroke="#000" x="1.5" y="1.5" width="17" height="5"></rect> <rect fill="none" stroke="#000" x="1.5" y="8.5" width="17" height="5"></rect></svg>',settings:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <ellipse fill="none" stroke="#000" cx="6.11" cy="3.55" rx="2.11" ry="2.15"></ellipse> <ellipse fill="none" stroke="#000" cx="6.11" cy="15.55" rx="2.11" ry="2.15"></ellipse> <circle fill="none" stroke="#000" cx="13.15" cy="9.55" r="2.15"></circle> <rect x="1" y="3" width="3" height="1"></rect> <rect x="10" y="3" width="8" height="1"></rect> <rect x="1" y="9" width="8" height="1"></rect> <rect x="15" y="9" width="3" height="1"></rect> <rect x="1" y="15" width="3" height="1"></rect> <rect x="10" y="15" width="8" height="1"></rect></svg>',shrink:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="11 4 12 4 12 8 16 8 16 9 11 9"></polygon> <polygon points="4 11 9 11 9 16 8 16 8 12 4 12"></polygon> <path fill="none" stroke="#000" stroke-width="1.1" d="M12,8 L18,2"></path> <path fill="none" stroke="#000" stroke-width="1.1" d="M2,18 L8,12"></path></svg>',social:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <line fill="none" stroke="#000" stroke-width="1.1" x1="13.4" y1="14" x2="6.3" y2="10.7"></line> <line fill="none" stroke="#000" stroke-width="1.1" x1="13.5" y1="5.5" x2="6.5" y2="8.8"></line> <circle fill="none" stroke="#000" stroke-width="1.1" cx="15.5" cy="4.6" r="2.3"></circle> <circle fill="none" stroke="#000" stroke-width="1.1" cx="15.5" cy="14.8" r="2.3"></circle> <circle fill="none" stroke="#000" stroke-width="1.1" cx="4.5" cy="9.8" r="2.3"></circle></svg>',soundcloud:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M17.2,9.4c-0.4,0-0.8,0.1-1.101,0.2c-0.199-2.5-2.399-4.5-5-4.5c-0.6,0-1.2,0.1-1.7,0.3C9.2,5.5,9.1,5.6,9.1,5.6V15h8 c1.601,0,2.801-1.2,2.801-2.8C20,10.7,18.7,9.4,17.2,9.4L17.2,9.4z"></path> <rect x="6" y="6.5" width="1.5" height="8.5"></rect> <rect x="3" y="8" width="1.5" height="7"></rect> <rect y="10" width="1.5" height="5"></rect></svg>',star:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon fill="none" stroke="#000" stroke-width="1.01" points="10 2 12.63 7.27 18.5 8.12 14.25 12.22 15.25 18 10 15.27 4.75 18 5.75 12.22 1.5 8.12 7.37 7.27"></polygon></svg>',strikethrough:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M6,13.02 L6.65,13.02 C7.64,15.16 8.86,16.12 10.41,16.12 C12.22,16.12 12.92,14.93 12.92,13.89 C12.92,12.55 11.99,12.03 9.74,11.23 C8.05,10.64 6.23,10.11 6.23,7.83 C6.23,5.5 8.09,4.09 10.4,4.09 C11.44,4.09 12.13,4.31 12.72,4.54 L13.33,4 L13.81,4 L13.81,7.59 L13.16,7.59 C12.55,5.88 11.52,4.89 10.07,4.89 C8.84,4.89 7.89,5.69 7.89,7.03 C7.89,8.29 8.89,8.78 10.88,9.45 C12.57,10.03 14.38,10.6 14.38,12.91 C14.38,14.75 13.27,16.93 10.18,16.93 C9.18,16.93 8.17,16.69 7.46,16.39 L6.52,17 L6,17 L6,13.02 L6,13.02 Z"></path> <rect x="3" y="10" width="15" height="1"></rect></svg>',table:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="1" y="3" width="18" height="1"></rect> <rect x="1" y="7" width="18" height="1"></rect> <rect x="1" y="11" width="18" height="1"></rect> <rect x="1" y="15" width="18" height="1"></rect></svg>',tablet:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" d="M5,18.5 C4.2,18.5 3.5,17.8 3.5,17 L3.5,3 C3.5,2.2 4.2,1.5 5,1.5 L16,1.5 C16.8,1.5 17.5,2.2 17.5,3 L17.5,17 C17.5,17.8 16.8,18.5 16,18.5 L5,18.5 L5,18.5 L5,18.5 Z"></path> <circle cx="10.5" cy="16.3" r="0.8"></circle></svg>',tag:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.1" d="M17.5,3.71 L17.5,7.72 C17.5,7.96 17.4,8.2 17.21,8.39 L8.39,17.2 C7.99,17.6 7.33,17.6 6.93,17.2 L2.8,13.07 C2.4,12.67 2.4,12.01 2.8,11.61 L11.61,2.8 C11.81,2.6 12.08,2.5 12.34,2.5 L16.19,2.5 C16.52,2.5 16.86,2.63 17.11,2.88 C17.35,3.11 17.48,3.4 17.5,3.71 L17.5,3.71 Z"></path> <circle cx="14" cy="6" r="1"></circle></svg>',thumbnails:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect fill="none" stroke="#000" x="3.5" y="3.5" width="5" height="5"></rect> <rect fill="none" stroke="#000" x="11.5" y="3.5" width="5" height="5"></rect> <rect fill="none" stroke="#000" x="11.5" y="11.5" width="5" height="5"></rect> <rect fill="none" stroke="#000" x="3.5" y="11.5" width="5" height="5"></rect></svg>',trash:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" points="6.5 3 6.5 1.5 13.5 1.5 13.5 3"></polyline> <polyline fill="none" stroke="#000" points="4.5 4 4.5 18.5 15.5 18.5 15.5 4"></polyline> <rect x="8" y="7" width="1" height="9"></rect> <rect x="11" y="7" width="1" height="9"></rect> <rect x="2" y="3" width="16" height="1"></rect></svg>',tripadvisor:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M19.021,7.866C19.256,6.862,20,5.854,20,5.854h-3.346C14.781,4.641,12.504,4,9.98,4C7.363,4,4.999,4.651,3.135,5.876H0\tc0,0,0.738,0.987,0.976,1.988c-0.611,0.837-0.973,1.852-0.973,2.964c0,2.763,2.249,5.009,5.011,5.009\tc1.576,0,2.976-0.737,3.901-1.879l1.063,1.599l1.075-1.615c0.475,0.611,1.1,1.111,1.838,1.451c1.213,0.547,2.574,0.612,3.825,0.15\tc2.589-0.963,3.913-3.852,2.964-6.439c-0.175-0.463-0.4-0.876-0.675-1.238H19.021z M16.38,14.594\tc-1.002,0.371-2.088,0.328-3.06-0.119c-0.688-0.317-1.252-0.817-1.657-1.438c-0.164-0.25-0.313-0.52-0.417-0.811\tc-0.124-0.328-0.186-0.668-0.217-1.014c-0.063-0.689,0.037-1.396,0.339-2.043c0.448-0.971,1.251-1.71,2.25-2.079\tc2.075-0.765,4.375,0.3,5.14,2.366c0.762,2.066-0.301,4.37-2.363,5.134L16.38,14.594L16.38,14.594z M8.322,13.066\tc-0.72,1.059-1.935,1.76-3.309,1.76c-2.207,0-4.001-1.797-4.001-3.996c0-2.203,1.795-4.002,4.001-4.002\tc2.204,0,3.999,1.8,3.999,4.002c0,0.137-0.024,0.261-0.04,0.396c-0.067,0.678-0.284,1.313-0.648,1.853v-0.013H8.322z M2.472,10.775\tc0,1.367,1.112,2.479,2.476,2.479c1.363,0,2.472-1.11,2.472-2.479c0-1.359-1.11-2.468-2.472-2.468\tC3.584,8.306,2.473,9.416,2.472,10.775L2.472,10.775z M12.514,10.775c0,1.367,1.104,2.479,2.471,2.479\tc1.363,0,2.474-1.108,2.474-2.479c0-1.359-1.11-2.468-2.474-2.468c-1.364,0-2.477,1.109-2.477,2.468H12.514z M3.324,10.775\tc0-0.893,0.726-1.618,1.614-1.618c0.889,0,1.625,0.727,1.625,1.618c0,0.898-0.725,1.627-1.625,1.627\tc-0.901,0-1.625-0.729-1.625-1.627H3.324z M13.354,10.775c0-0.893,0.726-1.618,1.627-1.618c0.886,0,1.61,0.727,1.61,1.618\tc0,0.898-0.726,1.627-1.626,1.627s-1.625-0.729-1.625-1.627H13.354z M9.977,4.875c1.798,0,3.425,0.324,4.849,0.968\tc-0.535,0.015-1.061,0.108-1.586,0.3c-1.264,0.463-2.264,1.388-2.815,2.604c-0.262,0.551-0.398,1.133-0.448,1.72\tC9.79,7.905,7.677,5.873,5.076,5.82C6.501,5.208,8.153,4.875,9.94,4.875H9.977z"></path></svg>',tumblr:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M6.885,8.598c0,0,0,3.393,0,4.996c0,0.282,0,0.66,0.094,0.942c0.377,1.509,1.131,2.545,2.545,3.11 c1.319,0.472,2.356,0.472,3.676,0c0.565-0.188,1.132-0.659,1.132-0.659l-0.849-2.263c0,0-1.036,0.378-1.603,0.283 c-0.565-0.094-1.226-0.66-1.226-1.508c0-1.603,0-4.902,0-4.902h2.828V5.771h-2.828V2H8.205c0,0-0.094,0.66-0.188,0.942 C7.828,3.791,7.262,4.733,6.603,5.394C5.848,6.147,5,6.43,5,6.43v2.168H6.885z"></path></svg>',tv:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect x="7" y="16" width="6" height="1"></rect> <rect fill="none" stroke="#000" x="0.5" y="3.5" width="19" height="11"></rect></svg>',twitter:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M19,4.74 C18.339,5.029 17.626,5.229 16.881,5.32 C17.644,4.86 18.227,4.139 18.503,3.28 C17.79,3.7 17.001,4.009 16.159,4.17 C15.485,3.45 14.526,3 13.464,3 C11.423,3 9.771,4.66 9.771,6.7 C9.771,6.99 9.804,7.269 9.868,7.539 C6.795,7.38 4.076,5.919 2.254,3.679 C1.936,4.219 1.754,4.86 1.754,5.539 C1.754,6.82 2.405,7.95 3.397,8.61 C2.79,8.589 2.22,8.429 1.723,8.149 L1.723,8.189 C1.723,9.978 2.997,11.478 4.686,11.82 C4.376,11.899 4.049,11.939 3.713,11.939 C3.475,11.939 3.245,11.919 3.018,11.88 C3.49,13.349 4.852,14.419 6.469,14.449 C5.205,15.429 3.612,16.019 1.882,16.019 C1.583,16.019 1.29,16.009 1,15.969 C2.635,17.019 4.576,17.629 6.662,17.629 C13.454,17.629 17.17,12 17.17,7.129 C17.17,6.969 17.166,6.809 17.157,6.649 C17.879,6.129 18.504,5.478 19,4.74"></path></svg>',uikit:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="14.4,3.1 11.3,5.1 15,7.3 15,12.9 10,15.7 5,12.9 5,8.5 2,6.8 2,14.8 9.9,19.5 18,14.8 18,5.3"></polygon> <polygon points="9.8,4.2 6.7,2.4 9.8,0.4 12.9,2.3"></polygon></svg>',unlock:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect fill="none" stroke="#000" x="3.5" y="8.5" width="13" height="10"></rect> <path fill="none" stroke="#000" d="M6.5,8.5 L6.5,4.9 C6.5,3 8.1,1.5 10,1.5 C11.9,1.5 13.5,3 13.5,4.9"></path></svg>',upload:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" points="5 8 9.5 3.5 14 8 "></polyline> <rect x="3" y="17" width="13" height="1"></rect> <line fill="none" stroke="#000" x1="9.5" y1="15" x2="9.5" y2="4"></line></svg>',user:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9.9" cy="6.4" r="4.4"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M1.5,19 C2.3,14.5 5.8,11.2 10,11.2 C14.2,11.2 17.7,14.6 18.5,19.2"></path></svg>',users:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="7.7" cy="8.6" r="3.5"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M1,18.1 C1.7,14.6 4.4,12.1 7.6,12.1 C10.9,12.1 13.7,14.8 14.3,18.3"></path> <path fill="none" stroke="#000" stroke-width="1.1" d="M11.4,4 C12.8,2.4 15.4,2.8 16.3,4.7 C17.2,6.6 15.7,8.9 13.6,8.9 C16.5,8.9 18.8,11.3 19.2,14.1"></path></svg>',vimeo:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M2.065,7.59C1.84,7.367,1.654,7.082,1.468,6.838c-0.332-0.42-0.137-0.411,0.274-0.772c1.026-0.91,2.004-1.896,3.127-2.688 c1.017-0.713,2.365-1.173,3.286-0.039c0.849,1.045,0.869,2.629,1.084,3.891c0.215,1.309,0.421,2.648,0.88,3.901 c0.127,0.352,0.37,1.018,0.81,1.074c0.567,0.078,1.145-0.917,1.408-1.289c0.684-0.987,1.611-2.317,1.494-3.587 c-0.115-1.349-1.572-1.095-2.482-0.773c0.146-1.514,1.555-3.216,2.912-3.792c1.439-0.597,3.579-0.587,4.302,1.036 c0.772,1.759,0.078,3.802-0.763,5.396c-0.918,1.731-2.1,3.333-3.363,4.829c-1.114,1.329-2.432,2.787-4.093,3.422 c-1.897,0.723-3.021-0.686-3.667-2.318c-0.705-1.777-1.056-3.771-1.565-5.621C4.898,8.726,4.644,7.836,4.136,7.191 C3.473,6.358,2.72,7.141,2.065,7.59C1.977,7.502,2.115,7.551,2.065,7.59L2.065,7.59z"></path></svg>',warning:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="14" r="1"></circle> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle> <path d="M10.97,7.72 C10.85,9.54 10.56,11.29 10.56,11.29 C10.51,11.87 10.27,12 9.99,12 C9.69,12 9.49,11.87 9.43,11.29 C9.43,11.29 9.16,9.54 9.03,7.72 C8.96,6.54 9.03,6 9.03,6 C9.03,5.45 9.46,5.02 9.99,5 C10.53,5.01 10.97,5.44 10.97,6 C10.97,6 11.04,6.54 10.97,7.72 L10.97,7.72 Z"></path></svg>',whatsapp:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M16.7,3.3c-1.8-1.8-4.1-2.8-6.7-2.8c-5.2,0-9.4,4.2-9.4,9.4c0,1.7,0.4,3.3,1.3,4.7l-1.3,4.9l5-1.3c1.4,0.8,2.9,1.2,4.5,1.2 l0,0l0,0c5.2,0,9.4-4.2,9.4-9.4C19.5,7.4,18.5,5,16.7,3.3 M10.1,17.7L10.1,17.7c-1.4,0-2.8-0.4-4-1.1l-0.3-0.2l-3,0.8l0.8-2.9 l-0.2-0.3c-0.8-1.2-1.2-2.7-1.2-4.2c0-4.3,3.5-7.8,7.8-7.8c2.1,0,4.1,0.8,5.5,2.3c1.5,1.5,2.3,3.4,2.3,5.5 C17.9,14.2,14.4,17.7,10.1,17.7 M14.4,11.9c-0.2-0.1-1.4-0.7-1.6-0.8c-0.2-0.1-0.4-0.1-0.5,0.1c-0.2,0.2-0.6,0.8-0.8,0.9 c-0.1,0.2-0.3,0.2-0.5,0.1c-0.2-0.1-1-0.4-1.9-1.2c-0.7-0.6-1.2-1.4-1.3-1.6c-0.1-0.2,0-0.4,0.1-0.5C8,8.8,8.1,8.7,8.2,8.5 c0.1-0.1,0.2-0.2,0.2-0.4c0.1-0.2,0-0.3,0-0.4C8.4,7.6,7.9,6.5,7.7,6C7.5,5.5,7.3,5.6,7.2,5.6c-0.1,0-0.3,0-0.4,0 c-0.2,0-0.4,0.1-0.6,0.3c-0.2,0.2-0.8,0.8-0.8,2c0,1.2,0.8,2.3,1,2.4c0.1,0.2,1.7,2.5,4,3.5c0.6,0.2,1,0.4,1.3,0.5 c0.6,0.2,1.1,0.2,1.5,0.1c0.5-0.1,1.4-0.6,1.6-1.1c0.2-0.5,0.2-1,0.1-1.1C14.8,12.1,14.6,12,14.4,11.9"></path></svg>',wordpress:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M10,0.5c-5.2,0-9.5,4.3-9.5,9.5s4.3,9.5,9.5,9.5c5.2,0,9.5-4.3,9.5-9.5S15.2,0.5,10,0.5L10,0.5L10,0.5z M15.6,3.9h-0.1 c-0.8,0-1.4,0.7-1.4,1.5c0,0.7,0.4,1.3,0.8,1.9c0.3,0.6,0.7,1.3,0.7,2.3c0,0.7-0.3,1.5-0.6,2.7L14.1,15l-3-8.9 c0.5,0,0.9-0.1,0.9-0.1C12.5,6,12.5,5.3,12,5.4c0,0-1.3,0.1-2.2,0.1C9,5.5,7.7,5.4,7.7,5.4C7.2,5.3,7.2,6,7.6,6c0,0,0.4,0.1,0.9,0.1 l1.3,3.5L8,15L5,6.1C5.5,6.1,5.9,6,5.9,6C6.4,6,6.3,5.3,5.9,5.4c0,0-1.3,0.1-2.2,0.1c-0.2,0-0.3,0-0.5,0c1.5-2.2,4-3.7,6.9-3.7 C12.2,1.7,14.1,2.6,15.6,3.9L15.6,3.9L15.6,3.9z M2.5,6.6l3.9,10.8c-2.7-1.3-4.6-4.2-4.6-7.4C1.8,8.8,2,7.6,2.5,6.6L2.5,6.6L2.5,6.6 z M10.2,10.7l2.5,6.9c0,0,0,0.1,0.1,0.1C11.9,18,11,18.2,10,18.2c-0.8,0-1.6-0.1-2.3-0.3L10.2,10.7L10.2,10.7L10.2,10.7z M14.2,17.1 l2.5-7.3c0.5-1.2,0.6-2.1,0.6-2.9c0-0.3,0-0.6-0.1-0.8c0.6,1.2,1,2.5,1,4C18.3,13,16.6,15.7,14.2,17.1L14.2,17.1L14.2,17.1z"></path></svg>',world:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" d="M1,10.5 L19,10.5"></path> <path fill="none" stroke="#000" d="M2.35,15.5 L17.65,15.5"></path> <path fill="none" stroke="#000" d="M2.35,5.5 L17.523,5.5"></path> <path fill="none" stroke="#000" d="M10,19.46 L9.98,19.46 C7.31,17.33 5.61,14.141 5.61,10.58 C5.61,7.02 7.33,3.83 10,1.7 C10.01,1.7 9.99,1.7 10,1.7 L10,1.7 C12.67,3.83 14.4,7.02 14.4,10.58 C14.4,14.141 12.67,17.33 10,19.46 L10,19.46 L10,19.46 L10,19.46 Z"></path> <circle fill="none" stroke="#000" cx="10" cy="10.5" r="9"></circle></svg>',xing:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M4.4,4.56 C4.24,4.56 4.11,4.61 4.05,4.72 C3.98,4.83 3.99,4.97 4.07,5.12 L5.82,8.16 L5.82,8.17 L3.06,13.04 C2.99,13.18 2.99,13.33 3.06,13.44 C3.12,13.55 3.24,13.62 3.4,13.62 L6,13.62 C6.39,13.62 6.57,13.36 6.71,13.12 C6.71,13.12 9.41,8.35 9.51,8.16 C9.49,8.14 7.72,5.04 7.72,5.04 C7.58,4.81 7.39,4.56 6.99,4.56 L4.4,4.56 L4.4,4.56 Z"></path> <path d="M15.3,1 C14.91,1 14.74,1.25 14.6,1.5 C14.6,1.5 9.01,11.42 8.82,11.74 C8.83,11.76 12.51,18.51 12.51,18.51 C12.64,18.74 12.84,19 13.23,19 L15.82,19 C15.98,19 16.1,18.94 16.16,18.83 C16.23,18.72 16.23,18.57 16.16,18.43 L12.5,11.74 L12.5,11.72 L18.25,1.56 C18.32,1.42 18.32,1.27 18.25,1.16 C18.21,1.06 18.08,1 17.93,1 L15.3,1 L15.3,1 Z"></path></svg>',yelp:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M17.175,14.971c-0.112,0.77-1.686,2.767-2.406,3.054c-0.246,0.1-0.487,0.076-0.675-0.069\tc-0.122-0.096-2.446-3.859-2.446-3.859c-0.194-0.293-0.157-0.682,0.083-0.978c0.234-0.284,0.581-0.393,0.881-0.276\tc0.016,0.01,4.21,1.394,4.332,1.482c0.178,0.148,0.263,0.379,0.225,0.646L17.175,14.971L17.175,14.971z M11.464,10.789\tc-0.203-0.307-0.199-0.666,0.009-0.916c0,0,2.625-3.574,2.745-3.657c0.203-0.135,0.452-0.141,0.69-0.025\tc0.691,0.335,2.085,2.405,2.167,3.199v0.027c0.024,0.271-0.082,0.491-0.273,0.623c-0.132,0.083-4.43,1.155-4.43,1.155\tc-0.322,0.096-0.68-0.06-0.882-0.381L11.464,10.789z M9.475,9.563C9.32,9.609,8.848,9.757,8.269,8.817c0,0-3.916-6.16-4.007-6.351\tc-0.057-0.212,0.011-0.455,0.202-0.65C5.047,1.211,8.21,0.327,9.037,0.529c0.27,0.069,0.457,0.238,0.522,0.479\tc0.047,0.266,0.433,5.982,0.488,7.264C10.098,9.368,9.629,9.517,9.475,9.563z M9.927,19.066c-0.083,0.225-0.273,0.373-0.54,0.421\tc-0.762,0.13-3.15-0.751-3.647-1.342c-0.096-0.131-0.155-0.262-0.167-0.394c-0.011-0.095,0-0.189,0.036-0.272\tc0.061-0.155,2.917-3.538,2.917-3.538c0.214-0.272,0.595-0.355,0.952-0.213c0.345,0.13,0.56,0.428,0.536,0.749\tC10.014,14.479,9.977,18.923,9.927,19.066z M3.495,13.912c-0.235-0.009-0.444-0.148-0.568-0.382c-0.089-0.17-0.151-0.453-0.19-0.794\tC2.63,11.701,2.761,10.144,3.07,9.648c0.145-0.226,0.357-0.345,0.592-0.336c0.154,0,4.255,1.667,4.255,1.667\tc0.321,0.118,0.521,0.453,0.5,0.833c-0.023,0.37-0.236,0.655-0.551,0.738L3.495,13.912z"></path></svg>',youtube:'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M15,4.1c1,0.1,2.3,0,3,0.8c0.8,0.8,0.9,2.1,0.9,3.1C19,9.2,19,10.9,19,12c-0.1,1.1,0,2.4-0.5,3.4c-0.5,1.1-1.4,1.5-2.5,1.6 c-1.2,0.1-8.6,0.1-11,0c-1.1-0.1-2.4-0.1-3.2-1c-0.7-0.8-0.7-2-0.8-3C1,11.8,1,10.1,1,8.9c0-1.1,0-2.4,0.5-3.4C2,4.5,3,4.3,4.1,4.2 C5.3,4.1,12.6,4,15,4.1z M8,7.5v6l5.5-3L8,7.5z"></path></svg>',"500px":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M9.624,11.866c-0.141,0.132,0.479,0.658,0.662,0.418c0.051-0.046,0.607-0.61,0.662-0.664c0,0,0.738,0.719,0.814,0.719\t\tc0.1,0,0.207-0.055,0.322-0.17c0.27-0.269,0.135-0.416,0.066-0.495l-0.631-0.616l0.658-0.668c0.146-0.156,0.021-0.314-0.1-0.449\t\tc-0.182-0.18-0.359-0.226-0.471-0.125l-0.656,0.654l-0.654-0.654c-0.033-0.034-0.08-0.045-0.124-0.045\t\tc-0.079,0-0.191,0.068-0.307,0.181c-0.202,0.202-0.247,0.351-0.133,0.462l0.665,0.665L9.624,11.866z"></path> <path d="M11.066,2.884c-1.061,0-2.185,0.248-3.011,0.604c-0.087,0.034-0.141,0.106-0.15,0.205C7.893,3.784,7.919,3.909,7.982,4.066\t\tc0.05,0.136,0.187,0.474,0.452,0.372c0.844-0.326,1.779-0.507,2.633-0.507c0.963,0,1.9,0.191,2.781,0.564\t\tc0.695,0.292,1.357,0.719,2.078,1.34c0.051,0.044,0.105,0.068,0.164,0.068c0.143,0,0.273-0.137,0.389-0.271\t\tc0.191-0.214,0.324-0.395,0.135-0.575c-0.686-0.654-1.436-1.138-2.363-1.533C13.24,3.097,12.168,2.884,11.066,2.884z"></path> <path d="M16.43,15.747c-0.092-0.028-0.242,0.05-0.309,0.119l0,0c-0.652,0.652-1.42,1.169-2.268,1.521\t\tc-0.877,0.371-1.814,0.551-2.779,0.551c-0.961,0-1.896-0.189-2.775-0.564c-0.848-0.36-1.612-0.879-2.268-1.53\t\tc-0.682-0.688-1.196-1.455-1.529-2.268c-0.325-0.799-0.471-1.643-0.471-1.643c-0.045-0.24-0.258-0.249-0.567-0.203\t\tc-0.128,0.021-0.519,0.079-0.483,0.36v0.01c0.105,0.644,0.289,1.284,0.545,1.895c0.417,0.969,1.002,1.849,1.756,2.604\t\tc0.757,0.754,1.636,1.34,2.604,1.757C8.901,18.785,9.97,19,11.088,19c1.104,0,2.186-0.215,3.188-0.645\t\tc1.838-0.896,2.604-1.757,2.604-1.757c0.182-0.204,0.227-0.317-0.1-0.643C16.779,15.956,16.525,15.774,16.43,15.747z"></path> <path d="M5.633,13.287c0.293,0.71,0.723,1.341,1.262,1.882c0.54,0.54,1.172,0.971,1.882,1.264c0.731,0.303,1.509,0.461,2.298,0.461\t\tc0.801,0,1.578-0.158,2.297-0.461c0.711-0.293,1.344-0.724,1.883-1.264c0.543-0.541,0.971-1.172,1.264-1.882\t\tc0.314-0.721,0.463-1.5,0.463-2.298c0-0.79-0.148-1.569-0.463-2.289c-0.293-0.699-0.721-1.329-1.264-1.881\t\tc-0.539-0.541-1.172-0.959-1.867-1.263c-0.721-0.303-1.5-0.461-2.299-0.461c-0.802,0-1.613,0.159-2.322,0.461\t\tc-0.577,0.25-1.544,0.867-2.119,1.454v0.012V2.108h8.16C15.1,2.104,15.1,1.69,15.1,1.552C15.1,1.417,15.1,1,14.809,1H5.915\t\tC5.676,1,5.527,1.192,5.527,1.384v6.84c0,0.214,0.273,0.372,0.529,0.428c0.5,0.105,0.614-0.056,0.737-0.224l0,0\t\tc0.18-0.273,0.776-0.884,0.787-0.894c0.901-0.905,2.117-1.408,3.416-1.408c1.285,0,2.5,0.501,3.412,1.408\t\tc0.914,0.914,1.408,2.122,1.408,3.405c0,1.288-0.508,2.496-1.408,3.405c-0.9,0.896-2.152,1.406-3.438,1.406\t\tc-0.877,0-1.711-0.229-2.433-0.671v-4.158c0-0.553,0.237-1.151,0.643-1.614c0.462-0.519,1.094-0.799,1.782-0.799\t\tc0.664,0,1.293,0.253,1.758,0.715c0.459,0.459,0.709,1.071,0.709,1.723c0,1.385-1.094,2.468-2.488,2.468\t\tc-0.273,0-0.769-0.121-0.781-0.125c-0.281-0.087-0.405,0.306-0.438,0.436c-0.159,0.496,0.079,0.585,0.123,0.607\t\tc0.452,0.137,0.743,0.157,1.129,0.157c1.973,0,3.572-1.6,3.572-3.57c0-1.964-1.6-3.552-3.572-3.552c-0.97,0-1.872,0.36-2.546,1.038\t\tc-0.656,0.631-1.027,1.487-1.027,2.322v3.438v-0.011c-0.372-0.42-0.732-1.041-0.981-1.682c-0.102-0.248-0.315-0.202-0.607-0.113\t\tc-0.135,0.035-0.519,0.157-0.44,0.439C5.372,12.799,5.577,13.164,5.633,13.287z"></path></svg>',"arrow-down":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="10.5,16.08 5.63,10.66 6.37,10 10.5,14.58 14.63,10 15.37,10.66"></polygon> <line fill="none" stroke="#000" x1="10.5" y1="4" x2="10.5" y2="15"></line></svg>',"arrow-left":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" points="10 14 5 9.5 10 5"></polyline> <line fill="none" stroke="#000" x1="16" y1="9.5" x2="5" y2="9.52"></line></svg>',"arrow-right":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" points="10 5 15 9.5 10 14"></polyline> <line fill="none" stroke="#000" x1="4" y1="9.5" x2="15" y2="9.5"></line></svg>',"arrow-up":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="10.5,4 15.37,9.4 14.63,10.08 10.5,5.49 6.37,10.08 5.63,9.4"></polygon> <line fill="none" stroke="#000" x1="10.5" y1="16" x2="10.5" y2="5"></line></svg>',"chevron-down":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" stroke-width="1.03" points="16 7 10 13 4 7"></polyline></svg>',"chevron-left":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" stroke-width="1.03" points="13 16 7 10 13 4"></polyline></svg>',"chevron-right":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" stroke-width="1.03" points="7 4 13 10 7 16"></polyline></svg>',"chevron-up":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polyline fill="none" stroke="#000" stroke-width="1.03" points="4 13 10 7 16 13"></polyline></svg>',"cloud-download":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.1" d="M6.5,14.61 L3.75,14.61 C1.96,14.61 0.5,13.17 0.5,11.39 C0.5,9.76 1.72,8.41 3.3,8.2 C3.38,5.31 5.75,3 8.68,3 C11.19,3 13.31,4.71 13.89,7.02 C14.39,6.8 14.93,6.68 15.5,6.68 C17.71,6.68 19.5,8.45 19.5,10.64 C19.5,12.83 17.71,14.6 15.5,14.6 L12.5,14.6"></path> <polyline fill="none" stroke="#000" points="11.75 16 9.5 18.25 7.25 16"></polyline> <path fill="none" stroke="#000" d="M9.5,18 L9.5,9.5"></path></svg>',"cloud-upload":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" stroke-width="1.1" d="M6.5,14.61 L3.75,14.61 C1.96,14.61 0.5,13.17 0.5,11.39 C0.5,9.76 1.72,8.41 3.31,8.2 C3.38,5.31 5.75,3 8.68,3 C11.19,3 13.31,4.71 13.89,7.02 C14.39,6.8 14.93,6.68 15.5,6.68 C17.71,6.68 19.5,8.45 19.5,10.64 C19.5,12.83 17.71,14.6 15.5,14.6 L12.5,14.6"></path> <polyline fill="none" stroke="#000" points="7.25 11.75 9.5 9.5 11.75 11.75"></polyline> <path fill="none" stroke="#000" d="M9.5,18 L9.5,9.5"></path></svg>',"credit-card":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <rect fill="none" stroke="#000" x="1.5" y="4.5" width="17" height="12"></rect> <rect x="1" y="7" width="18" height="3"></rect></svg>',"file-edit":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" d="M18.65,1.68 C18.41,1.45 18.109,1.33 17.81,1.33 C17.499,1.33 17.209,1.45 16.98,1.68 L8.92,9.76 L8,12.33 L10.55,11.41 L18.651,3.34 C19.12,2.87 19.12,2.15 18.65,1.68 L18.65,1.68 L18.65,1.68 Z"></path> <polyline fill="none" stroke="#000" points="16.5 8.482 16.5 18.5 3.5 18.5 3.5 1.5 14.211 1.5"></polyline></svg>',"git-branch":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.2" cx="7" cy="3" r="2"></circle> <circle fill="none" stroke="#000" stroke-width="1.2" cx="14" cy="6" r="2"></circle> <circle fill="none" stroke="#000" stroke-width="1.2" cx="7" cy="17" r="2"></circle> <path fill="none" stroke="#000" stroke-width="2" d="M14,8 C14,10.41 12.43,10.87 10.56,11.25 C9.09,11.54 7,12.06 7,15 L7,5"></path></svg>',"git-fork":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.2" cx="5.79" cy="2.79" r="1.79"></circle> <circle fill="none" stroke="#000" stroke-width="1.2" cx="14.19" cy="2.79" r="1.79"></circle> <ellipse fill="none" stroke="#000" stroke-width="1.2" cx="10.03" cy="16.79" rx="1.79" ry="1.79"></ellipse> <path fill="none" stroke="#000" stroke-width="2" d="M5.79,4.57 L5.79,6.56 C5.79,9.19 10.03,10.22 10.03,13.31 C10.03,14.86 10.04,14.55 10.04,14.55 C10.04,14.37 10.04,14.86 10.04,13.31 C10.04,10.22 14.2,9.19 14.2,6.56 L14.2,4.57"></path></svg>',"github-alt":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M10,0.5 C4.75,0.5 0.5,4.76 0.5,10.01 C0.5,15.26 4.75,19.51 10,19.51 C15.24,19.51 19.5,15.26 19.5,10.01 C19.5,4.76 15.25,0.5 10,0.5 L10,0.5 Z M12.81,17.69 C12.81,17.69 12.81,17.7 12.79,17.69 C12.47,17.75 12.35,17.59 12.35,17.36 L12.35,16.17 C12.35,15.45 12.09,14.92 11.58,14.56 C12.2,14.51 12.77,14.39 13.26,14.21 C13.87,13.98 14.36,13.69 14.74,13.29 C15.42,12.59 15.76,11.55 15.76,10.17 C15.76,9.25 15.45,8.46 14.83,7.8 C15.1,7.08 15.07,6.29 14.75,5.44 L14.51,5.42 C14.34,5.4 14.06,5.46 13.67,5.61 C13.25,5.78 12.79,6.03 12.31,6.35 C11.55,6.16 10.81,6.05 10.09,6.05 C9.36,6.05 8.61,6.15 7.88,6.35 C7.28,5.96 6.75,5.68 6.26,5.54 C6.07,5.47 5.9,5.44 5.78,5.44 L5.42,5.44 C5.06,6.29 5.04,7.08 5.32,7.8 C4.7,8.46 4.4,9.25 4.4,10.17 C4.4,11.94 4.96,13.16 6.08,13.84 C6.53,14.13 7.05,14.32 7.69,14.43 C8.03,14.5 8.32,14.54 8.55,14.55 C8.07,14.89 7.82,15.42 7.82,16.16 L7.82,17.51 C7.8,17.69 7.7,17.8 7.51,17.8 C4.21,16.74 1.82,13.65 1.82,10.01 C1.82,5.5 5.49,1.83 10,1.83 C14.5,1.83 18.17,5.5 18.17,10.01 C18.18,13.53 15.94,16.54 12.81,17.69 L12.81,17.69 Z"></path></svg>',"google-plus":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M12.9,9c0,2.7-0.6,5-3.2,6.3c-3.7,1.8-8.1,0.2-9.4-3.6C-1.1,7.6,1.9,3.3,6.1,3c1.7-0.1,3.2,0.3,4.6,1.3 c0.1,0.1,0.3,0.2,0.4,0.4c-0.5,0.5-1.2,1-1.7,1.6c-1-0.8-2.1-1.1-3.5-0.9C5,5.6,4.2,6,3.6,6.7c-1.3,1.3-1.5,3.4-0.5,5 c1,1.7,2.6,2.3,4.6,1.9c1.4-0.3,2.4-1.2,2.6-2.6H6.9V9H12.9z"></path> <polygon points="20,9 20,11 18,11 18,13 16,13 16,11 14,11 14,9 16,9 16,7 18,7 18,9 "></polygon></svg>',"minus-circle":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9.5" cy="9.5" r="9"></circle> <line fill="none" stroke="#000" x1="5" y1="9.5" x2="14" y2="9.5"></line></svg>',"more-vertical":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle cx="10" cy="3" r="2"></circle> <circle cx="10" cy="10" r="2"></circle> <circle cx="10" cy="17" r="2"></circle></svg>',"paint-bucket":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M10.21,1 L0,11.21 L8.1,19.31 L18.31,9.1 L10.21,1 L10.21,1 Z M16.89,9.1 L15,11 L1.7,11 L10.21,2.42 L16.89,9.1 Z"></path> <path fill="none" stroke="#000" stroke-width="1.1" d="M6.42,2.33 L11.7,7.61"></path> <path d="M18.49,12 C18.49,12 20,14.06 20,15.36 C20,16.28 19.24,17 18.49,17 L18.49,17 C17.74,17 17,16.28 17,15.36 C17,14.06 18.49,12 18.49,12 L18.49,12 Z"></path></svg>',"phone-landscape":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" d="M17,5.5 C17.8,5.5 18.5,6.2 18.5,7 L18.5,14 C18.5,14.8 17.8,15.5 17,15.5 L3,15.5 C2.2,15.5 1.5,14.8 1.5,14 L1.5,7 C1.5,6.2 2.2,5.5 3,5.5 L17,5.5 L17,5.5 L17,5.5 Z"></path> <circle cx="3.8" cy="10.5" r="0.8"></circle></svg>',"play-circle":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon fill="none" stroke="#000" stroke-width="1.1" points="8.5 7 13.5 10 8.5 13"></polygon> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle></svg>',"plus-circle":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9.5" cy="9.5" r="9"></circle> <line fill="none" stroke="#000" x1="9.5" y1="5" x2="9.5" y2="14"></line> <line fill="none" stroke="#000" x1="5" y1="9.5" x2="14" y2="9.5"></line></svg>',"quote-right":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path d="M17.27,7.79 C17.27,9.45 16.97,10.43 15.99,12.02 C14.98,13.64 13,15.23 11.56,15.97 L11.1,15.08 C12.34,14.2 13.14,13.51 14.02,11.82 C14.27,11.34 14.41,10.92 14.49,10.54 C14.3,10.58 14.09,10.6 13.88,10.6 C12.06,10.6 10.59,9.12 10.59,7.3 C10.59,5.48 12.06,4 13.88,4 C15.39,4 16.67,5.02 17.05,6.42 C17.19,6.82 17.27,7.27 17.27,7.79 L17.27,7.79 Z"></path> <path d="M8.68,7.79 C8.68,9.45 8.38,10.43 7.4,12.02 C6.39,13.64 4.41,15.23 2.97,15.97 L2.51,15.08 C3.75,14.2 4.55,13.51 5.43,11.82 C5.68,11.34 5.82,10.92 5.9,10.54 C5.71,10.58 5.5,10.6 5.29,10.6 C3.47,10.6 2,9.12 2,7.3 C2,5.48 3.47,4 5.29,4 C6.8,4 8.08,5.02 8.46,6.42 C8.6,6.82 8.68,7.27 8.68,7.79 L8.68,7.79 Z"></path></svg>',"sign-in":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="7 2 17 2 17 17 7 17 7 16 16 16 16 3 7 3"></polygon> <polygon points="9.1 13.4 8.5 12.8 11.28 10 4 10 4 9 11.28 9 8.5 6.2 9.1 5.62 13 9.5"></polygon></svg>',"sign-out":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="13.1 13.4 12.5 12.8 15.28 10 8 10 8 9 15.28 9 12.5 6.2 13.1 5.62 17 9.5"></polygon> <polygon points="13 2 3 2 3 17 13 17 13 16 4 16 4 3 13 3"></polygon></svg>',"tablet-landscape":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <path fill="none" stroke="#000" d="M1.5,5 C1.5,4.2 2.2,3.5 3,3.5 L17,3.5 C17.8,3.5 18.5,4.2 18.5,5 L18.5,16 C18.5,16.8 17.8,17.5 17,17.5 L3,17.5 C2.2,17.5 1.5,16.8 1.5,16 L1.5,5 L1.5,5 L1.5,5 Z"></path> <circle cx="3.7" cy="10.5" r="0.8"></circle></svg>',"triangle-down":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="5 7 15 7 10 12"></polygon></svg>',"triangle-left":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="12 5 7 10 12 15"></polygon></svg>',"triangle-right":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="8 5 13 10 8 15"></polygon></svg>',"triangle-up":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="5 13 10 8 15 13"></polygon></svg>',"video-camera":'<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"> <polygon points="18,6 18,14 12,10 "></polygon> <rect x="2" y="5" width="12" height="10"></rect></svg>'};return"undefined"!=typeof window&&window.UIkit&&window.UIkit.use(t),t})},function(t,e){}]);
+webpackJsonp([0],[
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var bind = __webpack_require__(3);
+var isBuffer = __webpack_require__(17);
+
+/*global toString:true*/
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+function isArrayBuffer(val) {
+  return toString.call(val) === '[object ArrayBuffer]';
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(val) {
+  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+}
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+function isDate(val) {
+  return toString.call(val) === '[object Date]';
+}
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+function isFile(val) {
+  return toString.call(val) === '[object File]';
+}
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+function isBlob(val) {
+  return toString.call(val) === '[object Blob]';
+}
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+function isURLSearchParams(val) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object' && !isArray(obj)) {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = merge(result[key], val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  extend: extend,
+  trim: trim
+};
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(0);
+var normalizeHeaderName = __webpack_require__(19);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(5);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(5);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ }),
+/* 2 */,
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function bind(fn, thisArg) {
+  return function wrap() {
+    var args = new Array(arguments.length);
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i];
+    }
+    return fn.apply(thisArg, args);
+  };
+};
+
+
+/***/ }),
+/* 4 */,
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var settle = __webpack_require__(20);
+var buildURL = __webpack_require__(22);
+var parseHeaders = __webpack_require__(23);
+var isURLSameOrigin = __webpack_require__(24);
+var createError = __webpack_require__(6);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(25);
+
+module.exports = function xhrAdapter(config) {
+  return new Promise(function dispatchXhrRequest(resolve, reject) {
+    var requestData = config.data;
+    var requestHeaders = config.headers;
+
+    if (utils.isFormData(requestData)) {
+      delete requestHeaders['Content-Type']; // Let the browser set it
+    }
+
+    var request = new XMLHttpRequest();
+    var loadEvent = 'onreadystatechange';
+    var xDomain = false;
+
+    // For IE 8/9 CORS support
+    // Only supports POST and GET calls and doesn't returns the response headers.
+    // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+    if (!window.XMLHttpRequest &&
+        "development" !== 'test' &&
+        typeof window !== 'undefined' &&
+        window.XDomainRequest && !('withCredentials' in request) &&
+        !isURLSameOrigin(config.url)) {
+      request = new window.XDomainRequest();
+      loadEvent = 'onload';
+      xDomain = true;
+      request.onprogress = function handleProgress() {};
+      request.ontimeout = function handleTimeout() {};
+    }
+
+    // HTTP basic authentication
+    if (config.auth) {
+      var username = config.auth.username || '';
+      var password = config.auth.password || '';
+      requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+    // Set the request timeout in MS
+    request.timeout = config.timeout;
+
+    // Listen for ready state
+    request[loadEvent] = function handleLoad() {
+      if (!request || (request.readyState !== 4 && !xDomain)) {
+        return;
+      }
+
+      // The request errored out and we didn't get a response, this will be
+      // handled by onerror instead
+      // With one exception: request that using file: protocol, most browsers
+      // will return status as 0 even though it's a successful request
+      if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+        return;
+      }
+
+      // Prepare the response
+      var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+      var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+      var response = {
+        data: responseData,
+        // IE sends 1223 instead of 204 (https://github.com/axios/axios/issues/201)
+        status: request.status === 1223 ? 204 : request.status,
+        statusText: request.status === 1223 ? 'No Content' : request.statusText,
+        headers: responseHeaders,
+        config: config,
+        request: request
+      };
+
+      settle(resolve, reject, response);
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle low level network errors
+    request.onerror = function handleError() {
+      // Real errors are hidden from us by the browser
+      // onerror should only fire if it's a network error
+      reject(createError('Network Error', config, null, request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Handle timeout
+    request.ontimeout = function handleTimeout() {
+      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+        request));
+
+      // Clean up request
+      request = null;
+    };
+
+    // Add xsrf header
+    // This is only done if running in a standard browser environment.
+    // Specifically not if we're in a web worker, or react-native.
+    if (utils.isStandardBrowserEnv()) {
+      var cookies = __webpack_require__(26);
+
+      // Add xsrf header
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+          cookies.read(config.xsrfCookieName) :
+          undefined;
+
+      if (xsrfValue) {
+        requestHeaders[config.xsrfHeaderName] = xsrfValue;
+      }
+    }
+
+    // Add headers to the request
+    if ('setRequestHeader' in request) {
+      utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+        if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+          // Remove Content-Type if data is undefined
+          delete requestHeaders[key];
+        } else {
+          // Otherwise add header to the request
+          request.setRequestHeader(key, val);
+        }
+      });
+    }
+
+    // Add withCredentials to request if needed
+    if (config.withCredentials) {
+      request.withCredentials = true;
+    }
+
+    // Add responseType to request if needed
+    if (config.responseType) {
+      try {
+        request.responseType = config.responseType;
+      } catch (e) {
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
+        // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
+        if (config.responseType !== 'json') {
+          throw e;
+        }
+      }
+    }
+
+    // Handle progress if needed
+    if (typeof config.onDownloadProgress === 'function') {
+      request.addEventListener('progress', config.onDownloadProgress);
+    }
+
+    // Not all browsers support upload events
+    if (typeof config.onUploadProgress === 'function' && request.upload) {
+      request.upload.addEventListener('progress', config.onUploadProgress);
+    }
+
+    if (config.cancelToken) {
+      // Handle cancellation
+      config.cancelToken.promise.then(function onCanceled(cancel) {
+        if (!request) {
+          return;
+        }
+
+        request.abort();
+        reject(cancel);
+        // Clean up request
+        request = null;
+      });
+    }
+
+    if (requestData === undefined) {
+      requestData = null;
+    }
+
+    // Send the request
+    request.send(requestData);
+  });
+};
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var enhanceError = __webpack_require__(21);
+
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The created error.
+ */
+module.exports = function createError(message, config, code, request, response) {
+  var error = new Error(message);
+  return enhanceError(error, config, code, request, response);
+};
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function isCancel(value) {
+  return !!(value && value.__CANCEL__);
+};
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A `Cancel` is an object that is thrown when an operation is canceled.
+ *
+ * @class
+ * @param {string=} message The message.
+ */
+function Cancel(message) {
+  this.message = message;
+}
+
+Cancel.prototype.toString = function toString() {
+  return 'Cancel' + (this.message ? ': ' + this.message : '');
+};
+
+Cancel.prototype.__CANCEL__ = true;
+
+module.exports = Cancel;
+
+
+/***/ }),
+/* 9 */,
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(11);
+module.exports = __webpack_require__(37);
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bootstrap__ = __webpack_require__(12);
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uikit__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_uikit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_uikit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uikit_dist_js_uikit_icons__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_uikit_dist_js_uikit_icons___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_uikit_dist_js_uikit_icons__);
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_2_uikit___default.a.use(__WEBPACK_IMPORTED_MODULE_3_uikit_dist_js_uikit_icons___default.a);
+
+window._ = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a;
+window.axios = __WEBPACK_IMPORTED_MODULE_1_axios___default.a;
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+	window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+	console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @license
+ * Lodash <https://lodash.com/>
+ * Copyright JS Foundation and other contributors <https://js.foundation/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+;(function() {
+
+  /** Used as a safe reference for `undefined` in pre-ES5 environments. */
+  var undefined;
+
+  /** Used as the semantic version number. */
+  var VERSION = '4.17.4';
+
+  /** Used as the size to enable large array optimizations. */
+  var LARGE_ARRAY_SIZE = 200;
+
+  /** Error message constants. */
+  var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
+      FUNC_ERROR_TEXT = 'Expected a function';
+
+  /** Used to stand-in for `undefined` hash values. */
+  var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+  /** Used as the maximum memoize cache size. */
+  var MAX_MEMOIZE_SIZE = 500;
+
+  /** Used as the internal argument placeholder. */
+  var PLACEHOLDER = '__lodash_placeholder__';
+
+  /** Used to compose bitmasks for cloning. */
+  var CLONE_DEEP_FLAG = 1,
+      CLONE_FLAT_FLAG = 2,
+      CLONE_SYMBOLS_FLAG = 4;
+
+  /** Used to compose bitmasks for value comparisons. */
+  var COMPARE_PARTIAL_FLAG = 1,
+      COMPARE_UNORDERED_FLAG = 2;
+
+  /** Used to compose bitmasks for function metadata. */
+  var WRAP_BIND_FLAG = 1,
+      WRAP_BIND_KEY_FLAG = 2,
+      WRAP_CURRY_BOUND_FLAG = 4,
+      WRAP_CURRY_FLAG = 8,
+      WRAP_CURRY_RIGHT_FLAG = 16,
+      WRAP_PARTIAL_FLAG = 32,
+      WRAP_PARTIAL_RIGHT_FLAG = 64,
+      WRAP_ARY_FLAG = 128,
+      WRAP_REARG_FLAG = 256,
+      WRAP_FLIP_FLAG = 512;
+
+  /** Used as default options for `_.truncate`. */
+  var DEFAULT_TRUNC_LENGTH = 30,
+      DEFAULT_TRUNC_OMISSION = '...';
+
+  /** Used to detect hot functions by number of calls within a span of milliseconds. */
+  var HOT_COUNT = 800,
+      HOT_SPAN = 16;
+
+  /** Used to indicate the type of lazy iteratees. */
+  var LAZY_FILTER_FLAG = 1,
+      LAZY_MAP_FLAG = 2,
+      LAZY_WHILE_FLAG = 3;
+
+  /** Used as references for various `Number` constants. */
+  var INFINITY = 1 / 0,
+      MAX_SAFE_INTEGER = 9007199254740991,
+      MAX_INTEGER = 1.7976931348623157e+308,
+      NAN = 0 / 0;
+
+  /** Used as references for the maximum length and index of an array. */
+  var MAX_ARRAY_LENGTH = 4294967295,
+      MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1,
+      HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
+
+  /** Used to associate wrap methods with their bit flags. */
+  var wrapFlags = [
+    ['ary', WRAP_ARY_FLAG],
+    ['bind', WRAP_BIND_FLAG],
+    ['bindKey', WRAP_BIND_KEY_FLAG],
+    ['curry', WRAP_CURRY_FLAG],
+    ['curryRight', WRAP_CURRY_RIGHT_FLAG],
+    ['flip', WRAP_FLIP_FLAG],
+    ['partial', WRAP_PARTIAL_FLAG],
+    ['partialRight', WRAP_PARTIAL_RIGHT_FLAG],
+    ['rearg', WRAP_REARG_FLAG]
+  ];
+
+  /** `Object#toString` result references. */
+  var argsTag = '[object Arguments]',
+      arrayTag = '[object Array]',
+      asyncTag = '[object AsyncFunction]',
+      boolTag = '[object Boolean]',
+      dateTag = '[object Date]',
+      domExcTag = '[object DOMException]',
+      errorTag = '[object Error]',
+      funcTag = '[object Function]',
+      genTag = '[object GeneratorFunction]',
+      mapTag = '[object Map]',
+      numberTag = '[object Number]',
+      nullTag = '[object Null]',
+      objectTag = '[object Object]',
+      promiseTag = '[object Promise]',
+      proxyTag = '[object Proxy]',
+      regexpTag = '[object RegExp]',
+      setTag = '[object Set]',
+      stringTag = '[object String]',
+      symbolTag = '[object Symbol]',
+      undefinedTag = '[object Undefined]',
+      weakMapTag = '[object WeakMap]',
+      weakSetTag = '[object WeakSet]';
+
+  var arrayBufferTag = '[object ArrayBuffer]',
+      dataViewTag = '[object DataView]',
+      float32Tag = '[object Float32Array]',
+      float64Tag = '[object Float64Array]',
+      int8Tag = '[object Int8Array]',
+      int16Tag = '[object Int16Array]',
+      int32Tag = '[object Int32Array]',
+      uint8Tag = '[object Uint8Array]',
+      uint8ClampedTag = '[object Uint8ClampedArray]',
+      uint16Tag = '[object Uint16Array]',
+      uint32Tag = '[object Uint32Array]';
+
+  /** Used to match empty string literals in compiled template source. */
+  var reEmptyStringLeading = /\b__p \+= '';/g,
+      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
+      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
+
+  /** Used to match HTML entities and HTML characters. */
+  var reEscapedHtml = /&(?:amp|lt|gt|quot|#39);/g,
+      reUnescapedHtml = /[&<>"']/g,
+      reHasEscapedHtml = RegExp(reEscapedHtml.source),
+      reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
+
+  /** Used to match template delimiters. */
+  var reEscape = /<%-([\s\S]+?)%>/g,
+      reEvaluate = /<%([\s\S]+?)%>/g,
+      reInterpolate = /<%=([\s\S]+?)%>/g;
+
+  /** Used to match property names within property paths. */
+  var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+      reIsPlainProp = /^\w*$/,
+      reLeadingDot = /^\./,
+      rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+
+  /**
+   * Used to match `RegExp`
+   * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+   */
+  var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
+      reHasRegExpChar = RegExp(reRegExpChar.source);
+
+  /** Used to match leading and trailing whitespace. */
+  var reTrim = /^\s+|\s+$/g,
+      reTrimStart = /^\s+/,
+      reTrimEnd = /\s+$/;
+
+  /** Used to match wrap detail comments. */
+  var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
+      reWrapDetails = /\{\n\/\* \[wrapped with (.+)\] \*/,
+      reSplitDetails = /,? & /;
+
+  /** Used to match words composed of alphanumeric characters. */
+  var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+
+  /** Used to match backslashes in property paths. */
+  var reEscapeChar = /\\(\\)?/g;
+
+  /**
+   * Used to match
+   * [ES template delimiters](http://ecma-international.org/ecma-262/7.0/#sec-template-literal-lexical-components).
+   */
+  var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
+
+  /** Used to match `RegExp` flags from their coerced string values. */
+  var reFlags = /\w*$/;
+
+  /** Used to detect bad signed hexadecimal string values. */
+  var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+  /** Used to detect binary string values. */
+  var reIsBinary = /^0b[01]+$/i;
+
+  /** Used to detect host constructors (Safari). */
+  var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+  /** Used to detect octal string values. */
+  var reIsOctal = /^0o[0-7]+$/i;
+
+  /** Used to detect unsigned integer values. */
+  var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+  /** Used to match Latin Unicode letters (excluding mathematical operators). */
+  var reLatin = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
+
+  /** Used to ensure capturing order of template delimiters. */
+  var reNoMatch = /($^)/;
+
+  /** Used to match unescaped characters in compiled string literals. */
+  var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
+
+  /** Used to compose unicode character classes. */
+  var rsAstralRange = '\\ud800-\\udfff',
+      rsComboMarksRange = '\\u0300-\\u036f',
+      reComboHalfMarksRange = '\\ufe20-\\ufe2f',
+      rsComboSymbolsRange = '\\u20d0-\\u20ff',
+      rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange,
+      rsDingbatRange = '\\u2700-\\u27bf',
+      rsLowerRange = 'a-z\\xdf-\\xf6\\xf8-\\xff',
+      rsMathOpRange = '\\xac\\xb1\\xd7\\xf7',
+      rsNonCharRange = '\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf',
+      rsPunctuationRange = '\\u2000-\\u206f',
+      rsSpaceRange = ' \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000',
+      rsUpperRange = 'A-Z\\xc0-\\xd6\\xd8-\\xde',
+      rsVarRange = '\\ufe0e\\ufe0f',
+      rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
+
+  /** Used to compose unicode capture groups. */
+  var rsApos = "['\u2019]",
+      rsAstral = '[' + rsAstralRange + ']',
+      rsBreak = '[' + rsBreakRange + ']',
+      rsCombo = '[' + rsComboRange + ']',
+      rsDigits = '\\d+',
+      rsDingbat = '[' + rsDingbatRange + ']',
+      rsLower = '[' + rsLowerRange + ']',
+      rsMisc = '[^' + rsAstralRange + rsBreakRange + rsDigits + rsDingbatRange + rsLowerRange + rsUpperRange + ']',
+      rsFitz = '\\ud83c[\\udffb-\\udfff]',
+      rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
+      rsNonAstral = '[^' + rsAstralRange + ']',
+      rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){2}',
+      rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
+      rsUpper = '[' + rsUpperRange + ']',
+      rsZWJ = '\\u200d';
+
+  /** Used to compose unicode regexes. */
+  var rsMiscLower = '(?:' + rsLower + '|' + rsMisc + ')',
+      rsMiscUpper = '(?:' + rsUpper + '|' + rsMisc + ')',
+      rsOptContrLower = '(?:' + rsApos + '(?:d|ll|m|re|s|t|ve))?',
+      rsOptContrUpper = '(?:' + rsApos + '(?:D|LL|M|RE|S|T|VE))?',
+      reOptMod = rsModifier + '?',
+      rsOptVar = '[' + rsVarRange + ']?',
+      rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
+      rsOrdLower = '\\d*(?:(?:1st|2nd|3rd|(?![123])\\dth)\\b)',
+      rsOrdUpper = '\\d*(?:(?:1ST|2ND|3RD|(?![123])\\dTH)\\b)',
+      rsSeq = rsOptVar + reOptMod + rsOptJoin,
+      rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq,
+      rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
+
+  /** Used to match apostrophes. */
+  var reApos = RegExp(rsApos, 'g');
+
+  /**
+   * Used to match [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks) and
+   * [combining diacritical marks for symbols](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks_for_Symbols).
+   */
+  var reComboMark = RegExp(rsCombo, 'g');
+
+  /** Used to match [string symbols](https://mathiasbynens.be/notes/javascript-unicode). */
+  var reUnicode = RegExp(rsFitz + '(?=' + rsFitz + ')|' + rsSymbol + rsSeq, 'g');
+
+  /** Used to match complex or compound words. */
+  var reUnicodeWord = RegExp([
+    rsUpper + '?' + rsLower + '+' + rsOptContrLower + '(?=' + [rsBreak, rsUpper, '$'].join('|') + ')',
+    rsMiscUpper + '+' + rsOptContrUpper + '(?=' + [rsBreak, rsUpper + rsMiscLower, '$'].join('|') + ')',
+    rsUpper + '?' + rsMiscLower + '+' + rsOptContrLower,
+    rsUpper + '+' + rsOptContrUpper,
+    rsOrdUpper,
+    rsOrdLower,
+    rsDigits,
+    rsEmoji
+  ].join('|'), 'g');
+
+  /** Used to detect strings with [zero-width joiners or code points from the astral planes](http://eev.ee/blog/2015/09/12/dark-corners-of-unicode/). */
+  var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange  + rsComboRange + rsVarRange + ']');
+
+  /** Used to detect strings that need a more robust regexp to match words. */
+  var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+
+  /** Used to assign default `context` object properties. */
+  var contextProps = [
+    'Array', 'Buffer', 'DataView', 'Date', 'Error', 'Float32Array', 'Float64Array',
+    'Function', 'Int8Array', 'Int16Array', 'Int32Array', 'Map', 'Math', 'Object',
+    'Promise', 'RegExp', 'Set', 'String', 'Symbol', 'TypeError', 'Uint8Array',
+    'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'WeakMap',
+    '_', 'clearTimeout', 'isFinite', 'parseInt', 'setTimeout'
+  ];
+
+  /** Used to make template sourceURLs easier to identify. */
+  var templateCounter = -1;
+
+  /** Used to identify `toStringTag` values of typed arrays. */
+  var typedArrayTags = {};
+  typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+  typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+  typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+  typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+  typedArrayTags[uint32Tag] = true;
+  typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
+  typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+  typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
+  typedArrayTags[errorTag] = typedArrayTags[funcTag] =
+  typedArrayTags[mapTag] = typedArrayTags[numberTag] =
+  typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
+  typedArrayTags[setTag] = typedArrayTags[stringTag] =
+  typedArrayTags[weakMapTag] = false;
+
+  /** Used to identify `toStringTag` values supported by `_.clone`. */
+  var cloneableTags = {};
+  cloneableTags[argsTag] = cloneableTags[arrayTag] =
+  cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] =
+  cloneableTags[boolTag] = cloneableTags[dateTag] =
+  cloneableTags[float32Tag] = cloneableTags[float64Tag] =
+  cloneableTags[int8Tag] = cloneableTags[int16Tag] =
+  cloneableTags[int32Tag] = cloneableTags[mapTag] =
+  cloneableTags[numberTag] = cloneableTags[objectTag] =
+  cloneableTags[regexpTag] = cloneableTags[setTag] =
+  cloneableTags[stringTag] = cloneableTags[symbolTag] =
+  cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
+  cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+  cloneableTags[errorTag] = cloneableTags[funcTag] =
+  cloneableTags[weakMapTag] = false;
+
+  /** Used to map Latin Unicode letters to basic Latin letters. */
+  var deburredLetters = {
+    // Latin-1 Supplement block.
+    '\xc0': 'A',  '\xc1': 'A', '\xc2': 'A', '\xc3': 'A', '\xc4': 'A', '\xc5': 'A',
+    '\xe0': 'a',  '\xe1': 'a', '\xe2': 'a', '\xe3': 'a', '\xe4': 'a', '\xe5': 'a',
+    '\xc7': 'C',  '\xe7': 'c',
+    '\xd0': 'D',  '\xf0': 'd',
+    '\xc8': 'E',  '\xc9': 'E', '\xca': 'E', '\xcb': 'E',
+    '\xe8': 'e',  '\xe9': 'e', '\xea': 'e', '\xeb': 'e',
+    '\xcc': 'I',  '\xcd': 'I', '\xce': 'I', '\xcf': 'I',
+    '\xec': 'i',  '\xed': 'i', '\xee': 'i', '\xef': 'i',
+    '\xd1': 'N',  '\xf1': 'n',
+    '\xd2': 'O',  '\xd3': 'O', '\xd4': 'O', '\xd5': 'O', '\xd6': 'O', '\xd8': 'O',
+    '\xf2': 'o',  '\xf3': 'o', '\xf4': 'o', '\xf5': 'o', '\xf6': 'o', '\xf8': 'o',
+    '\xd9': 'U',  '\xda': 'U', '\xdb': 'U', '\xdc': 'U',
+    '\xf9': 'u',  '\xfa': 'u', '\xfb': 'u', '\xfc': 'u',
+    '\xdd': 'Y',  '\xfd': 'y', '\xff': 'y',
+    '\xc6': 'Ae', '\xe6': 'ae',
+    '\xde': 'Th', '\xfe': 'th',
+    '\xdf': 'ss',
+    // Latin Extended-A block.
+    '\u0100': 'A',  '\u0102': 'A', '\u0104': 'A',
+    '\u0101': 'a',  '\u0103': 'a', '\u0105': 'a',
+    '\u0106': 'C',  '\u0108': 'C', '\u010a': 'C', '\u010c': 'C',
+    '\u0107': 'c',  '\u0109': 'c', '\u010b': 'c', '\u010d': 'c',
+    '\u010e': 'D',  '\u0110': 'D', '\u010f': 'd', '\u0111': 'd',
+    '\u0112': 'E',  '\u0114': 'E', '\u0116': 'E', '\u0118': 'E', '\u011a': 'E',
+    '\u0113': 'e',  '\u0115': 'e', '\u0117': 'e', '\u0119': 'e', '\u011b': 'e',
+    '\u011c': 'G',  '\u011e': 'G', '\u0120': 'G', '\u0122': 'G',
+    '\u011d': 'g',  '\u011f': 'g', '\u0121': 'g', '\u0123': 'g',
+    '\u0124': 'H',  '\u0126': 'H', '\u0125': 'h', '\u0127': 'h',
+    '\u0128': 'I',  '\u012a': 'I', '\u012c': 'I', '\u012e': 'I', '\u0130': 'I',
+    '\u0129': 'i',  '\u012b': 'i', '\u012d': 'i', '\u012f': 'i', '\u0131': 'i',
+    '\u0134': 'J',  '\u0135': 'j',
+    '\u0136': 'K',  '\u0137': 'k', '\u0138': 'k',
+    '\u0139': 'L',  '\u013b': 'L', '\u013d': 'L', '\u013f': 'L', '\u0141': 'L',
+    '\u013a': 'l',  '\u013c': 'l', '\u013e': 'l', '\u0140': 'l', '\u0142': 'l',
+    '\u0143': 'N',  '\u0145': 'N', '\u0147': 'N', '\u014a': 'N',
+    '\u0144': 'n',  '\u0146': 'n', '\u0148': 'n', '\u014b': 'n',
+    '\u014c': 'O',  '\u014e': 'O', '\u0150': 'O',
+    '\u014d': 'o',  '\u014f': 'o', '\u0151': 'o',
+    '\u0154': 'R',  '\u0156': 'R', '\u0158': 'R',
+    '\u0155': 'r',  '\u0157': 'r', '\u0159': 'r',
+    '\u015a': 'S',  '\u015c': 'S', '\u015e': 'S', '\u0160': 'S',
+    '\u015b': 's',  '\u015d': 's', '\u015f': 's', '\u0161': 's',
+    '\u0162': 'T',  '\u0164': 'T', '\u0166': 'T',
+    '\u0163': 't',  '\u0165': 't', '\u0167': 't',
+    '\u0168': 'U',  '\u016a': 'U', '\u016c': 'U', '\u016e': 'U', '\u0170': 'U', '\u0172': 'U',
+    '\u0169': 'u',  '\u016b': 'u', '\u016d': 'u', '\u016f': 'u', '\u0171': 'u', '\u0173': 'u',
+    '\u0174': 'W',  '\u0175': 'w',
+    '\u0176': 'Y',  '\u0177': 'y', '\u0178': 'Y',
+    '\u0179': 'Z',  '\u017b': 'Z', '\u017d': 'Z',
+    '\u017a': 'z',  '\u017c': 'z', '\u017e': 'z',
+    '\u0132': 'IJ', '\u0133': 'ij',
+    '\u0152': 'Oe', '\u0153': 'oe',
+    '\u0149': "'n", '\u017f': 's'
+  };
+
+  /** Used to map characters to HTML entities. */
+  var htmlEscapes = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  };
+
+  /** Used to map HTML entities to characters. */
+  var htmlUnescapes = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'"
+  };
+
+  /** Used to escape characters for inclusion in compiled string literals. */
+  var stringEscapes = {
+    '\\': '\\',
+    "'": "'",
+    '\n': 'n',
+    '\r': 'r',
+    '\u2028': 'u2028',
+    '\u2029': 'u2029'
+  };
+
+  /** Built-in method references without a dependency on `root`. */
+  var freeParseFloat = parseFloat,
+      freeParseInt = parseInt;
+
+  /** Detect free variable `global` from Node.js. */
+  var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+  /** Detect free variable `self`. */
+  var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+  /** Used as a reference to the global object. */
+  var root = freeGlobal || freeSelf || Function('return this')();
+
+  /** Detect free variable `exports`. */
+  var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+  /** Detect free variable `module`. */
+  var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+  /** Detect the popular CommonJS extension `module.exports`. */
+  var moduleExports = freeModule && freeModule.exports === freeExports;
+
+  /** Detect free variable `process` from Node.js. */
+  var freeProcess = moduleExports && freeGlobal.process;
+
+  /** Used to access faster Node.js helpers. */
+  var nodeUtil = (function() {
+    try {
+      return freeProcess && freeProcess.binding && freeProcess.binding('util');
+    } catch (e) {}
+  }());
+
+  /* Node.js helper references. */
+  var nodeIsArrayBuffer = nodeUtil && nodeUtil.isArrayBuffer,
+      nodeIsDate = nodeUtil && nodeUtil.isDate,
+      nodeIsMap = nodeUtil && nodeUtil.isMap,
+      nodeIsRegExp = nodeUtil && nodeUtil.isRegExp,
+      nodeIsSet = nodeUtil && nodeUtil.isSet,
+      nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Adds the key-value `pair` to `map`.
+   *
+   * @private
+   * @param {Object} map The map to modify.
+   * @param {Array} pair The key-value pair to add.
+   * @returns {Object} Returns `map`.
+   */
+  function addMapEntry(map, pair) {
+    // Don't return `map.set` because it's not chainable in IE 11.
+    map.set(pair[0], pair[1]);
+    return map;
+  }
+
+  /**
+   * Adds `value` to `set`.
+   *
+   * @private
+   * @param {Object} set The set to modify.
+   * @param {*} value The value to add.
+   * @returns {Object} Returns `set`.
+   */
+  function addSetEntry(set, value) {
+    // Don't return `set.add` because it's not chainable in IE 11.
+    set.add(value);
+    return set;
+  }
+
+  /**
+   * A faster alternative to `Function#apply`, this function invokes `func`
+   * with the `this` binding of `thisArg` and the arguments of `args`.
+   *
+   * @private
+   * @param {Function} func The function to invoke.
+   * @param {*} thisArg The `this` binding of `func`.
+   * @param {Array} args The arguments to invoke `func` with.
+   * @returns {*} Returns the result of `func`.
+   */
+  function apply(func, thisArg, args) {
+    switch (args.length) {
+      case 0: return func.call(thisArg);
+      case 1: return func.call(thisArg, args[0]);
+      case 2: return func.call(thisArg, args[0], args[1]);
+      case 3: return func.call(thisArg, args[0], args[1], args[2]);
+    }
+    return func.apply(thisArg, args);
+  }
+
+  /**
+   * A specialized version of `baseAggregator` for arrays.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} setter The function to set `accumulator` values.
+   * @param {Function} iteratee The iteratee to transform keys.
+   * @param {Object} accumulator The initial aggregated object.
+   * @returns {Function} Returns `accumulator`.
+   */
+  function arrayAggregator(array, setter, iteratee, accumulator) {
+    var index = -1,
+        length = array == null ? 0 : array.length;
+
+    while (++index < length) {
+      var value = array[index];
+      setter(accumulator, value, iteratee(value), array);
+    }
+    return accumulator;
+  }
+
+  /**
+   * A specialized version of `_.forEach` for arrays without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {Array} Returns `array`.
+   */
+  function arrayEach(array, iteratee) {
+    var index = -1,
+        length = array == null ? 0 : array.length;
+
+    while (++index < length) {
+      if (iteratee(array[index], index, array) === false) {
+        break;
+      }
+    }
+    return array;
+  }
+
+  /**
+   * A specialized version of `_.forEachRight` for arrays without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {Array} Returns `array`.
+   */
+  function arrayEachRight(array, iteratee) {
+    var length = array == null ? 0 : array.length;
+
+    while (length--) {
+      if (iteratee(array[length], length, array) === false) {
+        break;
+      }
+    }
+    return array;
+  }
+
+  /**
+   * A specialized version of `_.every` for arrays without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} predicate The function invoked per iteration.
+   * @returns {boolean} Returns `true` if all elements pass the predicate check,
+   *  else `false`.
+   */
+  function arrayEvery(array, predicate) {
+    var index = -1,
+        length = array == null ? 0 : array.length;
+
+    while (++index < length) {
+      if (!predicate(array[index], index, array)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * A specialized version of `_.filter` for arrays without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} predicate The function invoked per iteration.
+   * @returns {Array} Returns the new filtered array.
+   */
+  function arrayFilter(array, predicate) {
+    var index = -1,
+        length = array == null ? 0 : array.length,
+        resIndex = 0,
+        result = [];
+
+    while (++index < length) {
+      var value = array[index];
+      if (predicate(value, index, array)) {
+        result[resIndex++] = value;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * A specialized version of `_.includes` for arrays without support for
+   * specifying an index to search from.
+   *
+   * @private
+   * @param {Array} [array] The array to inspect.
+   * @param {*} target The value to search for.
+   * @returns {boolean} Returns `true` if `target` is found, else `false`.
+   */
+  function arrayIncludes(array, value) {
+    var length = array == null ? 0 : array.length;
+    return !!length && baseIndexOf(array, value, 0) > -1;
+  }
+
+  /**
+   * This function is like `arrayIncludes` except that it accepts a comparator.
+   *
+   * @private
+   * @param {Array} [array] The array to inspect.
+   * @param {*} target The value to search for.
+   * @param {Function} comparator The comparator invoked per element.
+   * @returns {boolean} Returns `true` if `target` is found, else `false`.
+   */
+  function arrayIncludesWith(array, value, comparator) {
+    var index = -1,
+        length = array == null ? 0 : array.length;
+
+    while (++index < length) {
+      if (comparator(value, array[index])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * A specialized version of `_.map` for arrays without support for iteratee
+   * shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {Array} Returns the new mapped array.
+   */
+  function arrayMap(array, iteratee) {
+    var index = -1,
+        length = array == null ? 0 : array.length,
+        result = Array(length);
+
+    while (++index < length) {
+      result[index] = iteratee(array[index], index, array);
+    }
+    return result;
+  }
+
+  /**
+   * Appends the elements of `values` to `array`.
+   *
+   * @private
+   * @param {Array} array The array to modify.
+   * @param {Array} values The values to append.
+   * @returns {Array} Returns `array`.
+   */
+  function arrayPush(array, values) {
+    var index = -1,
+        length = values.length,
+        offset = array.length;
+
+    while (++index < length) {
+      array[offset + index] = values[index];
+    }
+    return array;
+  }
+
+  /**
+   * A specialized version of `_.reduce` for arrays without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @param {*} [accumulator] The initial value.
+   * @param {boolean} [initAccum] Specify using the first element of `array` as
+   *  the initial value.
+   * @returns {*} Returns the accumulated value.
+   */
+  function arrayReduce(array, iteratee, accumulator, initAccum) {
+    var index = -1,
+        length = array == null ? 0 : array.length;
+
+    if (initAccum && length) {
+      accumulator = array[++index];
+    }
+    while (++index < length) {
+      accumulator = iteratee(accumulator, array[index], index, array);
+    }
+    return accumulator;
+  }
+
+  /**
+   * A specialized version of `_.reduceRight` for arrays without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @param {*} [accumulator] The initial value.
+   * @param {boolean} [initAccum] Specify using the last element of `array` as
+   *  the initial value.
+   * @returns {*} Returns the accumulated value.
+   */
+  function arrayReduceRight(array, iteratee, accumulator, initAccum) {
+    var length = array == null ? 0 : array.length;
+    if (initAccum && length) {
+      accumulator = array[--length];
+    }
+    while (length--) {
+      accumulator = iteratee(accumulator, array[length], length, array);
+    }
+    return accumulator;
+  }
+
+  /**
+   * A specialized version of `_.some` for arrays without support for iteratee
+   * shorthands.
+   *
+   * @private
+   * @param {Array} [array] The array to iterate over.
+   * @param {Function} predicate The function invoked per iteration.
+   * @returns {boolean} Returns `true` if any element passes the predicate check,
+   *  else `false`.
+   */
+  function arraySome(array, predicate) {
+    var index = -1,
+        length = array == null ? 0 : array.length;
+
+    while (++index < length) {
+      if (predicate(array[index], index, array)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Gets the size of an ASCII `string`.
+   *
+   * @private
+   * @param {string} string The string inspect.
+   * @returns {number} Returns the string size.
+   */
+  var asciiSize = baseProperty('length');
+
+  /**
+   * Converts an ASCII `string` to an array.
+   *
+   * @private
+   * @param {string} string The string to convert.
+   * @returns {Array} Returns the converted array.
+   */
+  function asciiToArray(string) {
+    return string.split('');
+  }
+
+  /**
+   * Splits an ASCII `string` into an array of its words.
+   *
+   * @private
+   * @param {string} The string to inspect.
+   * @returns {Array} Returns the words of `string`.
+   */
+  function asciiWords(string) {
+    return string.match(reAsciiWord) || [];
+  }
+
+  /**
+   * The base implementation of methods like `_.findKey` and `_.findLastKey`,
+   * without support for iteratee shorthands, which iterates over `collection`
+   * using `eachFunc`.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to inspect.
+   * @param {Function} predicate The function invoked per iteration.
+   * @param {Function} eachFunc The function to iterate over `collection`.
+   * @returns {*} Returns the found element or its key, else `undefined`.
+   */
+  function baseFindKey(collection, predicate, eachFunc) {
+    var result;
+    eachFunc(collection, function(value, key, collection) {
+      if (predicate(value, key, collection)) {
+        result = key;
+        return false;
+      }
+    });
+    return result;
+  }
+
+  /**
+   * The base implementation of `_.findIndex` and `_.findLastIndex` without
+   * support for iteratee shorthands.
+   *
+   * @private
+   * @param {Array} array The array to inspect.
+   * @param {Function} predicate The function invoked per iteration.
+   * @param {number} fromIndex The index to search from.
+   * @param {boolean} [fromRight] Specify iterating from right to left.
+   * @returns {number} Returns the index of the matched value, else `-1`.
+   */
+  function baseFindIndex(array, predicate, fromIndex, fromRight) {
+    var length = array.length,
+        index = fromIndex + (fromRight ? 1 : -1);
+
+    while ((fromRight ? index-- : ++index < length)) {
+      if (predicate(array[index], index, array)) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * The base implementation of `_.indexOf` without `fromIndex` bounds checks.
+   *
+   * @private
+   * @param {Array} array The array to inspect.
+   * @param {*} value The value to search for.
+   * @param {number} fromIndex The index to search from.
+   * @returns {number} Returns the index of the matched value, else `-1`.
+   */
+  function baseIndexOf(array, value, fromIndex) {
+    return value === value
+      ? strictIndexOf(array, value, fromIndex)
+      : baseFindIndex(array, baseIsNaN, fromIndex);
+  }
+
+  /**
+   * This function is like `baseIndexOf` except that it accepts a comparator.
+   *
+   * @private
+   * @param {Array} array The array to inspect.
+   * @param {*} value The value to search for.
+   * @param {number} fromIndex The index to search from.
+   * @param {Function} comparator The comparator invoked per element.
+   * @returns {number} Returns the index of the matched value, else `-1`.
+   */
+  function baseIndexOfWith(array, value, fromIndex, comparator) {
+    var index = fromIndex - 1,
+        length = array.length;
+
+    while (++index < length) {
+      if (comparator(array[index], value)) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * The base implementation of `_.isNaN` without support for number objects.
+   *
+   * @private
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+   */
+  function baseIsNaN(value) {
+    return value !== value;
+  }
+
+  /**
+   * The base implementation of `_.mean` and `_.meanBy` without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} array The array to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {number} Returns the mean.
+   */
+  function baseMean(array, iteratee) {
+    var length = array == null ? 0 : array.length;
+    return length ? (baseSum(array, iteratee) / length) : NAN;
+  }
+
+  /**
+   * The base implementation of `_.property` without support for deep paths.
+   *
+   * @private
+   * @param {string} key The key of the property to get.
+   * @returns {Function} Returns the new accessor function.
+   */
+  function baseProperty(key) {
+    return function(object) {
+      return object == null ? undefined : object[key];
+    };
+  }
+
+  /**
+   * The base implementation of `_.propertyOf` without support for deep paths.
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @returns {Function} Returns the new accessor function.
+   */
+  function basePropertyOf(object) {
+    return function(key) {
+      return object == null ? undefined : object[key];
+    };
+  }
+
+  /**
+   * The base implementation of `_.reduce` and `_.reduceRight`, without support
+   * for iteratee shorthands, which iterates over `collection` using `eachFunc`.
+   *
+   * @private
+   * @param {Array|Object} collection The collection to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @param {*} accumulator The initial value.
+   * @param {boolean} initAccum Specify using the first or last element of
+   *  `collection` as the initial value.
+   * @param {Function} eachFunc The function to iterate over `collection`.
+   * @returns {*} Returns the accumulated value.
+   */
+  function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
+    eachFunc(collection, function(value, index, collection) {
+      accumulator = initAccum
+        ? (initAccum = false, value)
+        : iteratee(accumulator, value, index, collection);
+    });
+    return accumulator;
+  }
+
+  /**
+   * The base implementation of `_.sortBy` which uses `comparer` to define the
+   * sort order of `array` and replaces criteria objects with their corresponding
+   * values.
+   *
+   * @private
+   * @param {Array} array The array to sort.
+   * @param {Function} comparer The function to define sort order.
+   * @returns {Array} Returns `array`.
+   */
+  function baseSortBy(array, comparer) {
+    var length = array.length;
+
+    array.sort(comparer);
+    while (length--) {
+      array[length] = array[length].value;
+    }
+    return array;
+  }
+
+  /**
+   * The base implementation of `_.sum` and `_.sumBy` without support for
+   * iteratee shorthands.
+   *
+   * @private
+   * @param {Array} array The array to iterate over.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {number} Returns the sum.
+   */
+  function baseSum(array, iteratee) {
+    var result,
+        index = -1,
+        length = array.length;
+
+    while (++index < length) {
+      var current = iteratee(array[index]);
+      if (current !== undefined) {
+        result = result === undefined ? current : (result + current);
+      }
+    }
+    return result;
+  }
+
+  /**
+   * The base implementation of `_.times` without support for iteratee shorthands
+   * or max array length checks.
+   *
+   * @private
+   * @param {number} n The number of times to invoke `iteratee`.
+   * @param {Function} iteratee The function invoked per iteration.
+   * @returns {Array} Returns the array of results.
+   */
+  function baseTimes(n, iteratee) {
+    var index = -1,
+        result = Array(n);
+
+    while (++index < n) {
+      result[index] = iteratee(index);
+    }
+    return result;
+  }
+
+  /**
+   * The base implementation of `_.toPairs` and `_.toPairsIn` which creates an array
+   * of key-value pairs for `object` corresponding to the property names of `props`.
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @param {Array} props The property names to get values for.
+   * @returns {Object} Returns the key-value pairs.
+   */
+  function baseToPairs(object, props) {
+    return arrayMap(props, function(key) {
+      return [key, object[key]];
+    });
+  }
+
+  /**
+   * The base implementation of `_.unary` without support for storing metadata.
+   *
+   * @private
+   * @param {Function} func The function to cap arguments for.
+   * @returns {Function} Returns the new capped function.
+   */
+  function baseUnary(func) {
+    return function(value) {
+      return func(value);
+    };
+  }
+
+  /**
+   * The base implementation of `_.values` and `_.valuesIn` which creates an
+   * array of `object` property values corresponding to the property names
+   * of `props`.
+   *
+   * @private
+   * @param {Object} object The object to query.
+   * @param {Array} props The property names to get values for.
+   * @returns {Object} Returns the array of property values.
+   */
+  function baseValues(object, props) {
+    return arrayMap(props, function(key) {
+      return object[key];
+    });
+  }
+
+  /**
+   * Checks if a `cache` value for `key` exists.
+   *
+   * @private
+   * @param {Object} cache The cache to query.
+   * @param {string} key The key of the entry to check.
+   * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+   */
+  function cacheHas(cache, key) {
+    return cache.has(key);
+  }
+
+  /**
+   * Used by `_.trim` and `_.trimStart` to get the index of the first string symbol
+   * that is not found in the character symbols.
+   *
+   * @private
+   * @param {Array} strSymbols The string symbols to inspect.
+   * @param {Array} chrSymbols The character symbols to find.
+   * @returns {number} Returns the index of the first unmatched string symbol.
+   */
+  function charsStartIndex(strSymbols, chrSymbols) {
+    var index = -1,
+        length = strSymbols.length;
+
+    while (++index < length && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {}
+    return index;
+  }
+
+  /**
+   * Used by `_.trim` and `_.trimEnd` to get the index of the last string symbol
+   * that is not found in the character symbols.
+   *
+   * @private
+   * @param {Array} strSymbols The string symbols to inspect.
+   * @param {Array} chrSymbols The character symbols to find.
+   * @returns {number} Returns the index of the last unmatched string symbol.
+   */
+  function charsEndIndex(strSymbols, chrSymbols) {
+    var index = strSymbols.length;
+
+    while (index-- && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {}
+    return index;
+  }
+
+  /**
+   * Gets the number of `placeholder` occurrences in `array`.
+   *
+   * @private
+   * @param {Array} array The array to inspect.
+   * @param {*} placeholder The placeholder to search for.
+   * @returns {number} Returns the placeholder count.
+   */
+  function countHolders(array, placeholder) {
+    var length = array.length,
+        result = 0;
+
+    while (length--) {
+      if (array[length] === placeholder) {
+        ++result;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Used by `_.deburr` to convert Latin-1 Supplement and Latin Extended-A
+   * letters to basic Latin letters.
+   *
+   * @private
+   * @param {string} letter The matched letter to deburr.
+   * @returns {string} Returns the deburred letter.
+   */
+  var deburrLetter = basePropertyOf(deburredLetters);
+
+  /**
+   * Used by `_.escape` to convert characters to HTML entities.
+   *
+   * @private
+   * @param {string} chr The matched character to escape.
+   * @returns {string} Returns the escaped character.
+   */
+  var escapeHtmlChar = basePropertyOf(htmlEscapes);
+
+  /**
+   * Used by `_.template` to escape characters for inclusion in compiled string literals.
+   *
+   * @private
+   * @param {string} chr The matched character to escape.
+   * @returns {string} Returns the escaped character.
+   */
+  function escapeStringChar(chr) {
+    return '\\' + stringEscapes[chr];
+  }
+
+  /**
+   * Gets the value at `key` of `object`.
+   *
+   * @private
+   * @param {Object} [object] The object to query.
+   * @param {string} key The key of the property to get.
+   * @returns {*} Returns the property value.
+   */
+  function getValue(object, key) {
+    return object == null ? undefined : object[key];
+  }
+
+  /**
+   * Checks if `string` contains Unicode symbols.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {boolean} Returns `true` if a symbol is found, else `false`.
+   */
+  function hasUnicode(string) {
+    return reHasUnicode.test(string);
+  }
+
+  /**
+   * Checks if `string` contains a word composed of Unicode symbols.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {boolean} Returns `true` if a word is found, else `false`.
+   */
+  function hasUnicodeWord(string) {
+    return reHasUnicodeWord.test(string);
+  }
+
+  /**
+   * Converts `iterator` to an array.
+   *
+   * @private
+   * @param {Object} iterator The iterator to convert.
+   * @returns {Array} Returns the converted array.
+   */
+  function iteratorToArray(iterator) {
+    var data,
+        result = [];
+
+    while (!(data = iterator.next()).done) {
+      result.push(data.value);
+    }
+    return result;
+  }
+
+  /**
+   * Converts `map` to its key-value pairs.
+   *
+   * @private
+   * @param {Object} map The map to convert.
+   * @returns {Array} Returns the key-value pairs.
+   */
+  function mapToArray(map) {
+    var index = -1,
+        result = Array(map.size);
+
+    map.forEach(function(value, key) {
+      result[++index] = [key, value];
+    });
+    return result;
+  }
+
+  /**
+   * Creates a unary function that invokes `func` with its argument transformed.
+   *
+   * @private
+   * @param {Function} func The function to wrap.
+   * @param {Function} transform The argument transform.
+   * @returns {Function} Returns the new function.
+   */
+  function overArg(func, transform) {
+    return function(arg) {
+      return func(transform(arg));
+    };
+  }
+
+  /**
+   * Replaces all `placeholder` elements in `array` with an internal placeholder
+   * and returns an array of their indexes.
+   *
+   * @private
+   * @param {Array} array The array to modify.
+   * @param {*} placeholder The placeholder to replace.
+   * @returns {Array} Returns the new array of placeholder indexes.
+   */
+  function replaceHolders(array, placeholder) {
+    var index = -1,
+        length = array.length,
+        resIndex = 0,
+        result = [];
+
+    while (++index < length) {
+      var value = array[index];
+      if (value === placeholder || value === PLACEHOLDER) {
+        array[index] = PLACEHOLDER;
+        result[resIndex++] = index;
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Converts `set` to an array of its values.
+   *
+   * @private
+   * @param {Object} set The set to convert.
+   * @returns {Array} Returns the values.
+   */
+  function setToArray(set) {
+    var index = -1,
+        result = Array(set.size);
+
+    set.forEach(function(value) {
+      result[++index] = value;
+    });
+    return result;
+  }
+
+  /**
+   * Converts `set` to its value-value pairs.
+   *
+   * @private
+   * @param {Object} set The set to convert.
+   * @returns {Array} Returns the value-value pairs.
+   */
+  function setToPairs(set) {
+    var index = -1,
+        result = Array(set.size);
+
+    set.forEach(function(value) {
+      result[++index] = [value, value];
+    });
+    return result;
+  }
+
+  /**
+   * A specialized version of `_.indexOf` which performs strict equality
+   * comparisons of values, i.e. `===`.
+   *
+   * @private
+   * @param {Array} array The array to inspect.
+   * @param {*} value The value to search for.
+   * @param {number} fromIndex The index to search from.
+   * @returns {number} Returns the index of the matched value, else `-1`.
+   */
+  function strictIndexOf(array, value, fromIndex) {
+    var index = fromIndex - 1,
+        length = array.length;
+
+    while (++index < length) {
+      if (array[index] === value) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * A specialized version of `_.lastIndexOf` which performs strict equality
+   * comparisons of values, i.e. `===`.
+   *
+   * @private
+   * @param {Array} array The array to inspect.
+   * @param {*} value The value to search for.
+   * @param {number} fromIndex The index to search from.
+   * @returns {number} Returns the index of the matched value, else `-1`.
+   */
+  function strictLastIndexOf(array, value, fromIndex) {
+    var index = fromIndex + 1;
+    while (index--) {
+      if (array[index] === value) {
+        return index;
+      }
+    }
+    return index;
+  }
+
+  /**
+   * Gets the number of symbols in `string`.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {number} Returns the string size.
+   */
+  function stringSize(string) {
+    return hasUnicode(string)
+      ? unicodeSize(string)
+      : asciiSize(string);
+  }
+
+  /**
+   * Converts `string` to an array.
+   *
+   * @private
+   * @param {string} string The string to convert.
+   * @returns {Array} Returns the converted array.
+   */
+  function stringToArray(string) {
+    return hasUnicode(string)
+      ? unicodeToArray(string)
+      : asciiToArray(string);
+  }
+
+  /**
+   * Used by `_.unescape` to convert HTML entities to characters.
+   *
+   * @private
+   * @param {string} chr The matched character to unescape.
+   * @returns {string} Returns the unescaped character.
+   */
+  var unescapeHtmlChar = basePropertyOf(htmlUnescapes);
+
+  /**
+   * Gets the size of a Unicode `string`.
+   *
+   * @private
+   * @param {string} string The string inspect.
+   * @returns {number} Returns the string size.
+   */
+  function unicodeSize(string) {
+    var result = reUnicode.lastIndex = 0;
+    while (reUnicode.test(string)) {
+      ++result;
+    }
+    return result;
+  }
+
+  /**
+   * Converts a Unicode `string` to an array.
+   *
+   * @private
+   * @param {string} string The string to convert.
+   * @returns {Array} Returns the converted array.
+   */
+  function unicodeToArray(string) {
+    return string.match(reUnicode) || [];
+  }
+
+  /**
+   * Splits a Unicode `string` into an array of its words.
+   *
+   * @private
+   * @param {string} The string to inspect.
+   * @returns {Array} Returns the words of `string`.
+   */
+  function unicodeWords(string) {
+    return string.match(reUnicodeWord) || [];
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Create a new pristine `lodash` function using the `context` object.
+   *
+   * @static
+   * @memberOf _
+   * @since 1.1.0
+   * @category Util
+   * @param {Object} [context=root] The context object.
+   * @returns {Function} Returns a new `lodash` function.
+   * @example
+   *
+   * _.mixin({ 'foo': _.constant('foo') });
+   *
+   * var lodash = _.runInContext();
+   * lodash.mixin({ 'bar': lodash.constant('bar') });
+   *
+   * _.isFunction(_.foo);
+   * // => true
+   * _.isFunction(_.bar);
+   * // => false
+   *
+   * lodash.isFunction(lodash.foo);
+   * // => false
+   * lodash.isFunction(lodash.bar);
+   * // => true
+   *
+   * // Create a suped-up `defer` in Node.js.
+   * var defer = _.runInContext({ 'setTimeout': setImmediate }).defer;
+   */
+  var runInContext = (function runInContext(context) {
+    context = context == null ? root : _.defaults(root.Object(), context, _.pick(root, contextProps));
+
+    /** Built-in constructor references. */
+    var Array = context.Array,
+        Date = context.Date,
+        Error = context.Error,
+        Function = context.Function,
+        Math = context.Math,
+        Object = context.Object,
+        RegExp = context.RegExp,
+        String = context.String,
+        TypeError = context.TypeError;
+
+    /** Used for built-in method references. */
+    var arrayProto = Array.prototype,
+        funcProto = Function.prototype,
+        objectProto = Object.prototype;
+
+    /** Used to detect overreaching core-js shims. */
+    var coreJsData = context['__core-js_shared__'];
+
+    /** Used to resolve the decompiled source of functions. */
+    var funcToString = funcProto.toString;
+
+    /** Used to check objects for own properties. */
+    var hasOwnProperty = objectProto.hasOwnProperty;
+
+    /** Used to generate unique IDs. */
+    var idCounter = 0;
+
+    /** Used to detect methods masquerading as native. */
+    var maskSrcKey = (function() {
+      var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+      return uid ? ('Symbol(src)_1.' + uid) : '';
+    }());
+
+    /**
+     * Used to resolve the
+     * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+     * of values.
+     */
+    var nativeObjectToString = objectProto.toString;
+
+    /** Used to infer the `Object` constructor. */
+    var objectCtorString = funcToString.call(Object);
+
+    /** Used to restore the original `_` reference in `_.noConflict`. */
+    var oldDash = root._;
+
+    /** Used to detect if a method is native. */
+    var reIsNative = RegExp('^' +
+      funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+      .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+    );
+
+    /** Built-in value references. */
+    var Buffer = moduleExports ? context.Buffer : undefined,
+        Symbol = context.Symbol,
+        Uint8Array = context.Uint8Array,
+        allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined,
+        getPrototype = overArg(Object.getPrototypeOf, Object),
+        objectCreate = Object.create,
+        propertyIsEnumerable = objectProto.propertyIsEnumerable,
+        splice = arrayProto.splice,
+        spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined,
+        symIterator = Symbol ? Symbol.iterator : undefined,
+        symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+    var defineProperty = (function() {
+      try {
+        var func = getNative(Object, 'defineProperty');
+        func({}, '', {});
+        return func;
+      } catch (e) {}
+    }());
+
+    /** Mocked built-ins. */
+    var ctxClearTimeout = context.clearTimeout !== root.clearTimeout && context.clearTimeout,
+        ctxNow = Date && Date.now !== root.Date.now && Date.now,
+        ctxSetTimeout = context.setTimeout !== root.setTimeout && context.setTimeout;
+
+    /* Built-in method references for those with the same name as other `lodash` methods. */
+    var nativeCeil = Math.ceil,
+        nativeFloor = Math.floor,
+        nativeGetSymbols = Object.getOwnPropertySymbols,
+        nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined,
+        nativeIsFinite = context.isFinite,
+        nativeJoin = arrayProto.join,
+        nativeKeys = overArg(Object.keys, Object),
+        nativeMax = Math.max,
+        nativeMin = Math.min,
+        nativeNow = Date.now,
+        nativeParseInt = context.parseInt,
+        nativeRandom = Math.random,
+        nativeReverse = arrayProto.reverse;
+
+    /* Built-in method references that are verified to be native. */
+    var DataView = getNative(context, 'DataView'),
+        Map = getNative(context, 'Map'),
+        Promise = getNative(context, 'Promise'),
+        Set = getNative(context, 'Set'),
+        WeakMap = getNative(context, 'WeakMap'),
+        nativeCreate = getNative(Object, 'create');
+
+    /** Used to store function metadata. */
+    var metaMap = WeakMap && new WeakMap;
+
+    /** Used to lookup unminified function names. */
+    var realNames = {};
+
+    /** Used to detect maps, sets, and weakmaps. */
+    var dataViewCtorString = toSource(DataView),
+        mapCtorString = toSource(Map),
+        promiseCtorString = toSource(Promise),
+        setCtorString = toSource(Set),
+        weakMapCtorString = toSource(WeakMap);
+
+    /** Used to convert symbols to primitives and strings. */
+    var symbolProto = Symbol ? Symbol.prototype : undefined,
+        symbolValueOf = symbolProto ? symbolProto.valueOf : undefined,
+        symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates a `lodash` object which wraps `value` to enable implicit method
+     * chain sequences. Methods that operate on and return arrays, collections,
+     * and functions can be chained together. Methods that retrieve a single value
+     * or may return a primitive value will automatically end the chain sequence
+     * and return the unwrapped value. Otherwise, the value must be unwrapped
+     * with `_#value`.
+     *
+     * Explicit chain sequences, which must be unwrapped with `_#value`, may be
+     * enabled using `_.chain`.
+     *
+     * The execution of chained methods is lazy, that is, it's deferred until
+     * `_#value` is implicitly or explicitly called.
+     *
+     * Lazy evaluation allows several methods to support shortcut fusion.
+     * Shortcut fusion is an optimization to merge iteratee calls; this avoids
+     * the creation of intermediate arrays and can greatly reduce the number of
+     * iteratee executions. Sections of a chain sequence qualify for shortcut
+     * fusion if the section is applied to an array and iteratees accept only
+     * one argument. The heuristic for whether a section qualifies for shortcut
+     * fusion is subject to change.
+     *
+     * Chaining is supported in custom builds as long as the `_#value` method is
+     * directly or indirectly included in the build.
+     *
+     * In addition to lodash methods, wrappers have `Array` and `String` methods.
+     *
+     * The wrapper `Array` methods are:
+     * `concat`, `join`, `pop`, `push`, `shift`, `sort`, `splice`, and `unshift`
+     *
+     * The wrapper `String` methods are:
+     * `replace` and `split`
+     *
+     * The wrapper methods that support shortcut fusion are:
+     * `at`, `compact`, `drop`, `dropRight`, `dropWhile`, `filter`, `find`,
+     * `findLast`, `head`, `initial`, `last`, `map`, `reject`, `reverse`, `slice`,
+     * `tail`, `take`, `takeRight`, `takeRightWhile`, `takeWhile`, and `toArray`
+     *
+     * The chainable wrapper methods are:
+     * `after`, `ary`, `assign`, `assignIn`, `assignInWith`, `assignWith`, `at`,
+     * `before`, `bind`, `bindAll`, `bindKey`, `castArray`, `chain`, `chunk`,
+     * `commit`, `compact`, `concat`, `conforms`, `constant`, `countBy`, `create`,
+     * `curry`, `debounce`, `defaults`, `defaultsDeep`, `defer`, `delay`,
+     * `difference`, `differenceBy`, `differenceWith`, `drop`, `dropRight`,
+     * `dropRightWhile`, `dropWhile`, `extend`, `extendWith`, `fill`, `filter`,
+     * `flatMap`, `flatMapDeep`, `flatMapDepth`, `flatten`, `flattenDeep`,
+     * `flattenDepth`, `flip`, `flow`, `flowRight`, `fromPairs`, `functions`,
+     * `functionsIn`, `groupBy`, `initial`, `intersection`, `intersectionBy`,
+     * `intersectionWith`, `invert`, `invertBy`, `invokeMap`, `iteratee`, `keyBy`,
+     * `keys`, `keysIn`, `map`, `mapKeys`, `mapValues`, `matches`, `matchesProperty`,
+     * `memoize`, `merge`, `mergeWith`, `method`, `methodOf`, `mixin`, `negate`,
+     * `nthArg`, `omit`, `omitBy`, `once`, `orderBy`, `over`, `overArgs`,
+     * `overEvery`, `overSome`, `partial`, `partialRight`, `partition`, `pick`,
+     * `pickBy`, `plant`, `property`, `propertyOf`, `pull`, `pullAll`, `pullAllBy`,
+     * `pullAllWith`, `pullAt`, `push`, `range`, `rangeRight`, `rearg`, `reject`,
+     * `remove`, `rest`, `reverse`, `sampleSize`, `set`, `setWith`, `shuffle`,
+     * `slice`, `sort`, `sortBy`, `splice`, `spread`, `tail`, `take`, `takeRight`,
+     * `takeRightWhile`, `takeWhile`, `tap`, `throttle`, `thru`, `toArray`,
+     * `toPairs`, `toPairsIn`, `toPath`, `toPlainObject`, `transform`, `unary`,
+     * `union`, `unionBy`, `unionWith`, `uniq`, `uniqBy`, `uniqWith`, `unset`,
+     * `unshift`, `unzip`, `unzipWith`, `update`, `updateWith`, `values`,
+     * `valuesIn`, `without`, `wrap`, `xor`, `xorBy`, `xorWith`, `zip`,
+     * `zipObject`, `zipObjectDeep`, and `zipWith`
+     *
+     * The wrapper methods that are **not** chainable by default are:
+     * `add`, `attempt`, `camelCase`, `capitalize`, `ceil`, `clamp`, `clone`,
+     * `cloneDeep`, `cloneDeepWith`, `cloneWith`, `conformsTo`, `deburr`,
+     * `defaultTo`, `divide`, `each`, `eachRight`, `endsWith`, `eq`, `escape`,
+     * `escapeRegExp`, `every`, `find`, `findIndex`, `findKey`, `findLast`,
+     * `findLastIndex`, `findLastKey`, `first`, `floor`, `forEach`, `forEachRight`,
+     * `forIn`, `forInRight`, `forOwn`, `forOwnRight`, `get`, `gt`, `gte`, `has`,
+     * `hasIn`, `head`, `identity`, `includes`, `indexOf`, `inRange`, `invoke`,
+     * `isArguments`, `isArray`, `isArrayBuffer`, `isArrayLike`, `isArrayLikeObject`,
+     * `isBoolean`, `isBuffer`, `isDate`, `isElement`, `isEmpty`, `isEqual`,
+     * `isEqualWith`, `isError`, `isFinite`, `isFunction`, `isInteger`, `isLength`,
+     * `isMap`, `isMatch`, `isMatchWith`, `isNaN`, `isNative`, `isNil`, `isNull`,
+     * `isNumber`, `isObject`, `isObjectLike`, `isPlainObject`, `isRegExp`,
+     * `isSafeInteger`, `isSet`, `isString`, `isUndefined`, `isTypedArray`,
+     * `isWeakMap`, `isWeakSet`, `join`, `kebabCase`, `last`, `lastIndexOf`,
+     * `lowerCase`, `lowerFirst`, `lt`, `lte`, `max`, `maxBy`, `mean`, `meanBy`,
+     * `min`, `minBy`, `multiply`, `noConflict`, `noop`, `now`, `nth`, `pad`,
+     * `padEnd`, `padStart`, `parseInt`, `pop`, `random`, `reduce`, `reduceRight`,
+     * `repeat`, `result`, `round`, `runInContext`, `sample`, `shift`, `size`,
+     * `snakeCase`, `some`, `sortedIndex`, `sortedIndexBy`, `sortedLastIndex`,
+     * `sortedLastIndexBy`, `startCase`, `startsWith`, `stubArray`, `stubFalse`,
+     * `stubObject`, `stubString`, `stubTrue`, `subtract`, `sum`, `sumBy`,
+     * `template`, `times`, `toFinite`, `toInteger`, `toJSON`, `toLength`,
+     * `toLower`, `toNumber`, `toSafeInteger`, `toString`, `toUpper`, `trim`,
+     * `trimEnd`, `trimStart`, `truncate`, `unescape`, `uniqueId`, `upperCase`,
+     * `upperFirst`, `value`, and `words`
+     *
+     * @name _
+     * @constructor
+     * @category Seq
+     * @param {*} value The value to wrap in a `lodash` instance.
+     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @example
+     *
+     * function square(n) {
+     *   return n * n;
+     * }
+     *
+     * var wrapped = _([1, 2, 3]);
+     *
+     * // Returns an unwrapped value.
+     * wrapped.reduce(_.add);
+     * // => 6
+     *
+     * // Returns a wrapped value.
+     * var squares = wrapped.map(square);
+     *
+     * _.isArray(squares);
+     * // => false
+     *
+     * _.isArray(squares.value());
+     * // => true
+     */
+    function lodash(value) {
+      if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
+        if (value instanceof LodashWrapper) {
+          return value;
+        }
+        if (hasOwnProperty.call(value, '__wrapped__')) {
+          return wrapperClone(value);
+        }
+      }
+      return new LodashWrapper(value);
+    }
+
+    /**
+     * The base implementation of `_.create` without support for assigning
+     * properties to the created object.
+     *
+     * @private
+     * @param {Object} proto The object to inherit from.
+     * @returns {Object} Returns the new object.
+     */
+    var baseCreate = (function() {
+      function object() {}
+      return function(proto) {
+        if (!isObject(proto)) {
+          return {};
+        }
+        if (objectCreate) {
+          return objectCreate(proto);
+        }
+        object.prototype = proto;
+        var result = new object;
+        object.prototype = undefined;
+        return result;
+      };
+    }());
+
+    /**
+     * The function whose prototype chain sequence wrappers inherit from.
+     *
+     * @private
+     */
+    function baseLodash() {
+      // No operation performed.
+    }
+
+    /**
+     * The base constructor for creating `lodash` wrapper objects.
+     *
+     * @private
+     * @param {*} value The value to wrap.
+     * @param {boolean} [chainAll] Enable explicit method chain sequences.
+     */
+    function LodashWrapper(value, chainAll) {
+      this.__wrapped__ = value;
+      this.__actions__ = [];
+      this.__chain__ = !!chainAll;
+      this.__index__ = 0;
+      this.__values__ = undefined;
+    }
+
+    /**
+     * By default, the template delimiters used by lodash are like those in
+     * embedded Ruby (ERB) as well as ES2015 template strings. Change the
+     * following template settings to use alternative delimiters.
+     *
+     * @static
+     * @memberOf _
+     * @type {Object}
+     */
+    lodash.templateSettings = {
+
+      /**
+       * Used to detect `data` property values to be HTML-escaped.
+       *
+       * @memberOf _.templateSettings
+       * @type {RegExp}
+       */
+      'escape': reEscape,
+
+      /**
+       * Used to detect code to be evaluated.
+       *
+       * @memberOf _.templateSettings
+       * @type {RegExp}
+       */
+      'evaluate': reEvaluate,
+
+      /**
+       * Used to detect `data` property values to inject.
+       *
+       * @memberOf _.templateSettings
+       * @type {RegExp}
+       */
+      'interpolate': reInterpolate,
+
+      /**
+       * Used to reference the data object in the template text.
+       *
+       * @memberOf _.templateSettings
+       * @type {string}
+       */
+      'variable': '',
+
+      /**
+       * Used to import variables into the compiled template.
+       *
+       * @memberOf _.templateSettings
+       * @type {Object}
+       */
+      'imports': {
+
+        /**
+         * A reference to the `lodash` function.
+         *
+         * @memberOf _.templateSettings.imports
+         * @type {Function}
+         */
+        '_': lodash
+      }
+    };
+
+    // Ensure wrappers are instances of `baseLodash`.
+    lodash.prototype = baseLodash.prototype;
+    lodash.prototype.constructor = lodash;
+
+    LodashWrapper.prototype = baseCreate(baseLodash.prototype);
+    LodashWrapper.prototype.constructor = LodashWrapper;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
+     *
+     * @private
+     * @constructor
+     * @param {*} value The value to wrap.
+     */
+    function LazyWrapper(value) {
+      this.__wrapped__ = value;
+      this.__actions__ = [];
+      this.__dir__ = 1;
+      this.__filtered__ = false;
+      this.__iteratees__ = [];
+      this.__takeCount__ = MAX_ARRAY_LENGTH;
+      this.__views__ = [];
+    }
+
+    /**
+     * Creates a clone of the lazy wrapper object.
+     *
+     * @private
+     * @name clone
+     * @memberOf LazyWrapper
+     * @returns {Object} Returns the cloned `LazyWrapper` object.
+     */
+    function lazyClone() {
+      var result = new LazyWrapper(this.__wrapped__);
+      result.__actions__ = copyArray(this.__actions__);
+      result.__dir__ = this.__dir__;
+      result.__filtered__ = this.__filtered__;
+      result.__iteratees__ = copyArray(this.__iteratees__);
+      result.__takeCount__ = this.__takeCount__;
+      result.__views__ = copyArray(this.__views__);
+      return result;
+    }
+
+    /**
+     * Reverses the direction of lazy iteration.
+     *
+     * @private
+     * @name reverse
+     * @memberOf LazyWrapper
+     * @returns {Object} Returns the new reversed `LazyWrapper` object.
+     */
+    function lazyReverse() {
+      if (this.__filtered__) {
+        var result = new LazyWrapper(this);
+        result.__dir__ = -1;
+        result.__filtered__ = true;
+      } else {
+        result = this.clone();
+        result.__dir__ *= -1;
+      }
+      return result;
+    }
+
+    /**
+     * Extracts the unwrapped value from its lazy wrapper.
+     *
+     * @private
+     * @name value
+     * @memberOf LazyWrapper
+     * @returns {*} Returns the unwrapped value.
+     */
+    function lazyValue() {
+      var array = this.__wrapped__.value(),
+          dir = this.__dir__,
+          isArr = isArray(array),
+          isRight = dir < 0,
+          arrLength = isArr ? array.length : 0,
+          view = getView(0, arrLength, this.__views__),
+          start = view.start,
+          end = view.end,
+          length = end - start,
+          index = isRight ? end : (start - 1),
+          iteratees = this.__iteratees__,
+          iterLength = iteratees.length,
+          resIndex = 0,
+          takeCount = nativeMin(length, this.__takeCount__);
+
+      if (!isArr || (!isRight && arrLength == length && takeCount == length)) {
+        return baseWrapperValue(array, this.__actions__);
+      }
+      var result = [];
+
+      outer:
+      while (length-- && resIndex < takeCount) {
+        index += dir;
+
+        var iterIndex = -1,
+            value = array[index];
+
+        while (++iterIndex < iterLength) {
+          var data = iteratees[iterIndex],
+              iteratee = data.iteratee,
+              type = data.type,
+              computed = iteratee(value);
+
+          if (type == LAZY_MAP_FLAG) {
+            value = computed;
+          } else if (!computed) {
+            if (type == LAZY_FILTER_FLAG) {
+              continue outer;
+            } else {
+              break outer;
+            }
+          }
+        }
+        result[resIndex++] = value;
+      }
+      return result;
+    }
+
+    // Ensure `LazyWrapper` is an instance of `baseLodash`.
+    LazyWrapper.prototype = baseCreate(baseLodash.prototype);
+    LazyWrapper.prototype.constructor = LazyWrapper;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates a hash object.
+     *
+     * @private
+     * @constructor
+     * @param {Array} [entries] The key-value pairs to cache.
+     */
+    function Hash(entries) {
+      var index = -1,
+          length = entries == null ? 0 : entries.length;
+
+      this.clear();
+      while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+      }
+    }
+
+    /**
+     * Removes all key-value entries from the hash.
+     *
+     * @private
+     * @name clear
+     * @memberOf Hash
+     */
+    function hashClear() {
+      this.__data__ = nativeCreate ? nativeCreate(null) : {};
+      this.size = 0;
+    }
+
+    /**
+     * Removes `key` and its value from the hash.
+     *
+     * @private
+     * @name delete
+     * @memberOf Hash
+     * @param {Object} hash The hash to modify.
+     * @param {string} key The key of the value to remove.
+     * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+     */
+    function hashDelete(key) {
+      var result = this.has(key) && delete this.__data__[key];
+      this.size -= result ? 1 : 0;
+      return result;
+    }
+
+    /**
+     * Gets the hash value for `key`.
+     *
+     * @private
+     * @name get
+     * @memberOf Hash
+     * @param {string} key The key of the value to get.
+     * @returns {*} Returns the entry value.
+     */
+    function hashGet(key) {
+      var data = this.__data__;
+      if (nativeCreate) {
+        var result = data[key];
+        return result === HASH_UNDEFINED ? undefined : result;
+      }
+      return hasOwnProperty.call(data, key) ? data[key] : undefined;
+    }
+
+    /**
+     * Checks if a hash value for `key` exists.
+     *
+     * @private
+     * @name has
+     * @memberOf Hash
+     * @param {string} key The key of the entry to check.
+     * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+     */
+    function hashHas(key) {
+      var data = this.__data__;
+      return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
+    }
+
+    /**
+     * Sets the hash `key` to `value`.
+     *
+     * @private
+     * @name set
+     * @memberOf Hash
+     * @param {string} key The key of the value to set.
+     * @param {*} value The value to set.
+     * @returns {Object} Returns the hash instance.
+     */
+    function hashSet(key, value) {
+      var data = this.__data__;
+      this.size += this.has(key) ? 0 : 1;
+      data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+      return this;
+    }
+
+    // Add methods to `Hash`.
+    Hash.prototype.clear = hashClear;
+    Hash.prototype['delete'] = hashDelete;
+    Hash.prototype.get = hashGet;
+    Hash.prototype.has = hashHas;
+    Hash.prototype.set = hashSet;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates an list cache object.
+     *
+     * @private
+     * @constructor
+     * @param {Array} [entries] The key-value pairs to cache.
+     */
+    function ListCache(entries) {
+      var index = -1,
+          length = entries == null ? 0 : entries.length;
+
+      this.clear();
+      while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+      }
+    }
+
+    /**
+     * Removes all key-value entries from the list cache.
+     *
+     * @private
+     * @name clear
+     * @memberOf ListCache
+     */
+    function listCacheClear() {
+      this.__data__ = [];
+      this.size = 0;
+    }
+
+    /**
+     * Removes `key` and its value from the list cache.
+     *
+     * @private
+     * @name delete
+     * @memberOf ListCache
+     * @param {string} key The key of the value to remove.
+     * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+     */
+    function listCacheDelete(key) {
+      var data = this.__data__,
+          index = assocIndexOf(data, key);
+
+      if (index < 0) {
+        return false;
+      }
+      var lastIndex = data.length - 1;
+      if (index == lastIndex) {
+        data.pop();
+      } else {
+        splice.call(data, index, 1);
+      }
+      --this.size;
+      return true;
+    }
+
+    /**
+     * Gets the list cache value for `key`.
+     *
+     * @private
+     * @name get
+     * @memberOf ListCache
+     * @param {string} key The key of the value to get.
+     * @returns {*} Returns the entry value.
+     */
+    function listCacheGet(key) {
+      var data = this.__data__,
+          index = assocIndexOf(data, key);
+
+      return index < 0 ? undefined : data[index][1];
+    }
+
+    /**
+     * Checks if a list cache value for `key` exists.
+     *
+     * @private
+     * @name has
+     * @memberOf ListCache
+     * @param {string} key The key of the entry to check.
+     * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+     */
+    function listCacheHas(key) {
+      return assocIndexOf(this.__data__, key) > -1;
+    }
+
+    /**
+     * Sets the list cache `key` to `value`.
+     *
+     * @private
+     * @name set
+     * @memberOf ListCache
+     * @param {string} key The key of the value to set.
+     * @param {*} value The value to set.
+     * @returns {Object} Returns the list cache instance.
+     */
+    function listCacheSet(key, value) {
+      var data = this.__data__,
+          index = assocIndexOf(data, key);
+
+      if (index < 0) {
+        ++this.size;
+        data.push([key, value]);
+      } else {
+        data[index][1] = value;
+      }
+      return this;
+    }
+
+    // Add methods to `ListCache`.
+    ListCache.prototype.clear = listCacheClear;
+    ListCache.prototype['delete'] = listCacheDelete;
+    ListCache.prototype.get = listCacheGet;
+    ListCache.prototype.has = listCacheHas;
+    ListCache.prototype.set = listCacheSet;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates a map cache object to store key-value pairs.
+     *
+     * @private
+     * @constructor
+     * @param {Array} [entries] The key-value pairs to cache.
+     */
+    function MapCache(entries) {
+      var index = -1,
+          length = entries == null ? 0 : entries.length;
+
+      this.clear();
+      while (++index < length) {
+        var entry = entries[index];
+        this.set(entry[0], entry[1]);
+      }
+    }
+
+    /**
+     * Removes all key-value entries from the map.
+     *
+     * @private
+     * @name clear
+     * @memberOf MapCache
+     */
+    function mapCacheClear() {
+      this.size = 0;
+      this.__data__ = {
+        'hash': new Hash,
+        'map': new (Map || ListCache),
+        'string': new Hash
+      };
+    }
+
+    /**
+     * Removes `key` and its value from the map.
+     *
+     * @private
+     * @name delete
+     * @memberOf MapCache
+     * @param {string} key The key of the value to remove.
+     * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+     */
+    function mapCacheDelete(key) {
+      var result = getMapData(this, key)['delete'](key);
+      this.size -= result ? 1 : 0;
+      return result;
+    }
+
+    /**
+     * Gets the map value for `key`.
+     *
+     * @private
+     * @name get
+     * @memberOf MapCache
+     * @param {string} key The key of the value to get.
+     * @returns {*} Returns the entry value.
+     */
+    function mapCacheGet(key) {
+      return getMapData(this, key).get(key);
+    }
+
+    /**
+     * Checks if a map value for `key` exists.
+     *
+     * @private
+     * @name has
+     * @memberOf MapCache
+     * @param {string} key The key of the entry to check.
+     * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+     */
+    function mapCacheHas(key) {
+      return getMapData(this, key).has(key);
+    }
+
+    /**
+     * Sets the map `key` to `value`.
+     *
+     * @private
+     * @name set
+     * @memberOf MapCache
+     * @param {string} key The key of the value to set.
+     * @param {*} value The value to set.
+     * @returns {Object} Returns the map cache instance.
+     */
+    function mapCacheSet(key, value) {
+      var data = getMapData(this, key),
+          size = data.size;
+
+      data.set(key, value);
+      this.size += data.size == size ? 0 : 1;
+      return this;
+    }
+
+    // Add methods to `MapCache`.
+    MapCache.prototype.clear = mapCacheClear;
+    MapCache.prototype['delete'] = mapCacheDelete;
+    MapCache.prototype.get = mapCacheGet;
+    MapCache.prototype.has = mapCacheHas;
+    MapCache.prototype.set = mapCacheSet;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     *
+     * Creates an array cache object to store unique values.
+     *
+     * @private
+     * @constructor
+     * @param {Array} [values] The values to cache.
+     */
+    function SetCache(values) {
+      var index = -1,
+          length = values == null ? 0 : values.length;
+
+      this.__data__ = new MapCache;
+      while (++index < length) {
+        this.add(values[index]);
+      }
+    }
+
+    /**
+     * Adds `value` to the array cache.
+     *
+     * @private
+     * @name add
+     * @memberOf SetCache
+     * @alias push
+     * @param {*} value The value to cache.
+     * @returns {Object} Returns the cache instance.
+     */
+    function setCacheAdd(value) {
+      this.__data__.set(value, HASH_UNDEFINED);
+      return this;
+    }
+
+    /**
+     * Checks if `value` is in the array cache.
+     *
+     * @private
+     * @name has
+     * @memberOf SetCache
+     * @param {*} value The value to search for.
+     * @returns {number} Returns `true` if `value` is found, else `false`.
+     */
+    function setCacheHas(value) {
+      return this.__data__.has(value);
+    }
+
+    // Add methods to `SetCache`.
+    SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+    SetCache.prototype.has = setCacheHas;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates a stack cache object to store key-value pairs.
+     *
+     * @private
+     * @constructor
+     * @param {Array} [entries] The key-value pairs to cache.
+     */
+    function Stack(entries) {
+      var data = this.__data__ = new ListCache(entries);
+      this.size = data.size;
+    }
+
+    /**
+     * Removes all key-value entries from the stack.
+     *
+     * @private
+     * @name clear
+     * @memberOf Stack
+     */
+    function stackClear() {
+      this.__data__ = new ListCache;
+      this.size = 0;
+    }
+
+    /**
+     * Removes `key` and its value from the stack.
+     *
+     * @private
+     * @name delete
+     * @memberOf Stack
+     * @param {string} key The key of the value to remove.
+     * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+     */
+    function stackDelete(key) {
+      var data = this.__data__,
+          result = data['delete'](key);
+
+      this.size = data.size;
+      return result;
+    }
+
+    /**
+     * Gets the stack value for `key`.
+     *
+     * @private
+     * @name get
+     * @memberOf Stack
+     * @param {string} key The key of the value to get.
+     * @returns {*} Returns the entry value.
+     */
+    function stackGet(key) {
+      return this.__data__.get(key);
+    }
+
+    /**
+     * Checks if a stack value for `key` exists.
+     *
+     * @private
+     * @name has
+     * @memberOf Stack
+     * @param {string} key The key of the entry to check.
+     * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+     */
+    function stackHas(key) {
+      return this.__data__.has(key);
+    }
+
+    /**
+     * Sets the stack `key` to `value`.
+     *
+     * @private
+     * @name set
+     * @memberOf Stack
+     * @param {string} key The key of the value to set.
+     * @param {*} value The value to set.
+     * @returns {Object} Returns the stack cache instance.
+     */
+    function stackSet(key, value) {
+      var data = this.__data__;
+      if (data instanceof ListCache) {
+        var pairs = data.__data__;
+        if (!Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+          pairs.push([key, value]);
+          this.size = ++data.size;
+          return this;
+        }
+        data = this.__data__ = new MapCache(pairs);
+      }
+      data.set(key, value);
+      this.size = data.size;
+      return this;
+    }
+
+    // Add methods to `Stack`.
+    Stack.prototype.clear = stackClear;
+    Stack.prototype['delete'] = stackDelete;
+    Stack.prototype.get = stackGet;
+    Stack.prototype.has = stackHas;
+    Stack.prototype.set = stackSet;
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates an array of the enumerable property names of the array-like `value`.
+     *
+     * @private
+     * @param {*} value The value to query.
+     * @param {boolean} inherited Specify returning inherited property names.
+     * @returns {Array} Returns the array of property names.
+     */
+    function arrayLikeKeys(value, inherited) {
+      var isArr = isArray(value),
+          isArg = !isArr && isArguments(value),
+          isBuff = !isArr && !isArg && isBuffer(value),
+          isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+          skipIndexes = isArr || isArg || isBuff || isType,
+          result = skipIndexes ? baseTimes(value.length, String) : [],
+          length = result.length;
+
+      for (var key in value) {
+        if ((inherited || hasOwnProperty.call(value, key)) &&
+            !(skipIndexes && (
+               // Safari 9 has enumerable `arguments.length` in strict mode.
+               key == 'length' ||
+               // Node.js 0.10 has enumerable non-index properties on buffers.
+               (isBuff && (key == 'offset' || key == 'parent')) ||
+               // PhantomJS 2 has enumerable non-index properties on typed arrays.
+               (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+               // Skip index properties.
+               isIndex(key, length)
+            ))) {
+          result.push(key);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * A specialized version of `_.sample` for arrays.
+     *
+     * @private
+     * @param {Array} array The array to sample.
+     * @returns {*} Returns the random element.
+     */
+    function arraySample(array) {
+      var length = array.length;
+      return length ? array[baseRandom(0, length - 1)] : undefined;
+    }
+
+    /**
+     * A specialized version of `_.sampleSize` for arrays.
+     *
+     * @private
+     * @param {Array} array The array to sample.
+     * @param {number} n The number of elements to sample.
+     * @returns {Array} Returns the random elements.
+     */
+    function arraySampleSize(array, n) {
+      return shuffleSelf(copyArray(array), baseClamp(n, 0, array.length));
+    }
+
+    /**
+     * A specialized version of `_.shuffle` for arrays.
+     *
+     * @private
+     * @param {Array} array The array to shuffle.
+     * @returns {Array} Returns the new shuffled array.
+     */
+    function arrayShuffle(array) {
+      return shuffleSelf(copyArray(array));
+    }
+
+    /**
+     * This function is like `assignValue` except that it doesn't assign
+     * `undefined` values.
+     *
+     * @private
+     * @param {Object} object The object to modify.
+     * @param {string} key The key of the property to assign.
+     * @param {*} value The value to assign.
+     */
+    function assignMergeValue(object, key, value) {
+      if ((value !== undefined && !eq(object[key], value)) ||
+          (value === undefined && !(key in object))) {
+        baseAssignValue(object, key, value);
+      }
+    }
+
+    /**
+     * Assigns `value` to `key` of `object` if the existing value is not equivalent
+     * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons.
+     *
+     * @private
+     * @param {Object} object The object to modify.
+     * @param {string} key The key of the property to assign.
+     * @param {*} value The value to assign.
+     */
+    function assignValue(object, key, value) {
+      var objValue = object[key];
+      if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) ||
+          (value === undefined && !(key in object))) {
+        baseAssignValue(object, key, value);
+      }
+    }
+
+    /**
+     * Gets the index at which the `key` is found in `array` of key-value pairs.
+     *
+     * @private
+     * @param {Array} array The array to inspect.
+     * @param {*} key The key to search for.
+     * @returns {number} Returns the index of the matched value, else `-1`.
+     */
+    function assocIndexOf(array, key) {
+      var length = array.length;
+      while (length--) {
+        if (eq(array[length][0], key)) {
+          return length;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * Aggregates elements of `collection` on `accumulator` with keys transformed
+     * by `iteratee` and values set by `setter`.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} setter The function to set `accumulator` values.
+     * @param {Function} iteratee The iteratee to transform keys.
+     * @param {Object} accumulator The initial aggregated object.
+     * @returns {Function} Returns `accumulator`.
+     */
+    function baseAggregator(collection, setter, iteratee, accumulator) {
+      baseEach(collection, function(value, key, collection) {
+        setter(accumulator, value, iteratee(value), collection);
+      });
+      return accumulator;
+    }
+
+    /**
+     * The base implementation of `_.assign` without support for multiple sources
+     * or `customizer` functions.
+     *
+     * @private
+     * @param {Object} object The destination object.
+     * @param {Object} source The source object.
+     * @returns {Object} Returns `object`.
+     */
+    function baseAssign(object, source) {
+      return object && copyObject(source, keys(source), object);
+    }
+
+    /**
+     * The base implementation of `_.assignIn` without support for multiple sources
+     * or `customizer` functions.
+     *
+     * @private
+     * @param {Object} object The destination object.
+     * @param {Object} source The source object.
+     * @returns {Object} Returns `object`.
+     */
+    function baseAssignIn(object, source) {
+      return object && copyObject(source, keysIn(source), object);
+    }
+
+    /**
+     * The base implementation of `assignValue` and `assignMergeValue` without
+     * value checks.
+     *
+     * @private
+     * @param {Object} object The object to modify.
+     * @param {string} key The key of the property to assign.
+     * @param {*} value The value to assign.
+     */
+    function baseAssignValue(object, key, value) {
+      if (key == '__proto__' && defineProperty) {
+        defineProperty(object, key, {
+          'configurable': true,
+          'enumerable': true,
+          'value': value,
+          'writable': true
+        });
+      } else {
+        object[key] = value;
+      }
+    }
+
+    /**
+     * The base implementation of `_.at` without support for individual paths.
+     *
+     * @private
+     * @param {Object} object The object to iterate over.
+     * @param {string[]} paths The property paths to pick.
+     * @returns {Array} Returns the picked elements.
+     */
+    function baseAt(object, paths) {
+      var index = -1,
+          length = paths.length,
+          result = Array(length),
+          skip = object == null;
+
+      while (++index < length) {
+        result[index] = skip ? undefined : get(object, paths[index]);
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.clamp` which doesn't coerce arguments.
+     *
+     * @private
+     * @param {number} number The number to clamp.
+     * @param {number} [lower] The lower bound.
+     * @param {number} upper The upper bound.
+     * @returns {number} Returns the clamped number.
+     */
+    function baseClamp(number, lower, upper) {
+      if (number === number) {
+        if (upper !== undefined) {
+          number = number <= upper ? number : upper;
+        }
+        if (lower !== undefined) {
+          number = number >= lower ? number : lower;
+        }
+      }
+      return number;
+    }
+
+    /**
+     * The base implementation of `_.clone` and `_.cloneDeep` which tracks
+     * traversed objects.
+     *
+     * @private
+     * @param {*} value The value to clone.
+     * @param {boolean} bitmask The bitmask flags.
+     *  1 - Deep clone
+     *  2 - Flatten inherited properties
+     *  4 - Clone symbols
+     * @param {Function} [customizer] The function to customize cloning.
+     * @param {string} [key] The key of `value`.
+     * @param {Object} [object] The parent object of `value`.
+     * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
+     * @returns {*} Returns the cloned value.
+     */
+    function baseClone(value, bitmask, customizer, key, object, stack) {
+      var result,
+          isDeep = bitmask & CLONE_DEEP_FLAG,
+          isFlat = bitmask & CLONE_FLAT_FLAG,
+          isFull = bitmask & CLONE_SYMBOLS_FLAG;
+
+      if (customizer) {
+        result = object ? customizer(value, key, object, stack) : customizer(value);
+      }
+      if (result !== undefined) {
+        return result;
+      }
+      if (!isObject(value)) {
+        return value;
+      }
+      var isArr = isArray(value);
+      if (isArr) {
+        result = initCloneArray(value);
+        if (!isDeep) {
+          return copyArray(value, result);
+        }
+      } else {
+        var tag = getTag(value),
+            isFunc = tag == funcTag || tag == genTag;
+
+        if (isBuffer(value)) {
+          return cloneBuffer(value, isDeep);
+        }
+        if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
+          result = (isFlat || isFunc) ? {} : initCloneObject(value);
+          if (!isDeep) {
+            return isFlat
+              ? copySymbolsIn(value, baseAssignIn(result, value))
+              : copySymbols(value, baseAssign(result, value));
+          }
+        } else {
+          if (!cloneableTags[tag]) {
+            return object ? value : {};
+          }
+          result = initCloneByTag(value, tag, baseClone, isDeep);
+        }
+      }
+      // Check for circular references and return its corresponding clone.
+      stack || (stack = new Stack);
+      var stacked = stack.get(value);
+      if (stacked) {
+        return stacked;
+      }
+      stack.set(value, result);
+
+      var keysFunc = isFull
+        ? (isFlat ? getAllKeysIn : getAllKeys)
+        : (isFlat ? keysIn : keys);
+
+      var props = isArr ? undefined : keysFunc(value);
+      arrayEach(props || value, function(subValue, key) {
+        if (props) {
+          key = subValue;
+          subValue = value[key];
+        }
+        // Recursively populate clone (susceptible to call stack limits).
+        assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
+      });
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.conforms` which doesn't clone `source`.
+     *
+     * @private
+     * @param {Object} source The object of property predicates to conform to.
+     * @returns {Function} Returns the new spec function.
+     */
+    function baseConforms(source) {
+      var props = keys(source);
+      return function(object) {
+        return baseConformsTo(object, source, props);
+      };
+    }
+
+    /**
+     * The base implementation of `_.conformsTo` which accepts `props` to check.
+     *
+     * @private
+     * @param {Object} object The object to inspect.
+     * @param {Object} source The object of property predicates to conform to.
+     * @returns {boolean} Returns `true` if `object` conforms, else `false`.
+     */
+    function baseConformsTo(object, source, props) {
+      var length = props.length;
+      if (object == null) {
+        return !length;
+      }
+      object = Object(object);
+      while (length--) {
+        var key = props[length],
+            predicate = source[key],
+            value = object[key];
+
+        if ((value === undefined && !(key in object)) || !predicate(value)) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    /**
+     * The base implementation of `_.delay` and `_.defer` which accepts `args`
+     * to provide to `func`.
+     *
+     * @private
+     * @param {Function} func The function to delay.
+     * @param {number} wait The number of milliseconds to delay invocation.
+     * @param {Array} args The arguments to provide to `func`.
+     * @returns {number|Object} Returns the timer id or timeout object.
+     */
+    function baseDelay(func, wait, args) {
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      return setTimeout(function() { func.apply(undefined, args); }, wait);
+    }
+
+    /**
+     * The base implementation of methods like `_.difference` without support
+     * for excluding multiple arrays or iteratee shorthands.
+     *
+     * @private
+     * @param {Array} array The array to inspect.
+     * @param {Array} values The values to exclude.
+     * @param {Function} [iteratee] The iteratee invoked per element.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new array of filtered values.
+     */
+    function baseDifference(array, values, iteratee, comparator) {
+      var index = -1,
+          includes = arrayIncludes,
+          isCommon = true,
+          length = array.length,
+          result = [],
+          valuesLength = values.length;
+
+      if (!length) {
+        return result;
+      }
+      if (iteratee) {
+        values = arrayMap(values, baseUnary(iteratee));
+      }
+      if (comparator) {
+        includes = arrayIncludesWith;
+        isCommon = false;
+      }
+      else if (values.length >= LARGE_ARRAY_SIZE) {
+        includes = cacheHas;
+        isCommon = false;
+        values = new SetCache(values);
+      }
+      outer:
+      while (++index < length) {
+        var value = array[index],
+            computed = iteratee == null ? value : iteratee(value);
+
+        value = (comparator || value !== 0) ? value : 0;
+        if (isCommon && computed === computed) {
+          var valuesIndex = valuesLength;
+          while (valuesIndex--) {
+            if (values[valuesIndex] === computed) {
+              continue outer;
+            }
+          }
+          result.push(value);
+        }
+        else if (!includes(values, computed, comparator)) {
+          result.push(value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.forEach` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} iteratee The function invoked per iteration.
+     * @returns {Array|Object} Returns `collection`.
+     */
+    var baseEach = createBaseEach(baseForOwn);
+
+    /**
+     * The base implementation of `_.forEachRight` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} iteratee The function invoked per iteration.
+     * @returns {Array|Object} Returns `collection`.
+     */
+    var baseEachRight = createBaseEach(baseForOwnRight, true);
+
+    /**
+     * The base implementation of `_.every` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} predicate The function invoked per iteration.
+     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+     *  else `false`
+     */
+    function baseEvery(collection, predicate) {
+      var result = true;
+      baseEach(collection, function(value, index, collection) {
+        result = !!predicate(value, index, collection);
+        return result;
+      });
+      return result;
+    }
+
+    /**
+     * The base implementation of methods like `_.max` and `_.min` which accepts a
+     * `comparator` to determine the extremum value.
+     *
+     * @private
+     * @param {Array} array The array to iterate over.
+     * @param {Function} iteratee The iteratee invoked per iteration.
+     * @param {Function} comparator The comparator used to compare values.
+     * @returns {*} Returns the extremum value.
+     */
+    function baseExtremum(array, iteratee, comparator) {
+      var index = -1,
+          length = array.length;
+
+      while (++index < length) {
+        var value = array[index],
+            current = iteratee(value);
+
+        if (current != null && (computed === undefined
+              ? (current === current && !isSymbol(current))
+              : comparator(current, computed)
+            )) {
+          var computed = current,
+              result = value;
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.fill` without an iteratee call guard.
+     *
+     * @private
+     * @param {Array} array The array to fill.
+     * @param {*} value The value to fill `array` with.
+     * @param {number} [start=0] The start position.
+     * @param {number} [end=array.length] The end position.
+     * @returns {Array} Returns `array`.
+     */
+    function baseFill(array, value, start, end) {
+      var length = array.length;
+
+      start = toInteger(start);
+      if (start < 0) {
+        start = -start > length ? 0 : (length + start);
+      }
+      end = (end === undefined || end > length) ? length : toInteger(end);
+      if (end < 0) {
+        end += length;
+      }
+      end = start > end ? 0 : toLength(end);
+      while (start < end) {
+        array[start++] = value;
+      }
+      return array;
+    }
+
+    /**
+     * The base implementation of `_.filter` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} predicate The function invoked per iteration.
+     * @returns {Array} Returns the new filtered array.
+     */
+    function baseFilter(collection, predicate) {
+      var result = [];
+      baseEach(collection, function(value, index, collection) {
+        if (predicate(value, index, collection)) {
+          result.push(value);
+        }
+      });
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.flatten` with support for restricting flattening.
+     *
+     * @private
+     * @param {Array} array The array to flatten.
+     * @param {number} depth The maximum recursion depth.
+     * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
+     * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
+     * @param {Array} [result=[]] The initial result value.
+     * @returns {Array} Returns the new flattened array.
+     */
+    function baseFlatten(array, depth, predicate, isStrict, result) {
+      var index = -1,
+          length = array.length;
+
+      predicate || (predicate = isFlattenable);
+      result || (result = []);
+
+      while (++index < length) {
+        var value = array[index];
+        if (depth > 0 && predicate(value)) {
+          if (depth > 1) {
+            // Recursively flatten arrays (susceptible to call stack limits).
+            baseFlatten(value, depth - 1, predicate, isStrict, result);
+          } else {
+            arrayPush(result, value);
+          }
+        } else if (!isStrict) {
+          result[result.length] = value;
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `baseForOwn` which iterates over `object`
+     * properties returned by `keysFunc` and invokes `iteratee` for each property.
+     * Iteratee functions may exit iteration early by explicitly returning `false`.
+     *
+     * @private
+     * @param {Object} object The object to iterate over.
+     * @param {Function} iteratee The function invoked per iteration.
+     * @param {Function} keysFunc The function to get the keys of `object`.
+     * @returns {Object} Returns `object`.
+     */
+    var baseFor = createBaseFor();
+
+    /**
+     * This function is like `baseFor` except that it iterates over properties
+     * in the opposite order.
+     *
+     * @private
+     * @param {Object} object The object to iterate over.
+     * @param {Function} iteratee The function invoked per iteration.
+     * @param {Function} keysFunc The function to get the keys of `object`.
+     * @returns {Object} Returns `object`.
+     */
+    var baseForRight = createBaseFor(true);
+
+    /**
+     * The base implementation of `_.forOwn` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Object} object The object to iterate over.
+     * @param {Function} iteratee The function invoked per iteration.
+     * @returns {Object} Returns `object`.
+     */
+    function baseForOwn(object, iteratee) {
+      return object && baseFor(object, iteratee, keys);
+    }
+
+    /**
+     * The base implementation of `_.forOwnRight` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Object} object The object to iterate over.
+     * @param {Function} iteratee The function invoked per iteration.
+     * @returns {Object} Returns `object`.
+     */
+    function baseForOwnRight(object, iteratee) {
+      return object && baseForRight(object, iteratee, keys);
+    }
+
+    /**
+     * The base implementation of `_.functions` which creates an array of
+     * `object` function property names filtered from `props`.
+     *
+     * @private
+     * @param {Object} object The object to inspect.
+     * @param {Array} props The property names to filter.
+     * @returns {Array} Returns the function names.
+     */
+    function baseFunctions(object, props) {
+      return arrayFilter(props, function(key) {
+        return isFunction(object[key]);
+      });
+    }
+
+    /**
+     * The base implementation of `_.get` without support for default values.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path of the property to get.
+     * @returns {*} Returns the resolved value.
+     */
+    function baseGet(object, path) {
+      path = castPath(path, object);
+
+      var index = 0,
+          length = path.length;
+
+      while (object != null && index < length) {
+        object = object[toKey(path[index++])];
+      }
+      return (index && index == length) ? object : undefined;
+    }
+
+    /**
+     * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
+     * `keysFunc` and `symbolsFunc` to get the enumerable property names and
+     * symbols of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {Function} keysFunc The function to get the keys of `object`.
+     * @param {Function} symbolsFunc The function to get the symbols of `object`.
+     * @returns {Array} Returns the array of property names and symbols.
+     */
+    function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+      var result = keysFunc(object);
+      return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+    }
+
+    /**
+     * The base implementation of `getTag` without fallbacks for buggy environments.
+     *
+     * @private
+     * @param {*} value The value to query.
+     * @returns {string} Returns the `toStringTag`.
+     */
+    function baseGetTag(value) {
+      if (value == null) {
+        return value === undefined ? undefinedTag : nullTag;
+      }
+      return (symToStringTag && symToStringTag in Object(value))
+        ? getRawTag(value)
+        : objectToString(value);
+    }
+
+    /**
+     * The base implementation of `_.gt` which doesn't coerce arguments.
+     *
+     * @private
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if `value` is greater than `other`,
+     *  else `false`.
+     */
+    function baseGt(value, other) {
+      return value > other;
+    }
+
+    /**
+     * The base implementation of `_.has` without support for deep paths.
+     *
+     * @private
+     * @param {Object} [object] The object to query.
+     * @param {Array|string} key The key to check.
+     * @returns {boolean} Returns `true` if `key` exists, else `false`.
+     */
+    function baseHas(object, key) {
+      return object != null && hasOwnProperty.call(object, key);
+    }
+
+    /**
+     * The base implementation of `_.hasIn` without support for deep paths.
+     *
+     * @private
+     * @param {Object} [object] The object to query.
+     * @param {Array|string} key The key to check.
+     * @returns {boolean} Returns `true` if `key` exists, else `false`.
+     */
+    function baseHasIn(object, key) {
+      return object != null && key in Object(object);
+    }
+
+    /**
+     * The base implementation of `_.inRange` which doesn't coerce arguments.
+     *
+     * @private
+     * @param {number} number The number to check.
+     * @param {number} start The start of the range.
+     * @param {number} end The end of the range.
+     * @returns {boolean} Returns `true` if `number` is in the range, else `false`.
+     */
+    function baseInRange(number, start, end) {
+      return number >= nativeMin(start, end) && number < nativeMax(start, end);
+    }
+
+    /**
+     * The base implementation of methods like `_.intersection`, without support
+     * for iteratee shorthands, that accepts an array of arrays to inspect.
+     *
+     * @private
+     * @param {Array} arrays The arrays to inspect.
+     * @param {Function} [iteratee] The iteratee invoked per element.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new array of shared values.
+     */
+    function baseIntersection(arrays, iteratee, comparator) {
+      var includes = comparator ? arrayIncludesWith : arrayIncludes,
+          length = arrays[0].length,
+          othLength = arrays.length,
+          othIndex = othLength,
+          caches = Array(othLength),
+          maxLength = Infinity,
+          result = [];
+
+      while (othIndex--) {
+        var array = arrays[othIndex];
+        if (othIndex && iteratee) {
+          array = arrayMap(array, baseUnary(iteratee));
+        }
+        maxLength = nativeMin(array.length, maxLength);
+        caches[othIndex] = !comparator && (iteratee || (length >= 120 && array.length >= 120))
+          ? new SetCache(othIndex && array)
+          : undefined;
+      }
+      array = arrays[0];
+
+      var index = -1,
+          seen = caches[0];
+
+      outer:
+      while (++index < length && result.length < maxLength) {
+        var value = array[index],
+            computed = iteratee ? iteratee(value) : value;
+
+        value = (comparator || value !== 0) ? value : 0;
+        if (!(seen
+              ? cacheHas(seen, computed)
+              : includes(result, computed, comparator)
+            )) {
+          othIndex = othLength;
+          while (--othIndex) {
+            var cache = caches[othIndex];
+            if (!(cache
+                  ? cacheHas(cache, computed)
+                  : includes(arrays[othIndex], computed, comparator))
+                ) {
+              continue outer;
+            }
+          }
+          if (seen) {
+            seen.push(computed);
+          }
+          result.push(value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.invert` and `_.invertBy` which inverts
+     * `object` with values transformed by `iteratee` and set by `setter`.
+     *
+     * @private
+     * @param {Object} object The object to iterate over.
+     * @param {Function} setter The function to set `accumulator` values.
+     * @param {Function} iteratee The iteratee to transform values.
+     * @param {Object} accumulator The initial inverted object.
+     * @returns {Function} Returns `accumulator`.
+     */
+    function baseInverter(object, setter, iteratee, accumulator) {
+      baseForOwn(object, function(value, key, object) {
+        setter(accumulator, iteratee(value), key, object);
+      });
+      return accumulator;
+    }
+
+    /**
+     * The base implementation of `_.invoke` without support for individual
+     * method arguments.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path of the method to invoke.
+     * @param {Array} args The arguments to invoke the method with.
+     * @returns {*} Returns the result of the invoked method.
+     */
+    function baseInvoke(object, path, args) {
+      path = castPath(path, object);
+      object = parent(object, path);
+      var func = object == null ? object : object[toKey(last(path))];
+      return func == null ? undefined : apply(func, object, args);
+    }
+
+    /**
+     * The base implementation of `_.isArguments`.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+     */
+    function baseIsArguments(value) {
+      return isObjectLike(value) && baseGetTag(value) == argsTag;
+    }
+
+    /**
+     * The base implementation of `_.isArrayBuffer` without Node.js optimizations.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an array buffer, else `false`.
+     */
+    function baseIsArrayBuffer(value) {
+      return isObjectLike(value) && baseGetTag(value) == arrayBufferTag;
+    }
+
+    /**
+     * The base implementation of `_.isDate` without Node.js optimizations.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a date object, else `false`.
+     */
+    function baseIsDate(value) {
+      return isObjectLike(value) && baseGetTag(value) == dateTag;
+    }
+
+    /**
+     * The base implementation of `_.isEqual` which supports partial comparisons
+     * and tracks traversed objects.
+     *
+     * @private
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @param {boolean} bitmask The bitmask flags.
+     *  1 - Unordered comparison
+     *  2 - Partial comparison
+     * @param {Function} [customizer] The function to customize comparisons.
+     * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     */
+    function baseIsEqual(value, other, bitmask, customizer, stack) {
+      if (value === other) {
+        return true;
+      }
+      if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
+        return value !== value && other !== other;
+      }
+      return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+    }
+
+    /**
+     * A specialized version of `baseIsEqual` for arrays and objects which performs
+     * deep comparisons and tracks traversed objects enabling objects with circular
+     * references to be compared.
+     *
+     * @private
+     * @param {Object} object The object to compare.
+     * @param {Object} other The other object to compare.
+     * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+     * @param {Function} customizer The function to customize comparisons.
+     * @param {Function} equalFunc The function to determine equivalents of values.
+     * @param {Object} [stack] Tracks traversed `object` and `other` objects.
+     * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+     */
+    function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+      var objIsArr = isArray(object),
+          othIsArr = isArray(other),
+          objTag = objIsArr ? arrayTag : getTag(object),
+          othTag = othIsArr ? arrayTag : getTag(other);
+
+      objTag = objTag == argsTag ? objectTag : objTag;
+      othTag = othTag == argsTag ? objectTag : othTag;
+
+      var objIsObj = objTag == objectTag,
+          othIsObj = othTag == objectTag,
+          isSameTag = objTag == othTag;
+
+      if (isSameTag && isBuffer(object)) {
+        if (!isBuffer(other)) {
+          return false;
+        }
+        objIsArr = true;
+        objIsObj = false;
+      }
+      if (isSameTag && !objIsObj) {
+        stack || (stack = new Stack);
+        return (objIsArr || isTypedArray(object))
+          ? equalArrays(object, other, bitmask, customizer, equalFunc, stack)
+          : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+      }
+      if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
+        var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+            othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+        if (objIsWrapped || othIsWrapped) {
+          var objUnwrapped = objIsWrapped ? object.value() : object,
+              othUnwrapped = othIsWrapped ? other.value() : other;
+
+          stack || (stack = new Stack);
+          return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+        }
+      }
+      if (!isSameTag) {
+        return false;
+      }
+      stack || (stack = new Stack);
+      return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+    }
+
+    /**
+     * The base implementation of `_.isMap` without Node.js optimizations.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a map, else `false`.
+     */
+    function baseIsMap(value) {
+      return isObjectLike(value) && getTag(value) == mapTag;
+    }
+
+    /**
+     * The base implementation of `_.isMatch` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Object} object The object to inspect.
+     * @param {Object} source The object of property values to match.
+     * @param {Array} matchData The property names, values, and compare flags to match.
+     * @param {Function} [customizer] The function to customize comparisons.
+     * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+     */
+    function baseIsMatch(object, source, matchData, customizer) {
+      var index = matchData.length,
+          length = index,
+          noCustomizer = !customizer;
+
+      if (object == null) {
+        return !length;
+      }
+      object = Object(object);
+      while (index--) {
+        var data = matchData[index];
+        if ((noCustomizer && data[2])
+              ? data[1] !== object[data[0]]
+              : !(data[0] in object)
+            ) {
+          return false;
+        }
+      }
+      while (++index < length) {
+        data = matchData[index];
+        var key = data[0],
+            objValue = object[key],
+            srcValue = data[1];
+
+        if (noCustomizer && data[2]) {
+          if (objValue === undefined && !(key in object)) {
+            return false;
+          }
+        } else {
+          var stack = new Stack;
+          if (customizer) {
+            var result = customizer(objValue, srcValue, key, object, source, stack);
+          }
+          if (!(result === undefined
+                ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack)
+                : result
+              )) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    /**
+     * The base implementation of `_.isNative` without bad shim checks.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a native function,
+     *  else `false`.
+     */
+    function baseIsNative(value) {
+      if (!isObject(value) || isMasked(value)) {
+        return false;
+      }
+      var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+      return pattern.test(toSource(value));
+    }
+
+    /**
+     * The base implementation of `_.isRegExp` without Node.js optimizations.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
+     */
+    function baseIsRegExp(value) {
+      return isObjectLike(value) && baseGetTag(value) == regexpTag;
+    }
+
+    /**
+     * The base implementation of `_.isSet` without Node.js optimizations.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a set, else `false`.
+     */
+    function baseIsSet(value) {
+      return isObjectLike(value) && getTag(value) == setTag;
+    }
+
+    /**
+     * The base implementation of `_.isTypedArray` without Node.js optimizations.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+     */
+    function baseIsTypedArray(value) {
+      return isObjectLike(value) &&
+        isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+    }
+
+    /**
+     * The base implementation of `_.iteratee`.
+     *
+     * @private
+     * @param {*} [value=_.identity] The value to convert to an iteratee.
+     * @returns {Function} Returns the iteratee.
+     */
+    function baseIteratee(value) {
+      // Don't store the `typeof` result in a variable to avoid a JIT bug in Safari 9.
+      // See https://bugs.webkit.org/show_bug.cgi?id=156034 for more details.
+      if (typeof value == 'function') {
+        return value;
+      }
+      if (value == null) {
+        return identity;
+      }
+      if (typeof value == 'object') {
+        return isArray(value)
+          ? baseMatchesProperty(value[0], value[1])
+          : baseMatches(value);
+      }
+      return property(value);
+    }
+
+    /**
+     * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property names.
+     */
+    function baseKeys(object) {
+      if (!isPrototype(object)) {
+        return nativeKeys(object);
+      }
+      var result = [];
+      for (var key in Object(object)) {
+        if (hasOwnProperty.call(object, key) && key != 'constructor') {
+          result.push(key);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property names.
+     */
+    function baseKeysIn(object) {
+      if (!isObject(object)) {
+        return nativeKeysIn(object);
+      }
+      var isProto = isPrototype(object),
+          result = [];
+
+      for (var key in object) {
+        if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+          result.push(key);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.lt` which doesn't coerce arguments.
+     *
+     * @private
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if `value` is less than `other`,
+     *  else `false`.
+     */
+    function baseLt(value, other) {
+      return value < other;
+    }
+
+    /**
+     * The base implementation of `_.map` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} iteratee The function invoked per iteration.
+     * @returns {Array} Returns the new mapped array.
+     */
+    function baseMap(collection, iteratee) {
+      var index = -1,
+          result = isArrayLike(collection) ? Array(collection.length) : [];
+
+      baseEach(collection, function(value, key, collection) {
+        result[++index] = iteratee(value, key, collection);
+      });
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.matches` which doesn't clone `source`.
+     *
+     * @private
+     * @param {Object} source The object of property values to match.
+     * @returns {Function} Returns the new spec function.
+     */
+    function baseMatches(source) {
+      var matchData = getMatchData(source);
+      if (matchData.length == 1 && matchData[0][2]) {
+        return matchesStrictComparable(matchData[0][0], matchData[0][1]);
+      }
+      return function(object) {
+        return object === source || baseIsMatch(object, source, matchData);
+      };
+    }
+
+    /**
+     * The base implementation of `_.matchesProperty` which doesn't clone `srcValue`.
+     *
+     * @private
+     * @param {string} path The path of the property to get.
+     * @param {*} srcValue The value to match.
+     * @returns {Function} Returns the new spec function.
+     */
+    function baseMatchesProperty(path, srcValue) {
+      if (isKey(path) && isStrictComparable(srcValue)) {
+        return matchesStrictComparable(toKey(path), srcValue);
+      }
+      return function(object) {
+        var objValue = get(object, path);
+        return (objValue === undefined && objValue === srcValue)
+          ? hasIn(object, path)
+          : baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
+      };
+    }
+
+    /**
+     * The base implementation of `_.merge` without support for multiple sources.
+     *
+     * @private
+     * @param {Object} object The destination object.
+     * @param {Object} source The source object.
+     * @param {number} srcIndex The index of `source`.
+     * @param {Function} [customizer] The function to customize merged values.
+     * @param {Object} [stack] Tracks traversed source values and their merged
+     *  counterparts.
+     */
+    function baseMerge(object, source, srcIndex, customizer, stack) {
+      if (object === source) {
+        return;
+      }
+      baseFor(source, function(srcValue, key) {
+        if (isObject(srcValue)) {
+          stack || (stack = new Stack);
+          baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
+        }
+        else {
+          var newValue = customizer
+            ? customizer(object[key], srcValue, (key + ''), object, source, stack)
+            : undefined;
+
+          if (newValue === undefined) {
+            newValue = srcValue;
+          }
+          assignMergeValue(object, key, newValue);
+        }
+      }, keysIn);
+    }
+
+    /**
+     * A specialized version of `baseMerge` for arrays and objects which performs
+     * deep merges and tracks traversed objects enabling objects with circular
+     * references to be merged.
+     *
+     * @private
+     * @param {Object} object The destination object.
+     * @param {Object} source The source object.
+     * @param {string} key The key of the value to merge.
+     * @param {number} srcIndex The index of `source`.
+     * @param {Function} mergeFunc The function to merge values.
+     * @param {Function} [customizer] The function to customize assigned values.
+     * @param {Object} [stack] Tracks traversed source values and their merged
+     *  counterparts.
+     */
+    function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
+      var objValue = object[key],
+          srcValue = source[key],
+          stacked = stack.get(srcValue);
+
+      if (stacked) {
+        assignMergeValue(object, key, stacked);
+        return;
+      }
+      var newValue = customizer
+        ? customizer(objValue, srcValue, (key + ''), object, source, stack)
+        : undefined;
+
+      var isCommon = newValue === undefined;
+
+      if (isCommon) {
+        var isArr = isArray(srcValue),
+            isBuff = !isArr && isBuffer(srcValue),
+            isTyped = !isArr && !isBuff && isTypedArray(srcValue);
+
+        newValue = srcValue;
+        if (isArr || isBuff || isTyped) {
+          if (isArray(objValue)) {
+            newValue = objValue;
+          }
+          else if (isArrayLikeObject(objValue)) {
+            newValue = copyArray(objValue);
+          }
+          else if (isBuff) {
+            isCommon = false;
+            newValue = cloneBuffer(srcValue, true);
+          }
+          else if (isTyped) {
+            isCommon = false;
+            newValue = cloneTypedArray(srcValue, true);
+          }
+          else {
+            newValue = [];
+          }
+        }
+        else if (isPlainObject(srcValue) || isArguments(srcValue)) {
+          newValue = objValue;
+          if (isArguments(objValue)) {
+            newValue = toPlainObject(objValue);
+          }
+          else if (!isObject(objValue) || (srcIndex && isFunction(objValue))) {
+            newValue = initCloneObject(srcValue);
+          }
+        }
+        else {
+          isCommon = false;
+        }
+      }
+      if (isCommon) {
+        // Recursively merge objects and arrays (susceptible to call stack limits).
+        stack.set(srcValue, newValue);
+        mergeFunc(newValue, srcValue, srcIndex, customizer, stack);
+        stack['delete'](srcValue);
+      }
+      assignMergeValue(object, key, newValue);
+    }
+
+    /**
+     * The base implementation of `_.nth` which doesn't coerce arguments.
+     *
+     * @private
+     * @param {Array} array The array to query.
+     * @param {number} n The index of the element to return.
+     * @returns {*} Returns the nth element of `array`.
+     */
+    function baseNth(array, n) {
+      var length = array.length;
+      if (!length) {
+        return;
+      }
+      n += n < 0 ? length : 0;
+      return isIndex(n, length) ? array[n] : undefined;
+    }
+
+    /**
+     * The base implementation of `_.orderBy` without param guards.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function[]|Object[]|string[]} iteratees The iteratees to sort by.
+     * @param {string[]} orders The sort orders of `iteratees`.
+     * @returns {Array} Returns the new sorted array.
+     */
+    function baseOrderBy(collection, iteratees, orders) {
+      var index = -1;
+      iteratees = arrayMap(iteratees.length ? iteratees : [identity], baseUnary(getIteratee()));
+
+      var result = baseMap(collection, function(value, key, collection) {
+        var criteria = arrayMap(iteratees, function(iteratee) {
+          return iteratee(value);
+        });
+        return { 'criteria': criteria, 'index': ++index, 'value': value };
+      });
+
+      return baseSortBy(result, function(object, other) {
+        return compareMultiple(object, other, orders);
+      });
+    }
+
+    /**
+     * The base implementation of `_.pick` without support for individual
+     * property identifiers.
+     *
+     * @private
+     * @param {Object} object The source object.
+     * @param {string[]} paths The property paths to pick.
+     * @returns {Object} Returns the new object.
+     */
+    function basePick(object, paths) {
+      return basePickBy(object, paths, function(value, path) {
+        return hasIn(object, path);
+      });
+    }
+
+    /**
+     * The base implementation of  `_.pickBy` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Object} object The source object.
+     * @param {string[]} paths The property paths to pick.
+     * @param {Function} predicate The function invoked per property.
+     * @returns {Object} Returns the new object.
+     */
+    function basePickBy(object, paths, predicate) {
+      var index = -1,
+          length = paths.length,
+          result = {};
+
+      while (++index < length) {
+        var path = paths[index],
+            value = baseGet(object, path);
+
+        if (predicate(value, path)) {
+          baseSet(result, castPath(path, object), value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * A specialized version of `baseProperty` which supports deep paths.
+     *
+     * @private
+     * @param {Array|string} path The path of the property to get.
+     * @returns {Function} Returns the new accessor function.
+     */
+    function basePropertyDeep(path) {
+      return function(object) {
+        return baseGet(object, path);
+      };
+    }
+
+    /**
+     * The base implementation of `_.pullAllBy` without support for iteratee
+     * shorthands.
+     *
+     * @private
+     * @param {Array} array The array to modify.
+     * @param {Array} values The values to remove.
+     * @param {Function} [iteratee] The iteratee invoked per element.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns `array`.
+     */
+    function basePullAll(array, values, iteratee, comparator) {
+      var indexOf = comparator ? baseIndexOfWith : baseIndexOf,
+          index = -1,
+          length = values.length,
+          seen = array;
+
+      if (array === values) {
+        values = copyArray(values);
+      }
+      if (iteratee) {
+        seen = arrayMap(array, baseUnary(iteratee));
+      }
+      while (++index < length) {
+        var fromIndex = 0,
+            value = values[index],
+            computed = iteratee ? iteratee(value) : value;
+
+        while ((fromIndex = indexOf(seen, computed, fromIndex, comparator)) > -1) {
+          if (seen !== array) {
+            splice.call(seen, fromIndex, 1);
+          }
+          splice.call(array, fromIndex, 1);
+        }
+      }
+      return array;
+    }
+
+    /**
+     * The base implementation of `_.pullAt` without support for individual
+     * indexes or capturing the removed elements.
+     *
+     * @private
+     * @param {Array} array The array to modify.
+     * @param {number[]} indexes The indexes of elements to remove.
+     * @returns {Array} Returns `array`.
+     */
+    function basePullAt(array, indexes) {
+      var length = array ? indexes.length : 0,
+          lastIndex = length - 1;
+
+      while (length--) {
+        var index = indexes[length];
+        if (length == lastIndex || index !== previous) {
+          var previous = index;
+          if (isIndex(index)) {
+            splice.call(array, index, 1);
+          } else {
+            baseUnset(array, index);
+          }
+        }
+      }
+      return array;
+    }
+
+    /**
+     * The base implementation of `_.random` without support for returning
+     * floating-point numbers.
+     *
+     * @private
+     * @param {number} lower The lower bound.
+     * @param {number} upper The upper bound.
+     * @returns {number} Returns the random number.
+     */
+    function baseRandom(lower, upper) {
+      return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
+    }
+
+    /**
+     * The base implementation of `_.range` and `_.rangeRight` which doesn't
+     * coerce arguments.
+     *
+     * @private
+     * @param {number} start The start of the range.
+     * @param {number} end The end of the range.
+     * @param {number} step The value to increment or decrement by.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
+     * @returns {Array} Returns the range of numbers.
+     */
+    function baseRange(start, end, step, fromRight) {
+      var index = -1,
+          length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
+          result = Array(length);
+
+      while (length--) {
+        result[fromRight ? length : ++index] = start;
+        start += step;
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.repeat` which doesn't coerce arguments.
+     *
+     * @private
+     * @param {string} string The string to repeat.
+     * @param {number} n The number of times to repeat the string.
+     * @returns {string} Returns the repeated string.
+     */
+    function baseRepeat(string, n) {
+      var result = '';
+      if (!string || n < 1 || n > MAX_SAFE_INTEGER) {
+        return result;
+      }
+      // Leverage the exponentiation by squaring algorithm for a faster repeat.
+      // See https://en.wikipedia.org/wiki/Exponentiation_by_squaring for more details.
+      do {
+        if (n % 2) {
+          result += string;
+        }
+        n = nativeFloor(n / 2);
+        if (n) {
+          string += string;
+        }
+      } while (n);
+
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+     *
+     * @private
+     * @param {Function} func The function to apply a rest parameter to.
+     * @param {number} [start=func.length-1] The start position of the rest parameter.
+     * @returns {Function} Returns the new function.
+     */
+    function baseRest(func, start) {
+      return setToString(overRest(func, start, identity), func + '');
+    }
+
+    /**
+     * The base implementation of `_.sample`.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to sample.
+     * @returns {*} Returns the random element.
+     */
+    function baseSample(collection) {
+      return arraySample(values(collection));
+    }
+
+    /**
+     * The base implementation of `_.sampleSize` without param guards.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to sample.
+     * @param {number} n The number of elements to sample.
+     * @returns {Array} Returns the random elements.
+     */
+    function baseSampleSize(collection, n) {
+      var array = values(collection);
+      return shuffleSelf(array, baseClamp(n, 0, array.length));
+    }
+
+    /**
+     * The base implementation of `_.set`.
+     *
+     * @private
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The path of the property to set.
+     * @param {*} value The value to set.
+     * @param {Function} [customizer] The function to customize path creation.
+     * @returns {Object} Returns `object`.
+     */
+    function baseSet(object, path, value, customizer) {
+      if (!isObject(object)) {
+        return object;
+      }
+      path = castPath(path, object);
+
+      var index = -1,
+          length = path.length,
+          lastIndex = length - 1,
+          nested = object;
+
+      while (nested != null && ++index < length) {
+        var key = toKey(path[index]),
+            newValue = value;
+
+        if (index != lastIndex) {
+          var objValue = nested[key];
+          newValue = customizer ? customizer(objValue, key, nested) : undefined;
+          if (newValue === undefined) {
+            newValue = isObject(objValue)
+              ? objValue
+              : (isIndex(path[index + 1]) ? [] : {});
+          }
+        }
+        assignValue(nested, key, newValue);
+        nested = nested[key];
+      }
+      return object;
+    }
+
+    /**
+     * The base implementation of `setData` without support for hot loop shorting.
+     *
+     * @private
+     * @param {Function} func The function to associate metadata with.
+     * @param {*} data The metadata.
+     * @returns {Function} Returns `func`.
+     */
+    var baseSetData = !metaMap ? identity : function(func, data) {
+      metaMap.set(func, data);
+      return func;
+    };
+
+    /**
+     * The base implementation of `setToString` without support for hot loop shorting.
+     *
+     * @private
+     * @param {Function} func The function to modify.
+     * @param {Function} string The `toString` result.
+     * @returns {Function} Returns `func`.
+     */
+    var baseSetToString = !defineProperty ? identity : function(func, string) {
+      return defineProperty(func, 'toString', {
+        'configurable': true,
+        'enumerable': false,
+        'value': constant(string),
+        'writable': true
+      });
+    };
+
+    /**
+     * The base implementation of `_.shuffle`.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to shuffle.
+     * @returns {Array} Returns the new shuffled array.
+     */
+    function baseShuffle(collection) {
+      return shuffleSelf(values(collection));
+    }
+
+    /**
+     * The base implementation of `_.slice` without an iteratee call guard.
+     *
+     * @private
+     * @param {Array} array The array to slice.
+     * @param {number} [start=0] The start position.
+     * @param {number} [end=array.length] The end position.
+     * @returns {Array} Returns the slice of `array`.
+     */
+    function baseSlice(array, start, end) {
+      var index = -1,
+          length = array.length;
+
+      if (start < 0) {
+        start = -start > length ? 0 : (length + start);
+      }
+      end = end > length ? length : end;
+      if (end < 0) {
+        end += length;
+      }
+      length = start > end ? 0 : ((end - start) >>> 0);
+      start >>>= 0;
+
+      var result = Array(length);
+      while (++index < length) {
+        result[index] = array[index + start];
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.some` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} predicate The function invoked per iteration.
+     * @returns {boolean} Returns `true` if any element passes the predicate check,
+     *  else `false`.
+     */
+    function baseSome(collection, predicate) {
+      var result;
+
+      baseEach(collection, function(value, index, collection) {
+        result = predicate(value, index, collection);
+        return !result;
+      });
+      return !!result;
+    }
+
+    /**
+     * The base implementation of `_.sortedIndex` and `_.sortedLastIndex` which
+     * performs a binary search of `array` to determine the index at which `value`
+     * should be inserted into `array` in order to maintain its sort order.
+     *
+     * @private
+     * @param {Array} array The sorted array to inspect.
+     * @param {*} value The value to evaluate.
+     * @param {boolean} [retHighest] Specify returning the highest qualified index.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     */
+    function baseSortedIndex(array, value, retHighest) {
+      var low = 0,
+          high = array == null ? low : array.length;
+
+      if (typeof value == 'number' && value === value && high <= HALF_MAX_ARRAY_LENGTH) {
+        while (low < high) {
+          var mid = (low + high) >>> 1,
+              computed = array[mid];
+
+          if (computed !== null && !isSymbol(computed) &&
+              (retHighest ? (computed <= value) : (computed < value))) {
+            low = mid + 1;
+          } else {
+            high = mid;
+          }
+        }
+        return high;
+      }
+      return baseSortedIndexBy(array, value, identity, retHighest);
+    }
+
+    /**
+     * The base implementation of `_.sortedIndexBy` and `_.sortedLastIndexBy`
+     * which invokes `iteratee` for `value` and each element of `array` to compute
+     * their sort ranking. The iteratee is invoked with one argument; (value).
+     *
+     * @private
+     * @param {Array} array The sorted array to inspect.
+     * @param {*} value The value to evaluate.
+     * @param {Function} iteratee The iteratee invoked per element.
+     * @param {boolean} [retHighest] Specify returning the highest qualified index.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     */
+    function baseSortedIndexBy(array, value, iteratee, retHighest) {
+      value = iteratee(value);
+
+      var low = 0,
+          high = array == null ? 0 : array.length,
+          valIsNaN = value !== value,
+          valIsNull = value === null,
+          valIsSymbol = isSymbol(value),
+          valIsUndefined = value === undefined;
+
+      while (low < high) {
+        var mid = nativeFloor((low + high) / 2),
+            computed = iteratee(array[mid]),
+            othIsDefined = computed !== undefined,
+            othIsNull = computed === null,
+            othIsReflexive = computed === computed,
+            othIsSymbol = isSymbol(computed);
+
+        if (valIsNaN) {
+          var setLow = retHighest || othIsReflexive;
+        } else if (valIsUndefined) {
+          setLow = othIsReflexive && (retHighest || othIsDefined);
+        } else if (valIsNull) {
+          setLow = othIsReflexive && othIsDefined && (retHighest || !othIsNull);
+        } else if (valIsSymbol) {
+          setLow = othIsReflexive && othIsDefined && !othIsNull && (retHighest || !othIsSymbol);
+        } else if (othIsNull || othIsSymbol) {
+          setLow = false;
+        } else {
+          setLow = retHighest ? (computed <= value) : (computed < value);
+        }
+        if (setLow) {
+          low = mid + 1;
+        } else {
+          high = mid;
+        }
+      }
+      return nativeMin(high, MAX_ARRAY_INDEX);
+    }
+
+    /**
+     * The base implementation of `_.sortedUniq` and `_.sortedUniqBy` without
+     * support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array} array The array to inspect.
+     * @param {Function} [iteratee] The iteratee invoked per element.
+     * @returns {Array} Returns the new duplicate free array.
+     */
+    function baseSortedUniq(array, iteratee) {
+      var index = -1,
+          length = array.length,
+          resIndex = 0,
+          result = [];
+
+      while (++index < length) {
+        var value = array[index],
+            computed = iteratee ? iteratee(value) : value;
+
+        if (!index || !eq(computed, seen)) {
+          var seen = computed;
+          result[resIndex++] = value === 0 ? 0 : value;
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.toNumber` which doesn't ensure correct
+     * conversions of binary, hexadecimal, or octal string values.
+     *
+     * @private
+     * @param {*} value The value to process.
+     * @returns {number} Returns the number.
+     */
+    function baseToNumber(value) {
+      if (typeof value == 'number') {
+        return value;
+      }
+      if (isSymbol(value)) {
+        return NAN;
+      }
+      return +value;
+    }
+
+    /**
+     * The base implementation of `_.toString` which doesn't convert nullish
+     * values to empty strings.
+     *
+     * @private
+     * @param {*} value The value to process.
+     * @returns {string} Returns the string.
+     */
+    function baseToString(value) {
+      // Exit early for strings to avoid a performance hit in some environments.
+      if (typeof value == 'string') {
+        return value;
+      }
+      if (isArray(value)) {
+        // Recursively convert values (susceptible to call stack limits).
+        return arrayMap(value, baseToString) + '';
+      }
+      if (isSymbol(value)) {
+        return symbolToString ? symbolToString.call(value) : '';
+      }
+      var result = (value + '');
+      return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+    }
+
+    /**
+     * The base implementation of `_.uniqBy` without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array} array The array to inspect.
+     * @param {Function} [iteratee] The iteratee invoked per element.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new duplicate free array.
+     */
+    function baseUniq(array, iteratee, comparator) {
+      var index = -1,
+          includes = arrayIncludes,
+          length = array.length,
+          isCommon = true,
+          result = [],
+          seen = result;
+
+      if (comparator) {
+        isCommon = false;
+        includes = arrayIncludesWith;
+      }
+      else if (length >= LARGE_ARRAY_SIZE) {
+        var set = iteratee ? null : createSet(array);
+        if (set) {
+          return setToArray(set);
+        }
+        isCommon = false;
+        includes = cacheHas;
+        seen = new SetCache;
+      }
+      else {
+        seen = iteratee ? [] : result;
+      }
+      outer:
+      while (++index < length) {
+        var value = array[index],
+            computed = iteratee ? iteratee(value) : value;
+
+        value = (comparator || value !== 0) ? value : 0;
+        if (isCommon && computed === computed) {
+          var seenIndex = seen.length;
+          while (seenIndex--) {
+            if (seen[seenIndex] === computed) {
+              continue outer;
+            }
+          }
+          if (iteratee) {
+            seen.push(computed);
+          }
+          result.push(value);
+        }
+        else if (!includes(seen, computed, comparator)) {
+          if (seen !== result) {
+            seen.push(computed);
+          }
+          result.push(value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.unset`.
+     *
+     * @private
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The property path to unset.
+     * @returns {boolean} Returns `true` if the property is deleted, else `false`.
+     */
+    function baseUnset(object, path) {
+      path = castPath(path, object);
+      object = parent(object, path);
+      return object == null || delete object[toKey(last(path))];
+    }
+
+    /**
+     * The base implementation of `_.update`.
+     *
+     * @private
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The path of the property to update.
+     * @param {Function} updater The function to produce the updated value.
+     * @param {Function} [customizer] The function to customize path creation.
+     * @returns {Object} Returns `object`.
+     */
+    function baseUpdate(object, path, updater, customizer) {
+      return baseSet(object, path, updater(baseGet(object, path)), customizer);
+    }
+
+    /**
+     * The base implementation of methods like `_.dropWhile` and `_.takeWhile`
+     * without support for iteratee shorthands.
+     *
+     * @private
+     * @param {Array} array The array to query.
+     * @param {Function} predicate The function invoked per iteration.
+     * @param {boolean} [isDrop] Specify dropping elements instead of taking them.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
+     * @returns {Array} Returns the slice of `array`.
+     */
+    function baseWhile(array, predicate, isDrop, fromRight) {
+      var length = array.length,
+          index = fromRight ? length : -1;
+
+      while ((fromRight ? index-- : ++index < length) &&
+        predicate(array[index], index, array)) {}
+
+      return isDrop
+        ? baseSlice(array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))
+        : baseSlice(array, (fromRight ? index + 1 : 0), (fromRight ? length : index));
+    }
+
+    /**
+     * The base implementation of `wrapperValue` which returns the result of
+     * performing a sequence of actions on the unwrapped `value`, where each
+     * successive action is supplied the return value of the previous.
+     *
+     * @private
+     * @param {*} value The unwrapped value.
+     * @param {Array} actions Actions to perform to resolve the unwrapped value.
+     * @returns {*} Returns the resolved value.
+     */
+    function baseWrapperValue(value, actions) {
+      var result = value;
+      if (result instanceof LazyWrapper) {
+        result = result.value();
+      }
+      return arrayReduce(actions, function(result, action) {
+        return action.func.apply(action.thisArg, arrayPush([result], action.args));
+      }, result);
+    }
+
+    /**
+     * The base implementation of methods like `_.xor`, without support for
+     * iteratee shorthands, that accepts an array of arrays to inspect.
+     *
+     * @private
+     * @param {Array} arrays The arrays to inspect.
+     * @param {Function} [iteratee] The iteratee invoked per element.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new array of values.
+     */
+    function baseXor(arrays, iteratee, comparator) {
+      var length = arrays.length;
+      if (length < 2) {
+        return length ? baseUniq(arrays[0]) : [];
+      }
+      var index = -1,
+          result = Array(length);
+
+      while (++index < length) {
+        var array = arrays[index],
+            othIndex = -1;
+
+        while (++othIndex < length) {
+          if (othIndex != index) {
+            result[index] = baseDifference(result[index] || array, arrays[othIndex], iteratee, comparator);
+          }
+        }
+      }
+      return baseUniq(baseFlatten(result, 1), iteratee, comparator);
+    }
+
+    /**
+     * This base implementation of `_.zipObject` which assigns values using `assignFunc`.
+     *
+     * @private
+     * @param {Array} props The property identifiers.
+     * @param {Array} values The property values.
+     * @param {Function} assignFunc The function to assign values.
+     * @returns {Object} Returns the new object.
+     */
+    function baseZipObject(props, values, assignFunc) {
+      var index = -1,
+          length = props.length,
+          valsLength = values.length,
+          result = {};
+
+      while (++index < length) {
+        var value = index < valsLength ? values[index] : undefined;
+        assignFunc(result, props[index], value);
+      }
+      return result;
+    }
+
+    /**
+     * Casts `value` to an empty array if it's not an array like object.
+     *
+     * @private
+     * @param {*} value The value to inspect.
+     * @returns {Array|Object} Returns the cast array-like object.
+     */
+    function castArrayLikeObject(value) {
+      return isArrayLikeObject(value) ? value : [];
+    }
+
+    /**
+     * Casts `value` to `identity` if it's not a function.
+     *
+     * @private
+     * @param {*} value The value to inspect.
+     * @returns {Function} Returns cast function.
+     */
+    function castFunction(value) {
+      return typeof value == 'function' ? value : identity;
+    }
+
+    /**
+     * Casts `value` to a path array if it's not one.
+     *
+     * @private
+     * @param {*} value The value to inspect.
+     * @param {Object} [object] The object to query keys on.
+     * @returns {Array} Returns the cast property path array.
+     */
+    function castPath(value, object) {
+      if (isArray(value)) {
+        return value;
+      }
+      return isKey(value, object) ? [value] : stringToPath(toString(value));
+    }
+
+    /**
+     * A `baseRest` alias which can be replaced with `identity` by module
+     * replacement plugins.
+     *
+     * @private
+     * @type {Function}
+     * @param {Function} func The function to apply a rest parameter to.
+     * @returns {Function} Returns the new function.
+     */
+    var castRest = baseRest;
+
+    /**
+     * Casts `array` to a slice if it's needed.
+     *
+     * @private
+     * @param {Array} array The array to inspect.
+     * @param {number} start The start position.
+     * @param {number} [end=array.length] The end position.
+     * @returns {Array} Returns the cast slice.
+     */
+    function castSlice(array, start, end) {
+      var length = array.length;
+      end = end === undefined ? length : end;
+      return (!start && end >= length) ? array : baseSlice(array, start, end);
+    }
+
+    /**
+     * A simple wrapper around the global [`clearTimeout`](https://mdn.io/clearTimeout).
+     *
+     * @private
+     * @param {number|Object} id The timer id or timeout object of the timer to clear.
+     */
+    var clearTimeout = ctxClearTimeout || function(id) {
+      return root.clearTimeout(id);
+    };
+
+    /**
+     * Creates a clone of  `buffer`.
+     *
+     * @private
+     * @param {Buffer} buffer The buffer to clone.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Buffer} Returns the cloned buffer.
+     */
+    function cloneBuffer(buffer, isDeep) {
+      if (isDeep) {
+        return buffer.slice();
+      }
+      var length = buffer.length,
+          result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
+
+      buffer.copy(result);
+      return result;
+    }
+
+    /**
+     * Creates a clone of `arrayBuffer`.
+     *
+     * @private
+     * @param {ArrayBuffer} arrayBuffer The array buffer to clone.
+     * @returns {ArrayBuffer} Returns the cloned array buffer.
+     */
+    function cloneArrayBuffer(arrayBuffer) {
+      var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+      new Uint8Array(result).set(new Uint8Array(arrayBuffer));
+      return result;
+    }
+
+    /**
+     * Creates a clone of `dataView`.
+     *
+     * @private
+     * @param {Object} dataView The data view to clone.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Object} Returns the cloned data view.
+     */
+    function cloneDataView(dataView, isDeep) {
+      var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+      return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+    }
+
+    /**
+     * Creates a clone of `map`.
+     *
+     * @private
+     * @param {Object} map The map to clone.
+     * @param {Function} cloneFunc The function to clone values.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Object} Returns the cloned map.
+     */
+    function cloneMap(map, isDeep, cloneFunc) {
+      var array = isDeep ? cloneFunc(mapToArray(map), CLONE_DEEP_FLAG) : mapToArray(map);
+      return arrayReduce(array, addMapEntry, new map.constructor);
+    }
+
+    /**
+     * Creates a clone of `regexp`.
+     *
+     * @private
+     * @param {Object} regexp The regexp to clone.
+     * @returns {Object} Returns the cloned regexp.
+     */
+    function cloneRegExp(regexp) {
+      var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+      result.lastIndex = regexp.lastIndex;
+      return result;
+    }
+
+    /**
+     * Creates a clone of `set`.
+     *
+     * @private
+     * @param {Object} set The set to clone.
+     * @param {Function} cloneFunc The function to clone values.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Object} Returns the cloned set.
+     */
+    function cloneSet(set, isDeep, cloneFunc) {
+      var array = isDeep ? cloneFunc(setToArray(set), CLONE_DEEP_FLAG) : setToArray(set);
+      return arrayReduce(array, addSetEntry, new set.constructor);
+    }
+
+    /**
+     * Creates a clone of the `symbol` object.
+     *
+     * @private
+     * @param {Object} symbol The symbol object to clone.
+     * @returns {Object} Returns the cloned symbol object.
+     */
+    function cloneSymbol(symbol) {
+      return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+    }
+
+    /**
+     * Creates a clone of `typedArray`.
+     *
+     * @private
+     * @param {Object} typedArray The typed array to clone.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Object} Returns the cloned typed array.
+     */
+    function cloneTypedArray(typedArray, isDeep) {
+      var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+      return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+    }
+
+    /**
+     * Compares values to sort them in ascending order.
+     *
+     * @private
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {number} Returns the sort order indicator for `value`.
+     */
+    function compareAscending(value, other) {
+      if (value !== other) {
+        var valIsDefined = value !== undefined,
+            valIsNull = value === null,
+            valIsReflexive = value === value,
+            valIsSymbol = isSymbol(value);
+
+        var othIsDefined = other !== undefined,
+            othIsNull = other === null,
+            othIsReflexive = other === other,
+            othIsSymbol = isSymbol(other);
+
+        if ((!othIsNull && !othIsSymbol && !valIsSymbol && value > other) ||
+            (valIsSymbol && othIsDefined && othIsReflexive && !othIsNull && !othIsSymbol) ||
+            (valIsNull && othIsDefined && othIsReflexive) ||
+            (!valIsDefined && othIsReflexive) ||
+            !valIsReflexive) {
+          return 1;
+        }
+        if ((!valIsNull && !valIsSymbol && !othIsSymbol && value < other) ||
+            (othIsSymbol && valIsDefined && valIsReflexive && !valIsNull && !valIsSymbol) ||
+            (othIsNull && valIsDefined && valIsReflexive) ||
+            (!othIsDefined && valIsReflexive) ||
+            !othIsReflexive) {
+          return -1;
+        }
+      }
+      return 0;
+    }
+
+    /**
+     * Used by `_.orderBy` to compare multiple properties of a value to another
+     * and stable sort them.
+     *
+     * If `orders` is unspecified, all values are sorted in ascending order. Otherwise,
+     * specify an order of "desc" for descending or "asc" for ascending sort order
+     * of corresponding values.
+     *
+     * @private
+     * @param {Object} object The object to compare.
+     * @param {Object} other The other object to compare.
+     * @param {boolean[]|string[]} orders The order to sort by for each property.
+     * @returns {number} Returns the sort order indicator for `object`.
+     */
+    function compareMultiple(object, other, orders) {
+      var index = -1,
+          objCriteria = object.criteria,
+          othCriteria = other.criteria,
+          length = objCriteria.length,
+          ordersLength = orders.length;
+
+      while (++index < length) {
+        var result = compareAscending(objCriteria[index], othCriteria[index]);
+        if (result) {
+          if (index >= ordersLength) {
+            return result;
+          }
+          var order = orders[index];
+          return result * (order == 'desc' ? -1 : 1);
+        }
+      }
+      // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
+      // that causes it, under certain circumstances, to provide the same value for
+      // `object` and `other`. See https://github.com/jashkenas/underscore/pull/1247
+      // for more details.
+      //
+      // This also ensures a stable sort in V8 and other engines.
+      // See https://bugs.chromium.org/p/v8/issues/detail?id=90 for more details.
+      return object.index - other.index;
+    }
+
+    /**
+     * Creates an array that is the composition of partially applied arguments,
+     * placeholders, and provided arguments into a single array of arguments.
+     *
+     * @private
+     * @param {Array} args The provided arguments.
+     * @param {Array} partials The arguments to prepend to those provided.
+     * @param {Array} holders The `partials` placeholder indexes.
+     * @params {boolean} [isCurried] Specify composing for a curried function.
+     * @returns {Array} Returns the new array of composed arguments.
+     */
+    function composeArgs(args, partials, holders, isCurried) {
+      var argsIndex = -1,
+          argsLength = args.length,
+          holdersLength = holders.length,
+          leftIndex = -1,
+          leftLength = partials.length,
+          rangeLength = nativeMax(argsLength - holdersLength, 0),
+          result = Array(leftLength + rangeLength),
+          isUncurried = !isCurried;
+
+      while (++leftIndex < leftLength) {
+        result[leftIndex] = partials[leftIndex];
+      }
+      while (++argsIndex < holdersLength) {
+        if (isUncurried || argsIndex < argsLength) {
+          result[holders[argsIndex]] = args[argsIndex];
+        }
+      }
+      while (rangeLength--) {
+        result[leftIndex++] = args[argsIndex++];
+      }
+      return result;
+    }
+
+    /**
+     * This function is like `composeArgs` except that the arguments composition
+     * is tailored for `_.partialRight`.
+     *
+     * @private
+     * @param {Array} args The provided arguments.
+     * @param {Array} partials The arguments to append to those provided.
+     * @param {Array} holders The `partials` placeholder indexes.
+     * @params {boolean} [isCurried] Specify composing for a curried function.
+     * @returns {Array} Returns the new array of composed arguments.
+     */
+    function composeArgsRight(args, partials, holders, isCurried) {
+      var argsIndex = -1,
+          argsLength = args.length,
+          holdersIndex = -1,
+          holdersLength = holders.length,
+          rightIndex = -1,
+          rightLength = partials.length,
+          rangeLength = nativeMax(argsLength - holdersLength, 0),
+          result = Array(rangeLength + rightLength),
+          isUncurried = !isCurried;
+
+      while (++argsIndex < rangeLength) {
+        result[argsIndex] = args[argsIndex];
+      }
+      var offset = argsIndex;
+      while (++rightIndex < rightLength) {
+        result[offset + rightIndex] = partials[rightIndex];
+      }
+      while (++holdersIndex < holdersLength) {
+        if (isUncurried || argsIndex < argsLength) {
+          result[offset + holders[holdersIndex]] = args[argsIndex++];
+        }
+      }
+      return result;
+    }
+
+    /**
+     * Copies the values of `source` to `array`.
+     *
+     * @private
+     * @param {Array} source The array to copy values from.
+     * @param {Array} [array=[]] The array to copy values to.
+     * @returns {Array} Returns `array`.
+     */
+    function copyArray(source, array) {
+      var index = -1,
+          length = source.length;
+
+      array || (array = Array(length));
+      while (++index < length) {
+        array[index] = source[index];
+      }
+      return array;
+    }
+
+    /**
+     * Copies properties of `source` to `object`.
+     *
+     * @private
+     * @param {Object} source The object to copy properties from.
+     * @param {Array} props The property identifiers to copy.
+     * @param {Object} [object={}] The object to copy properties to.
+     * @param {Function} [customizer] The function to customize copied values.
+     * @returns {Object} Returns `object`.
+     */
+    function copyObject(source, props, object, customizer) {
+      var isNew = !object;
+      object || (object = {});
+
+      var index = -1,
+          length = props.length;
+
+      while (++index < length) {
+        var key = props[index];
+
+        var newValue = customizer
+          ? customizer(object[key], source[key], key, object, source)
+          : undefined;
+
+        if (newValue === undefined) {
+          newValue = source[key];
+        }
+        if (isNew) {
+          baseAssignValue(object, key, newValue);
+        } else {
+          assignValue(object, key, newValue);
+        }
+      }
+      return object;
+    }
+
+    /**
+     * Copies own symbols of `source` to `object`.
+     *
+     * @private
+     * @param {Object} source The object to copy symbols from.
+     * @param {Object} [object={}] The object to copy symbols to.
+     * @returns {Object} Returns `object`.
+     */
+    function copySymbols(source, object) {
+      return copyObject(source, getSymbols(source), object);
+    }
+
+    /**
+     * Copies own and inherited symbols of `source` to `object`.
+     *
+     * @private
+     * @param {Object} source The object to copy symbols from.
+     * @param {Object} [object={}] The object to copy symbols to.
+     * @returns {Object} Returns `object`.
+     */
+    function copySymbolsIn(source, object) {
+      return copyObject(source, getSymbolsIn(source), object);
+    }
+
+    /**
+     * Creates a function like `_.groupBy`.
+     *
+     * @private
+     * @param {Function} setter The function to set accumulator values.
+     * @param {Function} [initializer] The accumulator object initializer.
+     * @returns {Function} Returns the new aggregator function.
+     */
+    function createAggregator(setter, initializer) {
+      return function(collection, iteratee) {
+        var func = isArray(collection) ? arrayAggregator : baseAggregator,
+            accumulator = initializer ? initializer() : {};
+
+        return func(collection, setter, getIteratee(iteratee, 2), accumulator);
+      };
+    }
+
+    /**
+     * Creates a function like `_.assign`.
+     *
+     * @private
+     * @param {Function} assigner The function to assign values.
+     * @returns {Function} Returns the new assigner function.
+     */
+    function createAssigner(assigner) {
+      return baseRest(function(object, sources) {
+        var index = -1,
+            length = sources.length,
+            customizer = length > 1 ? sources[length - 1] : undefined,
+            guard = length > 2 ? sources[2] : undefined;
+
+        customizer = (assigner.length > 3 && typeof customizer == 'function')
+          ? (length--, customizer)
+          : undefined;
+
+        if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+          customizer = length < 3 ? undefined : customizer;
+          length = 1;
+        }
+        object = Object(object);
+        while (++index < length) {
+          var source = sources[index];
+          if (source) {
+            assigner(object, source, index, customizer);
+          }
+        }
+        return object;
+      });
+    }
+
+    /**
+     * Creates a `baseEach` or `baseEachRight` function.
+     *
+     * @private
+     * @param {Function} eachFunc The function to iterate over a collection.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
+     * @returns {Function} Returns the new base function.
+     */
+    function createBaseEach(eachFunc, fromRight) {
+      return function(collection, iteratee) {
+        if (collection == null) {
+          return collection;
+        }
+        if (!isArrayLike(collection)) {
+          return eachFunc(collection, iteratee);
+        }
+        var length = collection.length,
+            index = fromRight ? length : -1,
+            iterable = Object(collection);
+
+        while ((fromRight ? index-- : ++index < length)) {
+          if (iteratee(iterable[index], index, iterable) === false) {
+            break;
+          }
+        }
+        return collection;
+      };
+    }
+
+    /**
+     * Creates a base function for methods like `_.forIn` and `_.forOwn`.
+     *
+     * @private
+     * @param {boolean} [fromRight] Specify iterating from right to left.
+     * @returns {Function} Returns the new base function.
+     */
+    function createBaseFor(fromRight) {
+      return function(object, iteratee, keysFunc) {
+        var index = -1,
+            iterable = Object(object),
+            props = keysFunc(object),
+            length = props.length;
+
+        while (length--) {
+          var key = props[fromRight ? length : ++index];
+          if (iteratee(iterable[key], key, iterable) === false) {
+            break;
+          }
+        }
+        return object;
+      };
+    }
+
+    /**
+     * Creates a function that wraps `func` to invoke it with the optional `this`
+     * binding of `thisArg`.
+     *
+     * @private
+     * @param {Function} func The function to wrap.
+     * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @returns {Function} Returns the new wrapped function.
+     */
+    function createBind(func, bitmask, thisArg) {
+      var isBind = bitmask & WRAP_BIND_FLAG,
+          Ctor = createCtor(func);
+
+      function wrapper() {
+        var fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
+        return fn.apply(isBind ? thisArg : this, arguments);
+      }
+      return wrapper;
+    }
+
+    /**
+     * Creates a function like `_.lowerFirst`.
+     *
+     * @private
+     * @param {string} methodName The name of the `String` case method to use.
+     * @returns {Function} Returns the new case function.
+     */
+    function createCaseFirst(methodName) {
+      return function(string) {
+        string = toString(string);
+
+        var strSymbols = hasUnicode(string)
+          ? stringToArray(string)
+          : undefined;
+
+        var chr = strSymbols
+          ? strSymbols[0]
+          : string.charAt(0);
+
+        var trailing = strSymbols
+          ? castSlice(strSymbols, 1).join('')
+          : string.slice(1);
+
+        return chr[methodName]() + trailing;
+      };
+    }
+
+    /**
+     * Creates a function like `_.camelCase`.
+     *
+     * @private
+     * @param {Function} callback The function to combine each word.
+     * @returns {Function} Returns the new compounder function.
+     */
+    function createCompounder(callback) {
+      return function(string) {
+        return arrayReduce(words(deburr(string).replace(reApos, '')), callback, '');
+      };
+    }
+
+    /**
+     * Creates a function that produces an instance of `Ctor` regardless of
+     * whether it was invoked as part of a `new` expression or by `call` or `apply`.
+     *
+     * @private
+     * @param {Function} Ctor The constructor to wrap.
+     * @returns {Function} Returns the new wrapped function.
+     */
+    function createCtor(Ctor) {
+      return function() {
+        // Use a `switch` statement to work with class constructors. See
+        // http://ecma-international.org/ecma-262/7.0/#sec-ecmascript-function-objects-call-thisargument-argumentslist
+        // for more details.
+        var args = arguments;
+        switch (args.length) {
+          case 0: return new Ctor;
+          case 1: return new Ctor(args[0]);
+          case 2: return new Ctor(args[0], args[1]);
+          case 3: return new Ctor(args[0], args[1], args[2]);
+          case 4: return new Ctor(args[0], args[1], args[2], args[3]);
+          case 5: return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+          case 6: return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+          case 7: return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+        }
+        var thisBinding = baseCreate(Ctor.prototype),
+            result = Ctor.apply(thisBinding, args);
+
+        // Mimic the constructor's `return` behavior.
+        // See https://es5.github.io/#x13.2.2 for more details.
+        return isObject(result) ? result : thisBinding;
+      };
+    }
+
+    /**
+     * Creates a function that wraps `func` to enable currying.
+     *
+     * @private
+     * @param {Function} func The function to wrap.
+     * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+     * @param {number} arity The arity of `func`.
+     * @returns {Function} Returns the new wrapped function.
+     */
+    function createCurry(func, bitmask, arity) {
+      var Ctor = createCtor(func);
+
+      function wrapper() {
+        var length = arguments.length,
+            args = Array(length),
+            index = length,
+            placeholder = getHolder(wrapper);
+
+        while (index--) {
+          args[index] = arguments[index];
+        }
+        var holders = (length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder)
+          ? []
+          : replaceHolders(args, placeholder);
+
+        length -= holders.length;
+        if (length < arity) {
+          return createRecurry(
+            func, bitmask, createHybrid, wrapper.placeholder, undefined,
+            args, holders, undefined, undefined, arity - length);
+        }
+        var fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
+        return apply(fn, this, args);
+      }
+      return wrapper;
+    }
+
+    /**
+     * Creates a `_.find` or `_.findLast` function.
+     *
+     * @private
+     * @param {Function} findIndexFunc The function to find the collection index.
+     * @returns {Function} Returns the new find function.
+     */
+    function createFind(findIndexFunc) {
+      return function(collection, predicate, fromIndex) {
+        var iterable = Object(collection);
+        if (!isArrayLike(collection)) {
+          var iteratee = getIteratee(predicate, 3);
+          collection = keys(collection);
+          predicate = function(key) { return iteratee(iterable[key], key, iterable); };
+        }
+        var index = findIndexFunc(collection, predicate, fromIndex);
+        return index > -1 ? iterable[iteratee ? collection[index] : index] : undefined;
+      };
+    }
+
+    /**
+     * Creates a `_.flow` or `_.flowRight` function.
+     *
+     * @private
+     * @param {boolean} [fromRight] Specify iterating from right to left.
+     * @returns {Function} Returns the new flow function.
+     */
+    function createFlow(fromRight) {
+      return flatRest(function(funcs) {
+        var length = funcs.length,
+            index = length,
+            prereq = LodashWrapper.prototype.thru;
+
+        if (fromRight) {
+          funcs.reverse();
+        }
+        while (index--) {
+          var func = funcs[index];
+          if (typeof func != 'function') {
+            throw new TypeError(FUNC_ERROR_TEXT);
+          }
+          if (prereq && !wrapper && getFuncName(func) == 'wrapper') {
+            var wrapper = new LodashWrapper([], true);
+          }
+        }
+        index = wrapper ? index : length;
+        while (++index < length) {
+          func = funcs[index];
+
+          var funcName = getFuncName(func),
+              data = funcName == 'wrapper' ? getData(func) : undefined;
+
+          if (data && isLaziable(data[0]) &&
+                data[1] == (WRAP_ARY_FLAG | WRAP_CURRY_FLAG | WRAP_PARTIAL_FLAG | WRAP_REARG_FLAG) &&
+                !data[4].length && data[9] == 1
+              ) {
+            wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+          } else {
+            wrapper = (func.length == 1 && isLaziable(func))
+              ? wrapper[funcName]()
+              : wrapper.thru(func);
+          }
+        }
+        return function() {
+          var args = arguments,
+              value = args[0];
+
+          if (wrapper && args.length == 1 && isArray(value)) {
+            return wrapper.plant(value).value();
+          }
+          var index = 0,
+              result = length ? funcs[index].apply(this, args) : value;
+
+          while (++index < length) {
+            result = funcs[index].call(this, result);
+          }
+          return result;
+        };
+      });
+    }
+
+    /**
+     * Creates a function that wraps `func` to invoke it with optional `this`
+     * binding of `thisArg`, partial application, and currying.
+     *
+     * @private
+     * @param {Function|string} func The function or method name to wrap.
+     * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @param {Array} [partials] The arguments to prepend to those provided to
+     *  the new function.
+     * @param {Array} [holders] The `partials` placeholder indexes.
+     * @param {Array} [partialsRight] The arguments to append to those provided
+     *  to the new function.
+     * @param {Array} [holdersRight] The `partialsRight` placeholder indexes.
+     * @param {Array} [argPos] The argument positions of the new function.
+     * @param {number} [ary] The arity cap of `func`.
+     * @param {number} [arity] The arity of `func`.
+     * @returns {Function} Returns the new wrapped function.
+     */
+    function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity) {
+      var isAry = bitmask & WRAP_ARY_FLAG,
+          isBind = bitmask & WRAP_BIND_FLAG,
+          isBindKey = bitmask & WRAP_BIND_KEY_FLAG,
+          isCurried = bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG),
+          isFlip = bitmask & WRAP_FLIP_FLAG,
+          Ctor = isBindKey ? undefined : createCtor(func);
+
+      function wrapper() {
+        var length = arguments.length,
+            args = Array(length),
+            index = length;
+
+        while (index--) {
+          args[index] = arguments[index];
+        }
+        if (isCurried) {
+          var placeholder = getHolder(wrapper),
+              holdersCount = countHolders(args, placeholder);
+        }
+        if (partials) {
+          args = composeArgs(args, partials, holders, isCurried);
+        }
+        if (partialsRight) {
+          args = composeArgsRight(args, partialsRight, holdersRight, isCurried);
+        }
+        length -= holdersCount;
+        if (isCurried && length < arity) {
+          var newHolders = replaceHolders(args, placeholder);
+          return createRecurry(
+            func, bitmask, createHybrid, wrapper.placeholder, thisArg,
+            args, newHolders, argPos, ary, arity - length
+          );
+        }
+        var thisBinding = isBind ? thisArg : this,
+            fn = isBindKey ? thisBinding[func] : func;
+
+        length = args.length;
+        if (argPos) {
+          args = reorder(args, argPos);
+        } else if (isFlip && length > 1) {
+          args.reverse();
+        }
+        if (isAry && ary < length) {
+          args.length = ary;
+        }
+        if (this && this !== root && this instanceof wrapper) {
+          fn = Ctor || createCtor(fn);
+        }
+        return fn.apply(thisBinding, args);
+      }
+      return wrapper;
+    }
+
+    /**
+     * Creates a function like `_.invertBy`.
+     *
+     * @private
+     * @param {Function} setter The function to set accumulator values.
+     * @param {Function} toIteratee The function to resolve iteratees.
+     * @returns {Function} Returns the new inverter function.
+     */
+    function createInverter(setter, toIteratee) {
+      return function(object, iteratee) {
+        return baseInverter(object, setter, toIteratee(iteratee), {});
+      };
+    }
+
+    /**
+     * Creates a function that performs a mathematical operation on two values.
+     *
+     * @private
+     * @param {Function} operator The function to perform the operation.
+     * @param {number} [defaultValue] The value used for `undefined` arguments.
+     * @returns {Function} Returns the new mathematical operation function.
+     */
+    function createMathOperation(operator, defaultValue) {
+      return function(value, other) {
+        var result;
+        if (value === undefined && other === undefined) {
+          return defaultValue;
+        }
+        if (value !== undefined) {
+          result = value;
+        }
+        if (other !== undefined) {
+          if (result === undefined) {
+            return other;
+          }
+          if (typeof value == 'string' || typeof other == 'string') {
+            value = baseToString(value);
+            other = baseToString(other);
+          } else {
+            value = baseToNumber(value);
+            other = baseToNumber(other);
+          }
+          result = operator(value, other);
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Creates a function like `_.over`.
+     *
+     * @private
+     * @param {Function} arrayFunc The function to iterate over iteratees.
+     * @returns {Function} Returns the new over function.
+     */
+    function createOver(arrayFunc) {
+      return flatRest(function(iteratees) {
+        iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
+        return baseRest(function(args) {
+          var thisArg = this;
+          return arrayFunc(iteratees, function(iteratee) {
+            return apply(iteratee, thisArg, args);
+          });
+        });
+      });
+    }
+
+    /**
+     * Creates the padding for `string` based on `length`. The `chars` string
+     * is truncated if the number of characters exceeds `length`.
+     *
+     * @private
+     * @param {number} length The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the padding for `string`.
+     */
+    function createPadding(length, chars) {
+      chars = chars === undefined ? ' ' : baseToString(chars);
+
+      var charsLength = chars.length;
+      if (charsLength < 2) {
+        return charsLength ? baseRepeat(chars, length) : chars;
+      }
+      var result = baseRepeat(chars, nativeCeil(length / stringSize(chars)));
+      return hasUnicode(chars)
+        ? castSlice(stringToArray(result), 0, length).join('')
+        : result.slice(0, length);
+    }
+
+    /**
+     * Creates a function that wraps `func` to invoke it with the `this` binding
+     * of `thisArg` and `partials` prepended to the arguments it receives.
+     *
+     * @private
+     * @param {Function} func The function to wrap.
+     * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+     * @param {*} thisArg The `this` binding of `func`.
+     * @param {Array} partials The arguments to prepend to those provided to
+     *  the new function.
+     * @returns {Function} Returns the new wrapped function.
+     */
+    function createPartial(func, bitmask, thisArg, partials) {
+      var isBind = bitmask & WRAP_BIND_FLAG,
+          Ctor = createCtor(func);
+
+      function wrapper() {
+        var argsIndex = -1,
+            argsLength = arguments.length,
+            leftIndex = -1,
+            leftLength = partials.length,
+            args = Array(leftLength + argsLength),
+            fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
+
+        while (++leftIndex < leftLength) {
+          args[leftIndex] = partials[leftIndex];
+        }
+        while (argsLength--) {
+          args[leftIndex++] = arguments[++argsIndex];
+        }
+        return apply(fn, isBind ? thisArg : this, args);
+      }
+      return wrapper;
+    }
+
+    /**
+     * Creates a `_.range` or `_.rangeRight` function.
+     *
+     * @private
+     * @param {boolean} [fromRight] Specify iterating from right to left.
+     * @returns {Function} Returns the new range function.
+     */
+    function createRange(fromRight) {
+      return function(start, end, step) {
+        if (step && typeof step != 'number' && isIterateeCall(start, end, step)) {
+          end = step = undefined;
+        }
+        // Ensure the sign of `-0` is preserved.
+        start = toFinite(start);
+        if (end === undefined) {
+          end = start;
+          start = 0;
+        } else {
+          end = toFinite(end);
+        }
+        step = step === undefined ? (start < end ? 1 : -1) : toFinite(step);
+        return baseRange(start, end, step, fromRight);
+      };
+    }
+
+    /**
+     * Creates a function that performs a relational operation on two values.
+     *
+     * @private
+     * @param {Function} operator The function to perform the operation.
+     * @returns {Function} Returns the new relational operation function.
+     */
+    function createRelationalOperation(operator) {
+      return function(value, other) {
+        if (!(typeof value == 'string' && typeof other == 'string')) {
+          value = toNumber(value);
+          other = toNumber(other);
+        }
+        return operator(value, other);
+      };
+    }
+
+    /**
+     * Creates a function that wraps `func` to continue currying.
+     *
+     * @private
+     * @param {Function} func The function to wrap.
+     * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+     * @param {Function} wrapFunc The function to create the `func` wrapper.
+     * @param {*} placeholder The placeholder value.
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @param {Array} [partials] The arguments to prepend to those provided to
+     *  the new function.
+     * @param {Array} [holders] The `partials` placeholder indexes.
+     * @param {Array} [argPos] The argument positions of the new function.
+     * @param {number} [ary] The arity cap of `func`.
+     * @param {number} [arity] The arity of `func`.
+     * @returns {Function} Returns the new wrapped function.
+     */
+    function createRecurry(func, bitmask, wrapFunc, placeholder, thisArg, partials, holders, argPos, ary, arity) {
+      var isCurry = bitmask & WRAP_CURRY_FLAG,
+          newHolders = isCurry ? holders : undefined,
+          newHoldersRight = isCurry ? undefined : holders,
+          newPartials = isCurry ? partials : undefined,
+          newPartialsRight = isCurry ? undefined : partials;
+
+      bitmask |= (isCurry ? WRAP_PARTIAL_FLAG : WRAP_PARTIAL_RIGHT_FLAG);
+      bitmask &= ~(isCurry ? WRAP_PARTIAL_RIGHT_FLAG : WRAP_PARTIAL_FLAG);
+
+      if (!(bitmask & WRAP_CURRY_BOUND_FLAG)) {
+        bitmask &= ~(WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG);
+      }
+      var newData = [
+        func, bitmask, thisArg, newPartials, newHolders, newPartialsRight,
+        newHoldersRight, argPos, ary, arity
+      ];
+
+      var result = wrapFunc.apply(undefined, newData);
+      if (isLaziable(func)) {
+        setData(result, newData);
+      }
+      result.placeholder = placeholder;
+      return setWrapToString(result, func, bitmask);
+    }
+
+    /**
+     * Creates a function like `_.round`.
+     *
+     * @private
+     * @param {string} methodName The name of the `Math` method to use when rounding.
+     * @returns {Function} Returns the new round function.
+     */
+    function createRound(methodName) {
+      var func = Math[methodName];
+      return function(number, precision) {
+        number = toNumber(number);
+        precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
+        if (precision) {
+          // Shift with exponential notation to avoid floating-point issues.
+          // See [MDN](https://mdn.io/round#Examples) for more details.
+          var pair = (toString(number) + 'e').split('e'),
+              value = func(pair[0] + 'e' + (+pair[1] + precision));
+
+          pair = (toString(value) + 'e').split('e');
+          return +(pair[0] + 'e' + (+pair[1] - precision));
+        }
+        return func(number);
+      };
+    }
+
+    /**
+     * Creates a set object of `values`.
+     *
+     * @private
+     * @param {Array} values The values to add to the set.
+     * @returns {Object} Returns the new set.
+     */
+    var createSet = !(Set && (1 / setToArray(new Set([,-0]))[1]) == INFINITY) ? noop : function(values) {
+      return new Set(values);
+    };
+
+    /**
+     * Creates a `_.toPairs` or `_.toPairsIn` function.
+     *
+     * @private
+     * @param {Function} keysFunc The function to get the keys of a given object.
+     * @returns {Function} Returns the new pairs function.
+     */
+    function createToPairs(keysFunc) {
+      return function(object) {
+        var tag = getTag(object);
+        if (tag == mapTag) {
+          return mapToArray(object);
+        }
+        if (tag == setTag) {
+          return setToPairs(object);
+        }
+        return baseToPairs(object, keysFunc(object));
+      };
+    }
+
+    /**
+     * Creates a function that either curries or invokes `func` with optional
+     * `this` binding and partially applied arguments.
+     *
+     * @private
+     * @param {Function|string} func The function or method name to wrap.
+     * @param {number} bitmask The bitmask flags.
+     *    1 - `_.bind`
+     *    2 - `_.bindKey`
+     *    4 - `_.curry` or `_.curryRight` of a bound function
+     *    8 - `_.curry`
+     *   16 - `_.curryRight`
+     *   32 - `_.partial`
+     *   64 - `_.partialRight`
+     *  128 - `_.rearg`
+     *  256 - `_.ary`
+     *  512 - `_.flip`
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @param {Array} [partials] The arguments to be partially applied.
+     * @param {Array} [holders] The `partials` placeholder indexes.
+     * @param {Array} [argPos] The argument positions of the new function.
+     * @param {number} [ary] The arity cap of `func`.
+     * @param {number} [arity] The arity of `func`.
+     * @returns {Function} Returns the new wrapped function.
+     */
+    function createWrap(func, bitmask, thisArg, partials, holders, argPos, ary, arity) {
+      var isBindKey = bitmask & WRAP_BIND_KEY_FLAG;
+      if (!isBindKey && typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      var length = partials ? partials.length : 0;
+      if (!length) {
+        bitmask &= ~(WRAP_PARTIAL_FLAG | WRAP_PARTIAL_RIGHT_FLAG);
+        partials = holders = undefined;
+      }
+      ary = ary === undefined ? ary : nativeMax(toInteger(ary), 0);
+      arity = arity === undefined ? arity : toInteger(arity);
+      length -= holders ? holders.length : 0;
+
+      if (bitmask & WRAP_PARTIAL_RIGHT_FLAG) {
+        var partialsRight = partials,
+            holdersRight = holders;
+
+        partials = holders = undefined;
+      }
+      var data = isBindKey ? undefined : getData(func);
+
+      var newData = [
+        func, bitmask, thisArg, partials, holders, partialsRight, holdersRight,
+        argPos, ary, arity
+      ];
+
+      if (data) {
+        mergeData(newData, data);
+      }
+      func = newData[0];
+      bitmask = newData[1];
+      thisArg = newData[2];
+      partials = newData[3];
+      holders = newData[4];
+      arity = newData[9] = newData[9] === undefined
+        ? (isBindKey ? 0 : func.length)
+        : nativeMax(newData[9] - length, 0);
+
+      if (!arity && bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG)) {
+        bitmask &= ~(WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG);
+      }
+      if (!bitmask || bitmask == WRAP_BIND_FLAG) {
+        var result = createBind(func, bitmask, thisArg);
+      } else if (bitmask == WRAP_CURRY_FLAG || bitmask == WRAP_CURRY_RIGHT_FLAG) {
+        result = createCurry(func, bitmask, arity);
+      } else if ((bitmask == WRAP_PARTIAL_FLAG || bitmask == (WRAP_BIND_FLAG | WRAP_PARTIAL_FLAG)) && !holders.length) {
+        result = createPartial(func, bitmask, thisArg, partials);
+      } else {
+        result = createHybrid.apply(undefined, newData);
+      }
+      var setter = data ? baseSetData : setData;
+      return setWrapToString(setter(result, newData), func, bitmask);
+    }
+
+    /**
+     * Used by `_.defaults` to customize its `_.assignIn` use to assign properties
+     * of source objects to the destination object for all destination properties
+     * that resolve to `undefined`.
+     *
+     * @private
+     * @param {*} objValue The destination value.
+     * @param {*} srcValue The source value.
+     * @param {string} key The key of the property to assign.
+     * @param {Object} object The parent object of `objValue`.
+     * @returns {*} Returns the value to assign.
+     */
+    function customDefaultsAssignIn(objValue, srcValue, key, object) {
+      if (objValue === undefined ||
+          (eq(objValue, objectProto[key]) && !hasOwnProperty.call(object, key))) {
+        return srcValue;
+      }
+      return objValue;
+    }
+
+    /**
+     * Used by `_.defaultsDeep` to customize its `_.merge` use to merge source
+     * objects into destination objects that are passed thru.
+     *
+     * @private
+     * @param {*} objValue The destination value.
+     * @param {*} srcValue The source value.
+     * @param {string} key The key of the property to merge.
+     * @param {Object} object The parent object of `objValue`.
+     * @param {Object} source The parent object of `srcValue`.
+     * @param {Object} [stack] Tracks traversed source values and their merged
+     *  counterparts.
+     * @returns {*} Returns the value to assign.
+     */
+    function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
+      if (isObject(objValue) && isObject(srcValue)) {
+        // Recursively merge objects and arrays (susceptible to call stack limits).
+        stack.set(srcValue, objValue);
+        baseMerge(objValue, srcValue, undefined, customDefaultsMerge, stack);
+        stack['delete'](srcValue);
+      }
+      return objValue;
+    }
+
+    /**
+     * Used by `_.omit` to customize its `_.cloneDeep` use to only clone plain
+     * objects.
+     *
+     * @private
+     * @param {*} value The value to inspect.
+     * @param {string} key The key of the property to inspect.
+     * @returns {*} Returns the uncloned value or `undefined` to defer cloning to `_.cloneDeep`.
+     */
+    function customOmitClone(value) {
+      return isPlainObject(value) ? undefined : value;
+    }
+
+    /**
+     * A specialized version of `baseIsEqualDeep` for arrays with support for
+     * partial deep comparisons.
+     *
+     * @private
+     * @param {Array} array The array to compare.
+     * @param {Array} other The other array to compare.
+     * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+     * @param {Function} customizer The function to customize comparisons.
+     * @param {Function} equalFunc The function to determine equivalents of values.
+     * @param {Object} stack Tracks traversed `array` and `other` objects.
+     * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+     */
+    function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+      var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+          arrLength = array.length,
+          othLength = other.length;
+
+      if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+        return false;
+      }
+      // Assume cyclic values are equal.
+      var stacked = stack.get(array);
+      if (stacked && stack.get(other)) {
+        return stacked == other;
+      }
+      var index = -1,
+          result = true,
+          seen = (bitmask & COMPARE_UNORDERED_FLAG) ? new SetCache : undefined;
+
+      stack.set(array, other);
+      stack.set(other, array);
+
+      // Ignore non-index properties.
+      while (++index < arrLength) {
+        var arrValue = array[index],
+            othValue = other[index];
+
+        if (customizer) {
+          var compared = isPartial
+            ? customizer(othValue, arrValue, index, other, array, stack)
+            : customizer(arrValue, othValue, index, array, other, stack);
+        }
+        if (compared !== undefined) {
+          if (compared) {
+            continue;
+          }
+          result = false;
+          break;
+        }
+        // Recursively compare arrays (susceptible to call stack limits).
+        if (seen) {
+          if (!arraySome(other, function(othValue, othIndex) {
+                if (!cacheHas(seen, othIndex) &&
+                    (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+                  return seen.push(othIndex);
+                }
+              })) {
+            result = false;
+            break;
+          }
+        } else if (!(
+              arrValue === othValue ||
+                equalFunc(arrValue, othValue, bitmask, customizer, stack)
+            )) {
+          result = false;
+          break;
+        }
+      }
+      stack['delete'](array);
+      stack['delete'](other);
+      return result;
+    }
+
+    /**
+     * A specialized version of `baseIsEqualDeep` for comparing objects of
+     * the same `toStringTag`.
+     *
+     * **Note:** This function only supports comparing values with tags of
+     * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+     *
+     * @private
+     * @param {Object} object The object to compare.
+     * @param {Object} other The other object to compare.
+     * @param {string} tag The `toStringTag` of the objects to compare.
+     * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+     * @param {Function} customizer The function to customize comparisons.
+     * @param {Function} equalFunc The function to determine equivalents of values.
+     * @param {Object} stack Tracks traversed `object` and `other` objects.
+     * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+     */
+    function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+      switch (tag) {
+        case dataViewTag:
+          if ((object.byteLength != other.byteLength) ||
+              (object.byteOffset != other.byteOffset)) {
+            return false;
+          }
+          object = object.buffer;
+          other = other.buffer;
+
+        case arrayBufferTag:
+          if ((object.byteLength != other.byteLength) ||
+              !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+            return false;
+          }
+          return true;
+
+        case boolTag:
+        case dateTag:
+        case numberTag:
+          // Coerce booleans to `1` or `0` and dates to milliseconds.
+          // Invalid dates are coerced to `NaN`.
+          return eq(+object, +other);
+
+        case errorTag:
+          return object.name == other.name && object.message == other.message;
+
+        case regexpTag:
+        case stringTag:
+          // Coerce regexes to strings and treat strings, primitives and objects,
+          // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+          // for more details.
+          return object == (other + '');
+
+        case mapTag:
+          var convert = mapToArray;
+
+        case setTag:
+          var isPartial = bitmask & COMPARE_PARTIAL_FLAG;
+          convert || (convert = setToArray);
+
+          if (object.size != other.size && !isPartial) {
+            return false;
+          }
+          // Assume cyclic values are equal.
+          var stacked = stack.get(object);
+          if (stacked) {
+            return stacked == other;
+          }
+          bitmask |= COMPARE_UNORDERED_FLAG;
+
+          // Recursively compare objects (susceptible to call stack limits).
+          stack.set(object, other);
+          var result = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
+          stack['delete'](object);
+          return result;
+
+        case symbolTag:
+          if (symbolValueOf) {
+            return symbolValueOf.call(object) == symbolValueOf.call(other);
+          }
+      }
+      return false;
+    }
+
+    /**
+     * A specialized version of `baseIsEqualDeep` for objects with support for
+     * partial deep comparisons.
+     *
+     * @private
+     * @param {Object} object The object to compare.
+     * @param {Object} other The other object to compare.
+     * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+     * @param {Function} customizer The function to customize comparisons.
+     * @param {Function} equalFunc The function to determine equivalents of values.
+     * @param {Object} stack Tracks traversed `object` and `other` objects.
+     * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+     */
+    function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+      var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+          objProps = getAllKeys(object),
+          objLength = objProps.length,
+          othProps = getAllKeys(other),
+          othLength = othProps.length;
+
+      if (objLength != othLength && !isPartial) {
+        return false;
+      }
+      var index = objLength;
+      while (index--) {
+        var key = objProps[index];
+        if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+          return false;
+        }
+      }
+      // Assume cyclic values are equal.
+      var stacked = stack.get(object);
+      if (stacked && stack.get(other)) {
+        return stacked == other;
+      }
+      var result = true;
+      stack.set(object, other);
+      stack.set(other, object);
+
+      var skipCtor = isPartial;
+      while (++index < objLength) {
+        key = objProps[index];
+        var objValue = object[key],
+            othValue = other[key];
+
+        if (customizer) {
+          var compared = isPartial
+            ? customizer(othValue, objValue, key, other, object, stack)
+            : customizer(objValue, othValue, key, object, other, stack);
+        }
+        // Recursively compare objects (susceptible to call stack limits).
+        if (!(compared === undefined
+              ? (objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack))
+              : compared
+            )) {
+          result = false;
+          break;
+        }
+        skipCtor || (skipCtor = key == 'constructor');
+      }
+      if (result && !skipCtor) {
+        var objCtor = object.constructor,
+            othCtor = other.constructor;
+
+        // Non `Object` object instances with different constructors are not equal.
+        if (objCtor != othCtor &&
+            ('constructor' in object && 'constructor' in other) &&
+            !(typeof objCtor == 'function' && objCtor instanceof objCtor &&
+              typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+          result = false;
+        }
+      }
+      stack['delete'](object);
+      stack['delete'](other);
+      return result;
+    }
+
+    /**
+     * A specialized version of `baseRest` which flattens the rest array.
+     *
+     * @private
+     * @param {Function} func The function to apply a rest parameter to.
+     * @returns {Function} Returns the new function.
+     */
+    function flatRest(func) {
+      return setToString(overRest(func, undefined, flatten), func + '');
+    }
+
+    /**
+     * Creates an array of own enumerable property names and symbols of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property names and symbols.
+     */
+    function getAllKeys(object) {
+      return baseGetAllKeys(object, keys, getSymbols);
+    }
+
+    /**
+     * Creates an array of own and inherited enumerable property names and
+     * symbols of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property names and symbols.
+     */
+    function getAllKeysIn(object) {
+      return baseGetAllKeys(object, keysIn, getSymbolsIn);
+    }
+
+    /**
+     * Gets metadata for `func`.
+     *
+     * @private
+     * @param {Function} func The function to query.
+     * @returns {*} Returns the metadata for `func`.
+     */
+    var getData = !metaMap ? noop : function(func) {
+      return metaMap.get(func);
+    };
+
+    /**
+     * Gets the name of `func`.
+     *
+     * @private
+     * @param {Function} func The function to query.
+     * @returns {string} Returns the function name.
+     */
+    function getFuncName(func) {
+      var result = (func.name + ''),
+          array = realNames[result],
+          length = hasOwnProperty.call(realNames, result) ? array.length : 0;
+
+      while (length--) {
+        var data = array[length],
+            otherFunc = data.func;
+        if (otherFunc == null || otherFunc == func) {
+          return data.name;
+        }
+      }
+      return result;
+    }
+
+    /**
+     * Gets the argument placeholder value for `func`.
+     *
+     * @private
+     * @param {Function} func The function to inspect.
+     * @returns {*} Returns the placeholder value.
+     */
+    function getHolder(func) {
+      var object = hasOwnProperty.call(lodash, 'placeholder') ? lodash : func;
+      return object.placeholder;
+    }
+
+    /**
+     * Gets the appropriate "iteratee" function. If `_.iteratee` is customized,
+     * this function returns the custom method, otherwise it returns `baseIteratee`.
+     * If arguments are provided, the chosen function is invoked with them and
+     * its result is returned.
+     *
+     * @private
+     * @param {*} [value] The value to convert to an iteratee.
+     * @param {number} [arity] The arity of the created iteratee.
+     * @returns {Function} Returns the chosen function or its result.
+     */
+    function getIteratee() {
+      var result = lodash.iteratee || iteratee;
+      result = result === iteratee ? baseIteratee : result;
+      return arguments.length ? result(arguments[0], arguments[1]) : result;
+    }
+
+    /**
+     * Gets the data for `map`.
+     *
+     * @private
+     * @param {Object} map The map to query.
+     * @param {string} key The reference key.
+     * @returns {*} Returns the map data.
+     */
+    function getMapData(map, key) {
+      var data = map.__data__;
+      return isKeyable(key)
+        ? data[typeof key == 'string' ? 'string' : 'hash']
+        : data.map;
+    }
+
+    /**
+     * Gets the property names, values, and compare flags of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the match data of `object`.
+     */
+    function getMatchData(object) {
+      var result = keys(object),
+          length = result.length;
+
+      while (length--) {
+        var key = result[length],
+            value = object[key];
+
+        result[length] = [key, value, isStrictComparable(value)];
+      }
+      return result;
+    }
+
+    /**
+     * Gets the native function at `key` of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {string} key The key of the method to get.
+     * @returns {*} Returns the function if it's native, else `undefined`.
+     */
+    function getNative(object, key) {
+      var value = getValue(object, key);
+      return baseIsNative(value) ? value : undefined;
+    }
+
+    /**
+     * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+     *
+     * @private
+     * @param {*} value The value to query.
+     * @returns {string} Returns the raw `toStringTag`.
+     */
+    function getRawTag(value) {
+      var isOwn = hasOwnProperty.call(value, symToStringTag),
+          tag = value[symToStringTag];
+
+      try {
+        value[symToStringTag] = undefined;
+        var unmasked = true;
+      } catch (e) {}
+
+      var result = nativeObjectToString.call(value);
+      if (unmasked) {
+        if (isOwn) {
+          value[symToStringTag] = tag;
+        } else {
+          delete value[symToStringTag];
+        }
+      }
+      return result;
+    }
+
+    /**
+     * Creates an array of the own enumerable symbols of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of symbols.
+     */
+    var getSymbols = !nativeGetSymbols ? stubArray : function(object) {
+      if (object == null) {
+        return [];
+      }
+      object = Object(object);
+      return arrayFilter(nativeGetSymbols(object), function(symbol) {
+        return propertyIsEnumerable.call(object, symbol);
+      });
+    };
+
+    /**
+     * Creates an array of the own and inherited enumerable symbols of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of symbols.
+     */
+    var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
+      var result = [];
+      while (object) {
+        arrayPush(result, getSymbols(object));
+        object = getPrototype(object);
+      }
+      return result;
+    };
+
+    /**
+     * Gets the `toStringTag` of `value`.
+     *
+     * @private
+     * @param {*} value The value to query.
+     * @returns {string} Returns the `toStringTag`.
+     */
+    var getTag = baseGetTag;
+
+    // Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
+    if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
+        (Map && getTag(new Map) != mapTag) ||
+        (Promise && getTag(Promise.resolve()) != promiseTag) ||
+        (Set && getTag(new Set) != setTag) ||
+        (WeakMap && getTag(new WeakMap) != weakMapTag)) {
+      getTag = function(value) {
+        var result = baseGetTag(value),
+            Ctor = result == objectTag ? value.constructor : undefined,
+            ctorString = Ctor ? toSource(Ctor) : '';
+
+        if (ctorString) {
+          switch (ctorString) {
+            case dataViewCtorString: return dataViewTag;
+            case mapCtorString: return mapTag;
+            case promiseCtorString: return promiseTag;
+            case setCtorString: return setTag;
+            case weakMapCtorString: return weakMapTag;
+          }
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Gets the view, applying any `transforms` to the `start` and `end` positions.
+     *
+     * @private
+     * @param {number} start The start of the view.
+     * @param {number} end The end of the view.
+     * @param {Array} transforms The transformations to apply to the view.
+     * @returns {Object} Returns an object containing the `start` and `end`
+     *  positions of the view.
+     */
+    function getView(start, end, transforms) {
+      var index = -1,
+          length = transforms.length;
+
+      while (++index < length) {
+        var data = transforms[index],
+            size = data.size;
+
+        switch (data.type) {
+          case 'drop':      start += size; break;
+          case 'dropRight': end -= size; break;
+          case 'take':      end = nativeMin(end, start + size); break;
+          case 'takeRight': start = nativeMax(start, end - size); break;
+        }
+      }
+      return { 'start': start, 'end': end };
+    }
+
+    /**
+     * Extracts wrapper details from the `source` body comment.
+     *
+     * @private
+     * @param {string} source The source to inspect.
+     * @returns {Array} Returns the wrapper details.
+     */
+    function getWrapDetails(source) {
+      var match = source.match(reWrapDetails);
+      return match ? match[1].split(reSplitDetails) : [];
+    }
+
+    /**
+     * Checks if `path` exists on `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path to check.
+     * @param {Function} hasFunc The function to check properties.
+     * @returns {boolean} Returns `true` if `path` exists, else `false`.
+     */
+    function hasPath(object, path, hasFunc) {
+      path = castPath(path, object);
+
+      var index = -1,
+          length = path.length,
+          result = false;
+
+      while (++index < length) {
+        var key = toKey(path[index]);
+        if (!(result = object != null && hasFunc(object, key))) {
+          break;
+        }
+        object = object[key];
+      }
+      if (result || ++index != length) {
+        return result;
+      }
+      length = object == null ? 0 : object.length;
+      return !!length && isLength(length) && isIndex(key, length) &&
+        (isArray(object) || isArguments(object));
+    }
+
+    /**
+     * Initializes an array clone.
+     *
+     * @private
+     * @param {Array} array The array to clone.
+     * @returns {Array} Returns the initialized clone.
+     */
+    function initCloneArray(array) {
+      var length = array.length,
+          result = array.constructor(length);
+
+      // Add properties assigned by `RegExp#exec`.
+      if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
+        result.index = array.index;
+        result.input = array.input;
+      }
+      return result;
+    }
+
+    /**
+     * Initializes an object clone.
+     *
+     * @private
+     * @param {Object} object The object to clone.
+     * @returns {Object} Returns the initialized clone.
+     */
+    function initCloneObject(object) {
+      return (typeof object.constructor == 'function' && !isPrototype(object))
+        ? baseCreate(getPrototype(object))
+        : {};
+    }
+
+    /**
+     * Initializes an object clone based on its `toStringTag`.
+     *
+     * **Note:** This function only supports cloning values with tags of
+     * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+     *
+     * @private
+     * @param {Object} object The object to clone.
+     * @param {string} tag The `toStringTag` of the object to clone.
+     * @param {Function} cloneFunc The function to clone values.
+     * @param {boolean} [isDeep] Specify a deep clone.
+     * @returns {Object} Returns the initialized clone.
+     */
+    function initCloneByTag(object, tag, cloneFunc, isDeep) {
+      var Ctor = object.constructor;
+      switch (tag) {
+        case arrayBufferTag:
+          return cloneArrayBuffer(object);
+
+        case boolTag:
+        case dateTag:
+          return new Ctor(+object);
+
+        case dataViewTag:
+          return cloneDataView(object, isDeep);
+
+        case float32Tag: case float64Tag:
+        case int8Tag: case int16Tag: case int32Tag:
+        case uint8Tag: case uint8ClampedTag: case uint16Tag: case uint32Tag:
+          return cloneTypedArray(object, isDeep);
+
+        case mapTag:
+          return cloneMap(object, isDeep, cloneFunc);
+
+        case numberTag:
+        case stringTag:
+          return new Ctor(object);
+
+        case regexpTag:
+          return cloneRegExp(object);
+
+        case setTag:
+          return cloneSet(object, isDeep, cloneFunc);
+
+        case symbolTag:
+          return cloneSymbol(object);
+      }
+    }
+
+    /**
+     * Inserts wrapper `details` in a comment at the top of the `source` body.
+     *
+     * @private
+     * @param {string} source The source to modify.
+     * @returns {Array} details The details to insert.
+     * @returns {string} Returns the modified source.
+     */
+    function insertWrapDetails(source, details) {
+      var length = details.length;
+      if (!length) {
+        return source;
+      }
+      var lastIndex = length - 1;
+      details[lastIndex] = (length > 1 ? '& ' : '') + details[lastIndex];
+      details = details.join(length > 2 ? ', ' : ' ');
+      return source.replace(reWrapComment, '{\n/* [wrapped with ' + details + '] */\n');
+    }
+
+    /**
+     * Checks if `value` is a flattenable `arguments` object or array.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
+     */
+    function isFlattenable(value) {
+      return isArray(value) || isArguments(value) ||
+        !!(spreadableSymbol && value && value[spreadableSymbol]);
+    }
+
+    /**
+     * Checks if `value` is a valid array-like index.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+     * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+     */
+    function isIndex(value, length) {
+      length = length == null ? MAX_SAFE_INTEGER : length;
+      return !!length &&
+        (typeof value == 'number' || reIsUint.test(value)) &&
+        (value > -1 && value % 1 == 0 && value < length);
+    }
+
+    /**
+     * Checks if the given arguments are from an iteratee call.
+     *
+     * @private
+     * @param {*} value The potential iteratee value argument.
+     * @param {*} index The potential iteratee index or key argument.
+     * @param {*} object The potential iteratee object argument.
+     * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
+     *  else `false`.
+     */
+    function isIterateeCall(value, index, object) {
+      if (!isObject(object)) {
+        return false;
+      }
+      var type = typeof index;
+      if (type == 'number'
+            ? (isArrayLike(object) && isIndex(index, object.length))
+            : (type == 'string' && index in object)
+          ) {
+        return eq(object[index], value);
+      }
+      return false;
+    }
+
+    /**
+     * Checks if `value` is a property name and not a property path.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @param {Object} [object] The object to query keys on.
+     * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+     */
+    function isKey(value, object) {
+      if (isArray(value)) {
+        return false;
+      }
+      var type = typeof value;
+      if (type == 'number' || type == 'symbol' || type == 'boolean' ||
+          value == null || isSymbol(value)) {
+        return true;
+      }
+      return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+        (object != null && value in Object(object));
+    }
+
+    /**
+     * Checks if `value` is suitable for use as unique object key.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+     */
+    function isKeyable(value) {
+      var type = typeof value;
+      return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+        ? (value !== '__proto__')
+        : (value === null);
+    }
+
+    /**
+     * Checks if `func` has a lazy counterpart.
+     *
+     * @private
+     * @param {Function} func The function to check.
+     * @returns {boolean} Returns `true` if `func` has a lazy counterpart,
+     *  else `false`.
+     */
+    function isLaziable(func) {
+      var funcName = getFuncName(func),
+          other = lodash[funcName];
+
+      if (typeof other != 'function' || !(funcName in LazyWrapper.prototype)) {
+        return false;
+      }
+      if (func === other) {
+        return true;
+      }
+      var data = getData(other);
+      return !!data && func === data[0];
+    }
+
+    /**
+     * Checks if `func` has its source masked.
+     *
+     * @private
+     * @param {Function} func The function to check.
+     * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+     */
+    function isMasked(func) {
+      return !!maskSrcKey && (maskSrcKey in func);
+    }
+
+    /**
+     * Checks if `func` is capable of being masked.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `func` is maskable, else `false`.
+     */
+    var isMaskable = coreJsData ? isFunction : stubFalse;
+
+    /**
+     * Checks if `value` is likely a prototype object.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+     */
+    function isPrototype(value) {
+      var Ctor = value && value.constructor,
+          proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+      return value === proto;
+    }
+
+    /**
+     * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` if suitable for strict
+     *  equality comparisons, else `false`.
+     */
+    function isStrictComparable(value) {
+      return value === value && !isObject(value);
+    }
+
+    /**
+     * A specialized version of `matchesProperty` for source values suitable
+     * for strict equality comparisons, i.e. `===`.
+     *
+     * @private
+     * @param {string} key The key of the property to get.
+     * @param {*} srcValue The value to match.
+     * @returns {Function} Returns the new spec function.
+     */
+    function matchesStrictComparable(key, srcValue) {
+      return function(object) {
+        if (object == null) {
+          return false;
+        }
+        return object[key] === srcValue &&
+          (srcValue !== undefined || (key in Object(object)));
+      };
+    }
+
+    /**
+     * A specialized version of `_.memoize` which clears the memoized function's
+     * cache when it exceeds `MAX_MEMOIZE_SIZE`.
+     *
+     * @private
+     * @param {Function} func The function to have its output memoized.
+     * @returns {Function} Returns the new memoized function.
+     */
+    function memoizeCapped(func) {
+      var result = memoize(func, function(key) {
+        if (cache.size === MAX_MEMOIZE_SIZE) {
+          cache.clear();
+        }
+        return key;
+      });
+
+      var cache = result.cache;
+      return result;
+    }
+
+    /**
+     * Merges the function metadata of `source` into `data`.
+     *
+     * Merging metadata reduces the number of wrappers used to invoke a function.
+     * This is possible because methods like `_.bind`, `_.curry`, and `_.partial`
+     * may be applied regardless of execution order. Methods like `_.ary` and
+     * `_.rearg` modify function arguments, making the order in which they are
+     * executed important, preventing the merging of metadata. However, we make
+     * an exception for a safe combined case where curried functions have `_.ary`
+     * and or `_.rearg` applied.
+     *
+     * @private
+     * @param {Array} data The destination metadata.
+     * @param {Array} source The source metadata.
+     * @returns {Array} Returns `data`.
+     */
+    function mergeData(data, source) {
+      var bitmask = data[1],
+          srcBitmask = source[1],
+          newBitmask = bitmask | srcBitmask,
+          isCommon = newBitmask < (WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG | WRAP_ARY_FLAG);
+
+      var isCombo =
+        ((srcBitmask == WRAP_ARY_FLAG) && (bitmask == WRAP_CURRY_FLAG)) ||
+        ((srcBitmask == WRAP_ARY_FLAG) && (bitmask == WRAP_REARG_FLAG) && (data[7].length <= source[8])) ||
+        ((srcBitmask == (WRAP_ARY_FLAG | WRAP_REARG_FLAG)) && (source[7].length <= source[8]) && (bitmask == WRAP_CURRY_FLAG));
+
+      // Exit early if metadata can't be merged.
+      if (!(isCommon || isCombo)) {
+        return data;
+      }
+      // Use source `thisArg` if available.
+      if (srcBitmask & WRAP_BIND_FLAG) {
+        data[2] = source[2];
+        // Set when currying a bound function.
+        newBitmask |= bitmask & WRAP_BIND_FLAG ? 0 : WRAP_CURRY_BOUND_FLAG;
+      }
+      // Compose partial arguments.
+      var value = source[3];
+      if (value) {
+        var partials = data[3];
+        data[3] = partials ? composeArgs(partials, value, source[4]) : value;
+        data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : source[4];
+      }
+      // Compose partial right arguments.
+      value = source[5];
+      if (value) {
+        partials = data[5];
+        data[5] = partials ? composeArgsRight(partials, value, source[6]) : value;
+        data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : source[6];
+      }
+      // Use source `argPos` if available.
+      value = source[7];
+      if (value) {
+        data[7] = value;
+      }
+      // Use source `ary` if it's smaller.
+      if (srcBitmask & WRAP_ARY_FLAG) {
+        data[8] = data[8] == null ? source[8] : nativeMin(data[8], source[8]);
+      }
+      // Use source `arity` if one is not provided.
+      if (data[9] == null) {
+        data[9] = source[9];
+      }
+      // Use source `func` and merge bitmasks.
+      data[0] = source[0];
+      data[1] = newBitmask;
+
+      return data;
+    }
+
+    /**
+     * This function is like
+     * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+     * except that it includes inherited enumerable properties.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property names.
+     */
+    function nativeKeysIn(object) {
+      var result = [];
+      if (object != null) {
+        for (var key in Object(object)) {
+          result.push(key);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * Converts `value` to a string using `Object.prototype.toString`.
+     *
+     * @private
+     * @param {*} value The value to convert.
+     * @returns {string} Returns the converted string.
+     */
+    function objectToString(value) {
+      return nativeObjectToString.call(value);
+    }
+
+    /**
+     * A specialized version of `baseRest` which transforms the rest array.
+     *
+     * @private
+     * @param {Function} func The function to apply a rest parameter to.
+     * @param {number} [start=func.length-1] The start position of the rest parameter.
+     * @param {Function} transform The rest array transform.
+     * @returns {Function} Returns the new function.
+     */
+    function overRest(func, start, transform) {
+      start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+      return function() {
+        var args = arguments,
+            index = -1,
+            length = nativeMax(args.length - start, 0),
+            array = Array(length);
+
+        while (++index < length) {
+          array[index] = args[start + index];
+        }
+        index = -1;
+        var otherArgs = Array(start + 1);
+        while (++index < start) {
+          otherArgs[index] = args[index];
+        }
+        otherArgs[start] = transform(array);
+        return apply(func, this, otherArgs);
+      };
+    }
+
+    /**
+     * Gets the parent value at `path` of `object`.
+     *
+     * @private
+     * @param {Object} object The object to query.
+     * @param {Array} path The path to get the parent value of.
+     * @returns {*} Returns the parent value.
+     */
+    function parent(object, path) {
+      return path.length < 2 ? object : baseGet(object, baseSlice(path, 0, -1));
+    }
+
+    /**
+     * Reorder `array` according to the specified indexes where the element at
+     * the first index is assigned as the first element, the element at
+     * the second index is assigned as the second element, and so on.
+     *
+     * @private
+     * @param {Array} array The array to reorder.
+     * @param {Array} indexes The arranged array indexes.
+     * @returns {Array} Returns `array`.
+     */
+    function reorder(array, indexes) {
+      var arrLength = array.length,
+          length = nativeMin(indexes.length, arrLength),
+          oldArray = copyArray(array);
+
+      while (length--) {
+        var index = indexes[length];
+        array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
+      }
+      return array;
+    }
+
+    /**
+     * Sets metadata for `func`.
+     *
+     * **Note:** If this function becomes hot, i.e. is invoked a lot in a short
+     * period of time, it will trip its breaker and transition to an identity
+     * function to avoid garbage collection pauses in V8. See
+     * [V8 issue 2070](https://bugs.chromium.org/p/v8/issues/detail?id=2070)
+     * for more details.
+     *
+     * @private
+     * @param {Function} func The function to associate metadata with.
+     * @param {*} data The metadata.
+     * @returns {Function} Returns `func`.
+     */
+    var setData = shortOut(baseSetData);
+
+    /**
+     * A simple wrapper around the global [`setTimeout`](https://mdn.io/setTimeout).
+     *
+     * @private
+     * @param {Function} func The function to delay.
+     * @param {number} wait The number of milliseconds to delay invocation.
+     * @returns {number|Object} Returns the timer id or timeout object.
+     */
+    var setTimeout = ctxSetTimeout || function(func, wait) {
+      return root.setTimeout(func, wait);
+    };
+
+    /**
+     * Sets the `toString` method of `func` to return `string`.
+     *
+     * @private
+     * @param {Function} func The function to modify.
+     * @param {Function} string The `toString` result.
+     * @returns {Function} Returns `func`.
+     */
+    var setToString = shortOut(baseSetToString);
+
+    /**
+     * Sets the `toString` method of `wrapper` to mimic the source of `reference`
+     * with wrapper details in a comment at the top of the source body.
+     *
+     * @private
+     * @param {Function} wrapper The function to modify.
+     * @param {Function} reference The reference function.
+     * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+     * @returns {Function} Returns `wrapper`.
+     */
+    function setWrapToString(wrapper, reference, bitmask) {
+      var source = (reference + '');
+      return setToString(wrapper, insertWrapDetails(source, updateWrapDetails(getWrapDetails(source), bitmask)));
+    }
+
+    /**
+     * Creates a function that'll short out and invoke `identity` instead
+     * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
+     * milliseconds.
+     *
+     * @private
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new shortable function.
+     */
+    function shortOut(func) {
+      var count = 0,
+          lastCalled = 0;
+
+      return function() {
+        var stamp = nativeNow(),
+            remaining = HOT_SPAN - (stamp - lastCalled);
+
+        lastCalled = stamp;
+        if (remaining > 0) {
+          if (++count >= HOT_COUNT) {
+            return arguments[0];
+          }
+        } else {
+          count = 0;
+        }
+        return func.apply(undefined, arguments);
+      };
+    }
+
+    /**
+     * A specialized version of `_.shuffle` which mutates and sets the size of `array`.
+     *
+     * @private
+     * @param {Array} array The array to shuffle.
+     * @param {number} [size=array.length] The size of `array`.
+     * @returns {Array} Returns `array`.
+     */
+    function shuffleSelf(array, size) {
+      var index = -1,
+          length = array.length,
+          lastIndex = length - 1;
+
+      size = size === undefined ? length : size;
+      while (++index < size) {
+        var rand = baseRandom(index, lastIndex),
+            value = array[rand];
+
+        array[rand] = array[index];
+        array[index] = value;
+      }
+      array.length = size;
+      return array;
+    }
+
+    /**
+     * Converts `string` to a property path array.
+     *
+     * @private
+     * @param {string} string The string to convert.
+     * @returns {Array} Returns the property path array.
+     */
+    var stringToPath = memoizeCapped(function(string) {
+      var result = [];
+      if (reLeadingDot.test(string)) {
+        result.push('');
+      }
+      string.replace(rePropName, function(match, number, quote, string) {
+        result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+      });
+      return result;
+    });
+
+    /**
+     * Converts `value` to a string key if it's not a string or symbol.
+     *
+     * @private
+     * @param {*} value The value to inspect.
+     * @returns {string|symbol} Returns the key.
+     */
+    function toKey(value) {
+      if (typeof value == 'string' || isSymbol(value)) {
+        return value;
+      }
+      var result = (value + '');
+      return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+    }
+
+    /**
+     * Converts `func` to its source code.
+     *
+     * @private
+     * @param {Function} func The function to convert.
+     * @returns {string} Returns the source code.
+     */
+    function toSource(func) {
+      if (func != null) {
+        try {
+          return funcToString.call(func);
+        } catch (e) {}
+        try {
+          return (func + '');
+        } catch (e) {}
+      }
+      return '';
+    }
+
+    /**
+     * Updates wrapper `details` based on `bitmask` flags.
+     *
+     * @private
+     * @returns {Array} details The details to modify.
+     * @param {number} bitmask The bitmask flags. See `createWrap` for more details.
+     * @returns {Array} Returns `details`.
+     */
+    function updateWrapDetails(details, bitmask) {
+      arrayEach(wrapFlags, function(pair) {
+        var value = '_.' + pair[0];
+        if ((bitmask & pair[1]) && !arrayIncludes(details, value)) {
+          details.push(value);
+        }
+      });
+      return details.sort();
+    }
+
+    /**
+     * Creates a clone of `wrapper`.
+     *
+     * @private
+     * @param {Object} wrapper The wrapper to clone.
+     * @returns {Object} Returns the cloned wrapper.
+     */
+    function wrapperClone(wrapper) {
+      if (wrapper instanceof LazyWrapper) {
+        return wrapper.clone();
+      }
+      var result = new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__);
+      result.__actions__ = copyArray(wrapper.__actions__);
+      result.__index__  = wrapper.__index__;
+      result.__values__ = wrapper.__values__;
+      return result;
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates an array of elements split into groups the length of `size`.
+     * If `array` can't be split evenly, the final chunk will be the remaining
+     * elements.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to process.
+     * @param {number} [size=1] The length of each chunk
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Array} Returns the new array of chunks.
+     * @example
+     *
+     * _.chunk(['a', 'b', 'c', 'd'], 2);
+     * // => [['a', 'b'], ['c', 'd']]
+     *
+     * _.chunk(['a', 'b', 'c', 'd'], 3);
+     * // => [['a', 'b', 'c'], ['d']]
+     */
+    function chunk(array, size, guard) {
+      if ((guard ? isIterateeCall(array, size, guard) : size === undefined)) {
+        size = 1;
+      } else {
+        size = nativeMax(toInteger(size), 0);
+      }
+      var length = array == null ? 0 : array.length;
+      if (!length || size < 1) {
+        return [];
+      }
+      var index = 0,
+          resIndex = 0,
+          result = Array(nativeCeil(length / size));
+
+      while (index < length) {
+        result[resIndex++] = baseSlice(array, index, (index += size));
+      }
+      return result;
+    }
+
+    /**
+     * Creates an array with all falsey values removed. The values `false`, `null`,
+     * `0`, `""`, `undefined`, and `NaN` are falsey.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to compact.
+     * @returns {Array} Returns the new array of filtered values.
+     * @example
+     *
+     * _.compact([0, 1, false, 2, '', 3]);
+     * // => [1, 2, 3]
+     */
+    function compact(array) {
+      var index = -1,
+          length = array == null ? 0 : array.length,
+          resIndex = 0,
+          result = [];
+
+      while (++index < length) {
+        var value = array[index];
+        if (value) {
+          result[resIndex++] = value;
+        }
+      }
+      return result;
+    }
+
+    /**
+     * Creates a new array concatenating `array` with any additional arrays
+     * and/or values.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to concatenate.
+     * @param {...*} [values] The values to concatenate.
+     * @returns {Array} Returns the new concatenated array.
+     * @example
+     *
+     * var array = [1];
+     * var other = _.concat(array, 2, [3], [[4]]);
+     *
+     * console.log(other);
+     * // => [1, 2, 3, [4]]
+     *
+     * console.log(array);
+     * // => [1]
+     */
+    function concat() {
+      var length = arguments.length;
+      if (!length) {
+        return [];
+      }
+      var args = Array(length - 1),
+          array = arguments[0],
+          index = length;
+
+      while (index--) {
+        args[index - 1] = arguments[index];
+      }
+      return arrayPush(isArray(array) ? copyArray(array) : [array], baseFlatten(args, 1));
+    }
+
+    /**
+     * Creates an array of `array` values not included in the other given arrays
+     * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons. The order and references of result values are
+     * determined by the first array.
+     *
+     * **Note:** Unlike `_.pullAll`, this method returns a new array.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {...Array} [values] The values to exclude.
+     * @returns {Array} Returns the new array of filtered values.
+     * @see _.without, _.xor
+     * @example
+     *
+     * _.difference([2, 1], [2, 3]);
+     * // => [1]
+     */
+    var difference = baseRest(function(array, values) {
+      return isArrayLikeObject(array)
+        ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true))
+        : [];
+    });
+
+    /**
+     * This method is like `_.difference` except that it accepts `iteratee` which
+     * is invoked for each element of `array` and `values` to generate the criterion
+     * by which they're compared. The order and references of result values are
+     * determined by the first array. The iteratee is invoked with one argument:
+     * (value).
+     *
+     * **Note:** Unlike `_.pullAllBy`, this method returns a new array.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {...Array} [values] The values to exclude.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {Array} Returns the new array of filtered values.
+     * @example
+     *
+     * _.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+     * // => [1.2]
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x');
+     * // => [{ 'x': 2 }]
+     */
+    var differenceBy = baseRest(function(array, values) {
+      var iteratee = last(values);
+      if (isArrayLikeObject(iteratee)) {
+        iteratee = undefined;
+      }
+      return isArrayLikeObject(array)
+        ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), getIteratee(iteratee, 2))
+        : [];
+    });
+
+    /**
+     * This method is like `_.difference` except that it accepts `comparator`
+     * which is invoked to compare elements of `array` to `values`. The order and
+     * references of result values are determined by the first array. The comparator
+     * is invoked with two arguments: (arrVal, othVal).
+     *
+     * **Note:** Unlike `_.pullAllWith`, this method returns a new array.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {...Array} [values] The values to exclude.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new array of filtered values.
+     * @example
+     *
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+     *
+     * _.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual);
+     * // => [{ 'x': 2, 'y': 1 }]
+     */
+    var differenceWith = baseRest(function(array, values) {
+      var comparator = last(values);
+      if (isArrayLikeObject(comparator)) {
+        comparator = undefined;
+      }
+      return isArrayLikeObject(array)
+        ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), undefined, comparator)
+        : [];
+    });
+
+    /**
+     * Creates a slice of `array` with `n` elements dropped from the beginning.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.5.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to drop.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.drop([1, 2, 3]);
+     * // => [2, 3]
+     *
+     * _.drop([1, 2, 3], 2);
+     * // => [3]
+     *
+     * _.drop([1, 2, 3], 5);
+     * // => []
+     *
+     * _.drop([1, 2, 3], 0);
+     * // => [1, 2, 3]
+     */
+    function drop(array, n, guard) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return [];
+      }
+      n = (guard || n === undefined) ? 1 : toInteger(n);
+      return baseSlice(array, n < 0 ? 0 : n, length);
+    }
+
+    /**
+     * Creates a slice of `array` with `n` elements dropped from the end.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to drop.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.dropRight([1, 2, 3]);
+     * // => [1, 2]
+     *
+     * _.dropRight([1, 2, 3], 2);
+     * // => [1]
+     *
+     * _.dropRight([1, 2, 3], 5);
+     * // => []
+     *
+     * _.dropRight([1, 2, 3], 0);
+     * // => [1, 2, 3]
+     */
+    function dropRight(array, n, guard) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return [];
+      }
+      n = (guard || n === undefined) ? 1 : toInteger(n);
+      n = length - n;
+      return baseSlice(array, 0, n < 0 ? 0 : n);
+    }
+
+    /**
+     * Creates a slice of `array` excluding elements dropped from the end.
+     * Elements are dropped until `predicate` returns falsey. The predicate is
+     * invoked with three arguments: (value, index, array).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'active': true },
+     *   { 'user': 'fred',    'active': false },
+     *   { 'user': 'pebbles', 'active': false }
+     * ];
+     *
+     * _.dropRightWhile(users, function(o) { return !o.active; });
+     * // => objects for ['barney']
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.dropRightWhile(users, { 'user': 'pebbles', 'active': false });
+     * // => objects for ['barney', 'fred']
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.dropRightWhile(users, ['active', false]);
+     * // => objects for ['barney']
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.dropRightWhile(users, 'active');
+     * // => objects for ['barney', 'fred', 'pebbles']
+     */
+    function dropRightWhile(array, predicate) {
+      return (array && array.length)
+        ? baseWhile(array, getIteratee(predicate, 3), true, true)
+        : [];
+    }
+
+    /**
+     * Creates a slice of `array` excluding elements dropped from the beginning.
+     * Elements are dropped until `predicate` returns falsey. The predicate is
+     * invoked with three arguments: (value, index, array).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'active': false },
+     *   { 'user': 'fred',    'active': false },
+     *   { 'user': 'pebbles', 'active': true }
+     * ];
+     *
+     * _.dropWhile(users, function(o) { return !o.active; });
+     * // => objects for ['pebbles']
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.dropWhile(users, { 'user': 'barney', 'active': false });
+     * // => objects for ['fred', 'pebbles']
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.dropWhile(users, ['active', false]);
+     * // => objects for ['pebbles']
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.dropWhile(users, 'active');
+     * // => objects for ['barney', 'fred', 'pebbles']
+     */
+    function dropWhile(array, predicate) {
+      return (array && array.length)
+        ? baseWhile(array, getIteratee(predicate, 3), true)
+        : [];
+    }
+
+    /**
+     * Fills elements of `array` with `value` from `start` up to, but not
+     * including, `end`.
+     *
+     * **Note:** This method mutates `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.2.0
+     * @category Array
+     * @param {Array} array The array to fill.
+     * @param {*} value The value to fill `array` with.
+     * @param {number} [start=0] The start position.
+     * @param {number} [end=array.length] The end position.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = [1, 2, 3];
+     *
+     * _.fill(array, 'a');
+     * console.log(array);
+     * // => ['a', 'a', 'a']
+     *
+     * _.fill(Array(3), 2);
+     * // => [2, 2, 2]
+     *
+     * _.fill([4, 6, 8, 10], '*', 1, 3);
+     * // => [4, '*', '*', 10]
+     */
+    function fill(array, value, start, end) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return [];
+      }
+      if (start && typeof start != 'number' && isIterateeCall(array, value, start)) {
+        start = 0;
+        end = length;
+      }
+      return baseFill(array, value, start, end);
+    }
+
+    /**
+     * This method is like `_.find` except that it returns the index of the first
+     * element `predicate` returns truthy for instead of the element itself.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.1.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @param {number} [fromIndex=0] The index to search from.
+     * @returns {number} Returns the index of the found element, else `-1`.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'active': false },
+     *   { 'user': 'fred',    'active': false },
+     *   { 'user': 'pebbles', 'active': true }
+     * ];
+     *
+     * _.findIndex(users, function(o) { return o.user == 'barney'; });
+     * // => 0
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.findIndex(users, { 'user': 'fred', 'active': false });
+     * // => 1
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.findIndex(users, ['active', false]);
+     * // => 0
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.findIndex(users, 'active');
+     * // => 2
+     */
+    function findIndex(array, predicate, fromIndex) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return -1;
+      }
+      var index = fromIndex == null ? 0 : toInteger(fromIndex);
+      if (index < 0) {
+        index = nativeMax(length + index, 0);
+      }
+      return baseFindIndex(array, getIteratee(predicate, 3), index);
+    }
+
+    /**
+     * This method is like `_.findIndex` except that it iterates over elements
+     * of `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @param {number} [fromIndex=array.length-1] The index to search from.
+     * @returns {number} Returns the index of the found element, else `-1`.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'active': true },
+     *   { 'user': 'fred',    'active': false },
+     *   { 'user': 'pebbles', 'active': false }
+     * ];
+     *
+     * _.findLastIndex(users, function(o) { return o.user == 'pebbles'; });
+     * // => 2
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.findLastIndex(users, { 'user': 'barney', 'active': true });
+     * // => 0
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.findLastIndex(users, ['active', false]);
+     * // => 2
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.findLastIndex(users, 'active');
+     * // => 0
+     */
+    function findLastIndex(array, predicate, fromIndex) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return -1;
+      }
+      var index = length - 1;
+      if (fromIndex !== undefined) {
+        index = toInteger(fromIndex);
+        index = fromIndex < 0
+          ? nativeMax(length + index, 0)
+          : nativeMin(index, length - 1);
+      }
+      return baseFindIndex(array, getIteratee(predicate, 3), index, true);
+    }
+
+    /**
+     * Flattens `array` a single level deep.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to flatten.
+     * @returns {Array} Returns the new flattened array.
+     * @example
+     *
+     * _.flatten([1, [2, [3, [4]], 5]]);
+     * // => [1, 2, [3, [4]], 5]
+     */
+    function flatten(array) {
+      var length = array == null ? 0 : array.length;
+      return length ? baseFlatten(array, 1) : [];
+    }
+
+    /**
+     * Recursively flattens `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to flatten.
+     * @returns {Array} Returns the new flattened array.
+     * @example
+     *
+     * _.flattenDeep([1, [2, [3, [4]], 5]]);
+     * // => [1, 2, 3, 4, 5]
+     */
+    function flattenDeep(array) {
+      var length = array == null ? 0 : array.length;
+      return length ? baseFlatten(array, INFINITY) : [];
+    }
+
+    /**
+     * Recursively flatten `array` up to `depth` times.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.4.0
+     * @category Array
+     * @param {Array} array The array to flatten.
+     * @param {number} [depth=1] The maximum recursion depth.
+     * @returns {Array} Returns the new flattened array.
+     * @example
+     *
+     * var array = [1, [2, [3, [4]], 5]];
+     *
+     * _.flattenDepth(array, 1);
+     * // => [1, 2, [3, [4]], 5]
+     *
+     * _.flattenDepth(array, 2);
+     * // => [1, 2, 3, [4], 5]
+     */
+    function flattenDepth(array, depth) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return [];
+      }
+      depth = depth === undefined ? 1 : toInteger(depth);
+      return baseFlatten(array, depth);
+    }
+
+    /**
+     * The inverse of `_.toPairs`; this method returns an object composed
+     * from key-value `pairs`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} pairs The key-value pairs.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * _.fromPairs([['a', 1], ['b', 2]]);
+     * // => { 'a': 1, 'b': 2 }
+     */
+    function fromPairs(pairs) {
+      var index = -1,
+          length = pairs == null ? 0 : pairs.length,
+          result = {};
+
+      while (++index < length) {
+        var pair = pairs[index];
+        result[pair[0]] = pair[1];
+      }
+      return result;
+    }
+
+    /**
+     * Gets the first element of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @alias first
+     * @category Array
+     * @param {Array} array The array to query.
+     * @returns {*} Returns the first element of `array`.
+     * @example
+     *
+     * _.head([1, 2, 3]);
+     * // => 1
+     *
+     * _.head([]);
+     * // => undefined
+     */
+    function head(array) {
+      return (array && array.length) ? array[0] : undefined;
+    }
+
+    /**
+     * Gets the index at which the first occurrence of `value` is found in `array`
+     * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons. If `fromIndex` is negative, it's used as the
+     * offset from the end of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {*} value The value to search for.
+     * @param {number} [fromIndex=0] The index to search from.
+     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @example
+     *
+     * _.indexOf([1, 2, 1, 2], 2);
+     * // => 1
+     *
+     * // Search from the `fromIndex`.
+     * _.indexOf([1, 2, 1, 2], 2, 2);
+     * // => 3
+     */
+    function indexOf(array, value, fromIndex) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return -1;
+      }
+      var index = fromIndex == null ? 0 : toInteger(fromIndex);
+      if (index < 0) {
+        index = nativeMax(length + index, 0);
+      }
+      return baseIndexOf(array, value, index);
+    }
+
+    /**
+     * Gets all but the last element of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.initial([1, 2, 3]);
+     * // => [1, 2]
+     */
+    function initial(array) {
+      var length = array == null ? 0 : array.length;
+      return length ? baseSlice(array, 0, -1) : [];
+    }
+
+    /**
+     * Creates an array of unique values that are included in all given arrays
+     * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons. The order and references of result values are
+     * determined by the first array.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @returns {Array} Returns the new array of intersecting values.
+     * @example
+     *
+     * _.intersection([2, 1], [2, 3]);
+     * // => [2]
+     */
+    var intersection = baseRest(function(arrays) {
+      var mapped = arrayMap(arrays, castArrayLikeObject);
+      return (mapped.length && mapped[0] === arrays[0])
+        ? baseIntersection(mapped)
+        : [];
+    });
+
+    /**
+     * This method is like `_.intersection` except that it accepts `iteratee`
+     * which is invoked for each element of each `arrays` to generate the criterion
+     * by which they're compared. The order and references of result values are
+     * determined by the first array. The iteratee is invoked with one argument:
+     * (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {Array} Returns the new array of intersecting values.
+     * @example
+     *
+     * _.intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+     * // => [2.1]
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.intersectionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 1 }]
+     */
+    var intersectionBy = baseRest(function(arrays) {
+      var iteratee = last(arrays),
+          mapped = arrayMap(arrays, castArrayLikeObject);
+
+      if (iteratee === last(mapped)) {
+        iteratee = undefined;
+      } else {
+        mapped.pop();
+      }
+      return (mapped.length && mapped[0] === arrays[0])
+        ? baseIntersection(mapped, getIteratee(iteratee, 2))
+        : [];
+    });
+
+    /**
+     * This method is like `_.intersection` except that it accepts `comparator`
+     * which is invoked to compare elements of `arrays`. The order and references
+     * of result values are determined by the first array. The comparator is
+     * invoked with two arguments: (arrVal, othVal).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new array of intersecting values.
+     * @example
+     *
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+     *
+     * _.intersectionWith(objects, others, _.isEqual);
+     * // => [{ 'x': 1, 'y': 2 }]
+     */
+    var intersectionWith = baseRest(function(arrays) {
+      var comparator = last(arrays),
+          mapped = arrayMap(arrays, castArrayLikeObject);
+
+      comparator = typeof comparator == 'function' ? comparator : undefined;
+      if (comparator) {
+        mapped.pop();
+      }
+      return (mapped.length && mapped[0] === arrays[0])
+        ? baseIntersection(mapped, undefined, comparator)
+        : [];
+    });
+
+    /**
+     * Converts all elements in `array` into a string separated by `separator`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to convert.
+     * @param {string} [separator=','] The element separator.
+     * @returns {string} Returns the joined string.
+     * @example
+     *
+     * _.join(['a', 'b', 'c'], '~');
+     * // => 'a~b~c'
+     */
+    function join(array, separator) {
+      return array == null ? '' : nativeJoin.call(array, separator);
+    }
+
+    /**
+     * Gets the last element of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @returns {*} Returns the last element of `array`.
+     * @example
+     *
+     * _.last([1, 2, 3]);
+     * // => 3
+     */
+    function last(array) {
+      var length = array == null ? 0 : array.length;
+      return length ? array[length - 1] : undefined;
+    }
+
+    /**
+     * This method is like `_.indexOf` except that it iterates over elements of
+     * `array` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {*} value The value to search for.
+     * @param {number} [fromIndex=array.length-1] The index to search from.
+     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @example
+     *
+     * _.lastIndexOf([1, 2, 1, 2], 2);
+     * // => 3
+     *
+     * // Search from the `fromIndex`.
+     * _.lastIndexOf([1, 2, 1, 2], 2, 2);
+     * // => 1
+     */
+    function lastIndexOf(array, value, fromIndex) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return -1;
+      }
+      var index = length;
+      if (fromIndex !== undefined) {
+        index = toInteger(fromIndex);
+        index = index < 0 ? nativeMax(length + index, 0) : nativeMin(index, length - 1);
+      }
+      return value === value
+        ? strictLastIndexOf(array, value, index)
+        : baseFindIndex(array, baseIsNaN, index, true);
+    }
+
+    /**
+     * Gets the element at index `n` of `array`. If `n` is negative, the nth
+     * element from the end is returned.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.11.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {number} [n=0] The index of the element to return.
+     * @returns {*} Returns the nth element of `array`.
+     * @example
+     *
+     * var array = ['a', 'b', 'c', 'd'];
+     *
+     * _.nth(array, 1);
+     * // => 'b'
+     *
+     * _.nth(array, -2);
+     * // => 'c';
+     */
+    function nth(array, n) {
+      return (array && array.length) ? baseNth(array, toInteger(n)) : undefined;
+    }
+
+    /**
+     * Removes all given values from `array` using
+     * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons.
+     *
+     * **Note:** Unlike `_.without`, this method mutates `array`. Use `_.remove`
+     * to remove elements from an array by predicate.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Array
+     * @param {Array} array The array to modify.
+     * @param {...*} [values] The values to remove.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+     *
+     * _.pull(array, 'a', 'c');
+     * console.log(array);
+     * // => ['b', 'b']
+     */
+    var pull = baseRest(pullAll);
+
+    /**
+     * This method is like `_.pull` except that it accepts an array of values to remove.
+     *
+     * **Note:** Unlike `_.difference`, this method mutates `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to modify.
+     * @param {Array} values The values to remove.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+     *
+     * _.pullAll(array, ['a', 'c']);
+     * console.log(array);
+     * // => ['b', 'b']
+     */
+    function pullAll(array, values) {
+      return (array && array.length && values && values.length)
+        ? basePullAll(array, values)
+        : array;
+    }
+
+    /**
+     * This method is like `_.pullAll` except that it accepts `iteratee` which is
+     * invoked for each element of `array` and `values` to generate the criterion
+     * by which they're compared. The iteratee is invoked with one argument: (value).
+     *
+     * **Note:** Unlike `_.differenceBy`, this method mutates `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to modify.
+     * @param {Array} values The values to remove.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }];
+     *
+     * _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x');
+     * console.log(array);
+     * // => [{ 'x': 2 }]
+     */
+    function pullAllBy(array, values, iteratee) {
+      return (array && array.length && values && values.length)
+        ? basePullAll(array, values, getIteratee(iteratee, 2))
+        : array;
+    }
+
+    /**
+     * This method is like `_.pullAll` except that it accepts `comparator` which
+     * is invoked to compare elements of `array` to `values`. The comparator is
+     * invoked with two arguments: (arrVal, othVal).
+     *
+     * **Note:** Unlike `_.differenceWith`, this method mutates `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.6.0
+     * @category Array
+     * @param {Array} array The array to modify.
+     * @param {Array} values The values to remove.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }];
+     *
+     * _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual);
+     * console.log(array);
+     * // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
+     */
+    function pullAllWith(array, values, comparator) {
+      return (array && array.length && values && values.length)
+        ? basePullAll(array, values, undefined, comparator)
+        : array;
+    }
+
+    /**
+     * Removes elements from `array` corresponding to `indexes` and returns an
+     * array of removed elements.
+     *
+     * **Note:** Unlike `_.at`, this method mutates `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to modify.
+     * @param {...(number|number[])} [indexes] The indexes of elements to remove.
+     * @returns {Array} Returns the new array of removed elements.
+     * @example
+     *
+     * var array = ['a', 'b', 'c', 'd'];
+     * var pulled = _.pullAt(array, [1, 3]);
+     *
+     * console.log(array);
+     * // => ['a', 'c']
+     *
+     * console.log(pulled);
+     * // => ['b', 'd']
+     */
+    var pullAt = flatRest(function(array, indexes) {
+      var length = array == null ? 0 : array.length,
+          result = baseAt(array, indexes);
+
+      basePullAt(array, arrayMap(indexes, function(index) {
+        return isIndex(index, length) ? +index : index;
+      }).sort(compareAscending));
+
+      return result;
+    });
+
+    /**
+     * Removes all elements from `array` that `predicate` returns truthy for
+     * and returns an array of the removed elements. The predicate is invoked
+     * with three arguments: (value, index, array).
+     *
+     * **Note:** Unlike `_.filter`, this method mutates `array`. Use `_.pull`
+     * to pull elements from an array by value.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Array
+     * @param {Array} array The array to modify.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the new array of removed elements.
+     * @example
+     *
+     * var array = [1, 2, 3, 4];
+     * var evens = _.remove(array, function(n) {
+     *   return n % 2 == 0;
+     * });
+     *
+     * console.log(array);
+     * // => [1, 3]
+     *
+     * console.log(evens);
+     * // => [2, 4]
+     */
+    function remove(array, predicate) {
+      var result = [];
+      if (!(array && array.length)) {
+        return result;
+      }
+      var index = -1,
+          indexes = [],
+          length = array.length;
+
+      predicate = getIteratee(predicate, 3);
+      while (++index < length) {
+        var value = array[index];
+        if (predicate(value, index, array)) {
+          result.push(value);
+          indexes.push(index);
+        }
+      }
+      basePullAt(array, indexes);
+      return result;
+    }
+
+    /**
+     * Reverses `array` so that the first element becomes the last, the second
+     * element becomes the second to last, and so on.
+     *
+     * **Note:** This method mutates `array` and is based on
+     * [`Array#reverse`](https://mdn.io/Array/reverse).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to modify.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = [1, 2, 3];
+     *
+     * _.reverse(array);
+     * // => [3, 2, 1]
+     *
+     * console.log(array);
+     * // => [3, 2, 1]
+     */
+    function reverse(array) {
+      return array == null ? array : nativeReverse.call(array);
+    }
+
+    /**
+     * Creates a slice of `array` from `start` up to, but not including, `end`.
+     *
+     * **Note:** This method is used instead of
+     * [`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are
+     * returned.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to slice.
+     * @param {number} [start=0] The start position.
+     * @param {number} [end=array.length] The end position.
+     * @returns {Array} Returns the slice of `array`.
+     */
+    function slice(array, start, end) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return [];
+      }
+      if (end && typeof end != 'number' && isIterateeCall(array, start, end)) {
+        start = 0;
+        end = length;
+      }
+      else {
+        start = start == null ? 0 : toInteger(start);
+        end = end === undefined ? length : toInteger(end);
+      }
+      return baseSlice(array, start, end);
+    }
+
+    /**
+     * Uses a binary search to determine the lowest index at which `value`
+     * should be inserted into `array` in order to maintain its sort order.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The sorted array to inspect.
+     * @param {*} value The value to evaluate.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     * @example
+     *
+     * _.sortedIndex([30, 50], 40);
+     * // => 1
+     */
+    function sortedIndex(array, value) {
+      return baseSortedIndex(array, value);
+    }
+
+    /**
+     * This method is like `_.sortedIndex` except that it accepts `iteratee`
+     * which is invoked for `value` and each element of `array` to compute their
+     * sort ranking. The iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The sorted array to inspect.
+     * @param {*} value The value to evaluate.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     * @example
+     *
+     * var objects = [{ 'x': 4 }, { 'x': 5 }];
+     *
+     * _.sortedIndexBy(objects, { 'x': 4 }, function(o) { return o.x; });
+     * // => 0
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.sortedIndexBy(objects, { 'x': 4 }, 'x');
+     * // => 0
+     */
+    function sortedIndexBy(array, value, iteratee) {
+      return baseSortedIndexBy(array, value, getIteratee(iteratee, 2));
+    }
+
+    /**
+     * This method is like `_.indexOf` except that it performs a binary
+     * search on a sorted `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {*} value The value to search for.
+     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @example
+     *
+     * _.sortedIndexOf([4, 5, 5, 5, 6], 5);
+     * // => 1
+     */
+    function sortedIndexOf(array, value) {
+      var length = array == null ? 0 : array.length;
+      if (length) {
+        var index = baseSortedIndex(array, value);
+        if (index < length && eq(array[index], value)) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * This method is like `_.sortedIndex` except that it returns the highest
+     * index at which `value` should be inserted into `array` in order to
+     * maintain its sort order.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The sorted array to inspect.
+     * @param {*} value The value to evaluate.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     * @example
+     *
+     * _.sortedLastIndex([4, 5, 5, 5, 6], 5);
+     * // => 4
+     */
+    function sortedLastIndex(array, value) {
+      return baseSortedIndex(array, value, true);
+    }
+
+    /**
+     * This method is like `_.sortedLastIndex` except that it accepts `iteratee`
+     * which is invoked for `value` and each element of `array` to compute their
+     * sort ranking. The iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The sorted array to inspect.
+     * @param {*} value The value to evaluate.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     * @example
+     *
+     * var objects = [{ 'x': 4 }, { 'x': 5 }];
+     *
+     * _.sortedLastIndexBy(objects, { 'x': 4 }, function(o) { return o.x; });
+     * // => 1
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.sortedLastIndexBy(objects, { 'x': 4 }, 'x');
+     * // => 1
+     */
+    function sortedLastIndexBy(array, value, iteratee) {
+      return baseSortedIndexBy(array, value, getIteratee(iteratee, 2), true);
+    }
+
+    /**
+     * This method is like `_.lastIndexOf` except that it performs a binary
+     * search on a sorted `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {*} value The value to search for.
+     * @returns {number} Returns the index of the matched value, else `-1`.
+     * @example
+     *
+     * _.sortedLastIndexOf([4, 5, 5, 5, 6], 5);
+     * // => 3
+     */
+    function sortedLastIndexOf(array, value) {
+      var length = array == null ? 0 : array.length;
+      if (length) {
+        var index = baseSortedIndex(array, value, true) - 1;
+        if (eq(array[index], value)) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * This method is like `_.uniq` except that it's designed and optimized
+     * for sorted arrays.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @returns {Array} Returns the new duplicate free array.
+     * @example
+     *
+     * _.sortedUniq([1, 1, 2]);
+     * // => [1, 2]
+     */
+    function sortedUniq(array) {
+      return (array && array.length)
+        ? baseSortedUniq(array)
+        : [];
+    }
+
+    /**
+     * This method is like `_.uniqBy` except that it's designed and optimized
+     * for sorted arrays.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {Function} [iteratee] The iteratee invoked per element.
+     * @returns {Array} Returns the new duplicate free array.
+     * @example
+     *
+     * _.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);
+     * // => [1.1, 2.3]
+     */
+    function sortedUniqBy(array, iteratee) {
+      return (array && array.length)
+        ? baseSortedUniq(array, getIteratee(iteratee, 2))
+        : [];
+    }
+
+    /**
+     * Gets all but the first element of `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.tail([1, 2, 3]);
+     * // => [2, 3]
+     */
+    function tail(array) {
+      var length = array == null ? 0 : array.length;
+      return length ? baseSlice(array, 1, length) : [];
+    }
+
+    /**
+     * Creates a slice of `array` with `n` elements taken from the beginning.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to take.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.take([1, 2, 3]);
+     * // => [1]
+     *
+     * _.take([1, 2, 3], 2);
+     * // => [1, 2]
+     *
+     * _.take([1, 2, 3], 5);
+     * // => [1, 2, 3]
+     *
+     * _.take([1, 2, 3], 0);
+     * // => []
+     */
+    function take(array, n, guard) {
+      if (!(array && array.length)) {
+        return [];
+      }
+      n = (guard || n === undefined) ? 1 : toInteger(n);
+      return baseSlice(array, 0, n < 0 ? 0 : n);
+    }
+
+    /**
+     * Creates a slice of `array` with `n` elements taken from the end.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {number} [n=1] The number of elements to take.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * _.takeRight([1, 2, 3]);
+     * // => [3]
+     *
+     * _.takeRight([1, 2, 3], 2);
+     * // => [2, 3]
+     *
+     * _.takeRight([1, 2, 3], 5);
+     * // => [1, 2, 3]
+     *
+     * _.takeRight([1, 2, 3], 0);
+     * // => []
+     */
+    function takeRight(array, n, guard) {
+      var length = array == null ? 0 : array.length;
+      if (!length) {
+        return [];
+      }
+      n = (guard || n === undefined) ? 1 : toInteger(n);
+      n = length - n;
+      return baseSlice(array, n < 0 ? 0 : n, length);
+    }
+
+    /**
+     * Creates a slice of `array` with elements taken from the end. Elements are
+     * taken until `predicate` returns falsey. The predicate is invoked with
+     * three arguments: (value, index, array).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'active': true },
+     *   { 'user': 'fred',    'active': false },
+     *   { 'user': 'pebbles', 'active': false }
+     * ];
+     *
+     * _.takeRightWhile(users, function(o) { return !o.active; });
+     * // => objects for ['fred', 'pebbles']
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.takeRightWhile(users, { 'user': 'pebbles', 'active': false });
+     * // => objects for ['pebbles']
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.takeRightWhile(users, ['active', false]);
+     * // => objects for ['fred', 'pebbles']
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.takeRightWhile(users, 'active');
+     * // => []
+     */
+    function takeRightWhile(array, predicate) {
+      return (array && array.length)
+        ? baseWhile(array, getIteratee(predicate, 3), false, true)
+        : [];
+    }
+
+    /**
+     * Creates a slice of `array` with elements taken from the beginning. Elements
+     * are taken until `predicate` returns falsey. The predicate is invoked with
+     * three arguments: (value, index, array).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Array
+     * @param {Array} array The array to query.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the slice of `array`.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'active': false },
+     *   { 'user': 'fred',    'active': false },
+     *   { 'user': 'pebbles', 'active': true }
+     * ];
+     *
+     * _.takeWhile(users, function(o) { return !o.active; });
+     * // => objects for ['barney', 'fred']
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.takeWhile(users, { 'user': 'barney', 'active': false });
+     * // => objects for ['barney']
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.takeWhile(users, ['active', false]);
+     * // => objects for ['barney', 'fred']
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.takeWhile(users, 'active');
+     * // => []
+     */
+    function takeWhile(array, predicate) {
+      return (array && array.length)
+        ? baseWhile(array, getIteratee(predicate, 3))
+        : [];
+    }
+
+    /**
+     * Creates an array of unique values, in order, from all given arrays using
+     * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @returns {Array} Returns the new array of combined values.
+     * @example
+     *
+     * _.union([2], [1, 2]);
+     * // => [2, 1]
+     */
+    var union = baseRest(function(arrays) {
+      return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true));
+    });
+
+    /**
+     * This method is like `_.union` except that it accepts `iteratee` which is
+     * invoked for each element of each `arrays` to generate the criterion by
+     * which uniqueness is computed. Result values are chosen from the first
+     * array in which the value occurs. The iteratee is invoked with one argument:
+     * (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {Array} Returns the new array of combined values.
+     * @example
+     *
+     * _.unionBy([2.1], [1.2, 2.3], Math.floor);
+     * // => [2.1, 1.2]
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 1 }, { 'x': 2 }]
+     */
+    var unionBy = baseRest(function(arrays) {
+      var iteratee = last(arrays);
+      if (isArrayLikeObject(iteratee)) {
+        iteratee = undefined;
+      }
+      return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), getIteratee(iteratee, 2));
+    });
+
+    /**
+     * This method is like `_.union` except that it accepts `comparator` which
+     * is invoked to compare elements of `arrays`. Result values are chosen from
+     * the first array in which the value occurs. The comparator is invoked
+     * with two arguments: (arrVal, othVal).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new array of combined values.
+     * @example
+     *
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+     *
+     * _.unionWith(objects, others, _.isEqual);
+     * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+     */
+    var unionWith = baseRest(function(arrays) {
+      var comparator = last(arrays);
+      comparator = typeof comparator == 'function' ? comparator : undefined;
+      return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), undefined, comparator);
+    });
+
+    /**
+     * Creates a duplicate-free version of an array, using
+     * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons, in which only the first occurrence of each element
+     * is kept. The order of result values is determined by the order they occur
+     * in the array.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @returns {Array} Returns the new duplicate free array.
+     * @example
+     *
+     * _.uniq([2, 1, 2]);
+     * // => [2, 1]
+     */
+    function uniq(array) {
+      return (array && array.length) ? baseUniq(array) : [];
+    }
+
+    /**
+     * This method is like `_.uniq` except that it accepts `iteratee` which is
+     * invoked for each element in `array` to generate the criterion by which
+     * uniqueness is computed. The order of result values is determined by the
+     * order they occur in the array. The iteratee is invoked with one argument:
+     * (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {Array} Returns the new duplicate free array.
+     * @example
+     *
+     * _.uniqBy([2.1, 1.2, 2.3], Math.floor);
+     * // => [2.1, 1.2]
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 1 }, { 'x': 2 }]
+     */
+    function uniqBy(array, iteratee) {
+      return (array && array.length) ? baseUniq(array, getIteratee(iteratee, 2)) : [];
+    }
+
+    /**
+     * This method is like `_.uniq` except that it accepts `comparator` which
+     * is invoked to compare elements of `array`. The order of result values is
+     * determined by the order they occur in the array.The comparator is invoked
+     * with two arguments: (arrVal, othVal).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new duplicate free array.
+     * @example
+     *
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 2 }];
+     *
+     * _.uniqWith(objects, _.isEqual);
+     * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
+     */
+    function uniqWith(array, comparator) {
+      comparator = typeof comparator == 'function' ? comparator : undefined;
+      return (array && array.length) ? baseUniq(array, undefined, comparator) : [];
+    }
+
+    /**
+     * This method is like `_.zip` except that it accepts an array of grouped
+     * elements and creates an array regrouping the elements to their pre-zip
+     * configuration.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.2.0
+     * @category Array
+     * @param {Array} array The array of grouped elements to process.
+     * @returns {Array} Returns the new array of regrouped elements.
+     * @example
+     *
+     * var zipped = _.zip(['a', 'b'], [1, 2], [true, false]);
+     * // => [['a', 1, true], ['b', 2, false]]
+     *
+     * _.unzip(zipped);
+     * // => [['a', 'b'], [1, 2], [true, false]]
+     */
+    function unzip(array) {
+      if (!(array && array.length)) {
+        return [];
+      }
+      var length = 0;
+      array = arrayFilter(array, function(group) {
+        if (isArrayLikeObject(group)) {
+          length = nativeMax(group.length, length);
+          return true;
+        }
+      });
+      return baseTimes(length, function(index) {
+        return arrayMap(array, baseProperty(index));
+      });
+    }
+
+    /**
+     * This method is like `_.unzip` except that it accepts `iteratee` to specify
+     * how regrouped values should be combined. The iteratee is invoked with the
+     * elements of each group: (...group).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.8.0
+     * @category Array
+     * @param {Array} array The array of grouped elements to process.
+     * @param {Function} [iteratee=_.identity] The function to combine
+     *  regrouped values.
+     * @returns {Array} Returns the new array of regrouped elements.
+     * @example
+     *
+     * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+     * // => [[1, 10, 100], [2, 20, 200]]
+     *
+     * _.unzipWith(zipped, _.add);
+     * // => [3, 30, 300]
+     */
+    function unzipWith(array, iteratee) {
+      if (!(array && array.length)) {
+        return [];
+      }
+      var result = unzip(array);
+      if (iteratee == null) {
+        return result;
+      }
+      return arrayMap(result, function(group) {
+        return apply(iteratee, undefined, group);
+      });
+    }
+
+    /**
+     * Creates an array excluding all given values using
+     * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * for equality comparisons.
+     *
+     * **Note:** Unlike `_.pull`, this method returns a new array.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {Array} array The array to inspect.
+     * @param {...*} [values] The values to exclude.
+     * @returns {Array} Returns the new array of filtered values.
+     * @see _.difference, _.xor
+     * @example
+     *
+     * _.without([2, 1, 2, 3], 1, 2);
+     * // => [3]
+     */
+    var without = baseRest(function(array, values) {
+      return isArrayLikeObject(array)
+        ? baseDifference(array, values)
+        : [];
+    });
+
+    /**
+     * Creates an array of unique values that is the
+     * [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
+     * of the given arrays. The order of result values is determined by the order
+     * they occur in the arrays.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.4.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @returns {Array} Returns the new array of filtered values.
+     * @see _.difference, _.without
+     * @example
+     *
+     * _.xor([2, 1], [2, 3]);
+     * // => [1, 3]
+     */
+    var xor = baseRest(function(arrays) {
+      return baseXor(arrayFilter(arrays, isArrayLikeObject));
+    });
+
+    /**
+     * This method is like `_.xor` except that it accepts `iteratee` which is
+     * invoked for each element of each `arrays` to generate the criterion by
+     * which by which they're compared. The order of result values is determined
+     * by the order they occur in the arrays. The iteratee is invoked with one
+     * argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {Array} Returns the new array of filtered values.
+     * @example
+     *
+     * _.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+     * // => [1.2, 3.4]
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 2 }]
+     */
+    var xorBy = baseRest(function(arrays) {
+      var iteratee = last(arrays);
+      if (isArrayLikeObject(iteratee)) {
+        iteratee = undefined;
+      }
+      return baseXor(arrayFilter(arrays, isArrayLikeObject), getIteratee(iteratee, 2));
+    });
+
+    /**
+     * This method is like `_.xor` except that it accepts `comparator` which is
+     * invoked to compare elements of `arrays`. The order of result values is
+     * determined by the order they occur in the arrays. The comparator is invoked
+     * with two arguments: (arrVal, othVal).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to inspect.
+     * @param {Function} [comparator] The comparator invoked per element.
+     * @returns {Array} Returns the new array of filtered values.
+     * @example
+     *
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+     *
+     * _.xorWith(objects, others, _.isEqual);
+     * // => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+     */
+    var xorWith = baseRest(function(arrays) {
+      var comparator = last(arrays);
+      comparator = typeof comparator == 'function' ? comparator : undefined;
+      return baseXor(arrayFilter(arrays, isArrayLikeObject), undefined, comparator);
+    });
+
+    /**
+     * Creates an array of grouped elements, the first of which contains the
+     * first elements of the given arrays, the second of which contains the
+     * second elements of the given arrays, and so on.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to process.
+     * @returns {Array} Returns the new array of grouped elements.
+     * @example
+     *
+     * _.zip(['a', 'b'], [1, 2], [true, false]);
+     * // => [['a', 1, true], ['b', 2, false]]
+     */
+    var zip = baseRest(unzip);
+
+    /**
+     * This method is like `_.fromPairs` except that it accepts two arrays,
+     * one of property identifiers and one of corresponding values.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.4.0
+     * @category Array
+     * @param {Array} [props=[]] The property identifiers.
+     * @param {Array} [values=[]] The property values.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * _.zipObject(['a', 'b'], [1, 2]);
+     * // => { 'a': 1, 'b': 2 }
+     */
+    function zipObject(props, values) {
+      return baseZipObject(props || [], values || [], assignValue);
+    }
+
+    /**
+     * This method is like `_.zipObject` except that it supports property paths.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.1.0
+     * @category Array
+     * @param {Array} [props=[]] The property identifiers.
+     * @param {Array} [values=[]] The property values.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * _.zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 2]);
+     * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
+     */
+    function zipObjectDeep(props, values) {
+      return baseZipObject(props || [], values || [], baseSet);
+    }
+
+    /**
+     * This method is like `_.zip` except that it accepts `iteratee` to specify
+     * how grouped values should be combined. The iteratee is invoked with the
+     * elements of each group: (...group).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.8.0
+     * @category Array
+     * @param {...Array} [arrays] The arrays to process.
+     * @param {Function} [iteratee=_.identity] The function to combine
+     *  grouped values.
+     * @returns {Array} Returns the new array of grouped elements.
+     * @example
+     *
+     * _.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
+     *   return a + b + c;
+     * });
+     * // => [111, 222]
+     */
+    var zipWith = baseRest(function(arrays) {
+      var length = arrays.length,
+          iteratee = length > 1 ? arrays[length - 1] : undefined;
+
+      iteratee = typeof iteratee == 'function' ? (arrays.pop(), iteratee) : undefined;
+      return unzipWith(arrays, iteratee);
+    });
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates a `lodash` wrapper instance that wraps `value` with explicit method
+     * chain sequences enabled. The result of such sequences must be unwrapped
+     * with `_#value`.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.3.0
+     * @category Seq
+     * @param {*} value The value to wrap.
+     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'age': 36 },
+     *   { 'user': 'fred',    'age': 40 },
+     *   { 'user': 'pebbles', 'age': 1 }
+     * ];
+     *
+     * var youngest = _
+     *   .chain(users)
+     *   .sortBy('age')
+     *   .map(function(o) {
+     *     return o.user + ' is ' + o.age;
+     *   })
+     *   .head()
+     *   .value();
+     * // => 'pebbles is 1'
+     */
+    function chain(value) {
+      var result = lodash(value);
+      result.__chain__ = true;
+      return result;
+    }
+
+    /**
+     * This method invokes `interceptor` and returns `value`. The interceptor
+     * is invoked with one argument; (value). The purpose of this method is to
+     * "tap into" a method chain sequence in order to modify intermediate results.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Seq
+     * @param {*} value The value to provide to `interceptor`.
+     * @param {Function} interceptor The function to invoke.
+     * @returns {*} Returns `value`.
+     * @example
+     *
+     * _([1, 2, 3])
+     *  .tap(function(array) {
+     *    // Mutate input array.
+     *    array.pop();
+     *  })
+     *  .reverse()
+     *  .value();
+     * // => [2, 1]
+     */
+    function tap(value, interceptor) {
+      interceptor(value);
+      return value;
+    }
+
+    /**
+     * This method is like `_.tap` except that it returns the result of `interceptor`.
+     * The purpose of this method is to "pass thru" values replacing intermediate
+     * results in a method chain sequence.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Seq
+     * @param {*} value The value to provide to `interceptor`.
+     * @param {Function} interceptor The function to invoke.
+     * @returns {*} Returns the result of `interceptor`.
+     * @example
+     *
+     * _('  abc  ')
+     *  .chain()
+     *  .trim()
+     *  .thru(function(value) {
+     *    return [value];
+     *  })
+     *  .value();
+     * // => ['abc']
+     */
+    function thru(value, interceptor) {
+      return interceptor(value);
+    }
+
+    /**
+     * This method is the wrapper version of `_.at`.
+     *
+     * @name at
+     * @memberOf _
+     * @since 1.0.0
+     * @category Seq
+     * @param {...(string|string[])} [paths] The property paths to pick.
+     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
+     *
+     * _(object).at(['a[0].b.c', 'a[1]']).value();
+     * // => [3, 4]
+     */
+    var wrapperAt = flatRest(function(paths) {
+      var length = paths.length,
+          start = length ? paths[0] : 0,
+          value = this.__wrapped__,
+          interceptor = function(object) { return baseAt(object, paths); };
+
+      if (length > 1 || this.__actions__.length ||
+          !(value instanceof LazyWrapper) || !isIndex(start)) {
+        return this.thru(interceptor);
+      }
+      value = value.slice(start, +start + (length ? 1 : 0));
+      value.__actions__.push({
+        'func': thru,
+        'args': [interceptor],
+        'thisArg': undefined
+      });
+      return new LodashWrapper(value, this.__chain__).thru(function(array) {
+        if (length && !array.length) {
+          array.push(undefined);
+        }
+        return array;
+      });
+    });
+
+    /**
+     * Creates a `lodash` wrapper instance with explicit method chain sequences enabled.
+     *
+     * @name chain
+     * @memberOf _
+     * @since 0.1.0
+     * @category Seq
+     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney', 'age': 36 },
+     *   { 'user': 'fred',   'age': 40 }
+     * ];
+     *
+     * // A sequence without explicit chaining.
+     * _(users).head();
+     * // => { 'user': 'barney', 'age': 36 }
+     *
+     * // A sequence with explicit chaining.
+     * _(users)
+     *   .chain()
+     *   .head()
+     *   .pick('user')
+     *   .value();
+     * // => { 'user': 'barney' }
+     */
+    function wrapperChain() {
+      return chain(this);
+    }
+
+    /**
+     * Executes the chain sequence and returns the wrapped result.
+     *
+     * @name commit
+     * @memberOf _
+     * @since 3.2.0
+     * @category Seq
+     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @example
+     *
+     * var array = [1, 2];
+     * var wrapped = _(array).push(3);
+     *
+     * console.log(array);
+     * // => [1, 2]
+     *
+     * wrapped = wrapped.commit();
+     * console.log(array);
+     * // => [1, 2, 3]
+     *
+     * wrapped.last();
+     * // => 3
+     *
+     * console.log(array);
+     * // => [1, 2, 3]
+     */
+    function wrapperCommit() {
+      return new LodashWrapper(this.value(), this.__chain__);
+    }
+
+    /**
+     * Gets the next value on a wrapped object following the
+     * [iterator protocol](https://mdn.io/iteration_protocols#iterator).
+     *
+     * @name next
+     * @memberOf _
+     * @since 4.0.0
+     * @category Seq
+     * @returns {Object} Returns the next iterator value.
+     * @example
+     *
+     * var wrapped = _([1, 2]);
+     *
+     * wrapped.next();
+     * // => { 'done': false, 'value': 1 }
+     *
+     * wrapped.next();
+     * // => { 'done': false, 'value': 2 }
+     *
+     * wrapped.next();
+     * // => { 'done': true, 'value': undefined }
+     */
+    function wrapperNext() {
+      if (this.__values__ === undefined) {
+        this.__values__ = toArray(this.value());
+      }
+      var done = this.__index__ >= this.__values__.length,
+          value = done ? undefined : this.__values__[this.__index__++];
+
+      return { 'done': done, 'value': value };
+    }
+
+    /**
+     * Enables the wrapper to be iterable.
+     *
+     * @name Symbol.iterator
+     * @memberOf _
+     * @since 4.0.0
+     * @category Seq
+     * @returns {Object} Returns the wrapper object.
+     * @example
+     *
+     * var wrapped = _([1, 2]);
+     *
+     * wrapped[Symbol.iterator]() === wrapped;
+     * // => true
+     *
+     * Array.from(wrapped);
+     * // => [1, 2]
+     */
+    function wrapperToIterator() {
+      return this;
+    }
+
+    /**
+     * Creates a clone of the chain sequence planting `value` as the wrapped value.
+     *
+     * @name plant
+     * @memberOf _
+     * @since 3.2.0
+     * @category Seq
+     * @param {*} value The value to plant.
+     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @example
+     *
+     * function square(n) {
+     *   return n * n;
+     * }
+     *
+     * var wrapped = _([1, 2]).map(square);
+     * var other = wrapped.plant([3, 4]);
+     *
+     * other.value();
+     * // => [9, 16]
+     *
+     * wrapped.value();
+     * // => [1, 4]
+     */
+    function wrapperPlant(value) {
+      var result,
+          parent = this;
+
+      while (parent instanceof baseLodash) {
+        var clone = wrapperClone(parent);
+        clone.__index__ = 0;
+        clone.__values__ = undefined;
+        if (result) {
+          previous.__wrapped__ = clone;
+        } else {
+          result = clone;
+        }
+        var previous = clone;
+        parent = parent.__wrapped__;
+      }
+      previous.__wrapped__ = value;
+      return result;
+    }
+
+    /**
+     * This method is the wrapper version of `_.reverse`.
+     *
+     * **Note:** This method mutates the wrapped array.
+     *
+     * @name reverse
+     * @memberOf _
+     * @since 0.1.0
+     * @category Seq
+     * @returns {Object} Returns the new `lodash` wrapper instance.
+     * @example
+     *
+     * var array = [1, 2, 3];
+     *
+     * _(array).reverse().value()
+     * // => [3, 2, 1]
+     *
+     * console.log(array);
+     * // => [3, 2, 1]
+     */
+    function wrapperReverse() {
+      var value = this.__wrapped__;
+      if (value instanceof LazyWrapper) {
+        var wrapped = value;
+        if (this.__actions__.length) {
+          wrapped = new LazyWrapper(this);
+        }
+        wrapped = wrapped.reverse();
+        wrapped.__actions__.push({
+          'func': thru,
+          'args': [reverse],
+          'thisArg': undefined
+        });
+        return new LodashWrapper(wrapped, this.__chain__);
+      }
+      return this.thru(reverse);
+    }
+
+    /**
+     * Executes the chain sequence to resolve the unwrapped value.
+     *
+     * @name value
+     * @memberOf _
+     * @since 0.1.0
+     * @alias toJSON, valueOf
+     * @category Seq
+     * @returns {*} Returns the resolved unwrapped value.
+     * @example
+     *
+     * _([1, 2, 3]).value();
+     * // => [1, 2, 3]
+     */
+    function wrapperValue() {
+      return baseWrapperValue(this.__wrapped__, this.__actions__);
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of `collection` thru `iteratee`. The corresponding value of
+     * each key is the number of times the key was returned by `iteratee`. The
+     * iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.5.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The iteratee to transform keys.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * _.countBy([6.1, 4.2, 6.3], Math.floor);
+     * // => { '4': 1, '6': 2 }
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.countBy(['one', 'two', 'three'], 'length');
+     * // => { '3': 2, '5': 1 }
+     */
+    var countBy = createAggregator(function(result, value, key) {
+      if (hasOwnProperty.call(result, key)) {
+        ++result[key];
+      } else {
+        baseAssignValue(result, key, 1);
+      }
+    });
+
+    /**
+     * Checks if `predicate` returns truthy for **all** elements of `collection`.
+     * Iteration is stopped once `predicate` returns falsey. The predicate is
+     * invoked with three arguments: (value, index|key, collection).
+     *
+     * **Note:** This method returns `true` for
+     * [empty collections](https://en.wikipedia.org/wiki/Empty_set) because
+     * [everything is true](https://en.wikipedia.org/wiki/Vacuous_truth) of
+     * elements of empty collections.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+     *  else `false`.
+     * @example
+     *
+     * _.every([true, 1, null, 'yes'], Boolean);
+     * // => false
+     *
+     * var users = [
+     *   { 'user': 'barney', 'age': 36, 'active': false },
+     *   { 'user': 'fred',   'age': 40, 'active': false }
+     * ];
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.every(users, { 'user': 'barney', 'active': false });
+     * // => false
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.every(users, ['active', false]);
+     * // => true
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.every(users, 'active');
+     * // => false
+     */
+    function every(collection, predicate, guard) {
+      var func = isArray(collection) ? arrayEvery : baseEvery;
+      if (guard && isIterateeCall(collection, predicate, guard)) {
+        predicate = undefined;
+      }
+      return func(collection, getIteratee(predicate, 3));
+    }
+
+    /**
+     * Iterates over elements of `collection`, returning an array of all elements
+     * `predicate` returns truthy for. The predicate is invoked with three
+     * arguments: (value, index|key, collection).
+     *
+     * **Note:** Unlike `_.remove`, this method returns a new array.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the new filtered array.
+     * @see _.reject
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney', 'age': 36, 'active': true },
+     *   { 'user': 'fred',   'age': 40, 'active': false }
+     * ];
+     *
+     * _.filter(users, function(o) { return !o.active; });
+     * // => objects for ['fred']
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.filter(users, { 'age': 36, 'active': true });
+     * // => objects for ['barney']
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.filter(users, ['active', false]);
+     * // => objects for ['fred']
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.filter(users, 'active');
+     * // => objects for ['barney']
+     */
+    function filter(collection, predicate) {
+      var func = isArray(collection) ? arrayFilter : baseFilter;
+      return func(collection, getIteratee(predicate, 3));
+    }
+
+    /**
+     * Iterates over elements of `collection`, returning the first element
+     * `predicate` returns truthy for. The predicate is invoked with three
+     * arguments: (value, index|key, collection).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to inspect.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @param {number} [fromIndex=0] The index to search from.
+     * @returns {*} Returns the matched element, else `undefined`.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'age': 36, 'active': true },
+     *   { 'user': 'fred',    'age': 40, 'active': false },
+     *   { 'user': 'pebbles', 'age': 1,  'active': true }
+     * ];
+     *
+     * _.find(users, function(o) { return o.age < 40; });
+     * // => object for 'barney'
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.find(users, { 'age': 1, 'active': true });
+     * // => object for 'pebbles'
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.find(users, ['active', false]);
+     * // => object for 'fred'
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.find(users, 'active');
+     * // => object for 'barney'
+     */
+    var find = createFind(findIndex);
+
+    /**
+     * This method is like `_.find` except that it iterates over elements of
+     * `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to inspect.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @param {number} [fromIndex=collection.length-1] The index to search from.
+     * @returns {*} Returns the matched element, else `undefined`.
+     * @example
+     *
+     * _.findLast([1, 2, 3, 4], function(n) {
+     *   return n % 2 == 1;
+     * });
+     * // => 3
+     */
+    var findLast = createFind(findLastIndex);
+
+    /**
+     * Creates a flattened array of values by running each element in `collection`
+     * thru `iteratee` and flattening the mapped results. The iteratee is invoked
+     * with three arguments: (value, index|key, collection).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the new flattened array.
+     * @example
+     *
+     * function duplicate(n) {
+     *   return [n, n];
+     * }
+     *
+     * _.flatMap([1, 2], duplicate);
+     * // => [1, 1, 2, 2]
+     */
+    function flatMap(collection, iteratee) {
+      return baseFlatten(map(collection, iteratee), 1);
+    }
+
+    /**
+     * This method is like `_.flatMap` except that it recursively flattens the
+     * mapped results.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.7.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the new flattened array.
+     * @example
+     *
+     * function duplicate(n) {
+     *   return [[[n, n]]];
+     * }
+     *
+     * _.flatMapDeep([1, 2], duplicate);
+     * // => [1, 1, 2, 2]
+     */
+    function flatMapDeep(collection, iteratee) {
+      return baseFlatten(map(collection, iteratee), INFINITY);
+    }
+
+    /**
+     * This method is like `_.flatMap` except that it recursively flattens the
+     * mapped results up to `depth` times.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.7.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @param {number} [depth=1] The maximum recursion depth.
+     * @returns {Array} Returns the new flattened array.
+     * @example
+     *
+     * function duplicate(n) {
+     *   return [[[n, n]]];
+     * }
+     *
+     * _.flatMapDepth([1, 2], duplicate, 2);
+     * // => [[1, 1], [2, 2]]
+     */
+    function flatMapDepth(collection, iteratee, depth) {
+      depth = depth === undefined ? 1 : toInteger(depth);
+      return baseFlatten(map(collection, iteratee), depth);
+    }
+
+    /**
+     * Iterates over elements of `collection` and invokes `iteratee` for each element.
+     * The iteratee is invoked with three arguments: (value, index|key, collection).
+     * Iteratee functions may exit iteration early by explicitly returning `false`.
+     *
+     * **Note:** As with other "Collections" methods, objects with a "length"
+     * property are iterated like arrays. To avoid this behavior use `_.forIn`
+     * or `_.forOwn` for object iteration.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @alias each
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Array|Object} Returns `collection`.
+     * @see _.forEachRight
+     * @example
+     *
+     * _.forEach([1, 2], function(value) {
+     *   console.log(value);
+     * });
+     * // => Logs `1` then `2`.
+     *
+     * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+     *   console.log(key);
+     * });
+     * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+     */
+    function forEach(collection, iteratee) {
+      var func = isArray(collection) ? arrayEach : baseEach;
+      return func(collection, getIteratee(iteratee, 3));
+    }
+
+    /**
+     * This method is like `_.forEach` except that it iterates over elements of
+     * `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @alias eachRight
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Array|Object} Returns `collection`.
+     * @see _.forEach
+     * @example
+     *
+     * _.forEachRight([1, 2], function(value) {
+     *   console.log(value);
+     * });
+     * // => Logs `2` then `1`.
+     */
+    function forEachRight(collection, iteratee) {
+      var func = isArray(collection) ? arrayEachRight : baseEachRight;
+      return func(collection, getIteratee(iteratee, 3));
+    }
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of `collection` thru `iteratee`. The order of grouped values
+     * is determined by the order they occur in `collection`. The corresponding
+     * value of each key is an array of elements responsible for generating the
+     * key. The iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The iteratee to transform keys.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * _.groupBy([6.1, 4.2, 6.3], Math.floor);
+     * // => { '4': [4.2], '6': [6.1, 6.3] }
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.groupBy(['one', 'two', 'three'], 'length');
+     * // => { '3': ['one', 'two'], '5': ['three'] }
+     */
+    var groupBy = createAggregator(function(result, value, key) {
+      if (hasOwnProperty.call(result, key)) {
+        result[key].push(value);
+      } else {
+        baseAssignValue(result, key, [value]);
+      }
+    });
+
+    /**
+     * Checks if `value` is in `collection`. If `collection` is a string, it's
+     * checked for a substring of `value`, otherwise
+     * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * is used for equality comparisons. If `fromIndex` is negative, it's used as
+     * the offset from the end of `collection`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object|string} collection The collection to inspect.
+     * @param {*} value The value to search for.
+     * @param {number} [fromIndex=0] The index to search from.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.reduce`.
+     * @returns {boolean} Returns `true` if `value` is found, else `false`.
+     * @example
+     *
+     * _.includes([1, 2, 3], 1);
+     * // => true
+     *
+     * _.includes([1, 2, 3], 1, 2);
+     * // => false
+     *
+     * _.includes({ 'a': 1, 'b': 2 }, 1);
+     * // => true
+     *
+     * _.includes('abcd', 'bc');
+     * // => true
+     */
+    function includes(collection, value, fromIndex, guard) {
+      collection = isArrayLike(collection) ? collection : values(collection);
+      fromIndex = (fromIndex && !guard) ? toInteger(fromIndex) : 0;
+
+      var length = collection.length;
+      if (fromIndex < 0) {
+        fromIndex = nativeMax(length + fromIndex, 0);
+      }
+      return isString(collection)
+        ? (fromIndex <= length && collection.indexOf(value, fromIndex) > -1)
+        : (!!length && baseIndexOf(collection, value, fromIndex) > -1);
+    }
+
+    /**
+     * Invokes the method at `path` of each element in `collection`, returning
+     * an array of the results of each invoked method. Any additional arguments
+     * are provided to each invoked method. If `path` is a function, it's invoked
+     * for, and `this` bound to, each element in `collection`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Array|Function|string} path The path of the method to invoke or
+     *  the function invoked per iteration.
+     * @param {...*} [args] The arguments to invoke each method with.
+     * @returns {Array} Returns the array of results.
+     * @example
+     *
+     * _.invokeMap([[5, 1, 7], [3, 2, 1]], 'sort');
+     * // => [[1, 5, 7], [1, 2, 3]]
+     *
+     * _.invokeMap([123, 456], String.prototype.split, '');
+     * // => [['1', '2', '3'], ['4', '5', '6']]
+     */
+    var invokeMap = baseRest(function(collection, path, args) {
+      var index = -1,
+          isFunc = typeof path == 'function',
+          result = isArrayLike(collection) ? Array(collection.length) : [];
+
+      baseEach(collection, function(value) {
+        result[++index] = isFunc ? apply(path, value, args) : baseInvoke(value, path, args);
+      });
+      return result;
+    });
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of `collection` thru `iteratee`. The corresponding value of
+     * each key is the last element responsible for generating the key. The
+     * iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The iteratee to transform keys.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * var array = [
+     *   { 'dir': 'left', 'code': 97 },
+     *   { 'dir': 'right', 'code': 100 }
+     * ];
+     *
+     * _.keyBy(array, function(o) {
+     *   return String.fromCharCode(o.code);
+     * });
+     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+     *
+     * _.keyBy(array, 'dir');
+     * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+     */
+    var keyBy = createAggregator(function(result, value, key) {
+      baseAssignValue(result, key, value);
+    });
+
+    /**
+     * Creates an array of values by running each element in `collection` thru
+     * `iteratee`. The iteratee is invoked with three arguments:
+     * (value, index|key, collection).
+     *
+     * Many lodash methods are guarded to work as iteratees for methods like
+     * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
+     *
+     * The guarded methods are:
+     * `ary`, `chunk`, `curry`, `curryRight`, `drop`, `dropRight`, `every`,
+     * `fill`, `invert`, `parseInt`, `random`, `range`, `rangeRight`, `repeat`,
+     * `sampleSize`, `slice`, `some`, `sortBy`, `split`, `take`, `takeRight`,
+     * `template`, `trim`, `trimEnd`, `trimStart`, and `words`
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the new mapped array.
+     * @example
+     *
+     * function square(n) {
+     *   return n * n;
+     * }
+     *
+     * _.map([4, 8], square);
+     * // => [16, 64]
+     *
+     * _.map({ 'a': 4, 'b': 8 }, square);
+     * // => [16, 64] (iteration order is not guaranteed)
+     *
+     * var users = [
+     *   { 'user': 'barney' },
+     *   { 'user': 'fred' }
+     * ];
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.map(users, 'user');
+     * // => ['barney', 'fred']
+     */
+    function map(collection, iteratee) {
+      var func = isArray(collection) ? arrayMap : baseMap;
+      return func(collection, getIteratee(iteratee, 3));
+    }
+
+    /**
+     * This method is like `_.sortBy` except that it allows specifying the sort
+     * orders of the iteratees to sort by. If `orders` is unspecified, all values
+     * are sorted in ascending order. Otherwise, specify an order of "desc" for
+     * descending or "asc" for ascending sort order of corresponding values.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Array[]|Function[]|Object[]|string[]} [iteratees=[_.identity]]
+     *  The iteratees to sort by.
+     * @param {string[]} [orders] The sort orders of `iteratees`.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.reduce`.
+     * @returns {Array} Returns the new sorted array.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'fred',   'age': 48 },
+     *   { 'user': 'barney', 'age': 34 },
+     *   { 'user': 'fred',   'age': 40 },
+     *   { 'user': 'barney', 'age': 36 }
+     * ];
+     *
+     * // Sort by `user` in ascending order and by `age` in descending order.
+     * _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
+     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+     */
+    function orderBy(collection, iteratees, orders, guard) {
+      if (collection == null) {
+        return [];
+      }
+      if (!isArray(iteratees)) {
+        iteratees = iteratees == null ? [] : [iteratees];
+      }
+      orders = guard ? undefined : orders;
+      if (!isArray(orders)) {
+        orders = orders == null ? [] : [orders];
+      }
+      return baseOrderBy(collection, iteratees, orders);
+    }
+
+    /**
+     * Creates an array of elements split into two groups, the first of which
+     * contains elements `predicate` returns truthy for, the second of which
+     * contains elements `predicate` returns falsey for. The predicate is
+     * invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the array of grouped elements.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney',  'age': 36, 'active': false },
+     *   { 'user': 'fred',    'age': 40, 'active': true },
+     *   { 'user': 'pebbles', 'age': 1,  'active': false }
+     * ];
+     *
+     * _.partition(users, function(o) { return o.active; });
+     * // => objects for [['fred'], ['barney', 'pebbles']]
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.partition(users, { 'age': 1, 'active': false });
+     * // => objects for [['pebbles'], ['barney', 'fred']]
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.partition(users, ['active', false]);
+     * // => objects for [['barney', 'pebbles'], ['fred']]
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.partition(users, 'active');
+     * // => objects for [['fred'], ['barney', 'pebbles']]
+     */
+    var partition = createAggregator(function(result, value, key) {
+      result[key ? 0 : 1].push(value);
+    }, function() { return [[], []]; });
+
+    /**
+     * Reduces `collection` to a value which is the accumulated result of running
+     * each element in `collection` thru `iteratee`, where each successive
+     * invocation is supplied the return value of the previous. If `accumulator`
+     * is not given, the first element of `collection` is used as the initial
+     * value. The iteratee is invoked with four arguments:
+     * (accumulator, value, index|key, collection).
+     *
+     * Many lodash methods are guarded to work as iteratees for methods like
+     * `_.reduce`, `_.reduceRight`, and `_.transform`.
+     *
+     * The guarded methods are:
+     * `assign`, `defaults`, `defaultsDeep`, `includes`, `merge`, `orderBy`,
+     * and `sortBy`
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @param {*} [accumulator] The initial value.
+     * @returns {*} Returns the accumulated value.
+     * @see _.reduceRight
+     * @example
+     *
+     * _.reduce([1, 2], function(sum, n) {
+     *   return sum + n;
+     * }, 0);
+     * // => 3
+     *
+     * _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+     *   (result[value] || (result[value] = [])).push(key);
+     *   return result;
+     * }, {});
+     * // => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
+     */
+    function reduce(collection, iteratee, accumulator) {
+      var func = isArray(collection) ? arrayReduce : baseReduce,
+          initAccum = arguments.length < 3;
+
+      return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEach);
+    }
+
+    /**
+     * This method is like `_.reduce` except that it iterates over elements of
+     * `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @param {*} [accumulator] The initial value.
+     * @returns {*} Returns the accumulated value.
+     * @see _.reduce
+     * @example
+     *
+     * var array = [[0, 1], [2, 3], [4, 5]];
+     *
+     * _.reduceRight(array, function(flattened, other) {
+     *   return flattened.concat(other);
+     * }, []);
+     * // => [4, 5, 2, 3, 0, 1]
+     */
+    function reduceRight(collection, iteratee, accumulator) {
+      var func = isArray(collection) ? arrayReduceRight : baseReduce,
+          initAccum = arguments.length < 3;
+
+      return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEachRight);
+    }
+
+    /**
+     * The opposite of `_.filter`; this method returns the elements of `collection`
+     * that `predicate` does **not** return truthy for.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the new filtered array.
+     * @see _.filter
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney', 'age': 36, 'active': false },
+     *   { 'user': 'fred',   'age': 40, 'active': true }
+     * ];
+     *
+     * _.reject(users, function(o) { return !o.active; });
+     * // => objects for ['fred']
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.reject(users, { 'age': 40, 'active': true });
+     * // => objects for ['barney']
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.reject(users, ['active', false]);
+     * // => objects for ['fred']
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.reject(users, 'active');
+     * // => objects for ['barney']
+     */
+    function reject(collection, predicate) {
+      var func = isArray(collection) ? arrayFilter : baseFilter;
+      return func(collection, negate(getIteratee(predicate, 3)));
+    }
+
+    /**
+     * Gets a random element from `collection`.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to sample.
+     * @returns {*} Returns the random element.
+     * @example
+     *
+     * _.sample([1, 2, 3, 4]);
+     * // => 2
+     */
+    function sample(collection) {
+      var func = isArray(collection) ? arraySample : baseSample;
+      return func(collection);
+    }
+
+    /**
+     * Gets `n` random elements at unique keys from `collection` up to the
+     * size of `collection`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to sample.
+     * @param {number} [n=1] The number of elements to sample.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Array} Returns the random elements.
+     * @example
+     *
+     * _.sampleSize([1, 2, 3], 2);
+     * // => [3, 1]
+     *
+     * _.sampleSize([1, 2, 3], 4);
+     * // => [2, 3, 1]
+     */
+    function sampleSize(collection, n, guard) {
+      if ((guard ? isIterateeCall(collection, n, guard) : n === undefined)) {
+        n = 1;
+      } else {
+        n = toInteger(n);
+      }
+      var func = isArray(collection) ? arraySampleSize : baseSampleSize;
+      return func(collection, n);
+    }
+
+    /**
+     * Creates an array of shuffled values, using a version of the
+     * [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher-Yates_shuffle).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to shuffle.
+     * @returns {Array} Returns the new shuffled array.
+     * @example
+     *
+     * _.shuffle([1, 2, 3, 4]);
+     * // => [4, 1, 3, 2]
+     */
+    function shuffle(collection) {
+      var func = isArray(collection) ? arrayShuffle : baseShuffle;
+      return func(collection);
+    }
+
+    /**
+     * Gets the size of `collection` by returning its length for array-like
+     * values or the number of own enumerable string keyed properties for objects.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object|string} collection The collection to inspect.
+     * @returns {number} Returns the collection size.
+     * @example
+     *
+     * _.size([1, 2, 3]);
+     * // => 3
+     *
+     * _.size({ 'a': 1, 'b': 2 });
+     * // => 2
+     *
+     * _.size('pebbles');
+     * // => 7
+     */
+    function size(collection) {
+      if (collection == null) {
+        return 0;
+      }
+      if (isArrayLike(collection)) {
+        return isString(collection) ? stringSize(collection) : collection.length;
+      }
+      var tag = getTag(collection);
+      if (tag == mapTag || tag == setTag) {
+        return collection.size;
+      }
+      return baseKeys(collection).length;
+    }
+
+    /**
+     * Checks if `predicate` returns truthy for **any** element of `collection`.
+     * Iteration is stopped once `predicate` returns truthy. The predicate is
+     * invoked with three arguments: (value, index|key, collection).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {boolean} Returns `true` if any element passes the predicate check,
+     *  else `false`.
+     * @example
+     *
+     * _.some([null, 0, 'yes', false], Boolean);
+     * // => true
+     *
+     * var users = [
+     *   { 'user': 'barney', 'active': true },
+     *   { 'user': 'fred',   'active': false }
+     * ];
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.some(users, { 'user': 'barney', 'active': false });
+     * // => false
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.some(users, ['active', false]);
+     * // => true
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.some(users, 'active');
+     * // => true
+     */
+    function some(collection, predicate, guard) {
+      var func = isArray(collection) ? arraySome : baseSome;
+      if (guard && isIterateeCall(collection, predicate, guard)) {
+        predicate = undefined;
+      }
+      return func(collection, getIteratee(predicate, 3));
+    }
+
+    /**
+     * Creates an array of elements, sorted in ascending order by the results of
+     * running each element in a collection thru each iteratee. This method
+     * performs a stable sort, that is, it preserves the original sort order of
+     * equal elements. The iteratees are invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Collection
+     * @param {Array|Object} collection The collection to iterate over.
+     * @param {...(Function|Function[])} [iteratees=[_.identity]]
+     *  The iteratees to sort by.
+     * @returns {Array} Returns the new sorted array.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'fred',   'age': 48 },
+     *   { 'user': 'barney', 'age': 36 },
+     *   { 'user': 'fred',   'age': 40 },
+     *   { 'user': 'barney', 'age': 34 }
+     * ];
+     *
+     * _.sortBy(users, [function(o) { return o.user; }]);
+     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+     *
+     * _.sortBy(users, ['user', 'age']);
+     * // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+     */
+    var sortBy = baseRest(function(collection, iteratees) {
+      if (collection == null) {
+        return [];
+      }
+      var length = iteratees.length;
+      if (length > 1 && isIterateeCall(collection, iteratees[0], iteratees[1])) {
+        iteratees = [];
+      } else if (length > 2 && isIterateeCall(iteratees[0], iteratees[1], iteratees[2])) {
+        iteratees = [iteratees[0]];
+      }
+      return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
+    });
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Gets the timestamp of the number of milliseconds that have elapsed since
+     * the Unix epoch (1 January 1970 00:00:00 UTC).
+     *
+     * @static
+     * @memberOf _
+     * @since 2.4.0
+     * @category Date
+     * @returns {number} Returns the timestamp.
+     * @example
+     *
+     * _.defer(function(stamp) {
+     *   console.log(_.now() - stamp);
+     * }, _.now());
+     * // => Logs the number of milliseconds it took for the deferred invocation.
+     */
+    var now = ctxNow || function() {
+      return root.Date.now();
+    };
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * The opposite of `_.before`; this method creates a function that invokes
+     * `func` once it's called `n` or more times.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {number} n The number of calls before `func` is invoked.
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new restricted function.
+     * @example
+     *
+     * var saves = ['profile', 'settings'];
+     *
+     * var done = _.after(saves.length, function() {
+     *   console.log('done saving!');
+     * });
+     *
+     * _.forEach(saves, function(type) {
+     *   asyncSave({ 'type': type, 'complete': done });
+     * });
+     * // => Logs 'done saving!' after the two async saves have completed.
+     */
+    function after(n, func) {
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      n = toInteger(n);
+      return function() {
+        if (--n < 1) {
+          return func.apply(this, arguments);
+        }
+      };
+    }
+
+    /**
+     * Creates a function that invokes `func`, with up to `n` arguments,
+     * ignoring any additional arguments.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Function
+     * @param {Function} func The function to cap arguments for.
+     * @param {number} [n=func.length] The arity cap.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Function} Returns the new capped function.
+     * @example
+     *
+     * _.map(['6', '8', '10'], _.ary(parseInt, 1));
+     * // => [6, 8, 10]
+     */
+    function ary(func, n, guard) {
+      n = guard ? undefined : n;
+      n = (func && n == null) ? func.length : n;
+      return createWrap(func, WRAP_ARY_FLAG, undefined, undefined, undefined, undefined, n);
+    }
+
+    /**
+     * Creates a function that invokes `func`, with the `this` binding and arguments
+     * of the created function, while it's called less than `n` times. Subsequent
+     * calls to the created function return the result of the last `func` invocation.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Function
+     * @param {number} n The number of calls at which `func` is no longer invoked.
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new restricted function.
+     * @example
+     *
+     * jQuery(element).on('click', _.before(5, addContactToList));
+     * // => Allows adding up to 4 contacts to the list.
+     */
+    function before(n, func) {
+      var result;
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      n = toInteger(n);
+      return function() {
+        if (--n > 0) {
+          result = func.apply(this, arguments);
+        }
+        if (n <= 1) {
+          func = undefined;
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Creates a function that invokes `func` with the `this` binding of `thisArg`
+     * and `partials` prepended to the arguments it receives.
+     *
+     * The `_.bind.placeholder` value, which defaults to `_` in monolithic builds,
+     * may be used as a placeholder for partially applied arguments.
+     *
+     * **Note:** Unlike native `Function#bind`, this method doesn't set the "length"
+     * property of bound functions.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {Function} func The function to bind.
+     * @param {*} thisArg The `this` binding of `func`.
+     * @param {...*} [partials] The arguments to be partially applied.
+     * @returns {Function} Returns the new bound function.
+     * @example
+     *
+     * function greet(greeting, punctuation) {
+     *   return greeting + ' ' + this.user + punctuation;
+     * }
+     *
+     * var object = { 'user': 'fred' };
+     *
+     * var bound = _.bind(greet, object, 'hi');
+     * bound('!');
+     * // => 'hi fred!'
+     *
+     * // Bound with placeholders.
+     * var bound = _.bind(greet, object, _, '!');
+     * bound('hi');
+     * // => 'hi fred!'
+     */
+    var bind = baseRest(function(func, thisArg, partials) {
+      var bitmask = WRAP_BIND_FLAG;
+      if (partials.length) {
+        var holders = replaceHolders(partials, getHolder(bind));
+        bitmask |= WRAP_PARTIAL_FLAG;
+      }
+      return createWrap(func, bitmask, thisArg, partials, holders);
+    });
+
+    /**
+     * Creates a function that invokes the method at `object[key]` with `partials`
+     * prepended to the arguments it receives.
+     *
+     * This method differs from `_.bind` by allowing bound functions to reference
+     * methods that may be redefined or don't yet exist. See
+     * [Peter Michaux's article](http://peter.michaux.ca/articles/lazy-function-definition-pattern)
+     * for more details.
+     *
+     * The `_.bindKey.placeholder` value, which defaults to `_` in monolithic
+     * builds, may be used as a placeholder for partially applied arguments.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.10.0
+     * @category Function
+     * @param {Object} object The object to invoke the method on.
+     * @param {string} key The key of the method.
+     * @param {...*} [partials] The arguments to be partially applied.
+     * @returns {Function} Returns the new bound function.
+     * @example
+     *
+     * var object = {
+     *   'user': 'fred',
+     *   'greet': function(greeting, punctuation) {
+     *     return greeting + ' ' + this.user + punctuation;
+     *   }
+     * };
+     *
+     * var bound = _.bindKey(object, 'greet', 'hi');
+     * bound('!');
+     * // => 'hi fred!'
+     *
+     * object.greet = function(greeting, punctuation) {
+     *   return greeting + 'ya ' + this.user + punctuation;
+     * };
+     *
+     * bound('!');
+     * // => 'hiya fred!'
+     *
+     * // Bound with placeholders.
+     * var bound = _.bindKey(object, 'greet', _, '!');
+     * bound('hi');
+     * // => 'hiya fred!'
+     */
+    var bindKey = baseRest(function(object, key, partials) {
+      var bitmask = WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG;
+      if (partials.length) {
+        var holders = replaceHolders(partials, getHolder(bindKey));
+        bitmask |= WRAP_PARTIAL_FLAG;
+      }
+      return createWrap(key, bitmask, object, partials, holders);
+    });
+
+    /**
+     * Creates a function that accepts arguments of `func` and either invokes
+     * `func` returning its result, if at least `arity` number of arguments have
+     * been provided, or returns a function that accepts the remaining `func`
+     * arguments, and so on. The arity of `func` may be specified if `func.length`
+     * is not sufficient.
+     *
+     * The `_.curry.placeholder` value, which defaults to `_` in monolithic builds,
+     * may be used as a placeholder for provided arguments.
+     *
+     * **Note:** This method doesn't set the "length" property of curried functions.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Function
+     * @param {Function} func The function to curry.
+     * @param {number} [arity=func.length] The arity of `func`.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Function} Returns the new curried function.
+     * @example
+     *
+     * var abc = function(a, b, c) {
+     *   return [a, b, c];
+     * };
+     *
+     * var curried = _.curry(abc);
+     *
+     * curried(1)(2)(3);
+     * // => [1, 2, 3]
+     *
+     * curried(1, 2)(3);
+     * // => [1, 2, 3]
+     *
+     * curried(1, 2, 3);
+     * // => [1, 2, 3]
+     *
+     * // Curried with placeholders.
+     * curried(1)(_, 3)(2);
+     * // => [1, 2, 3]
+     */
+    function curry(func, arity, guard) {
+      arity = guard ? undefined : arity;
+      var result = createWrap(func, WRAP_CURRY_FLAG, undefined, undefined, undefined, undefined, undefined, arity);
+      result.placeholder = curry.placeholder;
+      return result;
+    }
+
+    /**
+     * This method is like `_.curry` except that arguments are applied to `func`
+     * in the manner of `_.partialRight` instead of `_.partial`.
+     *
+     * The `_.curryRight.placeholder` value, which defaults to `_` in monolithic
+     * builds, may be used as a placeholder for provided arguments.
+     *
+     * **Note:** This method doesn't set the "length" property of curried functions.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Function
+     * @param {Function} func The function to curry.
+     * @param {number} [arity=func.length] The arity of `func`.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Function} Returns the new curried function.
+     * @example
+     *
+     * var abc = function(a, b, c) {
+     *   return [a, b, c];
+     * };
+     *
+     * var curried = _.curryRight(abc);
+     *
+     * curried(3)(2)(1);
+     * // => [1, 2, 3]
+     *
+     * curried(2, 3)(1);
+     * // => [1, 2, 3]
+     *
+     * curried(1, 2, 3);
+     * // => [1, 2, 3]
+     *
+     * // Curried with placeholders.
+     * curried(3)(1, _)(2);
+     * // => [1, 2, 3]
+     */
+    function curryRight(func, arity, guard) {
+      arity = guard ? undefined : arity;
+      var result = createWrap(func, WRAP_CURRY_RIGHT_FLAG, undefined, undefined, undefined, undefined, undefined, arity);
+      result.placeholder = curryRight.placeholder;
+      return result;
+    }
+
+    /**
+     * Creates a debounced function that delays invoking `func` until after `wait`
+     * milliseconds have elapsed since the last time the debounced function was
+     * invoked. The debounced function comes with a `cancel` method to cancel
+     * delayed `func` invocations and a `flush` method to immediately invoke them.
+     * Provide `options` to indicate whether `func` should be invoked on the
+     * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+     * with the last arguments provided to the debounced function. Subsequent
+     * calls to the debounced function return the result of the last `func`
+     * invocation.
+     *
+     * **Note:** If `leading` and `trailing` options are `true`, `func` is
+     * invoked on the trailing edge of the timeout only if the debounced function
+     * is invoked more than once during the `wait` timeout.
+     *
+     * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+     * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+     *
+     * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+     * for details over the differences between `_.debounce` and `_.throttle`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {Function} func The function to debounce.
+     * @param {number} [wait=0] The number of milliseconds to delay.
+     * @param {Object} [options={}] The options object.
+     * @param {boolean} [options.leading=false]
+     *  Specify invoking on the leading edge of the timeout.
+     * @param {number} [options.maxWait]
+     *  The maximum time `func` is allowed to be delayed before it's invoked.
+     * @param {boolean} [options.trailing=true]
+     *  Specify invoking on the trailing edge of the timeout.
+     * @returns {Function} Returns the new debounced function.
+     * @example
+     *
+     * // Avoid costly calculations while the window size is in flux.
+     * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+     *
+     * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+     * jQuery(element).on('click', _.debounce(sendMail, 300, {
+     *   'leading': true,
+     *   'trailing': false
+     * }));
+     *
+     * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+     * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+     * var source = new EventSource('/stream');
+     * jQuery(source).on('message', debounced);
+     *
+     * // Cancel the trailing debounced invocation.
+     * jQuery(window).on('popstate', debounced.cancel);
+     */
+    function debounce(func, wait, options) {
+      var lastArgs,
+          lastThis,
+          maxWait,
+          result,
+          timerId,
+          lastCallTime,
+          lastInvokeTime = 0,
+          leading = false,
+          maxing = false,
+          trailing = true;
+
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      wait = toNumber(wait) || 0;
+      if (isObject(options)) {
+        leading = !!options.leading;
+        maxing = 'maxWait' in options;
+        maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+        trailing = 'trailing' in options ? !!options.trailing : trailing;
+      }
+
+      function invokeFunc(time) {
+        var args = lastArgs,
+            thisArg = lastThis;
+
+        lastArgs = lastThis = undefined;
+        lastInvokeTime = time;
+        result = func.apply(thisArg, args);
+        return result;
+      }
+
+      function leadingEdge(time) {
+        // Reset any `maxWait` timer.
+        lastInvokeTime = time;
+        // Start the timer for the trailing edge.
+        timerId = setTimeout(timerExpired, wait);
+        // Invoke the leading edge.
+        return leading ? invokeFunc(time) : result;
+      }
+
+      function remainingWait(time) {
+        var timeSinceLastCall = time - lastCallTime,
+            timeSinceLastInvoke = time - lastInvokeTime,
+            result = wait - timeSinceLastCall;
+
+        return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+      }
+
+      function shouldInvoke(time) {
+        var timeSinceLastCall = time - lastCallTime,
+            timeSinceLastInvoke = time - lastInvokeTime;
+
+        // Either this is the first call, activity has stopped and we're at the
+        // trailing edge, the system time has gone backwards and we're treating
+        // it as the trailing edge, or we've hit the `maxWait` limit.
+        return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+          (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+      }
+
+      function timerExpired() {
+        var time = now();
+        if (shouldInvoke(time)) {
+          return trailingEdge(time);
+        }
+        // Restart the timer.
+        timerId = setTimeout(timerExpired, remainingWait(time));
+      }
+
+      function trailingEdge(time) {
+        timerId = undefined;
+
+        // Only invoke if we have `lastArgs` which means `func` has been
+        // debounced at least once.
+        if (trailing && lastArgs) {
+          return invokeFunc(time);
+        }
+        lastArgs = lastThis = undefined;
+        return result;
+      }
+
+      function cancel() {
+        if (timerId !== undefined) {
+          clearTimeout(timerId);
+        }
+        lastInvokeTime = 0;
+        lastArgs = lastCallTime = lastThis = timerId = undefined;
+      }
+
+      function flush() {
+        return timerId === undefined ? result : trailingEdge(now());
+      }
+
+      function debounced() {
+        var time = now(),
+            isInvoking = shouldInvoke(time);
+
+        lastArgs = arguments;
+        lastThis = this;
+        lastCallTime = time;
+
+        if (isInvoking) {
+          if (timerId === undefined) {
+            return leadingEdge(lastCallTime);
+          }
+          if (maxing) {
+            // Handle invocations in a tight loop.
+            timerId = setTimeout(timerExpired, wait);
+            return invokeFunc(lastCallTime);
+          }
+        }
+        if (timerId === undefined) {
+          timerId = setTimeout(timerExpired, wait);
+        }
+        return result;
+      }
+      debounced.cancel = cancel;
+      debounced.flush = flush;
+      return debounced;
+    }
+
+    /**
+     * Defers invoking the `func` until the current call stack has cleared. Any
+     * additional arguments are provided to `func` when it's invoked.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {Function} func The function to defer.
+     * @param {...*} [args] The arguments to invoke `func` with.
+     * @returns {number} Returns the timer id.
+     * @example
+     *
+     * _.defer(function(text) {
+     *   console.log(text);
+     * }, 'deferred');
+     * // => Logs 'deferred' after one millisecond.
+     */
+    var defer = baseRest(function(func, args) {
+      return baseDelay(func, 1, args);
+    });
+
+    /**
+     * Invokes `func` after `wait` milliseconds. Any additional arguments are
+     * provided to `func` when it's invoked.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {Function} func The function to delay.
+     * @param {number} wait The number of milliseconds to delay invocation.
+     * @param {...*} [args] The arguments to invoke `func` with.
+     * @returns {number} Returns the timer id.
+     * @example
+     *
+     * _.delay(function(text) {
+     *   console.log(text);
+     * }, 1000, 'later');
+     * // => Logs 'later' after one second.
+     */
+    var delay = baseRest(function(func, wait, args) {
+      return baseDelay(func, toNumber(wait) || 0, args);
+    });
+
+    /**
+     * Creates a function that invokes `func` with arguments reversed.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Function
+     * @param {Function} func The function to flip arguments for.
+     * @returns {Function} Returns the new flipped function.
+     * @example
+     *
+     * var flipped = _.flip(function() {
+     *   return _.toArray(arguments);
+     * });
+     *
+     * flipped('a', 'b', 'c', 'd');
+     * // => ['d', 'c', 'b', 'a']
+     */
+    function flip(func) {
+      return createWrap(func, WRAP_FLIP_FLAG);
+    }
+
+    /**
+     * Creates a function that memoizes the result of `func`. If `resolver` is
+     * provided, it determines the cache key for storing the result based on the
+     * arguments provided to the memoized function. By default, the first argument
+     * provided to the memoized function is used as the map cache key. The `func`
+     * is invoked with the `this` binding of the memoized function.
+     *
+     * **Note:** The cache is exposed as the `cache` property on the memoized
+     * function. Its creation may be customized by replacing the `_.memoize.Cache`
+     * constructor with one whose instances implement the
+     * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+     * method interface of `clear`, `delete`, `get`, `has`, and `set`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {Function} func The function to have its output memoized.
+     * @param {Function} [resolver] The function to resolve the cache key.
+     * @returns {Function} Returns the new memoized function.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': 2 };
+     * var other = { 'c': 3, 'd': 4 };
+     *
+     * var values = _.memoize(_.values);
+     * values(object);
+     * // => [1, 2]
+     *
+     * values(other);
+     * // => [3, 4]
+     *
+     * object.a = 2;
+     * values(object);
+     * // => [1, 2]
+     *
+     * // Modify the result cache.
+     * values.cache.set(object, ['a', 'b']);
+     * values(object);
+     * // => ['a', 'b']
+     *
+     * // Replace `_.memoize.Cache`.
+     * _.memoize.Cache = WeakMap;
+     */
+    function memoize(func, resolver) {
+      if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      var memoized = function() {
+        var args = arguments,
+            key = resolver ? resolver.apply(this, args) : args[0],
+            cache = memoized.cache;
+
+        if (cache.has(key)) {
+          return cache.get(key);
+        }
+        var result = func.apply(this, args);
+        memoized.cache = cache.set(key, result) || cache;
+        return result;
+      };
+      memoized.cache = new (memoize.Cache || MapCache);
+      return memoized;
+    }
+
+    // Expose `MapCache`.
+    memoize.Cache = MapCache;
+
+    /**
+     * Creates a function that negates the result of the predicate `func`. The
+     * `func` predicate is invoked with the `this` binding and arguments of the
+     * created function.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Function
+     * @param {Function} predicate The predicate to negate.
+     * @returns {Function} Returns the new negated function.
+     * @example
+     *
+     * function isEven(n) {
+     *   return n % 2 == 0;
+     * }
+     *
+     * _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+     * // => [1, 3, 5]
+     */
+    function negate(predicate) {
+      if (typeof predicate != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      return function() {
+        var args = arguments;
+        switch (args.length) {
+          case 0: return !predicate.call(this);
+          case 1: return !predicate.call(this, args[0]);
+          case 2: return !predicate.call(this, args[0], args[1]);
+          case 3: return !predicate.call(this, args[0], args[1], args[2]);
+        }
+        return !predicate.apply(this, args);
+      };
+    }
+
+    /**
+     * Creates a function that is restricted to invoking `func` once. Repeat calls
+     * to the function return the value of the first invocation. The `func` is
+     * invoked with the `this` binding and arguments of the created function.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new restricted function.
+     * @example
+     *
+     * var initialize = _.once(createApplication);
+     * initialize();
+     * initialize();
+     * // => `createApplication` is invoked once
+     */
+    function once(func) {
+      return before(2, func);
+    }
+
+    /**
+     * Creates a function that invokes `func` with its arguments transformed.
+     *
+     * @static
+     * @since 4.0.0
+     * @memberOf _
+     * @category Function
+     * @param {Function} func The function to wrap.
+     * @param {...(Function|Function[])} [transforms=[_.identity]]
+     *  The argument transforms.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * function doubled(n) {
+     *   return n * 2;
+     * }
+     *
+     * function square(n) {
+     *   return n * n;
+     * }
+     *
+     * var func = _.overArgs(function(x, y) {
+     *   return [x, y];
+     * }, [square, doubled]);
+     *
+     * func(9, 3);
+     * // => [81, 6]
+     *
+     * func(10, 5);
+     * // => [100, 10]
+     */
+    var overArgs = castRest(function(func, transforms) {
+      transforms = (transforms.length == 1 && isArray(transforms[0]))
+        ? arrayMap(transforms[0], baseUnary(getIteratee()))
+        : arrayMap(baseFlatten(transforms, 1), baseUnary(getIteratee()));
+
+      var funcsLength = transforms.length;
+      return baseRest(function(args) {
+        var index = -1,
+            length = nativeMin(args.length, funcsLength);
+
+        while (++index < length) {
+          args[index] = transforms[index].call(this, args[index]);
+        }
+        return apply(func, this, args);
+      });
+    });
+
+    /**
+     * Creates a function that invokes `func` with `partials` prepended to the
+     * arguments it receives. This method is like `_.bind` except it does **not**
+     * alter the `this` binding.
+     *
+     * The `_.partial.placeholder` value, which defaults to `_` in monolithic
+     * builds, may be used as a placeholder for partially applied arguments.
+     *
+     * **Note:** This method doesn't set the "length" property of partially
+     * applied functions.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.2.0
+     * @category Function
+     * @param {Function} func The function to partially apply arguments to.
+     * @param {...*} [partials] The arguments to be partially applied.
+     * @returns {Function} Returns the new partially applied function.
+     * @example
+     *
+     * function greet(greeting, name) {
+     *   return greeting + ' ' + name;
+     * }
+     *
+     * var sayHelloTo = _.partial(greet, 'hello');
+     * sayHelloTo('fred');
+     * // => 'hello fred'
+     *
+     * // Partially applied with placeholders.
+     * var greetFred = _.partial(greet, _, 'fred');
+     * greetFred('hi');
+     * // => 'hi fred'
+     */
+    var partial = baseRest(function(func, partials) {
+      var holders = replaceHolders(partials, getHolder(partial));
+      return createWrap(func, WRAP_PARTIAL_FLAG, undefined, partials, holders);
+    });
+
+    /**
+     * This method is like `_.partial` except that partially applied arguments
+     * are appended to the arguments it receives.
+     *
+     * The `_.partialRight.placeholder` value, which defaults to `_` in monolithic
+     * builds, may be used as a placeholder for partially applied arguments.
+     *
+     * **Note:** This method doesn't set the "length" property of partially
+     * applied functions.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.0.0
+     * @category Function
+     * @param {Function} func The function to partially apply arguments to.
+     * @param {...*} [partials] The arguments to be partially applied.
+     * @returns {Function} Returns the new partially applied function.
+     * @example
+     *
+     * function greet(greeting, name) {
+     *   return greeting + ' ' + name;
+     * }
+     *
+     * var greetFred = _.partialRight(greet, 'fred');
+     * greetFred('hi');
+     * // => 'hi fred'
+     *
+     * // Partially applied with placeholders.
+     * var sayHelloTo = _.partialRight(greet, 'hello', _);
+     * sayHelloTo('fred');
+     * // => 'hello fred'
+     */
+    var partialRight = baseRest(function(func, partials) {
+      var holders = replaceHolders(partials, getHolder(partialRight));
+      return createWrap(func, WRAP_PARTIAL_RIGHT_FLAG, undefined, partials, holders);
+    });
+
+    /**
+     * Creates a function that invokes `func` with arguments arranged according
+     * to the specified `indexes` where the argument value at the first index is
+     * provided as the first argument, the argument value at the second index is
+     * provided as the second argument, and so on.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Function
+     * @param {Function} func The function to rearrange arguments for.
+     * @param {...(number|number[])} indexes The arranged argument indexes.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var rearged = _.rearg(function(a, b, c) {
+     *   return [a, b, c];
+     * }, [2, 0, 1]);
+     *
+     * rearged('b', 'c', 'a')
+     * // => ['a', 'b', 'c']
+     */
+    var rearg = flatRest(function(func, indexes) {
+      return createWrap(func, WRAP_REARG_FLAG, undefined, undefined, undefined, indexes);
+    });
+
+    /**
+     * Creates a function that invokes `func` with the `this` binding of the
+     * created function and arguments from `start` and beyond provided as
+     * an array.
+     *
+     * **Note:** This method is based on the
+     * [rest parameter](https://mdn.io/rest_parameters).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Function
+     * @param {Function} func The function to apply a rest parameter to.
+     * @param {number} [start=func.length-1] The start position of the rest parameter.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var say = _.rest(function(what, names) {
+     *   return what + ' ' + _.initial(names).join(', ') +
+     *     (_.size(names) > 1 ? ', & ' : '') + _.last(names);
+     * });
+     *
+     * say('hello', 'fred', 'barney', 'pebbles');
+     * // => 'hello fred, barney, & pebbles'
+     */
+    function rest(func, start) {
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      start = start === undefined ? start : toInteger(start);
+      return baseRest(func, start);
+    }
+
+    /**
+     * Creates a function that invokes `func` with the `this` binding of the
+     * create function and an array of arguments much like
+     * [`Function#apply`](http://www.ecma-international.org/ecma-262/7.0/#sec-function.prototype.apply).
+     *
+     * **Note:** This method is based on the
+     * [spread operator](https://mdn.io/spread_operator).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.2.0
+     * @category Function
+     * @param {Function} func The function to spread arguments over.
+     * @param {number} [start=0] The start position of the spread.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var say = _.spread(function(who, what) {
+     *   return who + ' says ' + what;
+     * });
+     *
+     * say(['fred', 'hello']);
+     * // => 'fred says hello'
+     *
+     * var numbers = Promise.all([
+     *   Promise.resolve(40),
+     *   Promise.resolve(36)
+     * ]);
+     *
+     * numbers.then(_.spread(function(x, y) {
+     *   return x + y;
+     * }));
+     * // => a Promise of 76
+     */
+    function spread(func, start) {
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      start = start == null ? 0 : nativeMax(toInteger(start), 0);
+      return baseRest(function(args) {
+        var array = args[start],
+            otherArgs = castSlice(args, 0, start);
+
+        if (array) {
+          arrayPush(otherArgs, array);
+        }
+        return apply(func, this, otherArgs);
+      });
+    }
+
+    /**
+     * Creates a throttled function that only invokes `func` at most once per
+     * every `wait` milliseconds. The throttled function comes with a `cancel`
+     * method to cancel delayed `func` invocations and a `flush` method to
+     * immediately invoke them. Provide `options` to indicate whether `func`
+     * should be invoked on the leading and/or trailing edge of the `wait`
+     * timeout. The `func` is invoked with the last arguments provided to the
+     * throttled function. Subsequent calls to the throttled function return the
+     * result of the last `func` invocation.
+     *
+     * **Note:** If `leading` and `trailing` options are `true`, `func` is
+     * invoked on the trailing edge of the timeout only if the throttled function
+     * is invoked more than once during the `wait` timeout.
+     *
+     * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+     * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+     *
+     * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+     * for details over the differences between `_.throttle` and `_.debounce`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {Function} func The function to throttle.
+     * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+     * @param {Object} [options={}] The options object.
+     * @param {boolean} [options.leading=true]
+     *  Specify invoking on the leading edge of the timeout.
+     * @param {boolean} [options.trailing=true]
+     *  Specify invoking on the trailing edge of the timeout.
+     * @returns {Function} Returns the new throttled function.
+     * @example
+     *
+     * // Avoid excessively updating the position while scrolling.
+     * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+     *
+     * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+     * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+     * jQuery(element).on('click', throttled);
+     *
+     * // Cancel the trailing throttled invocation.
+     * jQuery(window).on('popstate', throttled.cancel);
+     */
+    function throttle(func, wait, options) {
+      var leading = true,
+          trailing = true;
+
+      if (typeof func != 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+      }
+      if (isObject(options)) {
+        leading = 'leading' in options ? !!options.leading : leading;
+        trailing = 'trailing' in options ? !!options.trailing : trailing;
+      }
+      return debounce(func, wait, {
+        'leading': leading,
+        'maxWait': wait,
+        'trailing': trailing
+      });
+    }
+
+    /**
+     * Creates a function that accepts up to one argument, ignoring any
+     * additional arguments.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Function
+     * @param {Function} func The function to cap arguments for.
+     * @returns {Function} Returns the new capped function.
+     * @example
+     *
+     * _.map(['6', '8', '10'], _.unary(parseInt));
+     * // => [6, 8, 10]
+     */
+    function unary(func) {
+      return ary(func, 1);
+    }
+
+    /**
+     * Creates a function that provides `value` to `wrapper` as its first
+     * argument. Any additional arguments provided to the function are appended
+     * to those provided to the `wrapper`. The wrapper is invoked with the `this`
+     * binding of the created function.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Function
+     * @param {*} value The value to wrap.
+     * @param {Function} [wrapper=identity] The wrapper function.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var p = _.wrap(_.escape, function(func, text) {
+     *   return '<p>' + func(text) + '</p>';
+     * });
+     *
+     * p('fred, barney, & pebbles');
+     * // => '<p>fred, barney, &amp; pebbles</p>'
+     */
+    function wrap(value, wrapper) {
+      return partial(castFunction(wrapper), value);
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Casts `value` as an array if it's not one.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.4.0
+     * @category Lang
+     * @param {*} value The value to inspect.
+     * @returns {Array} Returns the cast array.
+     * @example
+     *
+     * _.castArray(1);
+     * // => [1]
+     *
+     * _.castArray({ 'a': 1 });
+     * // => [{ 'a': 1 }]
+     *
+     * _.castArray('abc');
+     * // => ['abc']
+     *
+     * _.castArray(null);
+     * // => [null]
+     *
+     * _.castArray(undefined);
+     * // => [undefined]
+     *
+     * _.castArray();
+     * // => []
+     *
+     * var array = [1, 2, 3];
+     * console.log(_.castArray(array) === array);
+     * // => true
+     */
+    function castArray() {
+      if (!arguments.length) {
+        return [];
+      }
+      var value = arguments[0];
+      return isArray(value) ? value : [value];
+    }
+
+    /**
+     * Creates a shallow clone of `value`.
+     *
+     * **Note:** This method is loosely based on the
+     * [structured clone algorithm](https://mdn.io/Structured_clone_algorithm)
+     * and supports cloning arrays, array buffers, booleans, date objects, maps,
+     * numbers, `Object` objects, regexes, sets, strings, symbols, and typed
+     * arrays. The own enumerable properties of `arguments` objects are cloned
+     * as plain objects. An empty object is returned for uncloneable values such
+     * as error objects, functions, DOM nodes, and WeakMaps.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to clone.
+     * @returns {*} Returns the cloned value.
+     * @see _.cloneDeep
+     * @example
+     *
+     * var objects = [{ 'a': 1 }, { 'b': 2 }];
+     *
+     * var shallow = _.clone(objects);
+     * console.log(shallow[0] === objects[0]);
+     * // => true
+     */
+    function clone(value) {
+      return baseClone(value, CLONE_SYMBOLS_FLAG);
+    }
+
+    /**
+     * This method is like `_.clone` except that it accepts `customizer` which
+     * is invoked to produce the cloned value. If `customizer` returns `undefined`,
+     * cloning is handled by the method instead. The `customizer` is invoked with
+     * up to four arguments; (value [, index|key, object, stack]).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to clone.
+     * @param {Function} [customizer] The function to customize cloning.
+     * @returns {*} Returns the cloned value.
+     * @see _.cloneDeepWith
+     * @example
+     *
+     * function customizer(value) {
+     *   if (_.isElement(value)) {
+     *     return value.cloneNode(false);
+     *   }
+     * }
+     *
+     * var el = _.cloneWith(document.body, customizer);
+     *
+     * console.log(el === document.body);
+     * // => false
+     * console.log(el.nodeName);
+     * // => 'BODY'
+     * console.log(el.childNodes.length);
+     * // => 0
+     */
+    function cloneWith(value, customizer) {
+      customizer = typeof customizer == 'function' ? customizer : undefined;
+      return baseClone(value, CLONE_SYMBOLS_FLAG, customizer);
+    }
+
+    /**
+     * This method is like `_.clone` except that it recursively clones `value`.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.0.0
+     * @category Lang
+     * @param {*} value The value to recursively clone.
+     * @returns {*} Returns the deep cloned value.
+     * @see _.clone
+     * @example
+     *
+     * var objects = [{ 'a': 1 }, { 'b': 2 }];
+     *
+     * var deep = _.cloneDeep(objects);
+     * console.log(deep[0] === objects[0]);
+     * // => false
+     */
+    function cloneDeep(value) {
+      return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
+    }
+
+    /**
+     * This method is like `_.cloneWith` except that it recursively clones `value`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to recursively clone.
+     * @param {Function} [customizer] The function to customize cloning.
+     * @returns {*} Returns the deep cloned value.
+     * @see _.cloneWith
+     * @example
+     *
+     * function customizer(value) {
+     *   if (_.isElement(value)) {
+     *     return value.cloneNode(true);
+     *   }
+     * }
+     *
+     * var el = _.cloneDeepWith(document.body, customizer);
+     *
+     * console.log(el === document.body);
+     * // => false
+     * console.log(el.nodeName);
+     * // => 'BODY'
+     * console.log(el.childNodes.length);
+     * // => 20
+     */
+    function cloneDeepWith(value, customizer) {
+      customizer = typeof customizer == 'function' ? customizer : undefined;
+      return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG, customizer);
+    }
+
+    /**
+     * Checks if `object` conforms to `source` by invoking the predicate
+     * properties of `source` with the corresponding property values of `object`.
+     *
+     * **Note:** This method is equivalent to `_.conforms` when `source` is
+     * partially applied.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.14.0
+     * @category Lang
+     * @param {Object} object The object to inspect.
+     * @param {Object} source The object of property predicates to conform to.
+     * @returns {boolean} Returns `true` if `object` conforms, else `false`.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': 2 };
+     *
+     * _.conformsTo(object, { 'b': function(n) { return n > 1; } });
+     * // => true
+     *
+     * _.conformsTo(object, { 'b': function(n) { return n > 2; } });
+     * // => false
+     */
+    function conformsTo(object, source) {
+      return source == null || baseConformsTo(object, source, keys(source));
+    }
+
+    /**
+     * Performs a
+     * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+     * comparison between two values to determine if they are equivalent.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     * @example
+     *
+     * var object = { 'a': 1 };
+     * var other = { 'a': 1 };
+     *
+     * _.eq(object, object);
+     * // => true
+     *
+     * _.eq(object, other);
+     * // => false
+     *
+     * _.eq('a', 'a');
+     * // => true
+     *
+     * _.eq('a', Object('a'));
+     * // => false
+     *
+     * _.eq(NaN, NaN);
+     * // => true
+     */
+    function eq(value, other) {
+      return value === other || (value !== value && other !== other);
+    }
+
+    /**
+     * Checks if `value` is greater than `other`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.9.0
+     * @category Lang
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if `value` is greater than `other`,
+     *  else `false`.
+     * @see _.lt
+     * @example
+     *
+     * _.gt(3, 1);
+     * // => true
+     *
+     * _.gt(3, 3);
+     * // => false
+     *
+     * _.gt(1, 3);
+     * // => false
+     */
+    var gt = createRelationalOperation(baseGt);
+
+    /**
+     * Checks if `value` is greater than or equal to `other`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.9.0
+     * @category Lang
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if `value` is greater than or equal to
+     *  `other`, else `false`.
+     * @see _.lte
+     * @example
+     *
+     * _.gte(3, 1);
+     * // => true
+     *
+     * _.gte(3, 3);
+     * // => true
+     *
+     * _.gte(1, 3);
+     * // => false
+     */
+    var gte = createRelationalOperation(function(value, other) {
+      return value >= other;
+    });
+
+    /**
+     * Checks if `value` is likely an `arguments` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+     *  else `false`.
+     * @example
+     *
+     * _.isArguments(function() { return arguments; }());
+     * // => true
+     *
+     * _.isArguments([1, 2, 3]);
+     * // => false
+     */
+    var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
+      return isObjectLike(value) && hasOwnProperty.call(value, 'callee') &&
+        !propertyIsEnumerable.call(value, 'callee');
+    };
+
+    /**
+     * Checks if `value` is classified as an `Array` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+     * @example
+     *
+     * _.isArray([1, 2, 3]);
+     * // => true
+     *
+     * _.isArray(document.body.children);
+     * // => false
+     *
+     * _.isArray('abc');
+     * // => false
+     *
+     * _.isArray(_.noop);
+     * // => false
+     */
+    var isArray = Array.isArray;
+
+    /**
+     * Checks if `value` is classified as an `ArrayBuffer` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.3.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an array buffer, else `false`.
+     * @example
+     *
+     * _.isArrayBuffer(new ArrayBuffer(2));
+     * // => true
+     *
+     * _.isArrayBuffer(new Array(2));
+     * // => false
+     */
+    var isArrayBuffer = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
+
+    /**
+     * Checks if `value` is array-like. A value is considered array-like if it's
+     * not a function and has a `value.length` that's an integer greater than or
+     * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+     * @example
+     *
+     * _.isArrayLike([1, 2, 3]);
+     * // => true
+     *
+     * _.isArrayLike(document.body.children);
+     * // => true
+     *
+     * _.isArrayLike('abc');
+     * // => true
+     *
+     * _.isArrayLike(_.noop);
+     * // => false
+     */
+    function isArrayLike(value) {
+      return value != null && isLength(value.length) && !isFunction(value);
+    }
+
+    /**
+     * This method is like `_.isArrayLike` except that it also checks if `value`
+     * is an object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an array-like object,
+     *  else `false`.
+     * @example
+     *
+     * _.isArrayLikeObject([1, 2, 3]);
+     * // => true
+     *
+     * _.isArrayLikeObject(document.body.children);
+     * // => true
+     *
+     * _.isArrayLikeObject('abc');
+     * // => false
+     *
+     * _.isArrayLikeObject(_.noop);
+     * // => false
+     */
+    function isArrayLikeObject(value) {
+      return isObjectLike(value) && isArrayLike(value);
+    }
+
+    /**
+     * Checks if `value` is classified as a boolean primitive or object.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a boolean, else `false`.
+     * @example
+     *
+     * _.isBoolean(false);
+     * // => true
+     *
+     * _.isBoolean(null);
+     * // => false
+     */
+    function isBoolean(value) {
+      return value === true || value === false ||
+        (isObjectLike(value) && baseGetTag(value) == boolTag);
+    }
+
+    /**
+     * Checks if `value` is a buffer.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.3.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+     * @example
+     *
+     * _.isBuffer(new Buffer(2));
+     * // => true
+     *
+     * _.isBuffer(new Uint8Array(2));
+     * // => false
+     */
+    var isBuffer = nativeIsBuffer || stubFalse;
+
+    /**
+     * Checks if `value` is classified as a `Date` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a date object, else `false`.
+     * @example
+     *
+     * _.isDate(new Date);
+     * // => true
+     *
+     * _.isDate('Mon April 23 2012');
+     * // => false
+     */
+    var isDate = nodeIsDate ? baseUnary(nodeIsDate) : baseIsDate;
+
+    /**
+     * Checks if `value` is likely a DOM element.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a DOM element, else `false`.
+     * @example
+     *
+     * _.isElement(document.body);
+     * // => true
+     *
+     * _.isElement('<body>');
+     * // => false
+     */
+    function isElement(value) {
+      return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value);
+    }
+
+    /**
+     * Checks if `value` is an empty object, collection, map, or set.
+     *
+     * Objects are considered empty if they have no own enumerable string keyed
+     * properties.
+     *
+     * Array-like values such as `arguments` objects, arrays, buffers, strings, or
+     * jQuery-like collections are considered empty if they have a `length` of `0`.
+     * Similarly, maps and sets are considered empty if they have a `size` of `0`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+     * @example
+     *
+     * _.isEmpty(null);
+     * // => true
+     *
+     * _.isEmpty(true);
+     * // => true
+     *
+     * _.isEmpty(1);
+     * // => true
+     *
+     * _.isEmpty([1, 2, 3]);
+     * // => false
+     *
+     * _.isEmpty({ 'a': 1 });
+     * // => false
+     */
+    function isEmpty(value) {
+      if (value == null) {
+        return true;
+      }
+      if (isArrayLike(value) &&
+          (isArray(value) || typeof value == 'string' || typeof value.splice == 'function' ||
+            isBuffer(value) || isTypedArray(value) || isArguments(value))) {
+        return !value.length;
+      }
+      var tag = getTag(value);
+      if (tag == mapTag || tag == setTag) {
+        return !value.size;
+      }
+      if (isPrototype(value)) {
+        return !baseKeys(value).length;
+      }
+      for (var key in value) {
+        if (hasOwnProperty.call(value, key)) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    /**
+     * Performs a deep comparison between two values to determine if they are
+     * equivalent.
+     *
+     * **Note:** This method supports comparing arrays, array buffers, booleans,
+     * date objects, error objects, maps, numbers, `Object` objects, regexes,
+     * sets, strings, symbols, and typed arrays. `Object` objects are compared
+     * by their own, not inherited, enumerable properties. Functions and DOM
+     * nodes are compared by strict equality, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     * @example
+     *
+     * var object = { 'a': 1 };
+     * var other = { 'a': 1 };
+     *
+     * _.isEqual(object, other);
+     * // => true
+     *
+     * object === other;
+     * // => false
+     */
+    function isEqual(value, other) {
+      return baseIsEqual(value, other);
+    }
+
+    /**
+     * This method is like `_.isEqual` except that it accepts `customizer` which
+     * is invoked to compare values. If `customizer` returns `undefined`, comparisons
+     * are handled by the method instead. The `customizer` is invoked with up to
+     * six arguments: (objValue, othValue [, index|key, object, other, stack]).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @param {Function} [customizer] The function to customize comparisons.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     * @example
+     *
+     * function isGreeting(value) {
+     *   return /^h(?:i|ello)$/.test(value);
+     * }
+     *
+     * function customizer(objValue, othValue) {
+     *   if (isGreeting(objValue) && isGreeting(othValue)) {
+     *     return true;
+     *   }
+     * }
+     *
+     * var array = ['hello', 'goodbye'];
+     * var other = ['hi', 'goodbye'];
+     *
+     * _.isEqualWith(array, other, customizer);
+     * // => true
+     */
+    function isEqualWith(value, other, customizer) {
+      customizer = typeof customizer == 'function' ? customizer : undefined;
+      var result = customizer ? customizer(value, other) : undefined;
+      return result === undefined ? baseIsEqual(value, other, undefined, customizer) : !!result;
+    }
+
+    /**
+     * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
+     * `SyntaxError`, `TypeError`, or `URIError` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
+     * @example
+     *
+     * _.isError(new Error);
+     * // => true
+     *
+     * _.isError(Error);
+     * // => false
+     */
+    function isError(value) {
+      if (!isObjectLike(value)) {
+        return false;
+      }
+      var tag = baseGetTag(value);
+      return tag == errorTag || tag == domExcTag ||
+        (typeof value.message == 'string' && typeof value.name == 'string' && !isPlainObject(value));
+    }
+
+    /**
+     * Checks if `value` is a finite primitive number.
+     *
+     * **Note:** This method is based on
+     * [`Number.isFinite`](https://mdn.io/Number/isFinite).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a finite number, else `false`.
+     * @example
+     *
+     * _.isFinite(3);
+     * // => true
+     *
+     * _.isFinite(Number.MIN_VALUE);
+     * // => true
+     *
+     * _.isFinite(Infinity);
+     * // => false
+     *
+     * _.isFinite('3');
+     * // => false
+     */
+    function isFinite(value) {
+      return typeof value == 'number' && nativeIsFinite(value);
+    }
+
+    /**
+     * Checks if `value` is classified as a `Function` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+     * @example
+     *
+     * _.isFunction(_);
+     * // => true
+     *
+     * _.isFunction(/abc/);
+     * // => false
+     */
+    function isFunction(value) {
+      if (!isObject(value)) {
+        return false;
+      }
+      // The use of `Object#toString` avoids issues with the `typeof` operator
+      // in Safari 9 which returns 'object' for typed arrays and other constructors.
+      var tag = baseGetTag(value);
+      return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+    }
+
+    /**
+     * Checks if `value` is an integer.
+     *
+     * **Note:** This method is based on
+     * [`Number.isInteger`](https://mdn.io/Number/isInteger).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an integer, else `false`.
+     * @example
+     *
+     * _.isInteger(3);
+     * // => true
+     *
+     * _.isInteger(Number.MIN_VALUE);
+     * // => false
+     *
+     * _.isInteger(Infinity);
+     * // => false
+     *
+     * _.isInteger('3');
+     * // => false
+     */
+    function isInteger(value) {
+      return typeof value == 'number' && value == toInteger(value);
+    }
+
+    /**
+     * Checks if `value` is a valid array-like length.
+     *
+     * **Note:** This method is loosely based on
+     * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+     * @example
+     *
+     * _.isLength(3);
+     * // => true
+     *
+     * _.isLength(Number.MIN_VALUE);
+     * // => false
+     *
+     * _.isLength(Infinity);
+     * // => false
+     *
+     * _.isLength('3');
+     * // => false
+     */
+    function isLength(value) {
+      return typeof value == 'number' &&
+        value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+    }
+
+    /**
+     * Checks if `value` is the
+     * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+     * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+     * @example
+     *
+     * _.isObject({});
+     * // => true
+     *
+     * _.isObject([1, 2, 3]);
+     * // => true
+     *
+     * _.isObject(_.noop);
+     * // => true
+     *
+     * _.isObject(null);
+     * // => false
+     */
+    function isObject(value) {
+      var type = typeof value;
+      return value != null && (type == 'object' || type == 'function');
+    }
+
+    /**
+     * Checks if `value` is object-like. A value is object-like if it's not `null`
+     * and has a `typeof` result of "object".
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+     * @example
+     *
+     * _.isObjectLike({});
+     * // => true
+     *
+     * _.isObjectLike([1, 2, 3]);
+     * // => true
+     *
+     * _.isObjectLike(_.noop);
+     * // => false
+     *
+     * _.isObjectLike(null);
+     * // => false
+     */
+    function isObjectLike(value) {
+      return value != null && typeof value == 'object';
+    }
+
+    /**
+     * Checks if `value` is classified as a `Map` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.3.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a map, else `false`.
+     * @example
+     *
+     * _.isMap(new Map);
+     * // => true
+     *
+     * _.isMap(new WeakMap);
+     * // => false
+     */
+    var isMap = nodeIsMap ? baseUnary(nodeIsMap) : baseIsMap;
+
+    /**
+     * Performs a partial deep comparison between `object` and `source` to
+     * determine if `object` contains equivalent property values.
+     *
+     * **Note:** This method is equivalent to `_.matches` when `source` is
+     * partially applied.
+     *
+     * Partial comparisons will match empty array and empty object `source`
+     * values against any array or object value, respectively. See `_.isEqual`
+     * for a list of supported value comparisons.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Lang
+     * @param {Object} object The object to inspect.
+     * @param {Object} source The object of property values to match.
+     * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': 2 };
+     *
+     * _.isMatch(object, { 'b': 2 });
+     * // => true
+     *
+     * _.isMatch(object, { 'b': 1 });
+     * // => false
+     */
+    function isMatch(object, source) {
+      return object === source || baseIsMatch(object, source, getMatchData(source));
+    }
+
+    /**
+     * This method is like `_.isMatch` except that it accepts `customizer` which
+     * is invoked to compare values. If `customizer` returns `undefined`, comparisons
+     * are handled by the method instead. The `customizer` is invoked with five
+     * arguments: (objValue, srcValue, index|key, object, source).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {Object} object The object to inspect.
+     * @param {Object} source The object of property values to match.
+     * @param {Function} [customizer] The function to customize comparisons.
+     * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+     * @example
+     *
+     * function isGreeting(value) {
+     *   return /^h(?:i|ello)$/.test(value);
+     * }
+     *
+     * function customizer(objValue, srcValue) {
+     *   if (isGreeting(objValue) && isGreeting(srcValue)) {
+     *     return true;
+     *   }
+     * }
+     *
+     * var object = { 'greeting': 'hello' };
+     * var source = { 'greeting': 'hi' };
+     *
+     * _.isMatchWith(object, source, customizer);
+     * // => true
+     */
+    function isMatchWith(object, source, customizer) {
+      customizer = typeof customizer == 'function' ? customizer : undefined;
+      return baseIsMatch(object, source, getMatchData(source), customizer);
+    }
+
+    /**
+     * Checks if `value` is `NaN`.
+     *
+     * **Note:** This method is based on
+     * [`Number.isNaN`](https://mdn.io/Number/isNaN) and is not the same as
+     * global [`isNaN`](https://mdn.io/isNaN) which returns `true` for
+     * `undefined` and other non-number values.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+     * @example
+     *
+     * _.isNaN(NaN);
+     * // => true
+     *
+     * _.isNaN(new Number(NaN));
+     * // => true
+     *
+     * isNaN(undefined);
+     * // => true
+     *
+     * _.isNaN(undefined);
+     * // => false
+     */
+    function isNaN(value) {
+      // An `NaN` primitive is the only value that is not equal to itself.
+      // Perform the `toStringTag` check first to avoid errors with some
+      // ActiveX objects in IE.
+      return isNumber(value) && value != +value;
+    }
+
+    /**
+     * Checks if `value` is a pristine native function.
+     *
+     * **Note:** This method can't reliably detect native functions in the presence
+     * of the core-js package because core-js circumvents this kind of detection.
+     * Despite multiple requests, the core-js maintainer has made it clear: any
+     * attempt to fix the detection will be obstructed. As a result, we're left
+     * with little choice but to throw an error. Unfortunately, this also affects
+     * packages, like [babel-polyfill](https://www.npmjs.com/package/babel-polyfill),
+     * which rely on core-js.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a native function,
+     *  else `false`.
+     * @example
+     *
+     * _.isNative(Array.prototype.push);
+     * // => true
+     *
+     * _.isNative(_);
+     * // => false
+     */
+    function isNative(value) {
+      if (isMaskable(value)) {
+        throw new Error(CORE_ERROR_TEXT);
+      }
+      return baseIsNative(value);
+    }
+
+    /**
+     * Checks if `value` is `null`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
+     * @example
+     *
+     * _.isNull(null);
+     * // => true
+     *
+     * _.isNull(void 0);
+     * // => false
+     */
+    function isNull(value) {
+      return value === null;
+    }
+
+    /**
+     * Checks if `value` is `null` or `undefined`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
+     * @example
+     *
+     * _.isNil(null);
+     * // => true
+     *
+     * _.isNil(void 0);
+     * // => true
+     *
+     * _.isNil(NaN);
+     * // => false
+     */
+    function isNil(value) {
+      return value == null;
+    }
+
+    /**
+     * Checks if `value` is classified as a `Number` primitive or object.
+     *
+     * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are
+     * classified as numbers, use the `_.isFinite` method.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a number, else `false`.
+     * @example
+     *
+     * _.isNumber(3);
+     * // => true
+     *
+     * _.isNumber(Number.MIN_VALUE);
+     * // => true
+     *
+     * _.isNumber(Infinity);
+     * // => true
+     *
+     * _.isNumber('3');
+     * // => false
+     */
+    function isNumber(value) {
+      return typeof value == 'number' ||
+        (isObjectLike(value) && baseGetTag(value) == numberTag);
+    }
+
+    /**
+     * Checks if `value` is a plain object, that is, an object created by the
+     * `Object` constructor or one with a `[[Prototype]]` of `null`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.8.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     * }
+     *
+     * _.isPlainObject(new Foo);
+     * // => false
+     *
+     * _.isPlainObject([1, 2, 3]);
+     * // => false
+     *
+     * _.isPlainObject({ 'x': 0, 'y': 0 });
+     * // => true
+     *
+     * _.isPlainObject(Object.create(null));
+     * // => true
+     */
+    function isPlainObject(value) {
+      if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
+        return false;
+      }
+      var proto = getPrototype(value);
+      if (proto === null) {
+        return true;
+      }
+      var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+      return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+        funcToString.call(Ctor) == objectCtorString;
+    }
+
+    /**
+     * Checks if `value` is classified as a `RegExp` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.1.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
+     * @example
+     *
+     * _.isRegExp(/abc/);
+     * // => true
+     *
+     * _.isRegExp('/abc/');
+     * // => false
+     */
+    var isRegExp = nodeIsRegExp ? baseUnary(nodeIsRegExp) : baseIsRegExp;
+
+    /**
+     * Checks if `value` is a safe integer. An integer is safe if it's an IEEE-754
+     * double precision number which isn't the result of a rounded unsafe integer.
+     *
+     * **Note:** This method is based on
+     * [`Number.isSafeInteger`](https://mdn.io/Number/isSafeInteger).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a safe integer, else `false`.
+     * @example
+     *
+     * _.isSafeInteger(3);
+     * // => true
+     *
+     * _.isSafeInteger(Number.MIN_VALUE);
+     * // => false
+     *
+     * _.isSafeInteger(Infinity);
+     * // => false
+     *
+     * _.isSafeInteger('3');
+     * // => false
+     */
+    function isSafeInteger(value) {
+      return isInteger(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
+    }
+
+    /**
+     * Checks if `value` is classified as a `Set` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.3.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a set, else `false`.
+     * @example
+     *
+     * _.isSet(new Set);
+     * // => true
+     *
+     * _.isSet(new WeakSet);
+     * // => false
+     */
+    var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
+
+    /**
+     * Checks if `value` is classified as a `String` primitive or object.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a string, else `false`.
+     * @example
+     *
+     * _.isString('abc');
+     * // => true
+     *
+     * _.isString(1);
+     * // => false
+     */
+    function isString(value) {
+      return typeof value == 'string' ||
+        (!isArray(value) && isObjectLike(value) && baseGetTag(value) == stringTag);
+    }
+
+    /**
+     * Checks if `value` is classified as a `Symbol` primitive or object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+     * @example
+     *
+     * _.isSymbol(Symbol.iterator);
+     * // => true
+     *
+     * _.isSymbol('abc');
+     * // => false
+     */
+    function isSymbol(value) {
+      return typeof value == 'symbol' ||
+        (isObjectLike(value) && baseGetTag(value) == symbolTag);
+    }
+
+    /**
+     * Checks if `value` is classified as a typed array.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+     * @example
+     *
+     * _.isTypedArray(new Uint8Array);
+     * // => true
+     *
+     * _.isTypedArray([]);
+     * // => false
+     */
+    var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+    /**
+     * Checks if `value` is `undefined`.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+     * @example
+     *
+     * _.isUndefined(void 0);
+     * // => true
+     *
+     * _.isUndefined(null);
+     * // => false
+     */
+    function isUndefined(value) {
+      return value === undefined;
+    }
+
+    /**
+     * Checks if `value` is classified as a `WeakMap` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.3.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a weak map, else `false`.
+     * @example
+     *
+     * _.isWeakMap(new WeakMap);
+     * // => true
+     *
+     * _.isWeakMap(new Map);
+     * // => false
+     */
+    function isWeakMap(value) {
+      return isObjectLike(value) && getTag(value) == weakMapTag;
+    }
+
+    /**
+     * Checks if `value` is classified as a `WeakSet` object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.3.0
+     * @category Lang
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a weak set, else `false`.
+     * @example
+     *
+     * _.isWeakSet(new WeakSet);
+     * // => true
+     *
+     * _.isWeakSet(new Set);
+     * // => false
+     */
+    function isWeakSet(value) {
+      return isObjectLike(value) && baseGetTag(value) == weakSetTag;
+    }
+
+    /**
+     * Checks if `value` is less than `other`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.9.0
+     * @category Lang
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if `value` is less than `other`,
+     *  else `false`.
+     * @see _.gt
+     * @example
+     *
+     * _.lt(1, 3);
+     * // => true
+     *
+     * _.lt(3, 3);
+     * // => false
+     *
+     * _.lt(3, 1);
+     * // => false
+     */
+    var lt = createRelationalOperation(baseLt);
+
+    /**
+     * Checks if `value` is less than or equal to `other`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.9.0
+     * @category Lang
+     * @param {*} value The value to compare.
+     * @param {*} other The other value to compare.
+     * @returns {boolean} Returns `true` if `value` is less than or equal to
+     *  `other`, else `false`.
+     * @see _.gte
+     * @example
+     *
+     * _.lte(1, 3);
+     * // => true
+     *
+     * _.lte(3, 3);
+     * // => true
+     *
+     * _.lte(3, 1);
+     * // => false
+     */
+    var lte = createRelationalOperation(function(value, other) {
+      return value <= other;
+    });
+
+    /**
+     * Converts `value` to an array.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Lang
+     * @param {*} value The value to convert.
+     * @returns {Array} Returns the converted array.
+     * @example
+     *
+     * _.toArray({ 'a': 1, 'b': 2 });
+     * // => [1, 2]
+     *
+     * _.toArray('abc');
+     * // => ['a', 'b', 'c']
+     *
+     * _.toArray(1);
+     * // => []
+     *
+     * _.toArray(null);
+     * // => []
+     */
+    function toArray(value) {
+      if (!value) {
+        return [];
+      }
+      if (isArrayLike(value)) {
+        return isString(value) ? stringToArray(value) : copyArray(value);
+      }
+      if (symIterator && value[symIterator]) {
+        return iteratorToArray(value[symIterator]());
+      }
+      var tag = getTag(value),
+          func = tag == mapTag ? mapToArray : (tag == setTag ? setToArray : values);
+
+      return func(value);
+    }
+
+    /**
+     * Converts `value` to a finite number.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.12.0
+     * @category Lang
+     * @param {*} value The value to convert.
+     * @returns {number} Returns the converted number.
+     * @example
+     *
+     * _.toFinite(3.2);
+     * // => 3.2
+     *
+     * _.toFinite(Number.MIN_VALUE);
+     * // => 5e-324
+     *
+     * _.toFinite(Infinity);
+     * // => 1.7976931348623157e+308
+     *
+     * _.toFinite('3.2');
+     * // => 3.2
+     */
+    function toFinite(value) {
+      if (!value) {
+        return value === 0 ? value : 0;
+      }
+      value = toNumber(value);
+      if (value === INFINITY || value === -INFINITY) {
+        var sign = (value < 0 ? -1 : 1);
+        return sign * MAX_INTEGER;
+      }
+      return value === value ? value : 0;
+    }
+
+    /**
+     * Converts `value` to an integer.
+     *
+     * **Note:** This method is loosely based on
+     * [`ToInteger`](http://www.ecma-international.org/ecma-262/7.0/#sec-tointeger).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to convert.
+     * @returns {number} Returns the converted integer.
+     * @example
+     *
+     * _.toInteger(3.2);
+     * // => 3
+     *
+     * _.toInteger(Number.MIN_VALUE);
+     * // => 0
+     *
+     * _.toInteger(Infinity);
+     * // => 1.7976931348623157e+308
+     *
+     * _.toInteger('3.2');
+     * // => 3
+     */
+    function toInteger(value) {
+      var result = toFinite(value),
+          remainder = result % 1;
+
+      return result === result ? (remainder ? result - remainder : result) : 0;
+    }
+
+    /**
+     * Converts `value` to an integer suitable for use as the length of an
+     * array-like object.
+     *
+     * **Note:** This method is based on
+     * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to convert.
+     * @returns {number} Returns the converted integer.
+     * @example
+     *
+     * _.toLength(3.2);
+     * // => 3
+     *
+     * _.toLength(Number.MIN_VALUE);
+     * // => 0
+     *
+     * _.toLength(Infinity);
+     * // => 4294967295
+     *
+     * _.toLength('3.2');
+     * // => 3
+     */
+    function toLength(value) {
+      return value ? baseClamp(toInteger(value), 0, MAX_ARRAY_LENGTH) : 0;
+    }
+
+    /**
+     * Converts `value` to a number.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to process.
+     * @returns {number} Returns the number.
+     * @example
+     *
+     * _.toNumber(3.2);
+     * // => 3.2
+     *
+     * _.toNumber(Number.MIN_VALUE);
+     * // => 5e-324
+     *
+     * _.toNumber(Infinity);
+     * // => Infinity
+     *
+     * _.toNumber('3.2');
+     * // => 3.2
+     */
+    function toNumber(value) {
+      if (typeof value == 'number') {
+        return value;
+      }
+      if (isSymbol(value)) {
+        return NAN;
+      }
+      if (isObject(value)) {
+        var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+        value = isObject(other) ? (other + '') : other;
+      }
+      if (typeof value != 'string') {
+        return value === 0 ? value : +value;
+      }
+      value = value.replace(reTrim, '');
+      var isBinary = reIsBinary.test(value);
+      return (isBinary || reIsOctal.test(value))
+        ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+        : (reIsBadHex.test(value) ? NAN : +value);
+    }
+
+    /**
+     * Converts `value` to a plain object flattening inherited enumerable string
+     * keyed properties of `value` to own properties of the plain object.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Lang
+     * @param {*} value The value to convert.
+     * @returns {Object} Returns the converted plain object.
+     * @example
+     *
+     * function Foo() {
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.assign({ 'a': 1 }, new Foo);
+     * // => { 'a': 1, 'b': 2 }
+     *
+     * _.assign({ 'a': 1 }, _.toPlainObject(new Foo));
+     * // => { 'a': 1, 'b': 2, 'c': 3 }
+     */
+    function toPlainObject(value) {
+      return copyObject(value, keysIn(value));
+    }
+
+    /**
+     * Converts `value` to a safe integer. A safe integer can be compared and
+     * represented correctly.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to convert.
+     * @returns {number} Returns the converted integer.
+     * @example
+     *
+     * _.toSafeInteger(3.2);
+     * // => 3
+     *
+     * _.toSafeInteger(Number.MIN_VALUE);
+     * // => 0
+     *
+     * _.toSafeInteger(Infinity);
+     * // => 9007199254740991
+     *
+     * _.toSafeInteger('3.2');
+     * // => 3
+     */
+    function toSafeInteger(value) {
+      return value
+        ? baseClamp(toInteger(value), -MAX_SAFE_INTEGER, MAX_SAFE_INTEGER)
+        : (value === 0 ? value : 0);
+    }
+
+    /**
+     * Converts `value` to a string. An empty string is returned for `null`
+     * and `undefined` values. The sign of `-0` is preserved.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Lang
+     * @param {*} value The value to convert.
+     * @returns {string} Returns the converted string.
+     * @example
+     *
+     * _.toString(null);
+     * // => ''
+     *
+     * _.toString(-0);
+     * // => '-0'
+     *
+     * _.toString([1, 2, 3]);
+     * // => '1,2,3'
+     */
+    function toString(value) {
+      return value == null ? '' : baseToString(value);
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Assigns own enumerable string keyed properties of source objects to the
+     * destination object. Source objects are applied from left to right.
+     * Subsequent sources overwrite property assignments of previous sources.
+     *
+     * **Note:** This method mutates `object` and is loosely based on
+     * [`Object.assign`](https://mdn.io/Object/assign).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.10.0
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} [sources] The source objects.
+     * @returns {Object} Returns `object`.
+     * @see _.assignIn
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     * }
+     *
+     * function Bar() {
+     *   this.c = 3;
+     * }
+     *
+     * Foo.prototype.b = 2;
+     * Bar.prototype.d = 4;
+     *
+     * _.assign({ 'a': 0 }, new Foo, new Bar);
+     * // => { 'a': 1, 'c': 3 }
+     */
+    var assign = createAssigner(function(object, source) {
+      if (isPrototype(source) || isArrayLike(source)) {
+        copyObject(source, keys(source), object);
+        return;
+      }
+      for (var key in source) {
+        if (hasOwnProperty.call(source, key)) {
+          assignValue(object, key, source[key]);
+        }
+      }
+    });
+
+    /**
+     * This method is like `_.assign` except that it iterates over own and
+     * inherited source properties.
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @alias extend
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} [sources] The source objects.
+     * @returns {Object} Returns `object`.
+     * @see _.assign
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     * }
+     *
+     * function Bar() {
+     *   this.c = 3;
+     * }
+     *
+     * Foo.prototype.b = 2;
+     * Bar.prototype.d = 4;
+     *
+     * _.assignIn({ 'a': 0 }, new Foo, new Bar);
+     * // => { 'a': 1, 'b': 2, 'c': 3, 'd': 4 }
+     */
+    var assignIn = createAssigner(function(object, source) {
+      copyObject(source, keysIn(source), object);
+    });
+
+    /**
+     * This method is like `_.assignIn` except that it accepts `customizer`
+     * which is invoked to produce the assigned values. If `customizer` returns
+     * `undefined`, assignment is handled by the method instead. The `customizer`
+     * is invoked with five arguments: (objValue, srcValue, key, object, source).
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @alias extendWith
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} sources The source objects.
+     * @param {Function} [customizer] The function to customize assigned values.
+     * @returns {Object} Returns `object`.
+     * @see _.assignWith
+     * @example
+     *
+     * function customizer(objValue, srcValue) {
+     *   return _.isUndefined(objValue) ? srcValue : objValue;
+     * }
+     *
+     * var defaults = _.partialRight(_.assignInWith, customizer);
+     *
+     * defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+     * // => { 'a': 1, 'b': 2 }
+     */
+    var assignInWith = createAssigner(function(object, source, srcIndex, customizer) {
+      copyObject(source, keysIn(source), object, customizer);
+    });
+
+    /**
+     * This method is like `_.assign` except that it accepts `customizer`
+     * which is invoked to produce the assigned values. If `customizer` returns
+     * `undefined`, assignment is handled by the method instead. The `customizer`
+     * is invoked with five arguments: (objValue, srcValue, key, object, source).
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} sources The source objects.
+     * @param {Function} [customizer] The function to customize assigned values.
+     * @returns {Object} Returns `object`.
+     * @see _.assignInWith
+     * @example
+     *
+     * function customizer(objValue, srcValue) {
+     *   return _.isUndefined(objValue) ? srcValue : objValue;
+     * }
+     *
+     * var defaults = _.partialRight(_.assignWith, customizer);
+     *
+     * defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+     * // => { 'a': 1, 'b': 2 }
+     */
+    var assignWith = createAssigner(function(object, source, srcIndex, customizer) {
+      copyObject(source, keys(source), object, customizer);
+    });
+
+    /**
+     * Creates an array of values corresponding to `paths` of `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.0.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {...(string|string[])} [paths] The property paths to pick.
+     * @returns {Array} Returns the picked values.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
+     *
+     * _.at(object, ['a[0].b.c', 'a[1]']);
+     * // => [3, 4]
+     */
+    var at = flatRest(baseAt);
+
+    /**
+     * Creates an object that inherits from the `prototype` object. If a
+     * `properties` object is given, its own enumerable string keyed properties
+     * are assigned to the created object.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.3.0
+     * @category Object
+     * @param {Object} prototype The object to inherit from.
+     * @param {Object} [properties] The properties to assign to the object.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
+     * }
+     *
+     * function Circle() {
+     *   Shape.call(this);
+     * }
+     *
+     * Circle.prototype = _.create(Shape.prototype, {
+     *   'constructor': Circle
+     * });
+     *
+     * var circle = new Circle;
+     * circle instanceof Circle;
+     * // => true
+     *
+     * circle instanceof Shape;
+     * // => true
+     */
+    function create(prototype, properties) {
+      var result = baseCreate(prototype);
+      return properties == null ? result : baseAssign(result, properties);
+    }
+
+    /**
+     * Assigns own and inherited enumerable string keyed properties of source
+     * objects to the destination object for all destination properties that
+     * resolve to `undefined`. Source objects are applied from left to right.
+     * Once a property is set, additional values of the same property are ignored.
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} [sources] The source objects.
+     * @returns {Object} Returns `object`.
+     * @see _.defaultsDeep
+     * @example
+     *
+     * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+     * // => { 'a': 1, 'b': 2 }
+     */
+    var defaults = baseRest(function(args) {
+      args.push(undefined, customDefaultsAssignIn);
+      return apply(assignInWith, undefined, args);
+    });
+
+    /**
+     * This method is like `_.defaults` except that it recursively assigns
+     * default properties.
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.10.0
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} [sources] The source objects.
+     * @returns {Object} Returns `object`.
+     * @see _.defaults
+     * @example
+     *
+     * _.defaultsDeep({ 'a': { 'b': 2 } }, { 'a': { 'b': 1, 'c': 3 } });
+     * // => { 'a': { 'b': 2, 'c': 3 } }
+     */
+    var defaultsDeep = baseRest(function(args) {
+      args.push(undefined, customDefaultsMerge);
+      return apply(mergeWith, undefined, args);
+    });
+
+    /**
+     * This method is like `_.find` except that it returns the key of the first
+     * element `predicate` returns truthy for instead of the element itself.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.1.0
+     * @category Object
+     * @param {Object} object The object to inspect.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {string|undefined} Returns the key of the matched element,
+     *  else `undefined`.
+     * @example
+     *
+     * var users = {
+     *   'barney':  { 'age': 36, 'active': true },
+     *   'fred':    { 'age': 40, 'active': false },
+     *   'pebbles': { 'age': 1,  'active': true }
+     * };
+     *
+     * _.findKey(users, function(o) { return o.age < 40; });
+     * // => 'barney' (iteration order is not guaranteed)
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.findKey(users, { 'age': 1, 'active': true });
+     * // => 'pebbles'
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.findKey(users, ['active', false]);
+     * // => 'fred'
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.findKey(users, 'active');
+     * // => 'barney'
+     */
+    function findKey(object, predicate) {
+      return baseFindKey(object, getIteratee(predicate, 3), baseForOwn);
+    }
+
+    /**
+     * This method is like `_.findKey` except that it iterates over elements of
+     * a collection in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Object
+     * @param {Object} object The object to inspect.
+     * @param {Function} [predicate=_.identity] The function invoked per iteration.
+     * @returns {string|undefined} Returns the key of the matched element,
+     *  else `undefined`.
+     * @example
+     *
+     * var users = {
+     *   'barney':  { 'age': 36, 'active': true },
+     *   'fred':    { 'age': 40, 'active': false },
+     *   'pebbles': { 'age': 1,  'active': true }
+     * };
+     *
+     * _.findLastKey(users, function(o) { return o.age < 40; });
+     * // => returns 'pebbles' assuming `_.findKey` returns 'barney'
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.findLastKey(users, { 'age': 36, 'active': true });
+     * // => 'barney'
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.findLastKey(users, ['active', false]);
+     * // => 'fred'
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.findLastKey(users, 'active');
+     * // => 'pebbles'
+     */
+    function findLastKey(object, predicate) {
+      return baseFindKey(object, getIteratee(predicate, 3), baseForOwnRight);
+    }
+
+    /**
+     * Iterates over own and inherited enumerable string keyed properties of an
+     * object and invokes `iteratee` for each property. The iteratee is invoked
+     * with three arguments: (value, key, object). Iteratee functions may exit
+     * iteration early by explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.3.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Object} Returns `object`.
+     * @see _.forInRight
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.forIn(new Foo, function(value, key) {
+     *   console.log(key);
+     * });
+     * // => Logs 'a', 'b', then 'c' (iteration order is not guaranteed).
+     */
+    function forIn(object, iteratee) {
+      return object == null
+        ? object
+        : baseFor(object, getIteratee(iteratee, 3), keysIn);
+    }
+
+    /**
+     * This method is like `_.forIn` except that it iterates over properties of
+     * `object` in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Object} Returns `object`.
+     * @see _.forIn
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.forInRight(new Foo, function(value, key) {
+     *   console.log(key);
+     * });
+     * // => Logs 'c', 'b', then 'a' assuming `_.forIn` logs 'a', 'b', then 'c'.
+     */
+    function forInRight(object, iteratee) {
+      return object == null
+        ? object
+        : baseForRight(object, getIteratee(iteratee, 3), keysIn);
+    }
+
+    /**
+     * Iterates over own enumerable string keyed properties of an object and
+     * invokes `iteratee` for each property. The iteratee is invoked with three
+     * arguments: (value, key, object). Iteratee functions may exit iteration
+     * early by explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.3.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Object} Returns `object`.
+     * @see _.forOwnRight
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.forOwn(new Foo, function(value, key) {
+     *   console.log(key);
+     * });
+     * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+     */
+    function forOwn(object, iteratee) {
+      return object && baseForOwn(object, getIteratee(iteratee, 3));
+    }
+
+    /**
+     * This method is like `_.forOwn` except that it iterates over properties of
+     * `object` in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.0.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Object} Returns `object`.
+     * @see _.forOwn
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.forOwnRight(new Foo, function(value, key) {
+     *   console.log(key);
+     * });
+     * // => Logs 'b' then 'a' assuming `_.forOwn` logs 'a' then 'b'.
+     */
+    function forOwnRight(object, iteratee) {
+      return object && baseForOwnRight(object, getIteratee(iteratee, 3));
+    }
+
+    /**
+     * Creates an array of function property names from own enumerable properties
+     * of `object`.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns the function names.
+     * @see _.functionsIn
+     * @example
+     *
+     * function Foo() {
+     *   this.a = _.constant('a');
+     *   this.b = _.constant('b');
+     * }
+     *
+     * Foo.prototype.c = _.constant('c');
+     *
+     * _.functions(new Foo);
+     * // => ['a', 'b']
+     */
+    function functions(object) {
+      return object == null ? [] : baseFunctions(object, keys(object));
+    }
+
+    /**
+     * Creates an array of function property names from own and inherited
+     * enumerable properties of `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns the function names.
+     * @see _.functions
+     * @example
+     *
+     * function Foo() {
+     *   this.a = _.constant('a');
+     *   this.b = _.constant('b');
+     * }
+     *
+     * Foo.prototype.c = _.constant('c');
+     *
+     * _.functionsIn(new Foo);
+     * // => ['a', 'b', 'c']
+     */
+    function functionsIn(object) {
+      return object == null ? [] : baseFunctions(object, keysIn(object));
+    }
+
+    /**
+     * Gets the value at `path` of `object`. If the resolved value is
+     * `undefined`, the `defaultValue` is returned in its place.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.7.0
+     * @category Object
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path of the property to get.
+     * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+     * @returns {*} Returns the resolved value.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+     *
+     * _.get(object, 'a[0].b.c');
+     * // => 3
+     *
+     * _.get(object, ['a', '0', 'b', 'c']);
+     * // => 3
+     *
+     * _.get(object, 'a.b.c', 'default');
+     * // => 'default'
+     */
+    function get(object, path, defaultValue) {
+      var result = object == null ? undefined : baseGet(object, path);
+      return result === undefined ? defaultValue : result;
+    }
+
+    /**
+     * Checks if `path` is a direct property of `object`.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path to check.
+     * @returns {boolean} Returns `true` if `path` exists, else `false`.
+     * @example
+     *
+     * var object = { 'a': { 'b': 2 } };
+     * var other = _.create({ 'a': _.create({ 'b': 2 }) });
+     *
+     * _.has(object, 'a');
+     * // => true
+     *
+     * _.has(object, 'a.b');
+     * // => true
+     *
+     * _.has(object, ['a', 'b']);
+     * // => true
+     *
+     * _.has(other, 'a');
+     * // => false
+     */
+    function has(object, path) {
+      return object != null && hasPath(object, path, baseHas);
+    }
+
+    /**
+     * Checks if `path` is a direct or inherited property of `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path to check.
+     * @returns {boolean} Returns `true` if `path` exists, else `false`.
+     * @example
+     *
+     * var object = _.create({ 'a': _.create({ 'b': 2 }) });
+     *
+     * _.hasIn(object, 'a');
+     * // => true
+     *
+     * _.hasIn(object, 'a.b');
+     * // => true
+     *
+     * _.hasIn(object, ['a', 'b']);
+     * // => true
+     *
+     * _.hasIn(object, 'b');
+     * // => false
+     */
+    function hasIn(object, path) {
+      return object != null && hasPath(object, path, baseHasIn);
+    }
+
+    /**
+     * Creates an object composed of the inverted keys and values of `object`.
+     * If `object` contains duplicate values, subsequent values overwrite
+     * property assignments of previous values.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.7.0
+     * @category Object
+     * @param {Object} object The object to invert.
+     * @returns {Object} Returns the new inverted object.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': 2, 'c': 1 };
+     *
+     * _.invert(object);
+     * // => { '1': 'c', '2': 'b' }
+     */
+    var invert = createInverter(function(result, value, key) {
+      result[value] = key;
+    }, constant(identity));
+
+    /**
+     * This method is like `_.invert` except that the inverted object is generated
+     * from the results of running each element of `object` thru `iteratee`. The
+     * corresponding inverted value of each inverted key is an array of keys
+     * responsible for generating the inverted value. The iteratee is invoked
+     * with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.1.0
+     * @category Object
+     * @param {Object} object The object to invert.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {Object} Returns the new inverted object.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': 2, 'c': 1 };
+     *
+     * _.invertBy(object);
+     * // => { '1': ['a', 'c'], '2': ['b'] }
+     *
+     * _.invertBy(object, function(value) {
+     *   return 'group' + value;
+     * });
+     * // => { 'group1': ['a', 'c'], 'group2': ['b'] }
+     */
+    var invertBy = createInverter(function(result, value, key) {
+      if (hasOwnProperty.call(result, value)) {
+        result[value].push(key);
+      } else {
+        result[value] = [key];
+      }
+    }, getIteratee);
+
+    /**
+     * Invokes the method at `path` of `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path of the method to invoke.
+     * @param {...*} [args] The arguments to invoke the method with.
+     * @returns {*} Returns the result of the invoked method.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c': [1, 2, 3, 4] } }] };
+     *
+     * _.invoke(object, 'a[0].b.c.slice', 1, 3);
+     * // => [2, 3]
+     */
+    var invoke = baseRest(baseInvoke);
+
+    /**
+     * Creates an array of the own enumerable property names of `object`.
+     *
+     * **Note:** Non-object values are coerced to objects. See the
+     * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+     * for more details.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property names.
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.keys(new Foo);
+     * // => ['a', 'b'] (iteration order is not guaranteed)
+     *
+     * _.keys('hi');
+     * // => ['0', '1']
+     */
+    function keys(object) {
+      return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+    }
+
+    /**
+     * Creates an array of the own and inherited enumerable property names of `object`.
+     *
+     * **Note:** Non-object values are coerced to objects.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Object
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property names.
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.keysIn(new Foo);
+     * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+     */
+    function keysIn(object) {
+      return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+    }
+
+    /**
+     * The opposite of `_.mapValues`; this method creates an object with the
+     * same values as `object` and keys generated by running each own enumerable
+     * string keyed property of `object` thru `iteratee`. The iteratee is invoked
+     * with three arguments: (value, key, object).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.8.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Object} Returns the new mapped object.
+     * @see _.mapValues
+     * @example
+     *
+     * _.mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {
+     *   return key + value;
+     * });
+     * // => { 'a1': 1, 'b2': 2 }
+     */
+    function mapKeys(object, iteratee) {
+      var result = {};
+      iteratee = getIteratee(iteratee, 3);
+
+      baseForOwn(object, function(value, key, object) {
+        baseAssignValue(result, iteratee(value, key, object), value);
+      });
+      return result;
+    }
+
+    /**
+     * Creates an object with the same keys as `object` and values generated
+     * by running each own enumerable string keyed property of `object` thru
+     * `iteratee`. The iteratee is invoked with three arguments:
+     * (value, key, object).
+     *
+     * @static
+     * @memberOf _
+     * @since 2.4.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Object} Returns the new mapped object.
+     * @see _.mapKeys
+     * @example
+     *
+     * var users = {
+     *   'fred':    { 'user': 'fred',    'age': 40 },
+     *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+     * };
+     *
+     * _.mapValues(users, function(o) { return o.age; });
+     * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.mapValues(users, 'age');
+     * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+     */
+    function mapValues(object, iteratee) {
+      var result = {};
+      iteratee = getIteratee(iteratee, 3);
+
+      baseForOwn(object, function(value, key, object) {
+        baseAssignValue(result, key, iteratee(value, key, object));
+      });
+      return result;
+    }
+
+    /**
+     * This method is like `_.assign` except that it recursively merges own and
+     * inherited enumerable string keyed properties of source objects into the
+     * destination object. Source properties that resolve to `undefined` are
+     * skipped if a destination value exists. Array and plain object properties
+     * are merged recursively. Other objects and value types are overridden by
+     * assignment. Source objects are applied from left to right. Subsequent
+     * sources overwrite property assignments of previous sources.
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.5.0
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} [sources] The source objects.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var object = {
+     *   'a': [{ 'b': 2 }, { 'd': 4 }]
+     * };
+     *
+     * var other = {
+     *   'a': [{ 'c': 3 }, { 'e': 5 }]
+     * };
+     *
+     * _.merge(object, other);
+     * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+     */
+    var merge = createAssigner(function(object, source, srcIndex) {
+      baseMerge(object, source, srcIndex);
+    });
+
+    /**
+     * This method is like `_.merge` except that it accepts `customizer` which
+     * is invoked to produce the merged values of the destination and source
+     * properties. If `customizer` returns `undefined`, merging is handled by the
+     * method instead. The `customizer` is invoked with six arguments:
+     * (objValue, srcValue, key, object, source, stack).
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The destination object.
+     * @param {...Object} sources The source objects.
+     * @param {Function} customizer The function to customize assigned values.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * function customizer(objValue, srcValue) {
+     *   if (_.isArray(objValue)) {
+     *     return objValue.concat(srcValue);
+     *   }
+     * }
+     *
+     * var object = { 'a': [1], 'b': [2] };
+     * var other = { 'a': [3], 'b': [4] };
+     *
+     * _.mergeWith(object, other, customizer);
+     * // => { 'a': [1, 3], 'b': [2, 4] }
+     */
+    var mergeWith = createAssigner(function(object, source, srcIndex, customizer) {
+      baseMerge(object, source, srcIndex, customizer);
+    });
+
+    /**
+     * The opposite of `_.pick`; this method creates an object composed of the
+     * own and inherited enumerable property paths of `object` that are not omitted.
+     *
+     * **Note:** This method is considerably slower than `_.pick`.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The source object.
+     * @param {...(string|string[])} [paths] The property paths to omit.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
+     *
+     * _.omit(object, ['a', 'c']);
+     * // => { 'b': '2' }
+     */
+    var omit = flatRest(function(object, paths) {
+      var result = {};
+      if (object == null) {
+        return result;
+      }
+      var isDeep = false;
+      paths = arrayMap(paths, function(path) {
+        path = castPath(path, object);
+        isDeep || (isDeep = path.length > 1);
+        return path;
+      });
+      copyObject(object, getAllKeysIn(object), result);
+      if (isDeep) {
+        result = baseClone(result, CLONE_DEEP_FLAG | CLONE_FLAT_FLAG | CLONE_SYMBOLS_FLAG, customOmitClone);
+      }
+      var length = paths.length;
+      while (length--) {
+        baseUnset(result, paths[length]);
+      }
+      return result;
+    });
+
+    /**
+     * The opposite of `_.pickBy`; this method creates an object composed of
+     * the own and inherited enumerable string keyed properties of `object` that
+     * `predicate` doesn't return truthy for. The predicate is invoked with two
+     * arguments: (value, key).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The source object.
+     * @param {Function} [predicate=_.identity] The function invoked per property.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
+     *
+     * _.omitBy(object, _.isNumber);
+     * // => { 'b': '2' }
+     */
+    function omitBy(object, predicate) {
+      return pickBy(object, negate(getIteratee(predicate)));
+    }
+
+    /**
+     * Creates an object composed of the picked `object` properties.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The source object.
+     * @param {...(string|string[])} [paths] The property paths to pick.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
+     *
+     * _.pick(object, ['a', 'c']);
+     * // => { 'a': 1, 'c': 3 }
+     */
+    var pick = flatRest(function(object, paths) {
+      return object == null ? {} : basePick(object, paths);
+    });
+
+    /**
+     * Creates an object composed of the `object` properties `predicate` returns
+     * truthy for. The predicate is invoked with two arguments: (value, key).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The source object.
+     * @param {Function} [predicate=_.identity] The function invoked per property.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
+     *
+     * _.pickBy(object, _.isNumber);
+     * // => { 'a': 1, 'c': 3 }
+     */
+    function pickBy(object, predicate) {
+      if (object == null) {
+        return {};
+      }
+      var props = arrayMap(getAllKeysIn(object), function(prop) {
+        return [prop];
+      });
+      predicate = getIteratee(predicate);
+      return basePickBy(object, props, function(value, path) {
+        return predicate(value, path[0]);
+      });
+    }
+
+    /**
+     * This method is like `_.get` except that if the resolved value is a
+     * function it's invoked with the `this` binding of its parent object and
+     * its result is returned.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The object to query.
+     * @param {Array|string} path The path of the property to resolve.
+     * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+     * @returns {*} Returns the resolved value.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c1': 3, 'c2': _.constant(4) } }] };
+     *
+     * _.result(object, 'a[0].b.c1');
+     * // => 3
+     *
+     * _.result(object, 'a[0].b.c2');
+     * // => 4
+     *
+     * _.result(object, 'a[0].b.c3', 'default');
+     * // => 'default'
+     *
+     * _.result(object, 'a[0].b.c3', _.constant('default'));
+     * // => 'default'
+     */
+    function result(object, path, defaultValue) {
+      path = castPath(path, object);
+
+      var index = -1,
+          length = path.length;
+
+      // Ensure the loop is entered when path is empty.
+      if (!length) {
+        length = 1;
+        object = undefined;
+      }
+      while (++index < length) {
+        var value = object == null ? undefined : object[toKey(path[index])];
+        if (value === undefined) {
+          index = length;
+          value = defaultValue;
+        }
+        object = isFunction(value) ? value.call(object) : value;
+      }
+      return object;
+    }
+
+    /**
+     * Sets the value at `path` of `object`. If a portion of `path` doesn't exist,
+     * it's created. Arrays are created for missing index properties while objects
+     * are created for all other missing properties. Use `_.setWith` to customize
+     * `path` creation.
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.7.0
+     * @category Object
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The path of the property to set.
+     * @param {*} value The value to set.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+     *
+     * _.set(object, 'a[0].b.c', 4);
+     * console.log(object.a[0].b.c);
+     * // => 4
+     *
+     * _.set(object, ['x', '0', 'y', 'z'], 5);
+     * console.log(object.x[0].y.z);
+     * // => 5
+     */
+    function set(object, path, value) {
+      return object == null ? object : baseSet(object, path, value);
+    }
+
+    /**
+     * This method is like `_.set` except that it accepts `customizer` which is
+     * invoked to produce the objects of `path`.  If `customizer` returns `undefined`
+     * path creation is handled by the method instead. The `customizer` is invoked
+     * with three arguments: (nsValue, key, nsObject).
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The path of the property to set.
+     * @param {*} value The value to set.
+     * @param {Function} [customizer] The function to customize assigned values.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var object = {};
+     *
+     * _.setWith(object, '[0][1]', 'a', Object);
+     * // => { '0': { '1': 'a' } }
+     */
+    function setWith(object, path, value, customizer) {
+      customizer = typeof customizer == 'function' ? customizer : undefined;
+      return object == null ? object : baseSet(object, path, value, customizer);
+    }
+
+    /**
+     * Creates an array of own enumerable string keyed-value pairs for `object`
+     * which can be consumed by `_.fromPairs`. If `object` is a map or set, its
+     * entries are returned.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @alias entries
+     * @category Object
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the key-value pairs.
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.toPairs(new Foo);
+     * // => [['a', 1], ['b', 2]] (iteration order is not guaranteed)
+     */
+    var toPairs = createToPairs(keys);
+
+    /**
+     * Creates an array of own and inherited enumerable string keyed-value pairs
+     * for `object` which can be consumed by `_.fromPairs`. If `object` is a map
+     * or set, its entries are returned.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @alias entriesIn
+     * @category Object
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the key-value pairs.
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.toPairsIn(new Foo);
+     * // => [['a', 1], ['b', 2], ['c', 3]] (iteration order is not guaranteed)
+     */
+    var toPairsIn = createToPairs(keysIn);
+
+    /**
+     * An alternative to `_.reduce`; this method transforms `object` to a new
+     * `accumulator` object which is the result of running each of its own
+     * enumerable string keyed properties thru `iteratee`, with each invocation
+     * potentially mutating the `accumulator` object. If `accumulator` is not
+     * provided, a new object with the same `[[Prototype]]` will be used. The
+     * iteratee is invoked with four arguments: (accumulator, value, key, object).
+     * Iteratee functions may exit iteration early by explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.3.0
+     * @category Object
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @param {*} [accumulator] The custom accumulator value.
+     * @returns {*} Returns the accumulated value.
+     * @example
+     *
+     * _.transform([2, 3, 4], function(result, n) {
+     *   result.push(n *= n);
+     *   return n % 2 == 0;
+     * }, []);
+     * // => [4, 9]
+     *
+     * _.transform({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+     *   (result[value] || (result[value] = [])).push(key);
+     * }, {});
+     * // => { '1': ['a', 'c'], '2': ['b'] }
+     */
+    function transform(object, iteratee, accumulator) {
+      var isArr = isArray(object),
+          isArrLike = isArr || isBuffer(object) || isTypedArray(object);
+
+      iteratee = getIteratee(iteratee, 4);
+      if (accumulator == null) {
+        var Ctor = object && object.constructor;
+        if (isArrLike) {
+          accumulator = isArr ? new Ctor : [];
+        }
+        else if (isObject(object)) {
+          accumulator = isFunction(Ctor) ? baseCreate(getPrototype(object)) : {};
+        }
+        else {
+          accumulator = {};
+        }
+      }
+      (isArrLike ? arrayEach : baseForOwn)(object, function(value, index, object) {
+        return iteratee(accumulator, value, index, object);
+      });
+      return accumulator;
+    }
+
+    /**
+     * Removes the property at `path` of `object`.
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Object
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The path of the property to unset.
+     * @returns {boolean} Returns `true` if the property is deleted, else `false`.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c': 7 } }] };
+     * _.unset(object, 'a[0].b.c');
+     * // => true
+     *
+     * console.log(object);
+     * // => { 'a': [{ 'b': {} }] };
+     *
+     * _.unset(object, ['a', '0', 'b', 'c']);
+     * // => true
+     *
+     * console.log(object);
+     * // => { 'a': [{ 'b': {} }] };
+     */
+    function unset(object, path) {
+      return object == null ? true : baseUnset(object, path);
+    }
+
+    /**
+     * This method is like `_.set` except that accepts `updater` to produce the
+     * value to set. Use `_.updateWith` to customize `path` creation. The `updater`
+     * is invoked with one argument: (value).
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.6.0
+     * @category Object
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The path of the property to set.
+     * @param {Function} updater The function to produce the updated value.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+     *
+     * _.update(object, 'a[0].b.c', function(n) { return n * n; });
+     * console.log(object.a[0].b.c);
+     * // => 9
+     *
+     * _.update(object, 'x[0].y.z', function(n) { return n ? n + 1 : 0; });
+     * console.log(object.x[0].y.z);
+     * // => 0
+     */
+    function update(object, path, updater) {
+      return object == null ? object : baseUpdate(object, path, castFunction(updater));
+    }
+
+    /**
+     * This method is like `_.update` except that it accepts `customizer` which is
+     * invoked to produce the objects of `path`.  If `customizer` returns `undefined`
+     * path creation is handled by the method instead. The `customizer` is invoked
+     * with three arguments: (nsValue, key, nsObject).
+     *
+     * **Note:** This method mutates `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.6.0
+     * @category Object
+     * @param {Object} object The object to modify.
+     * @param {Array|string} path The path of the property to set.
+     * @param {Function} updater The function to produce the updated value.
+     * @param {Function} [customizer] The function to customize assigned values.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var object = {};
+     *
+     * _.updateWith(object, '[0][1]', _.constant('a'), Object);
+     * // => { '0': { '1': 'a' } }
+     */
+    function updateWith(object, path, updater, customizer) {
+      customizer = typeof customizer == 'function' ? customizer : undefined;
+      return object == null ? object : baseUpdate(object, path, castFunction(updater), customizer);
+    }
+
+    /**
+     * Creates an array of the own enumerable string keyed property values of `object`.
+     *
+     * **Note:** Non-object values are coerced to objects.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Object
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property values.
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.values(new Foo);
+     * // => [1, 2] (iteration order is not guaranteed)
+     *
+     * _.values('hi');
+     * // => ['h', 'i']
+     */
+    function values(object) {
+      return object == null ? [] : baseValues(object, keys(object));
+    }
+
+    /**
+     * Creates an array of the own and inherited enumerable string keyed property
+     * values of `object`.
+     *
+     * **Note:** Non-object values are coerced to objects.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Object
+     * @param {Object} object The object to query.
+     * @returns {Array} Returns the array of property values.
+     * @example
+     *
+     * function Foo() {
+     *   this.a = 1;
+     *   this.b = 2;
+     * }
+     *
+     * Foo.prototype.c = 3;
+     *
+     * _.valuesIn(new Foo);
+     * // => [1, 2, 3] (iteration order is not guaranteed)
+     */
+    function valuesIn(object) {
+      return object == null ? [] : baseValues(object, keysIn(object));
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Clamps `number` within the inclusive `lower` and `upper` bounds.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Number
+     * @param {number} number The number to clamp.
+     * @param {number} [lower] The lower bound.
+     * @param {number} upper The upper bound.
+     * @returns {number} Returns the clamped number.
+     * @example
+     *
+     * _.clamp(-10, -5, 5);
+     * // => -5
+     *
+     * _.clamp(10, -5, 5);
+     * // => 5
+     */
+    function clamp(number, lower, upper) {
+      if (upper === undefined) {
+        upper = lower;
+        lower = undefined;
+      }
+      if (upper !== undefined) {
+        upper = toNumber(upper);
+        upper = upper === upper ? upper : 0;
+      }
+      if (lower !== undefined) {
+        lower = toNumber(lower);
+        lower = lower === lower ? lower : 0;
+      }
+      return baseClamp(toNumber(number), lower, upper);
+    }
+
+    /**
+     * Checks if `n` is between `start` and up to, but not including, `end`. If
+     * `end` is not specified, it's set to `start` with `start` then set to `0`.
+     * If `start` is greater than `end` the params are swapped to support
+     * negative ranges.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.3.0
+     * @category Number
+     * @param {number} number The number to check.
+     * @param {number} [start=0] The start of the range.
+     * @param {number} end The end of the range.
+     * @returns {boolean} Returns `true` if `number` is in the range, else `false`.
+     * @see _.range, _.rangeRight
+     * @example
+     *
+     * _.inRange(3, 2, 4);
+     * // => true
+     *
+     * _.inRange(4, 8);
+     * // => true
+     *
+     * _.inRange(4, 2);
+     * // => false
+     *
+     * _.inRange(2, 2);
+     * // => false
+     *
+     * _.inRange(1.2, 2);
+     * // => true
+     *
+     * _.inRange(5.2, 4);
+     * // => false
+     *
+     * _.inRange(-3, -2, -6);
+     * // => true
+     */
+    function inRange(number, start, end) {
+      start = toFinite(start);
+      if (end === undefined) {
+        end = start;
+        start = 0;
+      } else {
+        end = toFinite(end);
+      }
+      number = toNumber(number);
+      return baseInRange(number, start, end);
+    }
+
+    /**
+     * Produces a random number between the inclusive `lower` and `upper` bounds.
+     * If only one argument is provided a number between `0` and the given number
+     * is returned. If `floating` is `true`, or either `lower` or `upper` are
+     * floats, a floating-point number is returned instead of an integer.
+     *
+     * **Note:** JavaScript follows the IEEE-754 standard for resolving
+     * floating-point values which can produce unexpected results.
+     *
+     * @static
+     * @memberOf _
+     * @since 0.7.0
+     * @category Number
+     * @param {number} [lower=0] The lower bound.
+     * @param {number} [upper=1] The upper bound.
+     * @param {boolean} [floating] Specify returning a floating-point number.
+     * @returns {number} Returns the random number.
+     * @example
+     *
+     * _.random(0, 5);
+     * // => an integer between 0 and 5
+     *
+     * _.random(5);
+     * // => also an integer between 0 and 5
+     *
+     * _.random(5, true);
+     * // => a floating-point number between 0 and 5
+     *
+     * _.random(1.2, 5.2);
+     * // => a floating-point number between 1.2 and 5.2
+     */
+    function random(lower, upper, floating) {
+      if (floating && typeof floating != 'boolean' && isIterateeCall(lower, upper, floating)) {
+        upper = floating = undefined;
+      }
+      if (floating === undefined) {
+        if (typeof upper == 'boolean') {
+          floating = upper;
+          upper = undefined;
+        }
+        else if (typeof lower == 'boolean') {
+          floating = lower;
+          lower = undefined;
+        }
+      }
+      if (lower === undefined && upper === undefined) {
+        lower = 0;
+        upper = 1;
+      }
+      else {
+        lower = toFinite(lower);
+        if (upper === undefined) {
+          upper = lower;
+          lower = 0;
+        } else {
+          upper = toFinite(upper);
+        }
+      }
+      if (lower > upper) {
+        var temp = lower;
+        lower = upper;
+        upper = temp;
+      }
+      if (floating || lower % 1 || upper % 1) {
+        var rand = nativeRandom();
+        return nativeMin(lower + (rand * (upper - lower + freeParseFloat('1e-' + ((rand + '').length - 1)))), upper);
+      }
+      return baseRandom(lower, upper);
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Converts `string` to [camel case](https://en.wikipedia.org/wiki/CamelCase).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the camel cased string.
+     * @example
+     *
+     * _.camelCase('Foo Bar');
+     * // => 'fooBar'
+     *
+     * _.camelCase('--foo-bar--');
+     * // => 'fooBar'
+     *
+     * _.camelCase('__FOO_BAR__');
+     * // => 'fooBar'
+     */
+    var camelCase = createCompounder(function(result, word, index) {
+      word = word.toLowerCase();
+      return result + (index ? capitalize(word) : word);
+    });
+
+    /**
+     * Converts the first character of `string` to upper case and the remaining
+     * to lower case.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to capitalize.
+     * @returns {string} Returns the capitalized string.
+     * @example
+     *
+     * _.capitalize('FRED');
+     * // => 'Fred'
+     */
+    function capitalize(string) {
+      return upperFirst(toString(string).toLowerCase());
+    }
+
+    /**
+     * Deburrs `string` by converting
+     * [Latin-1 Supplement](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)#Character_table)
+     * and [Latin Extended-A](https://en.wikipedia.org/wiki/Latin_Extended-A)
+     * letters to basic Latin letters and removing
+     * [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to deburr.
+     * @returns {string} Returns the deburred string.
+     * @example
+     *
+     * _.deburr('déjà vu');
+     * // => 'deja vu'
+     */
+    function deburr(string) {
+      string = toString(string);
+      return string && string.replace(reLatin, deburrLetter).replace(reComboMark, '');
+    }
+
+    /**
+     * Checks if `string` ends with the given target string.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to inspect.
+     * @param {string} [target] The string to search for.
+     * @param {number} [position=string.length] The position to search up to.
+     * @returns {boolean} Returns `true` if `string` ends with `target`,
+     *  else `false`.
+     * @example
+     *
+     * _.endsWith('abc', 'c');
+     * // => true
+     *
+     * _.endsWith('abc', 'b');
+     * // => false
+     *
+     * _.endsWith('abc', 'b', 2);
+     * // => true
+     */
+    function endsWith(string, target, position) {
+      string = toString(string);
+      target = baseToString(target);
+
+      var length = string.length;
+      position = position === undefined
+        ? length
+        : baseClamp(toInteger(position), 0, length);
+
+      var end = position;
+      position -= target.length;
+      return position >= 0 && string.slice(position, end) == target;
+    }
+
+    /**
+     * Converts the characters "&", "<", ">", '"', and "'" in `string` to their
+     * corresponding HTML entities.
+     *
+     * **Note:** No other characters are escaped. To escape additional
+     * characters use a third-party library like [_he_](https://mths.be/he).
+     *
+     * Though the ">" character is escaped for symmetry, characters like
+     * ">" and "/" don't need escaping in HTML and have no special meaning
+     * unless they're part of a tag or unquoted attribute value. See
+     * [Mathias Bynens's article](https://mathiasbynens.be/notes/ambiguous-ampersands)
+     * (under "semi-related fun fact") for more details.
+     *
+     * When working with HTML you should always
+     * [quote attribute values](http://wonko.com/post/html-escaping) to reduce
+     * XSS vectors.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category String
+     * @param {string} [string=''] The string to escape.
+     * @returns {string} Returns the escaped string.
+     * @example
+     *
+     * _.escape('fred, barney, & pebbles');
+     * // => 'fred, barney, &amp; pebbles'
+     */
+    function escape(string) {
+      string = toString(string);
+      return (string && reHasUnescapedHtml.test(string))
+        ? string.replace(reUnescapedHtml, escapeHtmlChar)
+        : string;
+    }
+
+    /**
+     * Escapes the `RegExp` special characters "^", "$", "\", ".", "*", "+",
+     * "?", "(", ")", "[", "]", "{", "}", and "|" in `string`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to escape.
+     * @returns {string} Returns the escaped string.
+     * @example
+     *
+     * _.escapeRegExp('[lodash](https://lodash.com/)');
+     * // => '\[lodash\]\(https://lodash\.com/\)'
+     */
+    function escapeRegExp(string) {
+      string = toString(string);
+      return (string && reHasRegExpChar.test(string))
+        ? string.replace(reRegExpChar, '\\$&')
+        : string;
+    }
+
+    /**
+     * Converts `string` to
+     * [kebab case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the kebab cased string.
+     * @example
+     *
+     * _.kebabCase('Foo Bar');
+     * // => 'foo-bar'
+     *
+     * _.kebabCase('fooBar');
+     * // => 'foo-bar'
+     *
+     * _.kebabCase('__FOO_BAR__');
+     * // => 'foo-bar'
+     */
+    var kebabCase = createCompounder(function(result, word, index) {
+      return result + (index ? '-' : '') + word.toLowerCase();
+    });
+
+    /**
+     * Converts `string`, as space separated words, to lower case.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the lower cased string.
+     * @example
+     *
+     * _.lowerCase('--Foo-Bar--');
+     * // => 'foo bar'
+     *
+     * _.lowerCase('fooBar');
+     * // => 'foo bar'
+     *
+     * _.lowerCase('__FOO_BAR__');
+     * // => 'foo bar'
+     */
+    var lowerCase = createCompounder(function(result, word, index) {
+      return result + (index ? ' ' : '') + word.toLowerCase();
+    });
+
+    /**
+     * Converts the first character of `string` to lower case.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the converted string.
+     * @example
+     *
+     * _.lowerFirst('Fred');
+     * // => 'fred'
+     *
+     * _.lowerFirst('FRED');
+     * // => 'fRED'
+     */
+    var lowerFirst = createCaseFirst('toLowerCase');
+
+    /**
+     * Pads `string` on the left and right sides if it's shorter than `length`.
+     * Padding characters are truncated if they can't be evenly divided by `length`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to pad.
+     * @param {number} [length=0] The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the padded string.
+     * @example
+     *
+     * _.pad('abc', 8);
+     * // => '  abc   '
+     *
+     * _.pad('abc', 8, '_-');
+     * // => '_-abc_-_'
+     *
+     * _.pad('abc', 3);
+     * // => 'abc'
+     */
+    function pad(string, length, chars) {
+      string = toString(string);
+      length = toInteger(length);
+
+      var strLength = length ? stringSize(string) : 0;
+      if (!length || strLength >= length) {
+        return string;
+      }
+      var mid = (length - strLength) / 2;
+      return (
+        createPadding(nativeFloor(mid), chars) +
+        string +
+        createPadding(nativeCeil(mid), chars)
+      );
+    }
+
+    /**
+     * Pads `string` on the right side if it's shorter than `length`. Padding
+     * characters are truncated if they exceed `length`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to pad.
+     * @param {number} [length=0] The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the padded string.
+     * @example
+     *
+     * _.padEnd('abc', 6);
+     * // => 'abc   '
+     *
+     * _.padEnd('abc', 6, '_-');
+     * // => 'abc_-_'
+     *
+     * _.padEnd('abc', 3);
+     * // => 'abc'
+     */
+    function padEnd(string, length, chars) {
+      string = toString(string);
+      length = toInteger(length);
+
+      var strLength = length ? stringSize(string) : 0;
+      return (length && strLength < length)
+        ? (string + createPadding(length - strLength, chars))
+        : string;
+    }
+
+    /**
+     * Pads `string` on the left side if it's shorter than `length`. Padding
+     * characters are truncated if they exceed `length`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to pad.
+     * @param {number} [length=0] The padding length.
+     * @param {string} [chars=' '] The string used as padding.
+     * @returns {string} Returns the padded string.
+     * @example
+     *
+     * _.padStart('abc', 6);
+     * // => '   abc'
+     *
+     * _.padStart('abc', 6, '_-');
+     * // => '_-_abc'
+     *
+     * _.padStart('abc', 3);
+     * // => 'abc'
+     */
+    function padStart(string, length, chars) {
+      string = toString(string);
+      length = toInteger(length);
+
+      var strLength = length ? stringSize(string) : 0;
+      return (length && strLength < length)
+        ? (createPadding(length - strLength, chars) + string)
+        : string;
+    }
+
+    /**
+     * Converts `string` to an integer of the specified radix. If `radix` is
+     * `undefined` or `0`, a `radix` of `10` is used unless `value` is a
+     * hexadecimal, in which case a `radix` of `16` is used.
+     *
+     * **Note:** This method aligns with the
+     * [ES5 implementation](https://es5.github.io/#x15.1.2.2) of `parseInt`.
+     *
+     * @static
+     * @memberOf _
+     * @since 1.1.0
+     * @category String
+     * @param {string} string The string to convert.
+     * @param {number} [radix=10] The radix to interpret `value` by.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {number} Returns the converted integer.
+     * @example
+     *
+     * _.parseInt('08');
+     * // => 8
+     *
+     * _.map(['6', '08', '10'], _.parseInt);
+     * // => [6, 8, 10]
+     */
+    function parseInt(string, radix, guard) {
+      if (guard || radix == null) {
+        radix = 0;
+      } else if (radix) {
+        radix = +radix;
+      }
+      return nativeParseInt(toString(string).replace(reTrimStart, ''), radix || 0);
+    }
+
+    /**
+     * Repeats the given string `n` times.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to repeat.
+     * @param {number} [n=1] The number of times to repeat the string.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {string} Returns the repeated string.
+     * @example
+     *
+     * _.repeat('*', 3);
+     * // => '***'
+     *
+     * _.repeat('abc', 2);
+     * // => 'abcabc'
+     *
+     * _.repeat('abc', 0);
+     * // => ''
+     */
+    function repeat(string, n, guard) {
+      if ((guard ? isIterateeCall(string, n, guard) : n === undefined)) {
+        n = 1;
+      } else {
+        n = toInteger(n);
+      }
+      return baseRepeat(toString(string), n);
+    }
+
+    /**
+     * Replaces matches for `pattern` in `string` with `replacement`.
+     *
+     * **Note:** This method is based on
+     * [`String#replace`](https://mdn.io/String/replace).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to modify.
+     * @param {RegExp|string} pattern The pattern to replace.
+     * @param {Function|string} replacement The match replacement.
+     * @returns {string} Returns the modified string.
+     * @example
+     *
+     * _.replace('Hi Fred', 'Fred', 'Barney');
+     * // => 'Hi Barney'
+     */
+    function replace() {
+      var args = arguments,
+          string = toString(args[0]);
+
+      return args.length < 3 ? string : string.replace(args[1], args[2]);
+    }
+
+    /**
+     * Converts `string` to
+     * [snake case](https://en.wikipedia.org/wiki/Snake_case).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the snake cased string.
+     * @example
+     *
+     * _.snakeCase('Foo Bar');
+     * // => 'foo_bar'
+     *
+     * _.snakeCase('fooBar');
+     * // => 'foo_bar'
+     *
+     * _.snakeCase('--FOO-BAR--');
+     * // => 'foo_bar'
+     */
+    var snakeCase = createCompounder(function(result, word, index) {
+      return result + (index ? '_' : '') + word.toLowerCase();
+    });
+
+    /**
+     * Splits `string` by `separator`.
+     *
+     * **Note:** This method is based on
+     * [`String#split`](https://mdn.io/String/split).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to split.
+     * @param {RegExp|string} separator The separator pattern to split by.
+     * @param {number} [limit] The length to truncate results to.
+     * @returns {Array} Returns the string segments.
+     * @example
+     *
+     * _.split('a-b-c', '-', 2);
+     * // => ['a', 'b']
+     */
+    function split(string, separator, limit) {
+      if (limit && typeof limit != 'number' && isIterateeCall(string, separator, limit)) {
+        separator = limit = undefined;
+      }
+      limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0;
+      if (!limit) {
+        return [];
+      }
+      string = toString(string);
+      if (string && (
+            typeof separator == 'string' ||
+            (separator != null && !isRegExp(separator))
+          )) {
+        separator = baseToString(separator);
+        if (!separator && hasUnicode(string)) {
+          return castSlice(stringToArray(string), 0, limit);
+        }
+      }
+      return string.split(separator, limit);
+    }
+
+    /**
+     * Converts `string` to
+     * [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+     *
+     * @static
+     * @memberOf _
+     * @since 3.1.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the start cased string.
+     * @example
+     *
+     * _.startCase('--foo-bar--');
+     * // => 'Foo Bar'
+     *
+     * _.startCase('fooBar');
+     * // => 'Foo Bar'
+     *
+     * _.startCase('__FOO_BAR__');
+     * // => 'FOO BAR'
+     */
+    var startCase = createCompounder(function(result, word, index) {
+      return result + (index ? ' ' : '') + upperFirst(word);
+    });
+
+    /**
+     * Checks if `string` starts with the given target string.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to inspect.
+     * @param {string} [target] The string to search for.
+     * @param {number} [position=0] The position to search from.
+     * @returns {boolean} Returns `true` if `string` starts with `target`,
+     *  else `false`.
+     * @example
+     *
+     * _.startsWith('abc', 'a');
+     * // => true
+     *
+     * _.startsWith('abc', 'b');
+     * // => false
+     *
+     * _.startsWith('abc', 'b', 1);
+     * // => true
+     */
+    function startsWith(string, target, position) {
+      string = toString(string);
+      position = position == null
+        ? 0
+        : baseClamp(toInteger(position), 0, string.length);
+
+      target = baseToString(target);
+      return string.slice(position, position + target.length) == target;
+    }
+
+    /**
+     * Creates a compiled template function that can interpolate data properties
+     * in "interpolate" delimiters, HTML-escape interpolated data properties in
+     * "escape" delimiters, and execute JavaScript in "evaluate" delimiters. Data
+     * properties may be accessed as free variables in the template. If a setting
+     * object is given, it takes precedence over `_.templateSettings` values.
+     *
+     * **Note:** In the development build `_.template` utilizes
+     * [sourceURLs](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl)
+     * for easier debugging.
+     *
+     * For more information on precompiling templates see
+     * [lodash's custom builds documentation](https://lodash.com/custom-builds).
+     *
+     * For more information on Chrome extension sandboxes see
+     * [Chrome's extensions documentation](https://developer.chrome.com/extensions/sandboxingEval).
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category String
+     * @param {string} [string=''] The template string.
+     * @param {Object} [options={}] The options object.
+     * @param {RegExp} [options.escape=_.templateSettings.escape]
+     *  The HTML "escape" delimiter.
+     * @param {RegExp} [options.evaluate=_.templateSettings.evaluate]
+     *  The "evaluate" delimiter.
+     * @param {Object} [options.imports=_.templateSettings.imports]
+     *  An object to import into the template as free variables.
+     * @param {RegExp} [options.interpolate=_.templateSettings.interpolate]
+     *  The "interpolate" delimiter.
+     * @param {string} [options.sourceURL='lodash.templateSources[n]']
+     *  The sourceURL of the compiled template.
+     * @param {string} [options.variable='obj']
+     *  The data object variable name.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Function} Returns the compiled template function.
+     * @example
+     *
+     * // Use the "interpolate" delimiter to create a compiled template.
+     * var compiled = _.template('hello <%= user %>!');
+     * compiled({ 'user': 'fred' });
+     * // => 'hello fred!'
+     *
+     * // Use the HTML "escape" delimiter to escape data property values.
+     * var compiled = _.template('<b><%- value %></b>');
+     * compiled({ 'value': '<script>' });
+     * // => '<b>&lt;script&gt;</b>'
+     *
+     * // Use the "evaluate" delimiter to execute JavaScript and generate HTML.
+     * var compiled = _.template('<% _.forEach(users, function(user) { %><li><%- user %></li><% }); %>');
+     * compiled({ 'users': ['fred', 'barney'] });
+     * // => '<li>fred</li><li>barney</li>'
+     *
+     * // Use the internal `print` function in "evaluate" delimiters.
+     * var compiled = _.template('<% print("hello " + user); %>!');
+     * compiled({ 'user': 'barney' });
+     * // => 'hello barney!'
+     *
+     * // Use the ES template literal delimiter as an "interpolate" delimiter.
+     * // Disable support by replacing the "interpolate" delimiter.
+     * var compiled = _.template('hello ${ user }!');
+     * compiled({ 'user': 'pebbles' });
+     * // => 'hello pebbles!'
+     *
+     * // Use backslashes to treat delimiters as plain text.
+     * var compiled = _.template('<%= "\\<%- value %\\>" %>');
+     * compiled({ 'value': 'ignored' });
+     * // => '<%- value %>'
+     *
+     * // Use the `imports` option to import `jQuery` as `jq`.
+     * var text = '<% jq.each(users, function(user) { %><li><%- user %></li><% }); %>';
+     * var compiled = _.template(text, { 'imports': { 'jq': jQuery } });
+     * compiled({ 'users': ['fred', 'barney'] });
+     * // => '<li>fred</li><li>barney</li>'
+     *
+     * // Use the `sourceURL` option to specify a custom sourceURL for the template.
+     * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
+     * compiled(data);
+     * // => Find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector.
+     *
+     * // Use the `variable` option to ensure a with-statement isn't used in the compiled template.
+     * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
+     * compiled.source;
+     * // => function(data) {
+     * //   var __t, __p = '';
+     * //   __p += 'hi ' + ((__t = ( data.user )) == null ? '' : __t) + '!';
+     * //   return __p;
+     * // }
+     *
+     * // Use custom template delimiters.
+     * _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+     * var compiled = _.template('hello {{ user }}!');
+     * compiled({ 'user': 'mustache' });
+     * // => 'hello mustache!'
+     *
+     * // Use the `source` property to inline compiled templates for meaningful
+     * // line numbers in error messages and stack traces.
+     * fs.writeFileSync(path.join(process.cwd(), 'jst.js'), '\
+     *   var JST = {\
+     *     "main": ' + _.template(mainText).source + '\
+     *   };\
+     * ');
+     */
+    function template(string, options, guard) {
+      // Based on John Resig's `tmpl` implementation
+      // (http://ejohn.org/blog/javascript-micro-templating/)
+      // and Laura Doktorova's doT.js (https://github.com/olado/doT).
+      var settings = lodash.templateSettings;
+
+      if (guard && isIterateeCall(string, options, guard)) {
+        options = undefined;
+      }
+      string = toString(string);
+      options = assignInWith({}, options, settings, customDefaultsAssignIn);
+
+      var imports = assignInWith({}, options.imports, settings.imports, customDefaultsAssignIn),
+          importsKeys = keys(imports),
+          importsValues = baseValues(imports, importsKeys);
+
+      var isEscaping,
+          isEvaluating,
+          index = 0,
+          interpolate = options.interpolate || reNoMatch,
+          source = "__p += '";
+
+      // Compile the regexp to match each delimiter.
+      var reDelimiters = RegExp(
+        (options.escape || reNoMatch).source + '|' +
+        interpolate.source + '|' +
+        (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
+        (options.evaluate || reNoMatch).source + '|$'
+      , 'g');
+
+      // Use a sourceURL for easier debugging.
+      var sourceURL = '//# sourceURL=' +
+        ('sourceURL' in options
+          ? options.sourceURL
+          : ('lodash.templateSources[' + (++templateCounter) + ']')
+        ) + '\n';
+
+      string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+        interpolateValue || (interpolateValue = esTemplateValue);
+
+        // Escape characters that can't be included in string literals.
+        source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+
+        // Replace delimiters with snippets.
+        if (escapeValue) {
+          isEscaping = true;
+          source += "' +\n__e(" + escapeValue + ") +\n'";
+        }
+        if (evaluateValue) {
+          isEvaluating = true;
+          source += "';\n" + evaluateValue + ";\n__p += '";
+        }
+        if (interpolateValue) {
+          source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+        }
+        index = offset + match.length;
+
+        // The JS engine embedded in Adobe products needs `match` returned in
+        // order to produce the correct `offset` value.
+        return match;
+      });
+
+      source += "';\n";
+
+      // If `variable` is not specified wrap a with-statement around the generated
+      // code to add the data object to the top of the scope chain.
+      var variable = options.variable;
+      if (!variable) {
+        source = 'with (obj) {\n' + source + '\n}\n';
+      }
+      // Cleanup code by stripping empty strings.
+      source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
+        .replace(reEmptyStringMiddle, '$1')
+        .replace(reEmptyStringTrailing, '$1;');
+
+      // Frame code as the function body.
+      source = 'function(' + (variable || 'obj') + ') {\n' +
+        (variable
+          ? ''
+          : 'obj || (obj = {});\n'
+        ) +
+        "var __t, __p = ''" +
+        (isEscaping
+           ? ', __e = _.escape'
+           : ''
+        ) +
+        (isEvaluating
+          ? ', __j = Array.prototype.join;\n' +
+            "function print() { __p += __j.call(arguments, '') }\n"
+          : ';\n'
+        ) +
+        source +
+        'return __p\n}';
+
+      var result = attempt(function() {
+        return Function(importsKeys, sourceURL + 'return ' + source)
+          .apply(undefined, importsValues);
+      });
+
+      // Provide the compiled function's source by its `toString` method or
+      // the `source` property as a convenience for inlining compiled templates.
+      result.source = source;
+      if (isError(result)) {
+        throw result;
+      }
+      return result;
+    }
+
+    /**
+     * Converts `string`, as a whole, to lower case just like
+     * [String#toLowerCase](https://mdn.io/toLowerCase).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the lower cased string.
+     * @example
+     *
+     * _.toLower('--Foo-Bar--');
+     * // => '--foo-bar--'
+     *
+     * _.toLower('fooBar');
+     * // => 'foobar'
+     *
+     * _.toLower('__FOO_BAR__');
+     * // => '__foo_bar__'
+     */
+    function toLower(value) {
+      return toString(value).toLowerCase();
+    }
+
+    /**
+     * Converts `string`, as a whole, to upper case just like
+     * [String#toUpperCase](https://mdn.io/toUpperCase).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the upper cased string.
+     * @example
+     *
+     * _.toUpper('--foo-bar--');
+     * // => '--FOO-BAR--'
+     *
+     * _.toUpper('fooBar');
+     * // => 'FOOBAR'
+     *
+     * _.toUpper('__foo_bar__');
+     * // => '__FOO_BAR__'
+     */
+    function toUpper(value) {
+      return toString(value).toUpperCase();
+    }
+
+    /**
+     * Removes leading and trailing whitespace or specified characters from `string`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to trim.
+     * @param {string} [chars=whitespace] The characters to trim.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {string} Returns the trimmed string.
+     * @example
+     *
+     * _.trim('  abc  ');
+     * // => 'abc'
+     *
+     * _.trim('-_-abc-_-', '_-');
+     * // => 'abc'
+     *
+     * _.map(['  foo  ', '  bar  '], _.trim);
+     * // => ['foo', 'bar']
+     */
+    function trim(string, chars, guard) {
+      string = toString(string);
+      if (string && (guard || chars === undefined)) {
+        return string.replace(reTrim, '');
+      }
+      if (!string || !(chars = baseToString(chars))) {
+        return string;
+      }
+      var strSymbols = stringToArray(string),
+          chrSymbols = stringToArray(chars),
+          start = charsStartIndex(strSymbols, chrSymbols),
+          end = charsEndIndex(strSymbols, chrSymbols) + 1;
+
+      return castSlice(strSymbols, start, end).join('');
+    }
+
+    /**
+     * Removes trailing whitespace or specified characters from `string`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to trim.
+     * @param {string} [chars=whitespace] The characters to trim.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {string} Returns the trimmed string.
+     * @example
+     *
+     * _.trimEnd('  abc  ');
+     * // => '  abc'
+     *
+     * _.trimEnd('-_-abc-_-', '_-');
+     * // => '-_-abc'
+     */
+    function trimEnd(string, chars, guard) {
+      string = toString(string);
+      if (string && (guard || chars === undefined)) {
+        return string.replace(reTrimEnd, '');
+      }
+      if (!string || !(chars = baseToString(chars))) {
+        return string;
+      }
+      var strSymbols = stringToArray(string),
+          end = charsEndIndex(strSymbols, stringToArray(chars)) + 1;
+
+      return castSlice(strSymbols, 0, end).join('');
+    }
+
+    /**
+     * Removes leading whitespace or specified characters from `string`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to trim.
+     * @param {string} [chars=whitespace] The characters to trim.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {string} Returns the trimmed string.
+     * @example
+     *
+     * _.trimStart('  abc  ');
+     * // => 'abc  '
+     *
+     * _.trimStart('-_-abc-_-', '_-');
+     * // => 'abc-_-'
+     */
+    function trimStart(string, chars, guard) {
+      string = toString(string);
+      if (string && (guard || chars === undefined)) {
+        return string.replace(reTrimStart, '');
+      }
+      if (!string || !(chars = baseToString(chars))) {
+        return string;
+      }
+      var strSymbols = stringToArray(string),
+          start = charsStartIndex(strSymbols, stringToArray(chars));
+
+      return castSlice(strSymbols, start).join('');
+    }
+
+    /**
+     * Truncates `string` if it's longer than the given maximum string length.
+     * The last characters of the truncated string are replaced with the omission
+     * string which defaults to "...".
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to truncate.
+     * @param {Object} [options={}] The options object.
+     * @param {number} [options.length=30] The maximum string length.
+     * @param {string} [options.omission='...'] The string to indicate text is omitted.
+     * @param {RegExp|string} [options.separator] The separator pattern to truncate to.
+     * @returns {string} Returns the truncated string.
+     * @example
+     *
+     * _.truncate('hi-diddly-ho there, neighborino');
+     * // => 'hi-diddly-ho there, neighbo...'
+     *
+     * _.truncate('hi-diddly-ho there, neighborino', {
+     *   'length': 24,
+     *   'separator': ' '
+     * });
+     * // => 'hi-diddly-ho there,...'
+     *
+     * _.truncate('hi-diddly-ho there, neighborino', {
+     *   'length': 24,
+     *   'separator': /,? +/
+     * });
+     * // => 'hi-diddly-ho there...'
+     *
+     * _.truncate('hi-diddly-ho there, neighborino', {
+     *   'omission': ' [...]'
+     * });
+     * // => 'hi-diddly-ho there, neig [...]'
+     */
+    function truncate(string, options) {
+      var length = DEFAULT_TRUNC_LENGTH,
+          omission = DEFAULT_TRUNC_OMISSION;
+
+      if (isObject(options)) {
+        var separator = 'separator' in options ? options.separator : separator;
+        length = 'length' in options ? toInteger(options.length) : length;
+        omission = 'omission' in options ? baseToString(options.omission) : omission;
+      }
+      string = toString(string);
+
+      var strLength = string.length;
+      if (hasUnicode(string)) {
+        var strSymbols = stringToArray(string);
+        strLength = strSymbols.length;
+      }
+      if (length >= strLength) {
+        return string;
+      }
+      var end = length - stringSize(omission);
+      if (end < 1) {
+        return omission;
+      }
+      var result = strSymbols
+        ? castSlice(strSymbols, 0, end).join('')
+        : string.slice(0, end);
+
+      if (separator === undefined) {
+        return result + omission;
+      }
+      if (strSymbols) {
+        end += (result.length - end);
+      }
+      if (isRegExp(separator)) {
+        if (string.slice(end).search(separator)) {
+          var match,
+              substring = result;
+
+          if (!separator.global) {
+            separator = RegExp(separator.source, toString(reFlags.exec(separator)) + 'g');
+          }
+          separator.lastIndex = 0;
+          while ((match = separator.exec(substring))) {
+            var newEnd = match.index;
+          }
+          result = result.slice(0, newEnd === undefined ? end : newEnd);
+        }
+      } else if (string.indexOf(baseToString(separator), end) != end) {
+        var index = result.lastIndexOf(separator);
+        if (index > -1) {
+          result = result.slice(0, index);
+        }
+      }
+      return result + omission;
+    }
+
+    /**
+     * The inverse of `_.escape`; this method converts the HTML entities
+     * `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` in `string` to
+     * their corresponding characters.
+     *
+     * **Note:** No other HTML entities are unescaped. To unescape additional
+     * HTML entities use a third-party library like [_he_](https://mths.be/he).
+     *
+     * @static
+     * @memberOf _
+     * @since 0.6.0
+     * @category String
+     * @param {string} [string=''] The string to unescape.
+     * @returns {string} Returns the unescaped string.
+     * @example
+     *
+     * _.unescape('fred, barney, &amp; pebbles');
+     * // => 'fred, barney, & pebbles'
+     */
+    function unescape(string) {
+      string = toString(string);
+      return (string && reHasEscapedHtml.test(string))
+        ? string.replace(reEscapedHtml, unescapeHtmlChar)
+        : string;
+    }
+
+    /**
+     * Converts `string`, as space separated words, to upper case.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the upper cased string.
+     * @example
+     *
+     * _.upperCase('--foo-bar');
+     * // => 'FOO BAR'
+     *
+     * _.upperCase('fooBar');
+     * // => 'FOO BAR'
+     *
+     * _.upperCase('__foo_bar__');
+     * // => 'FOO BAR'
+     */
+    var upperCase = createCompounder(function(result, word, index) {
+      return result + (index ? ' ' : '') + word.toUpperCase();
+    });
+
+    /**
+     * Converts the first character of `string` to upper case.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category String
+     * @param {string} [string=''] The string to convert.
+     * @returns {string} Returns the converted string.
+     * @example
+     *
+     * _.upperFirst('fred');
+     * // => 'Fred'
+     *
+     * _.upperFirst('FRED');
+     * // => 'FRED'
+     */
+    var upperFirst = createCaseFirst('toUpperCase');
+
+    /**
+     * Splits `string` into an array of its words.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category String
+     * @param {string} [string=''] The string to inspect.
+     * @param {RegExp|string} [pattern] The pattern to match words.
+     * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+     * @returns {Array} Returns the words of `string`.
+     * @example
+     *
+     * _.words('fred, barney, & pebbles');
+     * // => ['fred', 'barney', 'pebbles']
+     *
+     * _.words('fred, barney, & pebbles', /[^, ]+/g);
+     * // => ['fred', 'barney', '&', 'pebbles']
+     */
+    function words(string, pattern, guard) {
+      string = toString(string);
+      pattern = guard ? undefined : pattern;
+
+      if (pattern === undefined) {
+        return hasUnicodeWord(string) ? unicodeWords(string) : asciiWords(string);
+      }
+      return string.match(pattern) || [];
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Attempts to invoke `func`, returning either the result or the caught error
+     * object. Any additional arguments are provided to `func` when it's invoked.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Util
+     * @param {Function} func The function to attempt.
+     * @param {...*} [args] The arguments to invoke `func` with.
+     * @returns {*} Returns the `func` result or error object.
+     * @example
+     *
+     * // Avoid throwing errors for invalid selectors.
+     * var elements = _.attempt(function(selector) {
+     *   return document.querySelectorAll(selector);
+     * }, '>_>');
+     *
+     * if (_.isError(elements)) {
+     *   elements = [];
+     * }
+     */
+    var attempt = baseRest(function(func, args) {
+      try {
+        return apply(func, undefined, args);
+      } catch (e) {
+        return isError(e) ? e : new Error(e);
+      }
+    });
+
+    /**
+     * Binds methods of an object to the object itself, overwriting the existing
+     * method.
+     *
+     * **Note:** This method doesn't set the "length" property of bound functions.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Util
+     * @param {Object} object The object to bind and assign the bound methods to.
+     * @param {...(string|string[])} methodNames The object method names to bind.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var view = {
+     *   'label': 'docs',
+     *   'click': function() {
+     *     console.log('clicked ' + this.label);
+     *   }
+     * };
+     *
+     * _.bindAll(view, ['click']);
+     * jQuery(element).on('click', view.click);
+     * // => Logs 'clicked docs' when clicked.
+     */
+    var bindAll = flatRest(function(object, methodNames) {
+      arrayEach(methodNames, function(key) {
+        key = toKey(key);
+        baseAssignValue(object, key, bind(object[key], object));
+      });
+      return object;
+    });
+
+    /**
+     * Creates a function that iterates over `pairs` and invokes the corresponding
+     * function of the first predicate to return truthy. The predicate-function
+     * pairs are invoked with the `this` binding and arguments of the created
+     * function.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {Array} pairs The predicate-function pairs.
+     * @returns {Function} Returns the new composite function.
+     * @example
+     *
+     * var func = _.cond([
+     *   [_.matches({ 'a': 1 }),           _.constant('matches A')],
+     *   [_.conforms({ 'b': _.isNumber }), _.constant('matches B')],
+     *   [_.stubTrue,                      _.constant('no match')]
+     * ]);
+     *
+     * func({ 'a': 1, 'b': 2 });
+     * // => 'matches A'
+     *
+     * func({ 'a': 0, 'b': 1 });
+     * // => 'matches B'
+     *
+     * func({ 'a': '1', 'b': '2' });
+     * // => 'no match'
+     */
+    function cond(pairs) {
+      var length = pairs == null ? 0 : pairs.length,
+          toIteratee = getIteratee();
+
+      pairs = !length ? [] : arrayMap(pairs, function(pair) {
+        if (typeof pair[1] != 'function') {
+          throw new TypeError(FUNC_ERROR_TEXT);
+        }
+        return [toIteratee(pair[0]), pair[1]];
+      });
+
+      return baseRest(function(args) {
+        var index = -1;
+        while (++index < length) {
+          var pair = pairs[index];
+          if (apply(pair[0], this, args)) {
+            return apply(pair[1], this, args);
+          }
+        }
+      });
+    }
+
+    /**
+     * Creates a function that invokes the predicate properties of `source` with
+     * the corresponding property values of a given object, returning `true` if
+     * all predicates return truthy, else `false`.
+     *
+     * **Note:** The created function is equivalent to `_.conformsTo` with
+     * `source` partially applied.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {Object} source The object of property predicates to conform to.
+     * @returns {Function} Returns the new spec function.
+     * @example
+     *
+     * var objects = [
+     *   { 'a': 2, 'b': 1 },
+     *   { 'a': 1, 'b': 2 }
+     * ];
+     *
+     * _.filter(objects, _.conforms({ 'b': function(n) { return n > 1; } }));
+     * // => [{ 'a': 1, 'b': 2 }]
+     */
+    function conforms(source) {
+      return baseConforms(baseClone(source, CLONE_DEEP_FLAG));
+    }
+
+    /**
+     * Creates a function that returns `value`.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.4.0
+     * @category Util
+     * @param {*} value The value to return from the new function.
+     * @returns {Function} Returns the new constant function.
+     * @example
+     *
+     * var objects = _.times(2, _.constant({ 'a': 1 }));
+     *
+     * console.log(objects);
+     * // => [{ 'a': 1 }, { 'a': 1 }]
+     *
+     * console.log(objects[0] === objects[1]);
+     * // => true
+     */
+    function constant(value) {
+      return function() {
+        return value;
+      };
+    }
+
+    /**
+     * Checks `value` to determine whether a default value should be returned in
+     * its place. The `defaultValue` is returned if `value` is `NaN`, `null`,
+     * or `undefined`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.14.0
+     * @category Util
+     * @param {*} value The value to check.
+     * @param {*} defaultValue The default value.
+     * @returns {*} Returns the resolved value.
+     * @example
+     *
+     * _.defaultTo(1, 10);
+     * // => 1
+     *
+     * _.defaultTo(undefined, 10);
+     * // => 10
+     */
+    function defaultTo(value, defaultValue) {
+      return (value == null || value !== value) ? defaultValue : value;
+    }
+
+    /**
+     * Creates a function that returns the result of invoking the given functions
+     * with the `this` binding of the created function, where each successive
+     * invocation is supplied the return value of the previous.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Util
+     * @param {...(Function|Function[])} [funcs] The functions to invoke.
+     * @returns {Function} Returns the new composite function.
+     * @see _.flowRight
+     * @example
+     *
+     * function square(n) {
+     *   return n * n;
+     * }
+     *
+     * var addSquare = _.flow([_.add, square]);
+     * addSquare(1, 2);
+     * // => 9
+     */
+    var flow = createFlow();
+
+    /**
+     * This method is like `_.flow` except that it creates a function that
+     * invokes the given functions from right to left.
+     *
+     * @static
+     * @since 3.0.0
+     * @memberOf _
+     * @category Util
+     * @param {...(Function|Function[])} [funcs] The functions to invoke.
+     * @returns {Function} Returns the new composite function.
+     * @see _.flow
+     * @example
+     *
+     * function square(n) {
+     *   return n * n;
+     * }
+     *
+     * var addSquare = _.flowRight([square, _.add]);
+     * addSquare(1, 2);
+     * // => 9
+     */
+    var flowRight = createFlow(true);
+
+    /**
+     * This method returns the first argument it receives.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Util
+     * @param {*} value Any value.
+     * @returns {*} Returns `value`.
+     * @example
+     *
+     * var object = { 'a': 1 };
+     *
+     * console.log(_.identity(object) === object);
+     * // => true
+     */
+    function identity(value) {
+      return value;
+    }
+
+    /**
+     * Creates a function that invokes `func` with the arguments of the created
+     * function. If `func` is a property name, the created function returns the
+     * property value for a given element. If `func` is an array or object, the
+     * created function returns `true` for elements that contain the equivalent
+     * source properties, otherwise it returns `false`.
+     *
+     * @static
+     * @since 4.0.0
+     * @memberOf _
+     * @category Util
+     * @param {*} [func=_.identity] The value to convert to a callback.
+     * @returns {Function} Returns the callback.
+     * @example
+     *
+     * var users = [
+     *   { 'user': 'barney', 'age': 36, 'active': true },
+     *   { 'user': 'fred',   'age': 40, 'active': false }
+     * ];
+     *
+     * // The `_.matches` iteratee shorthand.
+     * _.filter(users, _.iteratee({ 'user': 'barney', 'active': true }));
+     * // => [{ 'user': 'barney', 'age': 36, 'active': true }]
+     *
+     * // The `_.matchesProperty` iteratee shorthand.
+     * _.filter(users, _.iteratee(['user', 'fred']));
+     * // => [{ 'user': 'fred', 'age': 40 }]
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.map(users, _.iteratee('user'));
+     * // => ['barney', 'fred']
+     *
+     * // Create custom iteratee shorthands.
+     * _.iteratee = _.wrap(_.iteratee, function(iteratee, func) {
+     *   return !_.isRegExp(func) ? iteratee(func) : function(string) {
+     *     return func.test(string);
+     *   };
+     * });
+     *
+     * _.filter(['abc', 'def'], /ef/);
+     * // => ['def']
+     */
+    function iteratee(func) {
+      return baseIteratee(typeof func == 'function' ? func : baseClone(func, CLONE_DEEP_FLAG));
+    }
+
+    /**
+     * Creates a function that performs a partial deep comparison between a given
+     * object and `source`, returning `true` if the given object has equivalent
+     * property values, else `false`.
+     *
+     * **Note:** The created function is equivalent to `_.isMatch` with `source`
+     * partially applied.
+     *
+     * Partial comparisons will match empty array and empty object `source`
+     * values against any array or object value, respectively. See `_.isEqual`
+     * for a list of supported value comparisons.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Util
+     * @param {Object} source The object of property values to match.
+     * @returns {Function} Returns the new spec function.
+     * @example
+     *
+     * var objects = [
+     *   { 'a': 1, 'b': 2, 'c': 3 },
+     *   { 'a': 4, 'b': 5, 'c': 6 }
+     * ];
+     *
+     * _.filter(objects, _.matches({ 'a': 4, 'c': 6 }));
+     * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
+     */
+    function matches(source) {
+      return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
+    }
+
+    /**
+     * Creates a function that performs a partial deep comparison between the
+     * value at `path` of a given object to `srcValue`, returning `true` if the
+     * object value is equivalent, else `false`.
+     *
+     * **Note:** Partial comparisons will match empty array and empty object
+     * `srcValue` values against any array or object value, respectively. See
+     * `_.isEqual` for a list of supported value comparisons.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.2.0
+     * @category Util
+     * @param {Array|string} path The path of the property to get.
+     * @param {*} srcValue The value to match.
+     * @returns {Function} Returns the new spec function.
+     * @example
+     *
+     * var objects = [
+     *   { 'a': 1, 'b': 2, 'c': 3 },
+     *   { 'a': 4, 'b': 5, 'c': 6 }
+     * ];
+     *
+     * _.find(objects, _.matchesProperty('a', 4));
+     * // => { 'a': 4, 'b': 5, 'c': 6 }
+     */
+    function matchesProperty(path, srcValue) {
+      return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
+    }
+
+    /**
+     * Creates a function that invokes the method at `path` of a given object.
+     * Any additional arguments are provided to the invoked method.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.7.0
+     * @category Util
+     * @param {Array|string} path The path of the method to invoke.
+     * @param {...*} [args] The arguments to invoke the method with.
+     * @returns {Function} Returns the new invoker function.
+     * @example
+     *
+     * var objects = [
+     *   { 'a': { 'b': _.constant(2) } },
+     *   { 'a': { 'b': _.constant(1) } }
+     * ];
+     *
+     * _.map(objects, _.method('a.b'));
+     * // => [2, 1]
+     *
+     * _.map(objects, _.method(['a', 'b']));
+     * // => [2, 1]
+     */
+    var method = baseRest(function(path, args) {
+      return function(object) {
+        return baseInvoke(object, path, args);
+      };
+    });
+
+    /**
+     * The opposite of `_.method`; this method creates a function that invokes
+     * the method at a given path of `object`. Any additional arguments are
+     * provided to the invoked method.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.7.0
+     * @category Util
+     * @param {Object} object The object to query.
+     * @param {...*} [args] The arguments to invoke the method with.
+     * @returns {Function} Returns the new invoker function.
+     * @example
+     *
+     * var array = _.times(3, _.constant),
+     *     object = { 'a': array, 'b': array, 'c': array };
+     *
+     * _.map(['a[2]', 'c[0]'], _.methodOf(object));
+     * // => [2, 0]
+     *
+     * _.map([['a', '2'], ['c', '0']], _.methodOf(object));
+     * // => [2, 0]
+     */
+    var methodOf = baseRest(function(object, args) {
+      return function(path) {
+        return baseInvoke(object, path, args);
+      };
+    });
+
+    /**
+     * Adds all own enumerable string keyed function properties of a source
+     * object to the destination object. If `object` is a function, then methods
+     * are added to its prototype as well.
+     *
+     * **Note:** Use `_.runInContext` to create a pristine `lodash` function to
+     * avoid conflicts caused by modifying the original.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Util
+     * @param {Function|Object} [object=lodash] The destination object.
+     * @param {Object} source The object of functions to add.
+     * @param {Object} [options={}] The options object.
+     * @param {boolean} [options.chain=true] Specify whether mixins are chainable.
+     * @returns {Function|Object} Returns `object`.
+     * @example
+     *
+     * function vowels(string) {
+     *   return _.filter(string, function(v) {
+     *     return /[aeiou]/i.test(v);
+     *   });
+     * }
+     *
+     * _.mixin({ 'vowels': vowels });
+     * _.vowels('fred');
+     * // => ['e']
+     *
+     * _('fred').vowels().value();
+     * // => ['e']
+     *
+     * _.mixin({ 'vowels': vowels }, { 'chain': false });
+     * _('fred').vowels();
+     * // => ['e']
+     */
+    function mixin(object, source, options) {
+      var props = keys(source),
+          methodNames = baseFunctions(source, props);
+
+      if (options == null &&
+          !(isObject(source) && (methodNames.length || !props.length))) {
+        options = source;
+        source = object;
+        object = this;
+        methodNames = baseFunctions(source, keys(source));
+      }
+      var chain = !(isObject(options) && 'chain' in options) || !!options.chain,
+          isFunc = isFunction(object);
+
+      arrayEach(methodNames, function(methodName) {
+        var func = source[methodName];
+        object[methodName] = func;
+        if (isFunc) {
+          object.prototype[methodName] = function() {
+            var chainAll = this.__chain__;
+            if (chain || chainAll) {
+              var result = object(this.__wrapped__),
+                  actions = result.__actions__ = copyArray(this.__actions__);
+
+              actions.push({ 'func': func, 'args': arguments, 'thisArg': object });
+              result.__chain__ = chainAll;
+              return result;
+            }
+            return func.apply(object, arrayPush([this.value()], arguments));
+          };
+        }
+      });
+
+      return object;
+    }
+
+    /**
+     * Reverts the `_` variable to its previous value and returns a reference to
+     * the `lodash` function.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Util
+     * @returns {Function} Returns the `lodash` function.
+     * @example
+     *
+     * var lodash = _.noConflict();
+     */
+    function noConflict() {
+      if (root._ === this) {
+        root._ = oldDash;
+      }
+      return this;
+    }
+
+    /**
+     * This method returns `undefined`.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.3.0
+     * @category Util
+     * @example
+     *
+     * _.times(2, _.noop);
+     * // => [undefined, undefined]
+     */
+    function noop() {
+      // No operation performed.
+    }
+
+    /**
+     * Creates a function that gets the argument at index `n`. If `n` is negative,
+     * the nth argument from the end is returned.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {number} [n=0] The index of the argument to return.
+     * @returns {Function} Returns the new pass-thru function.
+     * @example
+     *
+     * var func = _.nthArg(1);
+     * func('a', 'b', 'c', 'd');
+     * // => 'b'
+     *
+     * var func = _.nthArg(-2);
+     * func('a', 'b', 'c', 'd');
+     * // => 'c'
+     */
+    function nthArg(n) {
+      n = toInteger(n);
+      return baseRest(function(args) {
+        return baseNth(args, n);
+      });
+    }
+
+    /**
+     * Creates a function that invokes `iteratees` with the arguments it receives
+     * and returns their results.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {...(Function|Function[])} [iteratees=[_.identity]]
+     *  The iteratees to invoke.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var func = _.over([Math.max, Math.min]);
+     *
+     * func(1, 2, 3, 4);
+     * // => [4, 1]
+     */
+    var over = createOver(arrayMap);
+
+    /**
+     * Creates a function that checks if **all** of the `predicates` return
+     * truthy when invoked with the arguments it receives.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {...(Function|Function[])} [predicates=[_.identity]]
+     *  The predicates to check.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var func = _.overEvery([Boolean, isFinite]);
+     *
+     * func('1');
+     * // => true
+     *
+     * func(null);
+     * // => false
+     *
+     * func(NaN);
+     * // => false
+     */
+    var overEvery = createOver(arrayEvery);
+
+    /**
+     * Creates a function that checks if **any** of the `predicates` return
+     * truthy when invoked with the arguments it receives.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {...(Function|Function[])} [predicates=[_.identity]]
+     *  The predicates to check.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var func = _.overSome([Boolean, isFinite]);
+     *
+     * func('1');
+     * // => true
+     *
+     * func(null);
+     * // => true
+     *
+     * func(NaN);
+     * // => false
+     */
+    var overSome = createOver(arraySome);
+
+    /**
+     * Creates a function that returns the value at `path` of a given object.
+     *
+     * @static
+     * @memberOf _
+     * @since 2.4.0
+     * @category Util
+     * @param {Array|string} path The path of the property to get.
+     * @returns {Function} Returns the new accessor function.
+     * @example
+     *
+     * var objects = [
+     *   { 'a': { 'b': 2 } },
+     *   { 'a': { 'b': 1 } }
+     * ];
+     *
+     * _.map(objects, _.property('a.b'));
+     * // => [2, 1]
+     *
+     * _.map(_.sortBy(objects, _.property(['a', 'b'])), 'a.b');
+     * // => [1, 2]
+     */
+    function property(path) {
+      return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
+    }
+
+    /**
+     * The opposite of `_.property`; this method creates a function that returns
+     * the value at a given path of `object`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.0.0
+     * @category Util
+     * @param {Object} object The object to query.
+     * @returns {Function} Returns the new accessor function.
+     * @example
+     *
+     * var array = [0, 1, 2],
+     *     object = { 'a': array, 'b': array, 'c': array };
+     *
+     * _.map(['a[2]', 'c[0]'], _.propertyOf(object));
+     * // => [2, 0]
+     *
+     * _.map([['a', '2'], ['c', '0']], _.propertyOf(object));
+     * // => [2, 0]
+     */
+    function propertyOf(object) {
+      return function(path) {
+        return object == null ? undefined : baseGet(object, path);
+      };
+    }
+
+    /**
+     * Creates an array of numbers (positive and/or negative) progressing from
+     * `start` up to, but not including, `end`. A step of `-1` is used if a negative
+     * `start` is specified without an `end` or `step`. If `end` is not specified,
+     * it's set to `start` with `start` then set to `0`.
+     *
+     * **Note:** JavaScript follows the IEEE-754 standard for resolving
+     * floating-point values which can produce unexpected results.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Util
+     * @param {number} [start=0] The start of the range.
+     * @param {number} end The end of the range.
+     * @param {number} [step=1] The value to increment or decrement by.
+     * @returns {Array} Returns the range of numbers.
+     * @see _.inRange, _.rangeRight
+     * @example
+     *
+     * _.range(4);
+     * // => [0, 1, 2, 3]
+     *
+     * _.range(-4);
+     * // => [0, -1, -2, -3]
+     *
+     * _.range(1, 5);
+     * // => [1, 2, 3, 4]
+     *
+     * _.range(0, 20, 5);
+     * // => [0, 5, 10, 15]
+     *
+     * _.range(0, -4, -1);
+     * // => [0, -1, -2, -3]
+     *
+     * _.range(1, 4, 0);
+     * // => [1, 1, 1]
+     *
+     * _.range(0);
+     * // => []
+     */
+    var range = createRange();
+
+    /**
+     * This method is like `_.range` except that it populates values in
+     * descending order.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {number} [start=0] The start of the range.
+     * @param {number} end The end of the range.
+     * @param {number} [step=1] The value to increment or decrement by.
+     * @returns {Array} Returns the range of numbers.
+     * @see _.inRange, _.range
+     * @example
+     *
+     * _.rangeRight(4);
+     * // => [3, 2, 1, 0]
+     *
+     * _.rangeRight(-4);
+     * // => [-3, -2, -1, 0]
+     *
+     * _.rangeRight(1, 5);
+     * // => [4, 3, 2, 1]
+     *
+     * _.rangeRight(0, 20, 5);
+     * // => [15, 10, 5, 0]
+     *
+     * _.rangeRight(0, -4, -1);
+     * // => [-3, -2, -1, 0]
+     *
+     * _.rangeRight(1, 4, 0);
+     * // => [1, 1, 1]
+     *
+     * _.rangeRight(0);
+     * // => []
+     */
+    var rangeRight = createRange(true);
+
+    /**
+     * This method returns a new empty array.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.13.0
+     * @category Util
+     * @returns {Array} Returns the new empty array.
+     * @example
+     *
+     * var arrays = _.times(2, _.stubArray);
+     *
+     * console.log(arrays);
+     * // => [[], []]
+     *
+     * console.log(arrays[0] === arrays[1]);
+     * // => false
+     */
+    function stubArray() {
+      return [];
+    }
+
+    /**
+     * This method returns `false`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.13.0
+     * @category Util
+     * @returns {boolean} Returns `false`.
+     * @example
+     *
+     * _.times(2, _.stubFalse);
+     * // => [false, false]
+     */
+    function stubFalse() {
+      return false;
+    }
+
+    /**
+     * This method returns a new empty object.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.13.0
+     * @category Util
+     * @returns {Object} Returns the new empty object.
+     * @example
+     *
+     * var objects = _.times(2, _.stubObject);
+     *
+     * console.log(objects);
+     * // => [{}, {}]
+     *
+     * console.log(objects[0] === objects[1]);
+     * // => false
+     */
+    function stubObject() {
+      return {};
+    }
+
+    /**
+     * This method returns an empty string.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.13.0
+     * @category Util
+     * @returns {string} Returns the empty string.
+     * @example
+     *
+     * _.times(2, _.stubString);
+     * // => ['', '']
+     */
+    function stubString() {
+      return '';
+    }
+
+    /**
+     * This method returns `true`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.13.0
+     * @category Util
+     * @returns {boolean} Returns `true`.
+     * @example
+     *
+     * _.times(2, _.stubTrue);
+     * // => [true, true]
+     */
+    function stubTrue() {
+      return true;
+    }
+
+    /**
+     * Invokes the iteratee `n` times, returning an array of the results of
+     * each invocation. The iteratee is invoked with one argument; (index).
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Util
+     * @param {number} n The number of times to invoke `iteratee`.
+     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+     * @returns {Array} Returns the array of results.
+     * @example
+     *
+     * _.times(3, String);
+     * // => ['0', '1', '2']
+     *
+     *  _.times(4, _.constant(0));
+     * // => [0, 0, 0, 0]
+     */
+    function times(n, iteratee) {
+      n = toInteger(n);
+      if (n < 1 || n > MAX_SAFE_INTEGER) {
+        return [];
+      }
+      var index = MAX_ARRAY_LENGTH,
+          length = nativeMin(n, MAX_ARRAY_LENGTH);
+
+      iteratee = getIteratee(iteratee);
+      n -= MAX_ARRAY_LENGTH;
+
+      var result = baseTimes(length, iteratee);
+      while (++index < n) {
+        iteratee(index);
+      }
+      return result;
+    }
+
+    /**
+     * Converts `value` to a property path array.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Util
+     * @param {*} value The value to convert.
+     * @returns {Array} Returns the new property path array.
+     * @example
+     *
+     * _.toPath('a.b.c');
+     * // => ['a', 'b', 'c']
+     *
+     * _.toPath('a[0].b.c');
+     * // => ['a', '0', 'b', 'c']
+     */
+    function toPath(value) {
+      if (isArray(value)) {
+        return arrayMap(value, toKey);
+      }
+      return isSymbol(value) ? [value] : copyArray(stringToPath(toString(value)));
+    }
+
+    /**
+     * Generates a unique ID. If `prefix` is given, the ID is appended to it.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Util
+     * @param {string} [prefix=''] The value to prefix the ID with.
+     * @returns {string} Returns the unique ID.
+     * @example
+     *
+     * _.uniqueId('contact_');
+     * // => 'contact_104'
+     *
+     * _.uniqueId();
+     * // => '105'
+     */
+    function uniqueId(prefix) {
+      var id = ++idCounter;
+      return toString(prefix) + id;
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * Adds two numbers.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.4.0
+     * @category Math
+     * @param {number} augend The first number in an addition.
+     * @param {number} addend The second number in an addition.
+     * @returns {number} Returns the total.
+     * @example
+     *
+     * _.add(6, 4);
+     * // => 10
+     */
+    var add = createMathOperation(function(augend, addend) {
+      return augend + addend;
+    }, 0);
+
+    /**
+     * Computes `number` rounded up to `precision`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.10.0
+     * @category Math
+     * @param {number} number The number to round up.
+     * @param {number} [precision=0] The precision to round up to.
+     * @returns {number} Returns the rounded up number.
+     * @example
+     *
+     * _.ceil(4.006);
+     * // => 5
+     *
+     * _.ceil(6.004, 2);
+     * // => 6.01
+     *
+     * _.ceil(6040, -2);
+     * // => 6100
+     */
+    var ceil = createRound('ceil');
+
+    /**
+     * Divide two numbers.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.7.0
+     * @category Math
+     * @param {number} dividend The first number in a division.
+     * @param {number} divisor The second number in a division.
+     * @returns {number} Returns the quotient.
+     * @example
+     *
+     * _.divide(6, 4);
+     * // => 1.5
+     */
+    var divide = createMathOperation(function(dividend, divisor) {
+      return dividend / divisor;
+    }, 1);
+
+    /**
+     * Computes `number` rounded down to `precision`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.10.0
+     * @category Math
+     * @param {number} number The number to round down.
+     * @param {number} [precision=0] The precision to round down to.
+     * @returns {number} Returns the rounded down number.
+     * @example
+     *
+     * _.floor(4.006);
+     * // => 4
+     *
+     * _.floor(0.046, 2);
+     * // => 0.04
+     *
+     * _.floor(4060, -2);
+     * // => 4000
+     */
+    var floor = createRound('floor');
+
+    /**
+     * Computes the maximum value of `array`. If `array` is empty or falsey,
+     * `undefined` is returned.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @returns {*} Returns the maximum value.
+     * @example
+     *
+     * _.max([4, 2, 8, 6]);
+     * // => 8
+     *
+     * _.max([]);
+     * // => undefined
+     */
+    function max(array) {
+      return (array && array.length)
+        ? baseExtremum(array, identity, baseGt)
+        : undefined;
+    }
+
+    /**
+     * This method is like `_.max` except that it accepts `iteratee` which is
+     * invoked for each element in `array` to generate the criterion by which
+     * the value is ranked. The iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {*} Returns the maximum value.
+     * @example
+     *
+     * var objects = [{ 'n': 1 }, { 'n': 2 }];
+     *
+     * _.maxBy(objects, function(o) { return o.n; });
+     * // => { 'n': 2 }
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.maxBy(objects, 'n');
+     * // => { 'n': 2 }
+     */
+    function maxBy(array, iteratee) {
+      return (array && array.length)
+        ? baseExtremum(array, getIteratee(iteratee, 2), baseGt)
+        : undefined;
+    }
+
+    /**
+     * Computes the mean of the values in `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @returns {number} Returns the mean.
+     * @example
+     *
+     * _.mean([4, 2, 8, 6]);
+     * // => 5
+     */
+    function mean(array) {
+      return baseMean(array, identity);
+    }
+
+    /**
+     * This method is like `_.mean` except that it accepts `iteratee` which is
+     * invoked for each element in `array` to generate the value to be averaged.
+     * The iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.7.0
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {number} Returns the mean.
+     * @example
+     *
+     * var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
+     *
+     * _.meanBy(objects, function(o) { return o.n; });
+     * // => 5
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.meanBy(objects, 'n');
+     * // => 5
+     */
+    function meanBy(array, iteratee) {
+      return baseMean(array, getIteratee(iteratee, 2));
+    }
+
+    /**
+     * Computes the minimum value of `array`. If `array` is empty or falsey,
+     * `undefined` is returned.
+     *
+     * @static
+     * @since 0.1.0
+     * @memberOf _
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @returns {*} Returns the minimum value.
+     * @example
+     *
+     * _.min([4, 2, 8, 6]);
+     * // => 2
+     *
+     * _.min([]);
+     * // => undefined
+     */
+    function min(array) {
+      return (array && array.length)
+        ? baseExtremum(array, identity, baseLt)
+        : undefined;
+    }
+
+    /**
+     * This method is like `_.min` except that it accepts `iteratee` which is
+     * invoked for each element in `array` to generate the criterion by which
+     * the value is ranked. The iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {*} Returns the minimum value.
+     * @example
+     *
+     * var objects = [{ 'n': 1 }, { 'n': 2 }];
+     *
+     * _.minBy(objects, function(o) { return o.n; });
+     * // => { 'n': 1 }
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.minBy(objects, 'n');
+     * // => { 'n': 1 }
+     */
+    function minBy(array, iteratee) {
+      return (array && array.length)
+        ? baseExtremum(array, getIteratee(iteratee, 2), baseLt)
+        : undefined;
+    }
+
+    /**
+     * Multiply two numbers.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.7.0
+     * @category Math
+     * @param {number} multiplier The first number in a multiplication.
+     * @param {number} multiplicand The second number in a multiplication.
+     * @returns {number} Returns the product.
+     * @example
+     *
+     * _.multiply(6, 4);
+     * // => 24
+     */
+    var multiply = createMathOperation(function(multiplier, multiplicand) {
+      return multiplier * multiplicand;
+    }, 1);
+
+    /**
+     * Computes `number` rounded to `precision`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.10.0
+     * @category Math
+     * @param {number} number The number to round.
+     * @param {number} [precision=0] The precision to round to.
+     * @returns {number} Returns the rounded number.
+     * @example
+     *
+     * _.round(4.006);
+     * // => 4
+     *
+     * _.round(4.006, 2);
+     * // => 4.01
+     *
+     * _.round(4060, -2);
+     * // => 4100
+     */
+    var round = createRound('round');
+
+    /**
+     * Subtract two numbers.
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Math
+     * @param {number} minuend The first number in a subtraction.
+     * @param {number} subtrahend The second number in a subtraction.
+     * @returns {number} Returns the difference.
+     * @example
+     *
+     * _.subtract(6, 4);
+     * // => 2
+     */
+    var subtract = createMathOperation(function(minuend, subtrahend) {
+      return minuend - subtrahend;
+    }, 0);
+
+    /**
+     * Computes the sum of the values in `array`.
+     *
+     * @static
+     * @memberOf _
+     * @since 3.4.0
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @returns {number} Returns the sum.
+     * @example
+     *
+     * _.sum([4, 2, 8, 6]);
+     * // => 20
+     */
+    function sum(array) {
+      return (array && array.length)
+        ? baseSum(array, identity)
+        : 0;
+    }
+
+    /**
+     * This method is like `_.sum` except that it accepts `iteratee` which is
+     * invoked for each element in `array` to generate the value to be summed.
+     * The iteratee is invoked with one argument: (value).
+     *
+     * @static
+     * @memberOf _
+     * @since 4.0.0
+     * @category Math
+     * @param {Array} array The array to iterate over.
+     * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
+     * @returns {number} Returns the sum.
+     * @example
+     *
+     * var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
+     *
+     * _.sumBy(objects, function(o) { return o.n; });
+     * // => 20
+     *
+     * // The `_.property` iteratee shorthand.
+     * _.sumBy(objects, 'n');
+     * // => 20
+     */
+    function sumBy(array, iteratee) {
+      return (array && array.length)
+        ? baseSum(array, getIteratee(iteratee, 2))
+        : 0;
+    }
+
+    /*------------------------------------------------------------------------*/
+
+    // Add methods that return wrapped values in chain sequences.
+    lodash.after = after;
+    lodash.ary = ary;
+    lodash.assign = assign;
+    lodash.assignIn = assignIn;
+    lodash.assignInWith = assignInWith;
+    lodash.assignWith = assignWith;
+    lodash.at = at;
+    lodash.before = before;
+    lodash.bind = bind;
+    lodash.bindAll = bindAll;
+    lodash.bindKey = bindKey;
+    lodash.castArray = castArray;
+    lodash.chain = chain;
+    lodash.chunk = chunk;
+    lodash.compact = compact;
+    lodash.concat = concat;
+    lodash.cond = cond;
+    lodash.conforms = conforms;
+    lodash.constant = constant;
+    lodash.countBy = countBy;
+    lodash.create = create;
+    lodash.curry = curry;
+    lodash.curryRight = curryRight;
+    lodash.debounce = debounce;
+    lodash.defaults = defaults;
+    lodash.defaultsDeep = defaultsDeep;
+    lodash.defer = defer;
+    lodash.delay = delay;
+    lodash.difference = difference;
+    lodash.differenceBy = differenceBy;
+    lodash.differenceWith = differenceWith;
+    lodash.drop = drop;
+    lodash.dropRight = dropRight;
+    lodash.dropRightWhile = dropRightWhile;
+    lodash.dropWhile = dropWhile;
+    lodash.fill = fill;
+    lodash.filter = filter;
+    lodash.flatMap = flatMap;
+    lodash.flatMapDeep = flatMapDeep;
+    lodash.flatMapDepth = flatMapDepth;
+    lodash.flatten = flatten;
+    lodash.flattenDeep = flattenDeep;
+    lodash.flattenDepth = flattenDepth;
+    lodash.flip = flip;
+    lodash.flow = flow;
+    lodash.flowRight = flowRight;
+    lodash.fromPairs = fromPairs;
+    lodash.functions = functions;
+    lodash.functionsIn = functionsIn;
+    lodash.groupBy = groupBy;
+    lodash.initial = initial;
+    lodash.intersection = intersection;
+    lodash.intersectionBy = intersectionBy;
+    lodash.intersectionWith = intersectionWith;
+    lodash.invert = invert;
+    lodash.invertBy = invertBy;
+    lodash.invokeMap = invokeMap;
+    lodash.iteratee = iteratee;
+    lodash.keyBy = keyBy;
+    lodash.keys = keys;
+    lodash.keysIn = keysIn;
+    lodash.map = map;
+    lodash.mapKeys = mapKeys;
+    lodash.mapValues = mapValues;
+    lodash.matches = matches;
+    lodash.matchesProperty = matchesProperty;
+    lodash.memoize = memoize;
+    lodash.merge = merge;
+    lodash.mergeWith = mergeWith;
+    lodash.method = method;
+    lodash.methodOf = methodOf;
+    lodash.mixin = mixin;
+    lodash.negate = negate;
+    lodash.nthArg = nthArg;
+    lodash.omit = omit;
+    lodash.omitBy = omitBy;
+    lodash.once = once;
+    lodash.orderBy = orderBy;
+    lodash.over = over;
+    lodash.overArgs = overArgs;
+    lodash.overEvery = overEvery;
+    lodash.overSome = overSome;
+    lodash.partial = partial;
+    lodash.partialRight = partialRight;
+    lodash.partition = partition;
+    lodash.pick = pick;
+    lodash.pickBy = pickBy;
+    lodash.property = property;
+    lodash.propertyOf = propertyOf;
+    lodash.pull = pull;
+    lodash.pullAll = pullAll;
+    lodash.pullAllBy = pullAllBy;
+    lodash.pullAllWith = pullAllWith;
+    lodash.pullAt = pullAt;
+    lodash.range = range;
+    lodash.rangeRight = rangeRight;
+    lodash.rearg = rearg;
+    lodash.reject = reject;
+    lodash.remove = remove;
+    lodash.rest = rest;
+    lodash.reverse = reverse;
+    lodash.sampleSize = sampleSize;
+    lodash.set = set;
+    lodash.setWith = setWith;
+    lodash.shuffle = shuffle;
+    lodash.slice = slice;
+    lodash.sortBy = sortBy;
+    lodash.sortedUniq = sortedUniq;
+    lodash.sortedUniqBy = sortedUniqBy;
+    lodash.split = split;
+    lodash.spread = spread;
+    lodash.tail = tail;
+    lodash.take = take;
+    lodash.takeRight = takeRight;
+    lodash.takeRightWhile = takeRightWhile;
+    lodash.takeWhile = takeWhile;
+    lodash.tap = tap;
+    lodash.throttle = throttle;
+    lodash.thru = thru;
+    lodash.toArray = toArray;
+    lodash.toPairs = toPairs;
+    lodash.toPairsIn = toPairsIn;
+    lodash.toPath = toPath;
+    lodash.toPlainObject = toPlainObject;
+    lodash.transform = transform;
+    lodash.unary = unary;
+    lodash.union = union;
+    lodash.unionBy = unionBy;
+    lodash.unionWith = unionWith;
+    lodash.uniq = uniq;
+    lodash.uniqBy = uniqBy;
+    lodash.uniqWith = uniqWith;
+    lodash.unset = unset;
+    lodash.unzip = unzip;
+    lodash.unzipWith = unzipWith;
+    lodash.update = update;
+    lodash.updateWith = updateWith;
+    lodash.values = values;
+    lodash.valuesIn = valuesIn;
+    lodash.without = without;
+    lodash.words = words;
+    lodash.wrap = wrap;
+    lodash.xor = xor;
+    lodash.xorBy = xorBy;
+    lodash.xorWith = xorWith;
+    lodash.zip = zip;
+    lodash.zipObject = zipObject;
+    lodash.zipObjectDeep = zipObjectDeep;
+    lodash.zipWith = zipWith;
+
+    // Add aliases.
+    lodash.entries = toPairs;
+    lodash.entriesIn = toPairsIn;
+    lodash.extend = assignIn;
+    lodash.extendWith = assignInWith;
+
+    // Add methods to `lodash.prototype`.
+    mixin(lodash, lodash);
+
+    /*------------------------------------------------------------------------*/
+
+    // Add methods that return unwrapped values in chain sequences.
+    lodash.add = add;
+    lodash.attempt = attempt;
+    lodash.camelCase = camelCase;
+    lodash.capitalize = capitalize;
+    lodash.ceil = ceil;
+    lodash.clamp = clamp;
+    lodash.clone = clone;
+    lodash.cloneDeep = cloneDeep;
+    lodash.cloneDeepWith = cloneDeepWith;
+    lodash.cloneWith = cloneWith;
+    lodash.conformsTo = conformsTo;
+    lodash.deburr = deburr;
+    lodash.defaultTo = defaultTo;
+    lodash.divide = divide;
+    lodash.endsWith = endsWith;
+    lodash.eq = eq;
+    lodash.escape = escape;
+    lodash.escapeRegExp = escapeRegExp;
+    lodash.every = every;
+    lodash.find = find;
+    lodash.findIndex = findIndex;
+    lodash.findKey = findKey;
+    lodash.findLast = findLast;
+    lodash.findLastIndex = findLastIndex;
+    lodash.findLastKey = findLastKey;
+    lodash.floor = floor;
+    lodash.forEach = forEach;
+    lodash.forEachRight = forEachRight;
+    lodash.forIn = forIn;
+    lodash.forInRight = forInRight;
+    lodash.forOwn = forOwn;
+    lodash.forOwnRight = forOwnRight;
+    lodash.get = get;
+    lodash.gt = gt;
+    lodash.gte = gte;
+    lodash.has = has;
+    lodash.hasIn = hasIn;
+    lodash.head = head;
+    lodash.identity = identity;
+    lodash.includes = includes;
+    lodash.indexOf = indexOf;
+    lodash.inRange = inRange;
+    lodash.invoke = invoke;
+    lodash.isArguments = isArguments;
+    lodash.isArray = isArray;
+    lodash.isArrayBuffer = isArrayBuffer;
+    lodash.isArrayLike = isArrayLike;
+    lodash.isArrayLikeObject = isArrayLikeObject;
+    lodash.isBoolean = isBoolean;
+    lodash.isBuffer = isBuffer;
+    lodash.isDate = isDate;
+    lodash.isElement = isElement;
+    lodash.isEmpty = isEmpty;
+    lodash.isEqual = isEqual;
+    lodash.isEqualWith = isEqualWith;
+    lodash.isError = isError;
+    lodash.isFinite = isFinite;
+    lodash.isFunction = isFunction;
+    lodash.isInteger = isInteger;
+    lodash.isLength = isLength;
+    lodash.isMap = isMap;
+    lodash.isMatch = isMatch;
+    lodash.isMatchWith = isMatchWith;
+    lodash.isNaN = isNaN;
+    lodash.isNative = isNative;
+    lodash.isNil = isNil;
+    lodash.isNull = isNull;
+    lodash.isNumber = isNumber;
+    lodash.isObject = isObject;
+    lodash.isObjectLike = isObjectLike;
+    lodash.isPlainObject = isPlainObject;
+    lodash.isRegExp = isRegExp;
+    lodash.isSafeInteger = isSafeInteger;
+    lodash.isSet = isSet;
+    lodash.isString = isString;
+    lodash.isSymbol = isSymbol;
+    lodash.isTypedArray = isTypedArray;
+    lodash.isUndefined = isUndefined;
+    lodash.isWeakMap = isWeakMap;
+    lodash.isWeakSet = isWeakSet;
+    lodash.join = join;
+    lodash.kebabCase = kebabCase;
+    lodash.last = last;
+    lodash.lastIndexOf = lastIndexOf;
+    lodash.lowerCase = lowerCase;
+    lodash.lowerFirst = lowerFirst;
+    lodash.lt = lt;
+    lodash.lte = lte;
+    lodash.max = max;
+    lodash.maxBy = maxBy;
+    lodash.mean = mean;
+    lodash.meanBy = meanBy;
+    lodash.min = min;
+    lodash.minBy = minBy;
+    lodash.stubArray = stubArray;
+    lodash.stubFalse = stubFalse;
+    lodash.stubObject = stubObject;
+    lodash.stubString = stubString;
+    lodash.stubTrue = stubTrue;
+    lodash.multiply = multiply;
+    lodash.nth = nth;
+    lodash.noConflict = noConflict;
+    lodash.noop = noop;
+    lodash.now = now;
+    lodash.pad = pad;
+    lodash.padEnd = padEnd;
+    lodash.padStart = padStart;
+    lodash.parseInt = parseInt;
+    lodash.random = random;
+    lodash.reduce = reduce;
+    lodash.reduceRight = reduceRight;
+    lodash.repeat = repeat;
+    lodash.replace = replace;
+    lodash.result = result;
+    lodash.round = round;
+    lodash.runInContext = runInContext;
+    lodash.sample = sample;
+    lodash.size = size;
+    lodash.snakeCase = snakeCase;
+    lodash.some = some;
+    lodash.sortedIndex = sortedIndex;
+    lodash.sortedIndexBy = sortedIndexBy;
+    lodash.sortedIndexOf = sortedIndexOf;
+    lodash.sortedLastIndex = sortedLastIndex;
+    lodash.sortedLastIndexBy = sortedLastIndexBy;
+    lodash.sortedLastIndexOf = sortedLastIndexOf;
+    lodash.startCase = startCase;
+    lodash.startsWith = startsWith;
+    lodash.subtract = subtract;
+    lodash.sum = sum;
+    lodash.sumBy = sumBy;
+    lodash.template = template;
+    lodash.times = times;
+    lodash.toFinite = toFinite;
+    lodash.toInteger = toInteger;
+    lodash.toLength = toLength;
+    lodash.toLower = toLower;
+    lodash.toNumber = toNumber;
+    lodash.toSafeInteger = toSafeInteger;
+    lodash.toString = toString;
+    lodash.toUpper = toUpper;
+    lodash.trim = trim;
+    lodash.trimEnd = trimEnd;
+    lodash.trimStart = trimStart;
+    lodash.truncate = truncate;
+    lodash.unescape = unescape;
+    lodash.uniqueId = uniqueId;
+    lodash.upperCase = upperCase;
+    lodash.upperFirst = upperFirst;
+
+    // Add aliases.
+    lodash.each = forEach;
+    lodash.eachRight = forEachRight;
+    lodash.first = head;
+
+    mixin(lodash, (function() {
+      var source = {};
+      baseForOwn(lodash, function(func, methodName) {
+        if (!hasOwnProperty.call(lodash.prototype, methodName)) {
+          source[methodName] = func;
+        }
+      });
+      return source;
+    }()), { 'chain': false });
+
+    /*------------------------------------------------------------------------*/
+
+    /**
+     * The semantic version number.
+     *
+     * @static
+     * @memberOf _
+     * @type {string}
+     */
+    lodash.VERSION = VERSION;
+
+    // Assign default placeholders.
+    arrayEach(['bind', 'bindKey', 'curry', 'curryRight', 'partial', 'partialRight'], function(methodName) {
+      lodash[methodName].placeholder = lodash;
+    });
+
+    // Add `LazyWrapper` methods for `_.drop` and `_.take` variants.
+    arrayEach(['drop', 'take'], function(methodName, index) {
+      LazyWrapper.prototype[methodName] = function(n) {
+        n = n === undefined ? 1 : nativeMax(toInteger(n), 0);
+
+        var result = (this.__filtered__ && !index)
+          ? new LazyWrapper(this)
+          : this.clone();
+
+        if (result.__filtered__) {
+          result.__takeCount__ = nativeMin(n, result.__takeCount__);
+        } else {
+          result.__views__.push({
+            'size': nativeMin(n, MAX_ARRAY_LENGTH),
+            'type': methodName + (result.__dir__ < 0 ? 'Right' : '')
+          });
+        }
+        return result;
+      };
+
+      LazyWrapper.prototype[methodName + 'Right'] = function(n) {
+        return this.reverse()[methodName](n).reverse();
+      };
+    });
+
+    // Add `LazyWrapper` methods that accept an `iteratee` value.
+    arrayEach(['filter', 'map', 'takeWhile'], function(methodName, index) {
+      var type = index + 1,
+          isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
+
+      LazyWrapper.prototype[methodName] = function(iteratee) {
+        var result = this.clone();
+        result.__iteratees__.push({
+          'iteratee': getIteratee(iteratee, 3),
+          'type': type
+        });
+        result.__filtered__ = result.__filtered__ || isFilter;
+        return result;
+      };
+    });
+
+    // Add `LazyWrapper` methods for `_.head` and `_.last`.
+    arrayEach(['head', 'last'], function(methodName, index) {
+      var takeName = 'take' + (index ? 'Right' : '');
+
+      LazyWrapper.prototype[methodName] = function() {
+        return this[takeName](1).value()[0];
+      };
+    });
+
+    // Add `LazyWrapper` methods for `_.initial` and `_.tail`.
+    arrayEach(['initial', 'tail'], function(methodName, index) {
+      var dropName = 'drop' + (index ? '' : 'Right');
+
+      LazyWrapper.prototype[methodName] = function() {
+        return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
+      };
+    });
+
+    LazyWrapper.prototype.compact = function() {
+      return this.filter(identity);
+    };
+
+    LazyWrapper.prototype.find = function(predicate) {
+      return this.filter(predicate).head();
+    };
+
+    LazyWrapper.prototype.findLast = function(predicate) {
+      return this.reverse().find(predicate);
+    };
+
+    LazyWrapper.prototype.invokeMap = baseRest(function(path, args) {
+      if (typeof path == 'function') {
+        return new LazyWrapper(this);
+      }
+      return this.map(function(value) {
+        return baseInvoke(value, path, args);
+      });
+    });
+
+    LazyWrapper.prototype.reject = function(predicate) {
+      return this.filter(negate(getIteratee(predicate)));
+    };
+
+    LazyWrapper.prototype.slice = function(start, end) {
+      start = toInteger(start);
+
+      var result = this;
+      if (result.__filtered__ && (start > 0 || end < 0)) {
+        return new LazyWrapper(result);
+      }
+      if (start < 0) {
+        result = result.takeRight(-start);
+      } else if (start) {
+        result = result.drop(start);
+      }
+      if (end !== undefined) {
+        end = toInteger(end);
+        result = end < 0 ? result.dropRight(-end) : result.take(end - start);
+      }
+      return result;
+    };
+
+    LazyWrapper.prototype.takeRightWhile = function(predicate) {
+      return this.reverse().takeWhile(predicate).reverse();
+    };
+
+    LazyWrapper.prototype.toArray = function() {
+      return this.take(MAX_ARRAY_LENGTH);
+    };
+
+    // Add `LazyWrapper` methods to `lodash.prototype`.
+    baseForOwn(LazyWrapper.prototype, function(func, methodName) {
+      var checkIteratee = /^(?:filter|find|map|reject)|While$/.test(methodName),
+          isTaker = /^(?:head|last)$/.test(methodName),
+          lodashFunc = lodash[isTaker ? ('take' + (methodName == 'last' ? 'Right' : '')) : methodName],
+          retUnwrapped = isTaker || /^find/.test(methodName);
+
+      if (!lodashFunc) {
+        return;
+      }
+      lodash.prototype[methodName] = function() {
+        var value = this.__wrapped__,
+            args = isTaker ? [1] : arguments,
+            isLazy = value instanceof LazyWrapper,
+            iteratee = args[0],
+            useLazy = isLazy || isArray(value);
+
+        var interceptor = function(value) {
+          var result = lodashFunc.apply(lodash, arrayPush([value], args));
+          return (isTaker && chainAll) ? result[0] : result;
+        };
+
+        if (useLazy && checkIteratee && typeof iteratee == 'function' && iteratee.length != 1) {
+          // Avoid lazy use if the iteratee has a "length" value other than `1`.
+          isLazy = useLazy = false;
+        }
+        var chainAll = this.__chain__,
+            isHybrid = !!this.__actions__.length,
+            isUnwrapped = retUnwrapped && !chainAll,
+            onlyLazy = isLazy && !isHybrid;
+
+        if (!retUnwrapped && useLazy) {
+          value = onlyLazy ? value : new LazyWrapper(this);
+          var result = func.apply(value, args);
+          result.__actions__.push({ 'func': thru, 'args': [interceptor], 'thisArg': undefined });
+          return new LodashWrapper(result, chainAll);
+        }
+        if (isUnwrapped && onlyLazy) {
+          return func.apply(this, args);
+        }
+        result = this.thru(interceptor);
+        return isUnwrapped ? (isTaker ? result.value()[0] : result.value()) : result;
+      };
+    });
+
+    // Add `Array` methods to `lodash.prototype`.
+    arrayEach(['pop', 'push', 'shift', 'sort', 'splice', 'unshift'], function(methodName) {
+      var func = arrayProto[methodName],
+          chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
+          retUnwrapped = /^(?:pop|shift)$/.test(methodName);
+
+      lodash.prototype[methodName] = function() {
+        var args = arguments;
+        if (retUnwrapped && !this.__chain__) {
+          var value = this.value();
+          return func.apply(isArray(value) ? value : [], args);
+        }
+        return this[chainName](function(value) {
+          return func.apply(isArray(value) ? value : [], args);
+        });
+      };
+    });
+
+    // Map minified method names to their real names.
+    baseForOwn(LazyWrapper.prototype, function(func, methodName) {
+      var lodashFunc = lodash[methodName];
+      if (lodashFunc) {
+        var key = (lodashFunc.name + ''),
+            names = realNames[key] || (realNames[key] = []);
+
+        names.push({ 'name': methodName, 'func': lodashFunc });
+      }
+    });
+
+    realNames[createHybrid(undefined, WRAP_BIND_KEY_FLAG).name] = [{
+      'name': 'wrapper',
+      'func': undefined
+    }];
+
+    // Add methods to `LazyWrapper`.
+    LazyWrapper.prototype.clone = lazyClone;
+    LazyWrapper.prototype.reverse = lazyReverse;
+    LazyWrapper.prototype.value = lazyValue;
+
+    // Add chain sequence methods to the `lodash` wrapper.
+    lodash.prototype.at = wrapperAt;
+    lodash.prototype.chain = wrapperChain;
+    lodash.prototype.commit = wrapperCommit;
+    lodash.prototype.next = wrapperNext;
+    lodash.prototype.plant = wrapperPlant;
+    lodash.prototype.reverse = wrapperReverse;
+    lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
+
+    // Add lazy aliases.
+    lodash.prototype.first = lodash.prototype.head;
+
+    if (symIterator) {
+      lodash.prototype[symIterator] = wrapperToIterator;
+    }
+    return lodash;
+  });
+
+  /*--------------------------------------------------------------------------*/
+
+  // Export lodash.
+  var _ = runInContext();
+
+  // Some AMD build optimizers, like r.js, check for condition patterns like:
+  if (true) {
+    // Expose Lodash on the global object to prevent errors when Lodash is
+    // loaded by a script tag in the presence of an AMD loader.
+    // See http://requirejs.org/docs/errors.html#mismatch for more details.
+    // Use `_.noConflict` to remove Lodash from the global object.
+    root._ = _;
+
+    // Define as an anonymous module so, through path mapping, it can be
+    // referenced as the "underscore" module.
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+      return _;
+    }.call(exports, __webpack_require__, exports, module),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  }
+  // Check for `exports` after `define` in case a build optimizer adds it.
+  else if (freeModule) {
+    // Export for Node.js.
+    (freeModule.exports = _)._ = _;
+    // Export for CommonJS support.
+    freeExports._ = _;
+  }
+  else {
+    // Export to the global object.
+    root._ = _;
+  }
+}.call(this));
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(14)(module)))
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(16);
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var bind = __webpack_require__(3);
+var Axios = __webpack_require__(18);
+var defaults = __webpack_require__(1);
+
+/**
+ * Create an instance of Axios
+ *
+ * @param {Object} defaultConfig The default config for the instance
+ * @return {Axios} A new instance of Axios
+ */
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  return instance;
+}
+
+// Create the default instance to be exported
+var axios = createInstance(defaults);
+
+// Expose Axios class to allow class inheritance
+axios.Axios = Axios;
+
+// Factory for creating new instances
+axios.create = function create(instanceConfig) {
+  return createInstance(utils.merge(defaults, instanceConfig));
+};
+
+// Expose Cancel & CancelToken
+axios.Cancel = __webpack_require__(8);
+axios.CancelToken = __webpack_require__(32);
+axios.isCancel = __webpack_require__(7);
+
+// Expose all/spread
+axios.all = function all(promises) {
+  return Promise.all(promises);
+};
+axios.spread = __webpack_require__(33);
+
+module.exports = axios;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = axios;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+
+// The _isBuffer check is for Safari 5-7 support, because it's missing
+// Object.prototype.constructor. Remove this eventually
+module.exports = function (obj) {
+  return obj != null && (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
+}
+
+function isBuffer (obj) {
+  return !!obj.constructor && typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
+
+// For Node v0.10 support. Remove this eventually.
+function isSlowBuffer (obj) {
+  return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
+}
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var defaults = __webpack_require__(1);
+var utils = __webpack_require__(0);
+var InterceptorManager = __webpack_require__(27);
+var dispatchRequest = __webpack_require__(28);
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof config === 'string') {
+    config = utils.merge({
+      url: arguments[0]
+    }, arguments[1]);
+  }
+
+  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
+  config.method = config.method.toLowerCase();
+
+  // Hook up interceptors middleware
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
+
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    chain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  while (chain.length) {
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+
+  return promise;
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, data, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url,
+      data: data
+    }));
+  };
+});
+
+module.exports = Axios;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+module.exports = function normalizeHeaderName(headers, normalizedName) {
+  utils.forEach(headers, function processHeader(value, name) {
+    if (name !== normalizedName && name.toUpperCase() === normalizedName.toUpperCase()) {
+      headers[normalizedName] = value;
+      delete headers[name];
+    }
+  });
+};
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var createError = __webpack_require__(6);
+
+/**
+ * Resolve or reject a Promise based on response status.
+ *
+ * @param {Function} resolve A function that resolves the promise.
+ * @param {Function} reject A function that rejects the promise.
+ * @param {object} response The response.
+ */
+module.exports = function settle(resolve, reject, response) {
+  var validateStatus = response.config.validateStatus;
+  // Note: status is not exposed by XDomainRequest
+  if (!response.status || !validateStatus || validateStatus(response.status)) {
+    resolve(response);
+  } else {
+    reject(createError(
+      'Request failed with status code ' + response.status,
+      response.config,
+      null,
+      response.request,
+      response
+    ));
+  }
+};
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+module.exports = function enhanceError(error, config, code, request, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+  error.request = request;
+  error.response = response;
+  return error;
+};
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+function encode(val) {
+  return encodeURIComponent(val).
+    replace(/%40/gi, '@').
+    replace(/%3A/gi, ':').
+    replace(/%24/g, '$').
+    replace(/%2C/gi, ',').
+    replace(/%20/g, '+').
+    replace(/%5B/gi, '[').
+    replace(/%5D/gi, ']');
+}
+
+/**
+ * Build a URL by appending params to the end
+ *
+ * @param {string} url The base of the url (e.g., http://www.google.com)
+ * @param {object} [params] The params to be appended
+ * @returns {string} The formatted url
+ */
+module.exports = function buildURL(url, params, paramsSerializer) {
+  /*eslint no-param-reassign:0*/
+  if (!params) {
+    return url;
+  }
+
+  var serializedParams;
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params);
+  } else if (utils.isURLSearchParams(params)) {
+    serializedParams = params.toString();
+  } else {
+    var parts = [];
+
+    utils.forEach(params, function serialize(val, key) {
+      if (val === null || typeof val === 'undefined') {
+        return;
+      }
+
+      if (utils.isArray(val)) {
+        key = key + '[]';
+      }
+
+      if (!utils.isArray(val)) {
+        val = [val];
+      }
+
+      utils.forEach(val, function parseValue(v) {
+        if (utils.isDate(v)) {
+          v = v.toISOString();
+        } else if (utils.isObject(v)) {
+          v = JSON.stringify(v);
+        }
+        parts.push(encode(key) + '=' + encode(v));
+      });
+    });
+
+    serializedParams = parts.join('&');
+  }
+
+  if (serializedParams) {
+    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+  }
+
+  return url;
+};
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+// Headers whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+var ignoreDuplicateOf = [
+  'age', 'authorization', 'content-length', 'content-type', 'etag',
+  'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since',
+  'last-modified', 'location', 'max-forwards', 'proxy-authorization',
+  'referer', 'retry-after', 'user-agent'
+];
+
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} headers Headers needing to be parsed
+ * @returns {Object} Headers parsed into an object
+ */
+module.exports = function parseHeaders(headers) {
+  var parsed = {};
+  var key;
+  var val;
+  var i;
+
+  if (!headers) { return parsed; }
+
+  utils.forEach(headers.split('\n'), function parser(line) {
+    i = line.indexOf(':');
+    key = utils.trim(line.substr(0, i)).toLowerCase();
+    val = utils.trim(line.substr(i + 1));
+
+    if (key) {
+      if (parsed[key] && ignoreDuplicateOf.indexOf(key) >= 0) {
+        return;
+      }
+      if (key === 'set-cookie') {
+        parsed[key] = (parsed[key] ? parsed[key] : []).concat([val]);
+      } else {
+        parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      }
+    }
+  });
+
+  return parsed;
+};
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs have full support of the APIs needed to test
+  // whether the request URL is of the same origin as current location.
+  (function standardBrowserEnv() {
+    var msie = /(msie|trident)/i.test(navigator.userAgent);
+    var urlParsingNode = document.createElement('a');
+    var originURL;
+
+    /**
+    * Parse a URL to discover it's components
+    *
+    * @param {String} url The URL to be parsed
+    * @returns {Object}
+    */
+    function resolveURL(url) {
+      var href = url;
+
+      if (msie) {
+        // IE needs attribute set twice to normalize properties
+        urlParsingNode.setAttribute('href', href);
+        href = urlParsingNode.href;
+      }
+
+      urlParsingNode.setAttribute('href', href);
+
+      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+      return {
+        href: urlParsingNode.href,
+        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+        host: urlParsingNode.host,
+        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+        hostname: urlParsingNode.hostname,
+        port: urlParsingNode.port,
+        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+                  urlParsingNode.pathname :
+                  '/' + urlParsingNode.pathname
+      };
+    }
+
+    originURL = resolveURL(window.location.href);
+
+    /**
+    * Determine if a URL shares the same origin as the current location
+    *
+    * @param {String} requestURL The URL to test
+    * @returns {boolean} True if URL shares the same origin, otherwise false
+    */
+    return function isURLSameOrigin(requestURL) {
+      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+      return (parsed.protocol === originURL.protocol &&
+            parsed.host === originURL.host);
+    };
+  })() :
+
+  // Non standard browser envs (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return function isURLSameOrigin() {
+      return true;
+    };
+  })()
+);
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+
+var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+function E() {
+  this.message = 'String contains an invalid character';
+}
+E.prototype = new Error;
+E.prototype.code = 5;
+E.prototype.name = 'InvalidCharacterError';
+
+function btoa(input) {
+  var str = String(input);
+  var output = '';
+  for (
+    // initialize result and counter
+    var block, charCode, idx = 0, map = chars;
+    // if the next str index does not exist:
+    //   change the mapping table to "="
+    //   check if d has no fractional digits
+    str.charAt(idx | 0) || (map = '=', idx % 1);
+    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+  ) {
+    charCode = str.charCodeAt(idx += 3 / 4);
+    if (charCode > 0xFF) {
+      throw new E();
+    }
+    block = block << 8 | charCode;
+  }
+  return output;
+}
+
+module.exports = btoa;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+module.exports = (
+  utils.isStandardBrowserEnv() ?
+
+  // Standard browser envs support document.cookie
+  (function standardBrowserEnv() {
+    return {
+      write: function write(name, value, expires, path, domain, secure) {
+        var cookie = [];
+        cookie.push(name + '=' + encodeURIComponent(value));
+
+        if (utils.isNumber(expires)) {
+          cookie.push('expires=' + new Date(expires).toGMTString());
+        }
+
+        if (utils.isString(path)) {
+          cookie.push('path=' + path);
+        }
+
+        if (utils.isString(domain)) {
+          cookie.push('domain=' + domain);
+        }
+
+        if (secure === true) {
+          cookie.push('secure');
+        }
+
+        document.cookie = cookie.join('; ');
+      },
+
+      read: function read(name) {
+        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+        return (match ? decodeURIComponent(match[3]) : null);
+      },
+
+      remove: function remove(name) {
+        this.write(name, '', Date.now() - 86400000);
+      }
+    };
+  })() :
+
+  // Non standard browser env (web workers, react-native) lack needed support.
+  (function nonStandardBrowserEnv() {
+    return {
+      write: function write() {},
+      read: function read() { return null; },
+      remove: function remove() {}
+    };
+  })()
+);
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+var transformData = __webpack_require__(29);
+var isCancel = __webpack_require__(7);
+var defaults = __webpack_require__(1);
+var isAbsoluteURL = __webpack_require__(30);
+var combineURLs = __webpack_require__(31);
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData(
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers || {}
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData(
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData(
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(0);
+
+/**
+ * Transform the data for a request or a response
+ *
+ * @param {Object|String} data The data to be transformed
+ * @param {Array} headers The headers for the request or response
+ * @param {Array|Function} fns A single function or Array of functions
+ * @returns {*} The resulting transformed data
+ */
+module.exports = function transformData(data, headers, fns) {
+  /*eslint no-param-reassign:0*/
+  utils.forEach(fns, function transform(fn) {
+    data = fn(data, headers);
+  });
+
+  return data;
+};
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determines whether the specified URL is absolute
+ *
+ * @param {string} url The URL to test
+ * @returns {boolean} True if the specified URL is absolute, otherwise false
+ */
+module.exports = function isAbsoluteURL(url) {
+  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+  // by any combination of letters, digits, plus, period, or hyphen.
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+};
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Creates a new URL by combining the specified URLs
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} relativeURL The relative URL
+ * @returns {string} The combined URL
+ */
+module.exports = function combineURLs(baseURL, relativeURL) {
+  return relativeURL
+    ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+    : baseURL;
+};
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Cancel = __webpack_require__(8);
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new Cancel(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Syntactic sugar for invoking a function and expanding an array for arguments.
+ *
+ * Common use case would be to use `Function.prototype.apply`.
+ *
+ *  ```js
+ *  function f(x, y, z) {}
+ *  var args = [1, 2, 3];
+ *  f.apply(null, args);
+ *  ```
+ *
+ * With `spread` this example can be re-written.
+ *
+ *  ```js
+ *  spread(function(x, y, z) {})([1, 2, 3]);
+ *  ```
+ *
+ * @param {Function} callback
+ * @returns {Function}
+ */
+module.exports = function spread(callback) {
+  return function wrap(arr) {
+    return callback.apply(null, arr);
+  };
+};
+
+
+/***/ }),
+/* 34 */,
+/* 35 */,
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*! UIkit 3.0.0-beta.34 | http://www.getuikit.com | (c) 2014 - 2017 YOOtheme | MIT License */
+
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define('uikiticons', factory) :
+	(global.UIkitIcons = factory());
+}(this, (function () { 'use strict';
+
+var album = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"5\" y=\"2\" width=\"10\" height=\"1\"></rect> <rect x=\"3\" y=\"4\" width=\"14\" height=\"1\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"1.5\" y=\"6.5\" width=\"17\" height=\"11\"></rect></svg>";
+var ban = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"10\" cy=\"10\" r=\"9\"></circle> <line fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" x1=\"4\" y1=\"3.5\" x2=\"16\" y2=\"16.5\"></line></svg>";
+var behance = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M9.5,10.6c-0.4-0.5-0.9-0.9-1.6-1.1c1.7-1,2.2-3.2,0.7-4.7C7.8,4,6.3,4,5.2,4C3.5,4,1.7,4,0,4v12c1.7,0,3.4,0,5.2,0 c1,0,2.1,0,3.1-0.5C10.2,14.6,10.5,12.3,9.5,10.6L9.5,10.6z M5.6,6.1c1.8,0,1.8,2.7-0.1,2.7c-1,0-2,0-2.9,0V6.1H5.6z M2.6,13.8v-3.1 c1.1,0,2.1,0,3.2,0c2.1,0,2.1,3.2,0.1,3.2L2.6,13.8z\"></path> <path d=\"M19.9,10.9C19.7,9.2,18.7,7.6,17,7c-4.2-1.3-7.3,3.4-5.3,7.1c0.9,1.7,2.8,2.3,4.7,2.1c1.7-0.2,2.9-1.3,3.4-2.9h-2.2 c-0.4,1.3-2.4,1.5-3.5,0.6c-0.4-0.4-0.6-1.1-0.6-1.7H20C20,11.7,19.9,10.9,19.9,10.9z M13.5,10.6c0-1.6,2.3-2.7,3.5-1.4 c0.4,0.4,0.5,0.9,0.6,1.4H13.5L13.5,10.6z\"></path> <rect x=\"13\" y=\"4\" width=\"5\" height=\"1.4\"></rect></svg>";
+var bell = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M17,15.5 L3,15.5 C2.99,14.61 3.79,13.34 4.1,12.51 C4.58,11.3 4.72,10.35 5.19,7.01 C5.54,4.53 5.89,3.2 7.28,2.16 C8.13,1.56 9.37,1.5 9.81,1.5 L9.96,1.5 C9.96,1.5 11.62,1.41 12.67,2.17 C14.08,3.2 14.42,4.54 14.77,7.02 C15.26,10.35 15.4,11.31 15.87,12.52 C16.2,13.34 17.01,14.61 17,15.5 L17,15.5 Z\"></path> <path fill=\"none\" stroke=\"#000\" d=\"M12.39,16 C12.39,17.37 11.35,18.43 9.91,18.43 C8.48,18.43 7.42,17.37 7.42,16\"></path></svg>";
+var bold = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M5,15.3 C5.66,15.3 5.9,15 5.9,14.53 L5.9,5.5 C5.9,4.92 5.56,4.7 5,4.7 L5,4 L8.95,4 C12.6,4 13.7,5.37 13.7,6.9 C13.7,7.87 13.14,9.17 10.86,9.59 L10.86,9.7 C13.25,9.86 14.29,11.28 14.3,12.54 C14.3,14.47 12.94,16 9,16 L5,16 L5,15.3 Z M9,9.3 C11.19,9.3 11.8,8.5 11.85,7 C11.85,5.65 11.3,4.8 9,4.8 L7.67,4.8 L7.67,9.3 L9,9.3 Z M9.185,15.22 C11.97,15 12.39,14 12.4,12.58 C12.4,11.15 11.39,10 9,10 L7.67,10 L7.67,15 L9.18,15 Z\"></path></svg>";
+var bolt = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M4.74,20 L7.73,12 L3,12 L15.43,1 L12.32,9 L17.02,9 L4.74,20 L4.74,20 L4.74,20 Z M9.18,11 L7.1,16.39 L14.47,10 L10.86,10 L12.99,4.67 L5.61,11 L9.18,11 L9.18,11 L9.18,11 Z\"></path></svg>";
+var bookmark = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon fill=\"none\" stroke=\"#000\" points=\"5.5 1.5 15.5 1.5 15.5 17.5 10.5 12.5 5.5 17.5\"></polygon></svg>";
+var calendar = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M 2,3 2,17 18,17 18,3 2,3 Z M 17,16 3,16 3,8 17,8 17,16 Z M 17,7 3,7 3,4 17,4 17,7 Z\"></path> <rect width=\"1\" height=\"3\" x=\"6\" y=\"2\"></rect> <rect width=\"1\" height=\"3\" x=\"13\" y=\"2\"></rect></svg>";
+var camera = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"10\" cy=\"10.8\" r=\"3.8\"></circle> <path fill=\"none\" stroke=\"#000\" d=\"M1,4.5 C0.7,4.5 0.5,4.7 0.5,5 L0.5,17 C0.5,17.3 0.7,17.5 1,17.5 L19,17.5 C19.3,17.5 19.5,17.3 19.5,17 L19.5,5 C19.5,4.7 19.3,4.5 19,4.5 L13.5,4.5 L13.5,2.9 C13.5,2.6 13.3,2.5 13,2.5 L7,2.5 C6.7,2.5 6.5,2.6 6.5,2.9 L6.5,4.5 L1,4.5 L1,4.5 Z\"></path></svg>";
+var cart = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"7.3\" cy=\"17.3\" r=\"1.4\"></circle> <circle cx=\"13.3\" cy=\"17.3\" r=\"1.4\"></circle> <polyline fill=\"none\" stroke=\"#000\" points=\"0 2 3.2 4 5.3 12.5 16 12.5 18 6.5 8 6.5\"></polyline></svg>";
+var check = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" points=\"4,10 8,15 17,4\"></polyline></svg>";
+var clock = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"10\" cy=\"10\" r=\"9\"></circle> <rect x=\"9\" y=\"4\" width=\"1\" height=\"7\"></rect> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M13.018,14.197 L9.445,10.625\"></path></svg>";
+var close = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.06\" d=\"M16,16 L4,4\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.06\" d=\"M16,4 L4,16\"></path></svg>";
+var code = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.01\" points=\"13,4 19,10 13,16\"></polyline> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.01\" points=\"7,4 1,10 7,16\"></polyline></svg>";
+var cog = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" cx=\"9.997\" cy=\"10\" r=\"3.31\"></circle> <path fill=\"none\" stroke=\"#000\" d=\"M18.488,12.285 L16.205,16.237 C15.322,15.496 14.185,15.281 13.303,15.791 C12.428,16.289 12.047,17.373 12.246,18.5 L7.735,18.5 C7.938,17.374 7.553,16.299 6.684,15.791 C5.801,15.27 4.655,15.492 3.773,16.237 L1.5,12.285 C2.573,11.871 3.317,10.999 3.317,9.991 C3.305,8.98 2.573,8.121 1.5,7.716 L3.765,3.784 C4.645,4.516 5.794,4.738 6.687,4.232 C7.555,3.722 7.939,2.637 7.735,1.5 L12.263,1.5 C12.072,2.637 12.441,3.71 13.314,4.22 C14.206,4.73 15.343,4.516 16.225,3.794 L18.487,7.714 C17.404,8.117 16.661,8.988 16.67,10.009 C16.672,11.018 17.415,11.88 18.488,12.285 L18.488,12.285 Z\"></path></svg>";
+var comment = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M6,18.71 L6,14 L1,14 L1,1 L19,1 L19,14 L10.71,14 L6,18.71 L6,18.71 Z M2,13 L7,13 L7,16.29 L10.29,13 L18,13 L18,2 L2,2 L2,13 L2,13 Z\"></path></svg>";
+var commenting = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon fill=\"none\" stroke=\"#000\" points=\"1.5,1.5 18.5,1.5 18.5,13.5 10.5,13.5 6.5,17.5 6.5,13.5 1.5,13.5\"></polygon> <circle cx=\"10\" cy=\"8\" r=\"1\"></circle> <circle cx=\"6\" cy=\"8\" r=\"1\"></circle> <circle cx=\"14\" cy=\"8\" r=\"1\"></circle></svg>";
+var comments = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" points=\"2 0.5 19.5 0.5 19.5 13\"></polyline> <path d=\"M5,19.71 L5,15 L0,15 L0,2 L18,2 L18,15 L9.71,15 L5,19.71 L5,19.71 L5,19.71 Z M1,14 L6,14 L6,17.29 L9.29,14 L17,14 L17,3 L1,3 L1,14 L1,14 L1,14 Z\"></path></svg>";
+var copy = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect fill=\"none\" stroke=\"#000\" x=\"3.5\" y=\"2.5\" width=\"12\" height=\"16\"></rect> <polyline fill=\"none\" stroke=\"#000\" points=\"5 0.5 17.5 0.5 17.5 17\"></polyline></svg>";
+var database = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <ellipse fill=\"none\" stroke=\"#000\" cx=\"10\" cy=\"4.64\" rx=\"7.5\" ry=\"3.14\"></ellipse> <path fill=\"none\" stroke=\"#000\" d=\"M17.5,8.11 C17.5,9.85 14.14,11.25 10,11.25 C5.86,11.25 2.5,9.84 2.5,8.11\"></path> <path fill=\"none\" stroke=\"#000\" d=\"M17.5,11.25 C17.5,12.99 14.14,14.39 10,14.39 C5.86,14.39 2.5,12.98 2.5,11.25\"></path> <path fill=\"none\" stroke=\"#000\" d=\"M17.49,4.64 L17.5,14.36 C17.5,16.1 14.14,17.5 10,17.5 C5.86,17.5 2.5,16.09 2.5,14.36 L2.5,4.64\"></path></svg>";
+var desktop = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"8\" y=\"15\" width=\"1\" height=\"2\"></rect> <rect x=\"11\" y=\"15\" width=\"1\" height=\"2\"></rect> <rect x=\"5\" y=\"16\" width=\"10\" height=\"1\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"1.5\" y=\"3.5\" width=\"17\" height=\"11\"></rect></svg>";
+var download = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" points=\"14,10 9.5,14.5 5,10\"></polyline> <rect x=\"3\" y=\"17\" width=\"13\" height=\"1\"></rect> <line fill=\"none\" stroke=\"#000\" x1=\"9.5\" y1=\"13.91\" x2=\"9.5\" y2=\"3\"></line></svg>";
+var dribbble = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" d=\"M1.3,8.9c0,0,5,0.1,8.6-1c1.4-0.4,2.6-0.9,4-1.9 c1.4-1.1,2.5-2.5,2.5-2.5\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" d=\"M3.9,16.6c0,0,1.7-2.8,3.5-4.2 c1.8-1.3,4-2,5.7-2.2C16,10,19,10.6,19,10.6\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" d=\"M6.9,1.6c0,0,3.3,4.6,4.2,6.8 c0.4,0.9,1.3,3.1,1.9,5.2c0.6,2,0.9,4.4,0.9,4.4\"></path> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.4\" cx=\"10\" cy=\"10\" r=\"9\"></circle></svg>";
+var expand = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"13 2 18 2 18 7 17 7 17 3 13 3\"></polygon> <polygon points=\"2 13 3 13 3 17 7 17 7 18 2 18\"></polygon> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M11,9 L17,3\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M3,17 L9,11\"></path></svg>";
+var facebook = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M11,10h2.6l0.4-3H11V5.3c0-0.9,0.2-1.5,1.5-1.5H14V1.1c-0.3,0-1-0.1-2.1-0.1C9.6,1,8,2.4,8,5v2H5.5v3H8v8h3V10z\"></path></svg>";
+var file = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect fill=\"none\" stroke=\"#000\" x=\"3.5\" y=\"1.5\" width=\"13\" height=\"17\"></rect></svg>";
+var flickr = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"5.5\" cy=\"9.5\" r=\"3.5\"></circle> <circle cx=\"14.5\" cy=\"9.5\" r=\"3.5\"></circle></svg>";
+var folder = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon fill=\"none\" stroke=\"#000\" points=\"9.5 5.5 8.5 3.5 1.5 3.5 1.5 16.5 18.5 16.5 18.5 5.5\"></polygon></svg>";
+var forward = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M2.47,13.11 C4.02,10.02 6.27,7.85 9.04,6.61 C9.48,6.41 10.27,6.13 11,5.91 L11,2 L18.89,9 L11,16 L11,12.13 C9.25,12.47 7.58,13.19 6.02,14.25 C3.03,16.28 1.63,18.54 1.63,18.54 C1.63,18.54 1.38,15.28 2.47,13.11 L2.47,13.11 Z M5.3,13.53 C6.92,12.4 9.04,11.4 12,10.92 L12,13.63 L17.36,9 L12,4.25 L12,6.8 C11.71,6.86 10.86,7.02 9.67,7.49 C6.79,8.65 4.58,10.96 3.49,13.08 C3.18,13.7 2.68,14.87 2.49,16 C3.28,15.05 4.4,14.15 5.3,13.53 L5.3,13.53 Z\"></path></svg>";
+var foursquare = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M15.23,2 C15.96,2 16.4,2.41 16.5,2.86 C16.57,3.15 16.56,3.44 16.51,3.73 C16.46,4.04 14.86,11.72 14.75,12.03 C14.56,12.56 14.16,12.82 13.61,12.83 C13.03,12.84 11.09,12.51 10.69,13 C10.38,13.38 7.79,16.39 6.81,17.53 C6.61,17.76 6.4,17.96 6.08,17.99 C5.68,18.04 5.29,17.87 5.17,17.45 C5.12,17.28 5.1,17.09 5.1,16.91 C5.1,12.4 4.86,7.81 5.11,3.31 C5.17,2.5 5.81,2.12 6.53,2 L15.23,2 L15.23,2 Z M9.76,11.42 C9.94,11.19 10.17,11.1 10.45,11.1 L12.86,11.1 C13.12,11.1 13.31,10.94 13.36,10.69 C13.37,10.64 13.62,9.41 13.74,8.83 C13.81,8.52 13.53,8.28 13.27,8.28 C12.35,8.29 11.42,8.28 10.5,8.28 C9.84,8.28 9.83,7.69 9.82,7.21 C9.8,6.85 10.13,6.55 10.5,6.55 C11.59,6.56 12.67,6.55 13.76,6.55 C14.03,6.55 14.23,6.4 14.28,6.14 C14.34,5.87 14.67,4.29 14.67,4.29 C14.67,4.29 14.82,3.74 14.19,3.74 L7.34,3.74 C7,3.75 6.84,4.02 6.84,4.33 C6.84,7.58 6.85,14.95 6.85,14.99 C6.87,15 8.89,12.51 9.76,11.42 L9.76,11.42 Z\"></path></svg>";
+var future = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline points=\"19 2 18 2 18 6 14 6 14 7 19 7 19 2\"></polyline> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M18,6.548 C16.709,3.29 13.354,1 9.6,1 C4.6,1 0.6,5 0.6,10 C0.6,15 4.6,19 9.6,19 C14.6,19 18.6,15 18.6,10\"></path> <rect x=\"9\" y=\"4\" width=\"1\" height=\"7\"></rect> <path d=\"M13.018,14.197 L9.445,10.625\" fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\"></path></svg>";
+var github = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M10,1 C5.03,1 1,5.03 1,10 C1,13.98 3.58,17.35 7.16,18.54 C7.61,18.62 7.77,18.34 7.77,18.11 C7.77,17.9 7.76,17.33 7.76,16.58 C5.26,17.12 4.73,15.37 4.73,15.37 C4.32,14.33 3.73,14.05 3.73,14.05 C2.91,13.5 3.79,13.5 3.79,13.5 C4.69,13.56 5.17,14.43 5.17,14.43 C5.97,15.8 7.28,15.41 7.79,15.18 C7.87,14.6 8.1,14.2 8.36,13.98 C6.36,13.75 4.26,12.98 4.26,9.53 C4.26,8.55 4.61,7.74 5.19,7.11 C5.1,6.88 4.79,5.97 5.28,4.73 C5.28,4.73 6.04,4.49 7.75,5.65 C8.47,5.45 9.24,5.35 10,5.35 C10.76,5.35 11.53,5.45 12.25,5.65 C13.97,4.48 14.72,4.73 14.72,4.73 C15.21,5.97 14.9,6.88 14.81,7.11 C15.39,7.74 15.73,8.54 15.73,9.53 C15.73,12.99 13.63,13.75 11.62,13.97 C11.94,14.25 12.23,14.8 12.23,15.64 C12.23,16.84 12.22,17.81 12.22,18.11 C12.22,18.35 12.38,18.63 12.84,18.54 C16.42,17.35 19,13.98 19,10 C19,5.03 14.97,1 10,1 L10,1 Z\"></path></svg>";
+var gitter = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"3.5\" y=\"1\" width=\"1.531\" height=\"11.471\"></rect> <rect x=\"7.324\" y=\"4.059\" width=\"1.529\" height=\"15.294\"></rect> <rect x=\"11.148\" y=\"4.059\" width=\"1.527\" height=\"15.294\"></rect> <rect x=\"14.971\" y=\"4.059\" width=\"1.529\" height=\"8.412\"></rect></svg>";
+var google = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M17.86,9.09 C18.46,12.12 17.14,16.05 13.81,17.56 C9.45,19.53 4.13,17.68 2.47,12.87 C0.68,7.68 4.22,2.42 9.5,2.03 C11.57,1.88 13.42,2.37 15.05,3.65 C15.22,3.78 15.37,3.93 15.61,4.14 C14.9,4.81 14.23,5.45 13.5,6.14 C12.27,5.08 10.84,4.72 9.28,4.98 C8.12,5.17 7.16,5.76 6.37,6.63 C4.88,8.27 4.62,10.86 5.76,12.82 C6.95,14.87 9.17,15.8 11.57,15.25 C13.27,14.87 14.76,13.33 14.89,11.75 L10.51,11.75 L10.51,9.09 L17.86,9.09 L17.86,9.09 Z\"></path></svg>";
+var grid = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"2\" y=\"2\" width=\"3\" height=\"3\"></rect> <rect x=\"8\" y=\"2\" width=\"3\" height=\"3\"></rect> <rect x=\"14\" y=\"2\" width=\"3\" height=\"3\"></rect> <rect x=\"2\" y=\"8\" width=\"3\" height=\"3\"></rect> <rect x=\"8\" y=\"8\" width=\"3\" height=\"3\"></rect> <rect x=\"14\" y=\"8\" width=\"3\" height=\"3\"></rect> <rect x=\"2\" y=\"14\" width=\"3\" height=\"3\"></rect> <rect x=\"8\" y=\"14\" width=\"3\" height=\"3\"></rect> <rect x=\"14\" y=\"14\" width=\"3\" height=\"3\"></rect></svg>";
+var happy = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"13\" cy=\"7\" r=\"1\"></circle> <circle cx=\"7\" cy=\"7\" r=\"1\"></circle> <circle fill=\"none\" stroke=\"#000\" cx=\"10\" cy=\"10\" r=\"8.5\"></circle> <path fill=\"none\" stroke=\"#000\" d=\"M14.6,11.4 C13.9,13.3 12.1,14.5 10,14.5 C7.9,14.5 6.1,13.3 5.4,11.4\"></path></svg>";
+var hashtag = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M15.431,8 L15.661,7 L12.911,7 L13.831,3 L12.901,3 L11.98,7 L9.29,7 L10.21,3 L9.281,3 L8.361,7 L5.23,7 L5,8 L8.13,8 L7.21,12 L4.23,12 L4,13 L6.98,13 L6.061,17 L6.991,17 L7.911,13 L10.601,13 L9.681,17 L10.611,17 L11.531,13 L14.431,13 L14.661,12 L11.76,12 L12.681,8 L15.431,8 Z M10.831,12 L8.141,12 L9.061,8 L11.75,8 L10.831,12 Z\"></path></svg>";
+var heart = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.03\" d=\"M10,4 C10,4 8.1,2 5.74,2 C3.38,2 1,3.55 1,6.73 C1,8.84 2.67,10.44 2.67,10.44 L10,18 L17.33,10.44 C17.33,10.44 19,8.84 19,6.73 C19,3.55 16.62,2 14.26,2 C11.9,2 10,4 10,4 L10,4 Z\"></path></svg>";
+var history = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"#000\" points=\"1 2 2 2 2 6 6 6 6 7 1 7 1 2\"></polyline> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M2.1,6.548 C3.391,3.29 6.746,1 10.5,1 C15.5,1 19.5,5 19.5,10 C19.5,15 15.5,19 10.5,19 C5.5,19 1.5,15 1.5,10\"></path> <rect x=\"9\" y=\"4\" width=\"1\" height=\"7\"></rect> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M13.018,14.197 L9.445,10.625\" id=\"Shape\"></path></svg>";
+var home = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"18.65 11.35 10 2.71 1.35 11.35 0.65 10.65 10 1.29 19.35 10.65\"></polygon> <polygon points=\"15 4 18 4 18 7 17 7 17 5 15 5\"></polygon> <polygon points=\"3 11 4 11 4 18 7 18 7 12 12 12 12 18 16 18 16 11 17 11 17 19 11 19 11 13 8 13 8 19 3 19\"></polygon></svg>";
+var image = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"16.1\" cy=\"6.1\" r=\"1.1\"></circle> <rect fill=\"none\" stroke=\"#000\" x=\"0.5\" y=\"2.5\" width=\"19\" height=\"15\"></rect> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.01\" points=\"4,13 8,9 13,14\"></polyline> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.01\" points=\"11,12 12.5,10.5 16,14\"></polyline></svg>";
+var info = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M12.13,11.59 C11.97,12.84 10.35,14.12 9.1,14.16 C6.17,14.2 9.89,9.46 8.74,8.37 C9.3,8.16 10.62,7.83 10.62,8.81 C10.62,9.63 10.12,10.55 9.88,11.32 C8.66,15.16 12.13,11.15 12.14,11.18 C12.16,11.21 12.16,11.35 12.13,11.59 C12.08,11.95 12.16,11.35 12.13,11.59 L12.13,11.59 Z M11.56,5.67 C11.56,6.67 9.36,7.15 9.36,6.03 C9.36,5 11.56,4.54 11.56,5.67 L11.56,5.67 Z\"></path> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"10\" cy=\"10\" r=\"9\"></circle></svg>";
+var instagram = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M13.55,1H6.46C3.45,1,1,3.44,1,6.44v7.12c0,3,2.45,5.44,5.46,5.44h7.08c3.02,0,5.46-2.44,5.46-5.44V6.44 C19.01,3.44,16.56,1,13.55,1z M17.5,14c0,1.93-1.57,3.5-3.5,3.5H6c-1.93,0-3.5-1.57-3.5-3.5V6c0-1.93,1.57-3.5,3.5-3.5h8 c1.93,0,3.5,1.57,3.5,3.5V14z\"></path> <circle cx=\"14.87\" cy=\"5.26\" r=\"1.09\"></circle> <path d=\"M10.03,5.45c-2.55,0-4.63,2.06-4.63,4.6c0,2.55,2.07,4.61,4.63,4.61c2.56,0,4.63-2.061,4.63-4.61 C14.65,7.51,12.58,5.45,10.03,5.45L10.03,5.45L10.03,5.45z M10.08,13c-1.66,0-3-1.34-3-2.99c0-1.65,1.34-2.99,3-2.99s3,1.34,3,2.99 C13.08,11.66,11.74,13,10.08,13L10.08,13L10.08,13z\"></path></svg>";
+var italic = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M12.63,5.48 L10.15,14.52 C10,15.08 10.37,15.25 11.92,15.3 L11.72,16 L6,16 L6.2,15.31 C7.78,15.26 8.19,15.09 8.34,14.53 L10.82,5.49 C10.97,4.92 10.63,4.76 9.09,4.71 L9.28,4 L15,4 L14.81,4.69 C13.23,4.75 12.78,4.91 12.63,5.48 L12.63,5.48 Z\"></path></svg>";
+var joomla = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M7.8,13.4l1.7-1.7L5.9,8c-0.6-0.5-0.6-1.5,0-2c0.6-0.6,1.4-0.6,2,0l1.7-1.7c-1-1-2.3-1.3-3.6-1C5.8,2.2,4.8,1.4,3.7,1.4 c-1.3,0-2.3,1-2.3,2.3c0,1.1,0.8,2,1.8,2.3c-0.4,1.3-0.1,2.8,1,3.8L7.8,13.4L7.8,13.4z\"></path> <path d=\"M10.2,4.3c1-1,2.5-1.4,3.8-1c0.2-1.1,1.1-2,2.3-2c1.3,0,2.3,1,2.3,2.3c0,1.2-0.9,2.2-2,2.3c0.4,1.3,0,2.8-1,3.8L13.9,8 c0.6-0.5,0.6-1.5,0-2c-0.5-0.6-1.5-0.6-2,0L8.2,9.7L6.5,8\"></path> <path d=\"M14.1,16.8c-1.3,0.4-2.8,0.1-3.8-1l1.7-1.7c0.6,0.6,1.5,0.6,2,0c0.5-0.6,0.6-1.5,0-2l-3.7-3.7L12,6.7l3.7,3.7 c1,1,1.3,2.4,1,3.6c1.1,0.2,2,1.1,2,2.3c0,1.3-1,2.3-2.3,2.3C15.2,18.6,14.3,17.8,14.1,16.8\"></path> <path d=\"M13.2,12.2l-3.7,3.7c-1,1-2.4,1.3-3.6,1c-0.2,1-1.2,1.8-2.2,1.8c-1.3,0-2.3-1-2.3-2.3c0-1.1,0.8-2,1.8-2.3 c-0.3-1.3,0-2.7,1-3.7l1.7,1.7c-0.6,0.6-0.6,1.5,0,2c0.6,0.6,1.4,0.6,2,0l3.7-3.7\"></path></svg>";
+var laptop = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect y=\"16\" width=\"20\" height=\"1\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"2.5\" y=\"4.5\" width=\"15\" height=\"10\"></rect></svg>";
+var lifesaver = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M10,0.5 C4.76,0.5 0.5,4.76 0.5,10 C0.5,15.24 4.76,19.5 10,19.5 C15.24,19.5 19.5,15.24 19.5,10 C19.5,4.76 15.24,0.5 10,0.5 L10,0.5 Z M10,1.5 C11.49,1.5 12.89,1.88 14.11,2.56 L11.85,4.82 C11.27,4.61 10.65,4.5 10,4.5 C9.21,4.5 8.47,4.67 7.79,4.96 L5.58,2.75 C6.87,1.95 8.38,1.5 10,1.5 L10,1.5 Z M4.96,7.8 C4.67,8.48 4.5,9.21 4.5,10 C4.5,10.65 4.61,11.27 4.83,11.85 L2.56,14.11 C1.88,12.89 1.5,11.49 1.5,10 C1.5,8.38 1.95,6.87 2.75,5.58 L4.96,7.79 L4.96,7.8 L4.96,7.8 Z M10,18.5 C8.25,18.5 6.62,17.97 5.27,17.06 L7.46,14.87 C8.22,15.27 9.08,15.5 10,15.5 C10.79,15.5 11.53,15.33 12.21,15.04 L14.42,17.25 C13.13,18.05 11.62,18.5 10,18.5 L10,18.5 Z M10,14.5 C7.52,14.5 5.5,12.48 5.5,10 C5.5,7.52 7.52,5.5 10,5.5 C12.48,5.5 14.5,7.52 14.5,10 C14.5,12.48 12.48,14.5 10,14.5 L10,14.5 Z M15.04,12.21 C15.33,11.53 15.5,10.79 15.5,10 C15.5,9.08 15.27,8.22 14.87,7.46 L17.06,5.27 C17.97,6.62 18.5,8.25 18.5,10 C18.5,11.62 18.05,13.13 17.25,14.42 L15.04,12.21 L15.04,12.21 Z\"></path></svg>";
+var link = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M10.625,12.375 L7.525,15.475 C6.825,16.175 5.925,16.175 5.225,15.475 L4.525,14.775 C3.825,14.074 3.825,13.175 4.525,12.475 L7.625,9.375\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M9.325,7.375 L12.425,4.275 C13.125,3.575 14.025,3.575 14.724,4.275 L15.425,4.975 C16.125,5.675 16.125,6.575 15.425,7.275 L12.325,10.375\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M7.925,11.875 L11.925,7.975\"></path></svg>";
+var linkedin = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M5.77,17.89 L5.77,7.17 L2.21,7.17 L2.21,17.89 L5.77,17.89 L5.77,17.89 Z M3.99,5.71 C5.23,5.71 6.01,4.89 6.01,3.86 C5.99,2.8 5.24,2 4.02,2 C2.8,2 2,2.8 2,3.85 C2,4.88 2.77,5.7 3.97,5.7 L3.99,5.7 L3.99,5.71 L3.99,5.71 Z\"></path> <path d=\"M7.75,17.89 L11.31,17.89 L11.31,11.9 C11.31,11.58 11.33,11.26 11.43,11.03 C11.69,10.39 12.27,9.73 13.26,9.73 C14.55,9.73 15.06,10.71 15.06,12.15 L15.06,17.89 L18.62,17.89 L18.62,11.74 C18.62,8.45 16.86,6.92 14.52,6.92 C12.6,6.92 11.75,7.99 11.28,8.73 L11.3,8.73 L11.3,7.17 L7.75,7.17 C7.79,8.17 7.75,17.89 7.75,17.89 L7.75,17.89 L7.75,17.89 Z\"></path></svg>";
+var list = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"6\" y=\"4\" width=\"12\" height=\"1\"></rect> <rect x=\"6\" y=\"9\" width=\"12\" height=\"1\"></rect> <rect x=\"6\" y=\"14\" width=\"12\" height=\"1\"></rect> <rect x=\"2\" y=\"4\" width=\"2\" height=\"1\"></rect> <rect x=\"2\" y=\"9\" width=\"2\" height=\"1\"></rect> <rect x=\"2\" y=\"14\" width=\"2\" height=\"1\"></rect></svg>";
+var location = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.01\" d=\"M10,0.5 C6.41,0.5 3.5,3.39 3.5,6.98 C3.5,11.83 10,19 10,19 C10,19 16.5,11.83 16.5,6.98 C16.5,3.39 13.59,0.5 10,0.5 L10,0.5 Z\"></path> <circle fill=\"none\" stroke=\"#000\" cx=\"10\" cy=\"6.8\" r=\"2.3\"></circle></svg>";
+var lock = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect fill=\"none\" stroke=\"#000\" height=\"10\" width=\"13\" y=\"8.5\" x=\"3.5\"></rect> <path fill=\"none\" stroke=\"#000\" d=\"M6.5,8 L6.5,4.88 C6.5,3.01 8.07,1.5 10,1.5 C11.93,1.5 13.5,3.01 13.5,4.88 L13.5,8\"></path></svg>";
+var mail = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" points=\"1.4,6.5 10,11 18.6,6.5\"></polyline> <path d=\"M 1,4 1,16 19,16 19,4 1,4 Z M 18,15 2,15 2,5 18,5 18,15 Z\"></path></svg>";
+var menu = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"2\" y=\"4\" width=\"16\" height=\"1\"></rect> <rect x=\"2\" y=\"9\" width=\"16\" height=\"1\"></rect> <rect x=\"2\" y=\"14\" width=\"16\" height=\"1\"></rect></svg>";
+var minus = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect height=\"1\" width=\"18\" y=\"9\" x=\"1\"></rect></svg>";
+var more = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"3\" cy=\"10\" r=\"2\"></circle> <circle cx=\"10\" cy=\"10\" r=\"2\"></circle> <circle cx=\"17\" cy=\"10\" r=\"2\"></circle></svg>";
+var move = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"4,5 1,5 1,9 2,9 2,6 4,6 \"></polygon> <polygon points=\"1,16 2,16 2,18 4,18 4,19 1,19 \"></polygon> <polygon points=\"14,16 14,19 11,19 11,18 13,18 13,16 \"></polygon> <rect fill=\"none\" stroke=\"#000\" x=\"5.5\" y=\"1.5\" width=\"13\" height=\"13\"></rect> <rect x=\"1\" y=\"11\" width=\"1\" height=\"3\"></rect> <rect x=\"6\" y=\"18\" width=\"3\" height=\"1\"></rect></svg>";
+var nut = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon fill=\"none\" stroke=\"#000\" points=\"2.5,5.7 10,1.3 17.5,5.7 17.5,14.3 10,18.7 2.5,14.3\"></polygon> <circle fill=\"none\" stroke=\"#000\" cx=\"10\" cy=\"10\" r=\"3.5\"></circle></svg>";
+var pagekit = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"3,1 17,1 17,16 10,16 10,13 14,13 14,4 6,4 6,16 10,16 10,19 3,19 \"></polygon></svg>";
+var pencil = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" d=\"M17.25,6.01 L7.12,16.1 L3.82,17.2 L5.02,13.9 L15.12,3.88 C15.71,3.29 16.66,3.29 17.25,3.88 C17.83,4.47 17.83,5.42 17.25,6.01 L17.25,6.01 Z\"></path> <path fill=\"none\" stroke=\"#000\" d=\"M15.98,7.268 L13.851,5.148\"></path></svg>";
+var phone = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" d=\"M15.5,17 C15.5,17.8 14.8,18.5 14,18.5 L7,18.5 C6.2,18.5 5.5,17.8 5.5,17 L5.5,3 C5.5,2.2 6.2,1.5 7,1.5 L14,1.5 C14.8,1.5 15.5,2.2 15.5,3 L15.5,17 L15.5,17 L15.5,17 Z\"></path> <circle cx=\"10.5\" cy=\"16.5\" r=\"0.8\"></circle></svg>";
+var pinterest = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M10.21,1 C5.5,1 3,4.16 3,7.61 C3,9.21 3.85,11.2 5.22,11.84 C5.43,11.94 5.54,11.89 5.58,11.69 C5.62,11.54 5.8,10.8 5.88,10.45 C5.91,10.34 5.89,10.24 5.8,10.14 C5.36,9.59 5,8.58 5,7.65 C5,5.24 6.82,2.91 9.93,2.91 C12.61,2.91 14.49,4.74 14.49,7.35 C14.49,10.3 13,12.35 11.06,12.35 C9.99,12.35 9.19,11.47 9.44,10.38 C9.75,9.08 10.35,7.68 10.35,6.75 C10.35,5.91 9.9,5.21 8.97,5.21 C7.87,5.21 6.99,6.34 6.99,7.86 C6.99,8.83 7.32,9.48 7.32,9.48 C7.32,9.48 6.24,14.06 6.04,14.91 C5.7,16.35 6.08,18.7 6.12,18.9 C6.14,19.01 6.26,19.05 6.33,18.95 C6.44,18.81 7.74,16.85 8.11,15.44 C8.24,14.93 8.79,12.84 8.79,12.84 C9.15,13.52 10.19,14.09 11.29,14.09 C14.58,14.09 16.96,11.06 16.96,7.3 C16.94,3.7 14,1 10.21,1\"></path></svg>";
+var play = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon fill=\"none\" stroke=\"#000\" points=\"6.5,5 14.5,10 6.5,15\"></polygon></svg>";
+var plus = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"9\" y=\"1\" width=\"1\" height=\"17\"></rect> <rect x=\"1\" y=\"9\" width=\"17\" height=\"1\"></rect></svg>";
+var pull = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"6.85,8 9.5,10.6 12.15,8 12.85,8.7 9.5,12 6.15,8.7\"></polygon> <line fill=\"none\" stroke=\"#000\" x1=\"9.5\" y1=\"11\" x2=\"9.5\" y2=\"2\"></line> <polyline fill=\"none\" stroke=\"#000\" points=\"6,5.5 3.5,5.5 3.5,18.5 15.5,18.5 15.5,5.5 13,5.5\"></polyline></svg>";
+var push = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"12.15,4 9.5,1.4 6.85,4 6.15,3.3 9.5,0 12.85,3.3\"></polygon> <line fill=\"none\" stroke=\"#000\" x1=\"9.5\" y1=\"10\" x2=\"9.5\" y2=\"1\"></line> <polyline fill=\"none\" stroke=\"#000\" points=\"6 5.5 3.5 5.5 3.5 18.5 15.5 18.5 15.5 5.5 13 5.5\"></polyline></svg>";
+var question = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"10\" cy=\"10\" r=\"9\"></circle> <circle cx=\"10.44\" cy=\"14.42\" r=\"1.05\"></circle> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.2\" d=\"M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75\"></path></svg>";
+var receiver = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.01\" d=\"M6.189,13.611C8.134,15.525 11.097,18.239 13.867,18.257C16.47,18.275 18.2,16.241 18.2,16.241L14.509,12.551L11.539,13.639L6.189,8.29L7.313,5.355L3.76,1.8C3.76,1.8 1.732,3.537 1.7,6.092C1.667,8.809 4.347,11.738 6.189,13.611\"></path></svg>";
+var refresh = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M17.08,11.15 C17.09,11.31 17.1,11.47 17.1,11.64 C17.1,15.53 13.94,18.69 10.05,18.69 C6.16,18.68 3,15.53 3,11.63 C3,7.74 6.16,4.58 10.05,4.58 C10.9,4.58 11.71,4.73 12.46,5\"></path> <polyline fill=\"none\" stroke=\"#000\" points=\"9.9 2 12.79 4.89 9.79 7.9\"></polyline></svg>";
+var reply = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M17.7,13.11 C16.12,10.02 13.84,7.85 11.02,6.61 C10.57,6.41 9.75,6.13 9,5.91 L9,2 L1,9 L9,16 L9,12.13 C10.78,12.47 12.5,13.19 14.09,14.25 C17.13,16.28 18.56,18.54 18.56,18.54 C18.56,18.54 18.81,15.28 17.7,13.11 L17.7,13.11 Z M14.82,13.53 C13.17,12.4 11.01,11.4 8,10.92 L8,13.63 L2.55,9 L8,4.25 L8,6.8 C8.3,6.86 9.16,7.02 10.37,7.49 C13.3,8.65 15.54,10.96 16.65,13.08 C16.97,13.7 17.48,14.86 17.68,16 C16.87,15.05 15.73,14.15 14.82,13.53 L14.82,13.53 Z\"></path></svg>";
+var rss = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"3.12\" cy=\"16.8\" r=\"1.85\"></circle> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M1.5,8.2 C1.78,8.18 2.06,8.16 2.35,8.16 C7.57,8.16 11.81,12.37 11.81,17.57 C11.81,17.89 11.79,18.19 11.76,18.5\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M1.5,2.52 C1.78,2.51 2.06,2.5 2.35,2.5 C10.72,2.5 17.5,9.24 17.5,17.57 C17.5,17.89 17.49,18.19 17.47,18.5\"></path></svg>";
+var search = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"9\" cy=\"9\" r=\"7\"></circle> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M14,14 L18,18 L14,14 Z\"></path></svg>";
+var server = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"3\" y=\"3\" width=\"1\" height=\"2\"></rect> <rect x=\"5\" y=\"3\" width=\"1\" height=\"2\"></rect> <rect x=\"7\" y=\"3\" width=\"1\" height=\"2\"></rect> <rect x=\"16\" y=\"3\" width=\"1\" height=\"1\"></rect> <rect x=\"16\" y=\"10\" width=\"1\" height=\"1\"></rect> <circle fill=\"none\" stroke=\"#000\" cx=\"9.9\" cy=\"17.4\" r=\"1.4\"></circle> <rect x=\"3\" y=\"10\" width=\"1\" height=\"2\"></rect> <rect x=\"5\" y=\"10\" width=\"1\" height=\"2\"></rect> <rect x=\"9.5\" y=\"14\" width=\"1\" height=\"2\"></rect> <rect x=\"3\" y=\"17\" width=\"6\" height=\"1\"></rect> <rect x=\"11\" y=\"17\" width=\"6\" height=\"1\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"1.5\" y=\"1.5\" width=\"17\" height=\"5\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"1.5\" y=\"8.5\" width=\"17\" height=\"5\"></rect></svg>";
+var settings = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <ellipse fill=\"none\" stroke=\"#000\" cx=\"6.11\" cy=\"3.55\" rx=\"2.11\" ry=\"2.15\"></ellipse> <ellipse fill=\"none\" stroke=\"#000\" cx=\"6.11\" cy=\"15.55\" rx=\"2.11\" ry=\"2.15\"></ellipse> <circle fill=\"none\" stroke=\"#000\" cx=\"13.15\" cy=\"9.55\" r=\"2.15\"></circle> <rect x=\"1\" y=\"3\" width=\"3\" height=\"1\"></rect> <rect x=\"10\" y=\"3\" width=\"8\" height=\"1\"></rect> <rect x=\"1\" y=\"9\" width=\"8\" height=\"1\"></rect> <rect x=\"15\" y=\"9\" width=\"3\" height=\"1\"></rect> <rect x=\"1\" y=\"15\" width=\"3\" height=\"1\"></rect> <rect x=\"10\" y=\"15\" width=\"8\" height=\"1\"></rect></svg>";
+var shrink = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"11 4 12 4 12 8 16 8 16 9 11 9\"></polygon> <polygon points=\"4 11 9 11 9 16 8 16 8 12 4 12\"></polygon> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M12,8 L18,2\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M2,18 L8,12\"></path></svg>";
+var social = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <line fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" x1=\"13.4\" y1=\"14\" x2=\"6.3\" y2=\"10.7\"></line> <line fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" x1=\"13.5\" y1=\"5.5\" x2=\"6.5\" y2=\"8.8\"></line> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"15.5\" cy=\"4.6\" r=\"2.3\"></circle> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"15.5\" cy=\"14.8\" r=\"2.3\"></circle> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"4.5\" cy=\"9.8\" r=\"2.3\"></circle></svg>";
+var soundcloud = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M17.2,9.4c-0.4,0-0.8,0.1-1.101,0.2c-0.199-2.5-2.399-4.5-5-4.5c-0.6,0-1.2,0.1-1.7,0.3C9.2,5.5,9.1,5.6,9.1,5.6V15h8 c1.601,0,2.801-1.2,2.801-2.8C20,10.7,18.7,9.4,17.2,9.4L17.2,9.4z\"></path> <rect x=\"6\" y=\"6.5\" width=\"1.5\" height=\"8.5\"></rect> <rect x=\"3\" y=\"8\" width=\"1.5\" height=\"7\"></rect> <rect y=\"10\" width=\"1.5\" height=\"5\"></rect></svg>";
+var star = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon fill=\"none\" stroke=\"#000\" stroke-width=\"1.01\" points=\"10 2 12.63 7.27 18.5 8.12 14.25 12.22 15.25 18 10 15.27 4.75 18 5.75 12.22 1.5 8.12 7.37 7.27\"></polygon></svg>";
+var strikethrough = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M6,13.02 L6.65,13.02 C7.64,15.16 8.86,16.12 10.41,16.12 C12.22,16.12 12.92,14.93 12.92,13.89 C12.92,12.55 11.99,12.03 9.74,11.23 C8.05,10.64 6.23,10.11 6.23,7.83 C6.23,5.5 8.09,4.09 10.4,4.09 C11.44,4.09 12.13,4.31 12.72,4.54 L13.33,4 L13.81,4 L13.81,7.59 L13.16,7.59 C12.55,5.88 11.52,4.89 10.07,4.89 C8.84,4.89 7.89,5.69 7.89,7.03 C7.89,8.29 8.89,8.78 10.88,9.45 C12.57,10.03 14.38,10.6 14.38,12.91 C14.38,14.75 13.27,16.93 10.18,16.93 C9.18,16.93 8.17,16.69 7.46,16.39 L6.52,17 L6,17 L6,13.02 L6,13.02 Z\"></path> <rect x=\"3\" y=\"10\" width=\"15\" height=\"1\"></rect></svg>";
+var table = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"1\" y=\"3\" width=\"18\" height=\"1\"></rect> <rect x=\"1\" y=\"7\" width=\"18\" height=\"1\"></rect> <rect x=\"1\" y=\"11\" width=\"18\" height=\"1\"></rect> <rect x=\"1\" y=\"15\" width=\"18\" height=\"1\"></rect></svg>";
+var tablet = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" d=\"M5,18.5 C4.2,18.5 3.5,17.8 3.5,17 L3.5,3 C3.5,2.2 4.2,1.5 5,1.5 L16,1.5 C16.8,1.5 17.5,2.2 17.5,3 L17.5,17 C17.5,17.8 16.8,18.5 16,18.5 L5,18.5 L5,18.5 L5,18.5 Z\"></path> <circle cx=\"10.5\" cy=\"16.3\" r=\"0.8\"></circle></svg>";
+var tag = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M17.5,3.71 L17.5,7.72 C17.5,7.96 17.4,8.2 17.21,8.39 L8.39,17.2 C7.99,17.6 7.33,17.6 6.93,17.2 L2.8,13.07 C2.4,12.67 2.4,12.01 2.8,11.61 L11.61,2.8 C11.81,2.6 12.08,2.5 12.34,2.5 L16.19,2.5 C16.52,2.5 16.86,2.63 17.11,2.88 C17.35,3.11 17.48,3.4 17.5,3.71 L17.5,3.71 Z\"></path> <circle cx=\"14\" cy=\"6\" r=\"1\"></circle></svg>";
+var thumbnails = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect fill=\"none\" stroke=\"#000\" x=\"3.5\" y=\"3.5\" width=\"5\" height=\"5\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"11.5\" y=\"3.5\" width=\"5\" height=\"5\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"11.5\" y=\"11.5\" width=\"5\" height=\"5\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"3.5\" y=\"11.5\" width=\"5\" height=\"5\"></rect></svg>";
+var trash = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" points=\"6.5 3 6.5 1.5 13.5 1.5 13.5 3\"></polyline> <polyline fill=\"none\" stroke=\"#000\" points=\"4.5 4 4.5 18.5 15.5 18.5 15.5 4\"></polyline> <rect x=\"8\" y=\"7\" width=\"1\" height=\"9\"></rect> <rect x=\"11\" y=\"7\" width=\"1\" height=\"9\"></rect> <rect x=\"2\" y=\"3\" width=\"16\" height=\"1\"></rect></svg>";
+var tripadvisor = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M19.021,7.866C19.256,6.862,20,5.854,20,5.854h-3.346C14.781,4.641,12.504,4,9.98,4C7.363,4,4.999,4.651,3.135,5.876H0\tc0,0,0.738,0.987,0.976,1.988c-0.611,0.837-0.973,1.852-0.973,2.964c0,2.763,2.249,5.009,5.011,5.009\tc1.576,0,2.976-0.737,3.901-1.879l1.063,1.599l1.075-1.615c0.475,0.611,1.1,1.111,1.838,1.451c1.213,0.547,2.574,0.612,3.825,0.15\tc2.589-0.963,3.913-3.852,2.964-6.439c-0.175-0.463-0.4-0.876-0.675-1.238H19.021z M16.38,14.594\tc-1.002,0.371-2.088,0.328-3.06-0.119c-0.688-0.317-1.252-0.817-1.657-1.438c-0.164-0.25-0.313-0.52-0.417-0.811\tc-0.124-0.328-0.186-0.668-0.217-1.014c-0.063-0.689,0.037-1.396,0.339-2.043c0.448-0.971,1.251-1.71,2.25-2.079\tc2.075-0.765,4.375,0.3,5.14,2.366c0.762,2.066-0.301,4.37-2.363,5.134L16.38,14.594L16.38,14.594z M8.322,13.066\tc-0.72,1.059-1.935,1.76-3.309,1.76c-2.207,0-4.001-1.797-4.001-3.996c0-2.203,1.795-4.002,4.001-4.002\tc2.204,0,3.999,1.8,3.999,4.002c0,0.137-0.024,0.261-0.04,0.396c-0.067,0.678-0.284,1.313-0.648,1.853v-0.013H8.322z M2.472,10.775\tc0,1.367,1.112,2.479,2.476,2.479c1.363,0,2.472-1.11,2.472-2.479c0-1.359-1.11-2.468-2.472-2.468\tC3.584,8.306,2.473,9.416,2.472,10.775L2.472,10.775z M12.514,10.775c0,1.367,1.104,2.479,2.471,2.479\tc1.363,0,2.474-1.108,2.474-2.479c0-1.359-1.11-2.468-2.474-2.468c-1.364,0-2.477,1.109-2.477,2.468H12.514z M3.324,10.775\tc0-0.893,0.726-1.618,1.614-1.618c0.889,0,1.625,0.727,1.625,1.618c0,0.898-0.725,1.627-1.625,1.627\tc-0.901,0-1.625-0.729-1.625-1.627H3.324z M13.354,10.775c0-0.893,0.726-1.618,1.627-1.618c0.886,0,1.61,0.727,1.61,1.618\tc0,0.898-0.726,1.627-1.626,1.627s-1.625-0.729-1.625-1.627H13.354z M9.977,4.875c1.798,0,3.425,0.324,4.849,0.968\tc-0.535,0.015-1.061,0.108-1.586,0.3c-1.264,0.463-2.264,1.388-2.815,2.604c-0.262,0.551-0.398,1.133-0.448,1.72\tC9.79,7.905,7.677,5.873,5.076,5.82C6.501,5.208,8.153,4.875,9.94,4.875H9.977z\"></path></svg>";
+var tumblr = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M6.885,8.598c0,0,0,3.393,0,4.996c0,0.282,0,0.66,0.094,0.942c0.377,1.509,1.131,2.545,2.545,3.11 c1.319,0.472,2.356,0.472,3.676,0c0.565-0.188,1.132-0.659,1.132-0.659l-0.849-2.263c0,0-1.036,0.378-1.603,0.283 c-0.565-0.094-1.226-0.66-1.226-1.508c0-1.603,0-4.902,0-4.902h2.828V5.771h-2.828V2H8.205c0,0-0.094,0.66-0.188,0.942 C7.828,3.791,7.262,4.733,6.603,5.394C5.848,6.147,5,6.43,5,6.43v2.168H6.885z\"></path></svg>";
+var tv = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect x=\"7\" y=\"16\" width=\"6\" height=\"1\"></rect> <rect fill=\"none\" stroke=\"#000\" x=\"0.5\" y=\"3.5\" width=\"19\" height=\"11\"></rect></svg>";
+var twitter = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M19,4.74 C18.339,5.029 17.626,5.229 16.881,5.32 C17.644,4.86 18.227,4.139 18.503,3.28 C17.79,3.7 17.001,4.009 16.159,4.17 C15.485,3.45 14.526,3 13.464,3 C11.423,3 9.771,4.66 9.771,6.7 C9.771,6.99 9.804,7.269 9.868,7.539 C6.795,7.38 4.076,5.919 2.254,3.679 C1.936,4.219 1.754,4.86 1.754,5.539 C1.754,6.82 2.405,7.95 3.397,8.61 C2.79,8.589 2.22,8.429 1.723,8.149 L1.723,8.189 C1.723,9.978 2.997,11.478 4.686,11.82 C4.376,11.899 4.049,11.939 3.713,11.939 C3.475,11.939 3.245,11.919 3.018,11.88 C3.49,13.349 4.852,14.419 6.469,14.449 C5.205,15.429 3.612,16.019 1.882,16.019 C1.583,16.019 1.29,16.009 1,15.969 C2.635,17.019 4.576,17.629 6.662,17.629 C13.454,17.629 17.17,12 17.17,7.129 C17.17,6.969 17.166,6.809 17.157,6.649 C17.879,6.129 18.504,5.478 19,4.74\"></path></svg>";
+var uikit = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"14.4,3.1 11.3,5.1 15,7.3 15,12.9 10,15.7 5,12.9 5,8.5 2,6.8 2,14.8 9.9,19.5 18,14.8 18,5.3\"></polygon> <polygon points=\"9.8,4.2 6.7,2.4 9.8,0.4 12.9,2.3\"></polygon></svg>";
+var unlock = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect fill=\"none\" stroke=\"#000\" x=\"3.5\" y=\"8.5\" width=\"13\" height=\"10\"></rect> <path fill=\"none\" stroke=\"#000\" d=\"M6.5,8.5 L6.5,4.9 C6.5,3 8.1,1.5 10,1.5 C11.9,1.5 13.5,3 13.5,4.9\"></path></svg>";
+var upload = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" points=\"5 8 9.5 3.5 14 8 \"></polyline> <rect x=\"3\" y=\"17\" width=\"13\" height=\"1\"></rect> <line fill=\"none\" stroke=\"#000\" x1=\"9.5\" y1=\"15\" x2=\"9.5\" y2=\"4\"></line></svg>";
+var user = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"9.9\" cy=\"6.4\" r=\"4.4\"></circle> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M1.5,19 C2.3,14.5 5.8,11.2 10,11.2 C14.2,11.2 17.7,14.6 18.5,19.2\"></path></svg>";
+var users = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"7.7\" cy=\"8.6\" r=\"3.5\"></circle> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M1,18.1 C1.7,14.6 4.4,12.1 7.6,12.1 C10.9,12.1 13.7,14.8 14.3,18.3\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M11.4,4 C12.8,2.4 15.4,2.8 16.3,4.7 C17.2,6.6 15.7,8.9 13.6,8.9 C16.5,8.9 18.8,11.3 19.2,14.1\"></path></svg>";
+var vimeo = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M2.065,7.59C1.84,7.367,1.654,7.082,1.468,6.838c-0.332-0.42-0.137-0.411,0.274-0.772c1.026-0.91,2.004-1.896,3.127-2.688 c1.017-0.713,2.365-1.173,3.286-0.039c0.849,1.045,0.869,2.629,1.084,3.891c0.215,1.309,0.421,2.648,0.88,3.901 c0.127,0.352,0.37,1.018,0.81,1.074c0.567,0.078,1.145-0.917,1.408-1.289c0.684-0.987,1.611-2.317,1.494-3.587 c-0.115-1.349-1.572-1.095-2.482-0.773c0.146-1.514,1.555-3.216,2.912-3.792c1.439-0.597,3.579-0.587,4.302,1.036 c0.772,1.759,0.078,3.802-0.763,5.396c-0.918,1.731-2.1,3.333-3.363,4.829c-1.114,1.329-2.432,2.787-4.093,3.422 c-1.897,0.723-3.021-0.686-3.667-2.318c-0.705-1.777-1.056-3.771-1.565-5.621C4.898,8.726,4.644,7.836,4.136,7.191 C3.473,6.358,2.72,7.141,2.065,7.59C1.977,7.502,2.115,7.551,2.065,7.59L2.065,7.59z\"></path></svg>";
+var warning = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"10\" cy=\"14\" r=\"1\"></circle> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"10\" cy=\"10\" r=\"9\"></circle> <path d=\"M10.97,7.72 C10.85,9.54 10.56,11.29 10.56,11.29 C10.51,11.87 10.27,12 9.99,12 C9.69,12 9.49,11.87 9.43,11.29 C9.43,11.29 9.16,9.54 9.03,7.72 C8.96,6.54 9.03,6 9.03,6 C9.03,5.45 9.46,5.02 9.99,5 C10.53,5.01 10.97,5.44 10.97,6 C10.97,6 11.04,6.54 10.97,7.72 L10.97,7.72 Z\"></path></svg>";
+var whatsapp = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M16.7,3.3c-1.8-1.8-4.1-2.8-6.7-2.8c-5.2,0-9.4,4.2-9.4,9.4c0,1.7,0.4,3.3,1.3,4.7l-1.3,4.9l5-1.3c1.4,0.8,2.9,1.2,4.5,1.2 l0,0l0,0c5.2,0,9.4-4.2,9.4-9.4C19.5,7.4,18.5,5,16.7,3.3 M10.1,17.7L10.1,17.7c-1.4,0-2.8-0.4-4-1.1l-0.3-0.2l-3,0.8l0.8-2.9 l-0.2-0.3c-0.8-1.2-1.2-2.7-1.2-4.2c0-4.3,3.5-7.8,7.8-7.8c2.1,0,4.1,0.8,5.5,2.3c1.5,1.5,2.3,3.4,2.3,5.5 C17.9,14.2,14.4,17.7,10.1,17.7 M14.4,11.9c-0.2-0.1-1.4-0.7-1.6-0.8c-0.2-0.1-0.4-0.1-0.5,0.1c-0.2,0.2-0.6,0.8-0.8,0.9 c-0.1,0.2-0.3,0.2-0.5,0.1c-0.2-0.1-1-0.4-1.9-1.2c-0.7-0.6-1.2-1.4-1.3-1.6c-0.1-0.2,0-0.4,0.1-0.5C8,8.8,8.1,8.7,8.2,8.5 c0.1-0.1,0.2-0.2,0.2-0.4c0.1-0.2,0-0.3,0-0.4C8.4,7.6,7.9,6.5,7.7,6C7.5,5.5,7.3,5.6,7.2,5.6c-0.1,0-0.3,0-0.4,0 c-0.2,0-0.4,0.1-0.6,0.3c-0.2,0.2-0.8,0.8-0.8,2c0,1.2,0.8,2.3,1,2.4c0.1,0.2,1.7,2.5,4,3.5c0.6,0.2,1,0.4,1.3,0.5 c0.6,0.2,1.1,0.2,1.5,0.1c0.5-0.1,1.4-0.6,1.6-1.1c0.2-0.5,0.2-1,0.1-1.1C14.8,12.1,14.6,12,14.4,11.9\"></path></svg>";
+var wordpress = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M10,0.5c-5.2,0-9.5,4.3-9.5,9.5s4.3,9.5,9.5,9.5c5.2,0,9.5-4.3,9.5-9.5S15.2,0.5,10,0.5L10,0.5L10,0.5z M15.6,3.9h-0.1 c-0.8,0-1.4,0.7-1.4,1.5c0,0.7,0.4,1.3,0.8,1.9c0.3,0.6,0.7,1.3,0.7,2.3c0,0.7-0.3,1.5-0.6,2.7L14.1,15l-3-8.9 c0.5,0,0.9-0.1,0.9-0.1C12.5,6,12.5,5.3,12,5.4c0,0-1.3,0.1-2.2,0.1C9,5.5,7.7,5.4,7.7,5.4C7.2,5.3,7.2,6,7.6,6c0,0,0.4,0.1,0.9,0.1 l1.3,3.5L8,15L5,6.1C5.5,6.1,5.9,6,5.9,6C6.4,6,6.3,5.3,5.9,5.4c0,0-1.3,0.1-2.2,0.1c-0.2,0-0.3,0-0.5,0c1.5-2.2,4-3.7,6.9-3.7 C12.2,1.7,14.1,2.6,15.6,3.9L15.6,3.9L15.6,3.9z M2.5,6.6l3.9,10.8c-2.7-1.3-4.6-4.2-4.6-7.4C1.8,8.8,2,7.6,2.5,6.6L2.5,6.6L2.5,6.6 z M10.2,10.7l2.5,6.9c0,0,0,0.1,0.1,0.1C11.9,18,11,18.2,10,18.2c-0.8,0-1.6-0.1-2.3-0.3L10.2,10.7L10.2,10.7L10.2,10.7z M14.2,17.1 l2.5-7.3c0.5-1.2,0.6-2.1,0.6-2.9c0-0.3,0-0.6-0.1-0.8c0.6,1.2,1,2.5,1,4C18.3,13,16.6,15.7,14.2,17.1L14.2,17.1L14.2,17.1z\"></path></svg>";
+var world = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" d=\"M1,10.5 L19,10.5\"></path> <path fill=\"none\" stroke=\"#000\" d=\"M2.35,15.5 L17.65,15.5\"></path> <path fill=\"none\" stroke=\"#000\" d=\"M2.35,5.5 L17.523,5.5\"></path> <path fill=\"none\" stroke=\"#000\" d=\"M10,19.46 L9.98,19.46 C7.31,17.33 5.61,14.141 5.61,10.58 C5.61,7.02 7.33,3.83 10,1.7 C10.01,1.7 9.99,1.7 10,1.7 L10,1.7 C12.67,3.83 14.4,7.02 14.4,10.58 C14.4,14.141 12.67,17.33 10,19.46 L10,19.46 L10,19.46 L10,19.46 Z\"></path> <circle fill=\"none\" stroke=\"#000\" cx=\"10\" cy=\"10.5\" r=\"9\"></circle></svg>";
+var xing = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M4.4,4.56 C4.24,4.56 4.11,4.61 4.05,4.72 C3.98,4.83 3.99,4.97 4.07,5.12 L5.82,8.16 L5.82,8.17 L3.06,13.04 C2.99,13.18 2.99,13.33 3.06,13.44 C3.12,13.55 3.24,13.62 3.4,13.62 L6,13.62 C6.39,13.62 6.57,13.36 6.71,13.12 C6.71,13.12 9.41,8.35 9.51,8.16 C9.49,8.14 7.72,5.04 7.72,5.04 C7.58,4.81 7.39,4.56 6.99,4.56 L4.4,4.56 L4.4,4.56 Z\"></path> <path d=\"M15.3,1 C14.91,1 14.74,1.25 14.6,1.5 C14.6,1.5 9.01,11.42 8.82,11.74 C8.83,11.76 12.51,18.51 12.51,18.51 C12.64,18.74 12.84,19 13.23,19 L15.82,19 C15.98,19 16.1,18.94 16.16,18.83 C16.23,18.72 16.23,18.57 16.16,18.43 L12.5,11.74 L12.5,11.72 L18.25,1.56 C18.32,1.42 18.32,1.27 18.25,1.16 C18.21,1.06 18.08,1 17.93,1 L15.3,1 L15.3,1 Z\"></path></svg>";
+var yelp = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M17.175,14.971c-0.112,0.77-1.686,2.767-2.406,3.054c-0.246,0.1-0.487,0.076-0.675-0.069\tc-0.122-0.096-2.446-3.859-2.446-3.859c-0.194-0.293-0.157-0.682,0.083-0.978c0.234-0.284,0.581-0.393,0.881-0.276\tc0.016,0.01,4.21,1.394,4.332,1.482c0.178,0.148,0.263,0.379,0.225,0.646L17.175,14.971L17.175,14.971z M11.464,10.789\tc-0.203-0.307-0.199-0.666,0.009-0.916c0,0,2.625-3.574,2.745-3.657c0.203-0.135,0.452-0.141,0.69-0.025\tc0.691,0.335,2.085,2.405,2.167,3.199v0.027c0.024,0.271-0.082,0.491-0.273,0.623c-0.132,0.083-4.43,1.155-4.43,1.155\tc-0.322,0.096-0.68-0.06-0.882-0.381L11.464,10.789z M9.475,9.563C9.32,9.609,8.848,9.757,8.269,8.817c0,0-3.916-6.16-4.007-6.351\tc-0.057-0.212,0.011-0.455,0.202-0.65C5.047,1.211,8.21,0.327,9.037,0.529c0.27,0.069,0.457,0.238,0.522,0.479\tc0.047,0.266,0.433,5.982,0.488,7.264C10.098,9.368,9.629,9.517,9.475,9.563z M9.927,19.066c-0.083,0.225-0.273,0.373-0.54,0.421\tc-0.762,0.13-3.15-0.751-3.647-1.342c-0.096-0.131-0.155-0.262-0.167-0.394c-0.011-0.095,0-0.189,0.036-0.272\tc0.061-0.155,2.917-3.538,2.917-3.538c0.214-0.272,0.595-0.355,0.952-0.213c0.345,0.13,0.56,0.428,0.536,0.749\tC10.014,14.479,9.977,18.923,9.927,19.066z M3.495,13.912c-0.235-0.009-0.444-0.148-0.568-0.382c-0.089-0.17-0.151-0.453-0.19-0.794\tC2.63,11.701,2.761,10.144,3.07,9.648c0.145-0.226,0.357-0.345,0.592-0.336c0.154,0,4.255,1.667,4.255,1.667\tc0.321,0.118,0.521,0.453,0.5,0.833c-0.023,0.37-0.236,0.655-0.551,0.738L3.495,13.912z\"></path></svg>";
+var youtube = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M15,4.1c1,0.1,2.3,0,3,0.8c0.8,0.8,0.9,2.1,0.9,3.1C19,9.2,19,10.9,19,12c-0.1,1.1,0,2.4-0.5,3.4c-0.5,1.1-1.4,1.5-2.5,1.6 c-1.2,0.1-8.6,0.1-11,0c-1.1-0.1-2.4-0.1-3.2-1c-0.7-0.8-0.7-2-0.8-3C1,11.8,1,10.1,1,8.9c0-1.1,0-2.4,0.5-3.4C2,4.5,3,4.3,4.1,4.2 C5.3,4.1,12.6,4,15,4.1z M8,7.5v6l5.5-3L8,7.5z\"></path></svg>";
+var Icons = {
+	album: album,
+	ban: ban,
+	behance: behance,
+	bell: bell,
+	bold: bold,
+	bolt: bolt,
+	bookmark: bookmark,
+	calendar: calendar,
+	camera: camera,
+	cart: cart,
+	check: check,
+	clock: clock,
+	close: close,
+	code: code,
+	cog: cog,
+	comment: comment,
+	commenting: commenting,
+	comments: comments,
+	copy: copy,
+	database: database,
+	desktop: desktop,
+	download: download,
+	dribbble: dribbble,
+	expand: expand,
+	facebook: facebook,
+	file: file,
+	flickr: flickr,
+	folder: folder,
+	forward: forward,
+	foursquare: foursquare,
+	future: future,
+	github: github,
+	gitter: gitter,
+	google: google,
+	grid: grid,
+	happy: happy,
+	hashtag: hashtag,
+	heart: heart,
+	history: history,
+	home: home,
+	image: image,
+	info: info,
+	instagram: instagram,
+	italic: italic,
+	joomla: joomla,
+	laptop: laptop,
+	lifesaver: lifesaver,
+	link: link,
+	linkedin: linkedin,
+	list: list,
+	location: location,
+	lock: lock,
+	mail: mail,
+	menu: menu,
+	minus: minus,
+	more: more,
+	move: move,
+	nut: nut,
+	pagekit: pagekit,
+	pencil: pencil,
+	phone: phone,
+	pinterest: pinterest,
+	play: play,
+	plus: plus,
+	pull: pull,
+	push: push,
+	question: question,
+	receiver: receiver,
+	refresh: refresh,
+	reply: reply,
+	rss: rss,
+	search: search,
+	server: server,
+	settings: settings,
+	shrink: shrink,
+	social: social,
+	soundcloud: soundcloud,
+	star: star,
+	strikethrough: strikethrough,
+	table: table,
+	tablet: tablet,
+	tag: tag,
+	thumbnails: thumbnails,
+	trash: trash,
+	tripadvisor: tripadvisor,
+	tumblr: tumblr,
+	tv: tv,
+	twitter: twitter,
+	uikit: uikit,
+	unlock: unlock,
+	upload: upload,
+	user: user,
+	users: users,
+	vimeo: vimeo,
+	warning: warning,
+	whatsapp: whatsapp,
+	wordpress: wordpress,
+	world: world,
+	xing: xing,
+	yelp: yelp,
+	youtube: youtube,
+	"500px": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M9.624,11.866c-0.141,0.132,0.479,0.658,0.662,0.418c0.051-0.046,0.607-0.61,0.662-0.664c0,0,0.738,0.719,0.814,0.719\t\tc0.1,0,0.207-0.055,0.322-0.17c0.27-0.269,0.135-0.416,0.066-0.495l-0.631-0.616l0.658-0.668c0.146-0.156,0.021-0.314-0.1-0.449\t\tc-0.182-0.18-0.359-0.226-0.471-0.125l-0.656,0.654l-0.654-0.654c-0.033-0.034-0.08-0.045-0.124-0.045\t\tc-0.079,0-0.191,0.068-0.307,0.181c-0.202,0.202-0.247,0.351-0.133,0.462l0.665,0.665L9.624,11.866z\"></path> <path d=\"M11.066,2.884c-1.061,0-2.185,0.248-3.011,0.604c-0.087,0.034-0.141,0.106-0.15,0.205C7.893,3.784,7.919,3.909,7.982,4.066\t\tc0.05,0.136,0.187,0.474,0.452,0.372c0.844-0.326,1.779-0.507,2.633-0.507c0.963,0,1.9,0.191,2.781,0.564\t\tc0.695,0.292,1.357,0.719,2.078,1.34c0.051,0.044,0.105,0.068,0.164,0.068c0.143,0,0.273-0.137,0.389-0.271\t\tc0.191-0.214,0.324-0.395,0.135-0.575c-0.686-0.654-1.436-1.138-2.363-1.533C13.24,3.097,12.168,2.884,11.066,2.884z\"></path> <path d=\"M16.43,15.747c-0.092-0.028-0.242,0.05-0.309,0.119l0,0c-0.652,0.652-1.42,1.169-2.268,1.521\t\tc-0.877,0.371-1.814,0.551-2.779,0.551c-0.961,0-1.896-0.189-2.775-0.564c-0.848-0.36-1.612-0.879-2.268-1.53\t\tc-0.682-0.688-1.196-1.455-1.529-2.268c-0.325-0.799-0.471-1.643-0.471-1.643c-0.045-0.24-0.258-0.249-0.567-0.203\t\tc-0.128,0.021-0.519,0.079-0.483,0.36v0.01c0.105,0.644,0.289,1.284,0.545,1.895c0.417,0.969,1.002,1.849,1.756,2.604\t\tc0.757,0.754,1.636,1.34,2.604,1.757C8.901,18.785,9.97,19,11.088,19c1.104,0,2.186-0.215,3.188-0.645\t\tc1.838-0.896,2.604-1.757,2.604-1.757c0.182-0.204,0.227-0.317-0.1-0.643C16.779,15.956,16.525,15.774,16.43,15.747z\"></path> <path d=\"M5.633,13.287c0.293,0.71,0.723,1.341,1.262,1.882c0.54,0.54,1.172,0.971,1.882,1.264c0.731,0.303,1.509,0.461,2.298,0.461\t\tc0.801,0,1.578-0.158,2.297-0.461c0.711-0.293,1.344-0.724,1.883-1.264c0.543-0.541,0.971-1.172,1.264-1.882\t\tc0.314-0.721,0.463-1.5,0.463-2.298c0-0.79-0.148-1.569-0.463-2.289c-0.293-0.699-0.721-1.329-1.264-1.881\t\tc-0.539-0.541-1.172-0.959-1.867-1.263c-0.721-0.303-1.5-0.461-2.299-0.461c-0.802,0-1.613,0.159-2.322,0.461\t\tc-0.577,0.25-1.544,0.867-2.119,1.454v0.012V2.108h8.16C15.1,2.104,15.1,1.69,15.1,1.552C15.1,1.417,15.1,1,14.809,1H5.915\t\tC5.676,1,5.527,1.192,5.527,1.384v6.84c0,0.214,0.273,0.372,0.529,0.428c0.5,0.105,0.614-0.056,0.737-0.224l0,0\t\tc0.18-0.273,0.776-0.884,0.787-0.894c0.901-0.905,2.117-1.408,3.416-1.408c1.285,0,2.5,0.501,3.412,1.408\t\tc0.914,0.914,1.408,2.122,1.408,3.405c0,1.288-0.508,2.496-1.408,3.405c-0.9,0.896-2.152,1.406-3.438,1.406\t\tc-0.877,0-1.711-0.229-2.433-0.671v-4.158c0-0.553,0.237-1.151,0.643-1.614c0.462-0.519,1.094-0.799,1.782-0.799\t\tc0.664,0,1.293,0.253,1.758,0.715c0.459,0.459,0.709,1.071,0.709,1.723c0,1.385-1.094,2.468-2.488,2.468\t\tc-0.273,0-0.769-0.121-0.781-0.125c-0.281-0.087-0.405,0.306-0.438,0.436c-0.159,0.496,0.079,0.585,0.123,0.607\t\tc0.452,0.137,0.743,0.157,1.129,0.157c1.973,0,3.572-1.6,3.572-3.57c0-1.964-1.6-3.552-3.572-3.552c-0.97,0-1.872,0.36-2.546,1.038\t\tc-0.656,0.631-1.027,1.487-1.027,2.322v3.438v-0.011c-0.372-0.42-0.732-1.041-0.981-1.682c-0.102-0.248-0.315-0.202-0.607-0.113\t\tc-0.135,0.035-0.519,0.157-0.44,0.439C5.372,12.799,5.577,13.164,5.633,13.287z\"></path></svg>",
+	"arrow-down": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"10.5,16.08 5.63,10.66 6.37,10 10.5,14.58 14.63,10 15.37,10.66\"></polygon> <line fill=\"none\" stroke=\"#000\" x1=\"10.5\" y1=\"4\" x2=\"10.5\" y2=\"15\"></line></svg>",
+	"arrow-left": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" points=\"10 14 5 9.5 10 5\"></polyline> <line fill=\"none\" stroke=\"#000\" x1=\"16\" y1=\"9.5\" x2=\"5\" y2=\"9.52\"></line></svg>",
+	"arrow-right": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" points=\"10 5 15 9.5 10 14\"></polyline> <line fill=\"none\" stroke=\"#000\" x1=\"4\" y1=\"9.5\" x2=\"15\" y2=\"9.5\"></line></svg>",
+	"arrow-up": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"10.5,4 15.37,9.4 14.63,10.08 10.5,5.49 6.37,10.08 5.63,9.4\"></polygon> <line fill=\"none\" stroke=\"#000\" x1=\"10.5\" y1=\"16\" x2=\"10.5\" y2=\"5\"></line></svg>",
+	"chevron-down": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.03\" points=\"16 7 10 13 4 7\"></polyline></svg>",
+	"chevron-left": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.03\" points=\"13 16 7 10 13 4\"></polyline></svg>",
+	"chevron-right": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.03\" points=\"7 4 13 10 7 16\"></polyline></svg>",
+	"chevron-up": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polyline fill=\"none\" stroke=\"#000\" stroke-width=\"1.03\" points=\"4 13 10 7 16 13\"></polyline></svg>",
+	"cloud-download": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M6.5,14.61 L3.75,14.61 C1.96,14.61 0.5,13.17 0.5,11.39 C0.5,9.76 1.72,8.41 3.3,8.2 C3.38,5.31 5.75,3 8.68,3 C11.19,3 13.31,4.71 13.89,7.02 C14.39,6.8 14.93,6.68 15.5,6.68 C17.71,6.68 19.5,8.45 19.5,10.64 C19.5,12.83 17.71,14.6 15.5,14.6 L12.5,14.6\"></path> <polyline fill=\"none\" stroke=\"#000\" points=\"11.75 16 9.5 18.25 7.25 16\"></polyline> <path fill=\"none\" stroke=\"#000\" d=\"M9.5,18 L9.5,9.5\"></path></svg>",
+	"cloud-upload": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M6.5,14.61 L3.75,14.61 C1.96,14.61 0.5,13.17 0.5,11.39 C0.5,9.76 1.72,8.41 3.31,8.2 C3.38,5.31 5.75,3 8.68,3 C11.19,3 13.31,4.71 13.89,7.02 C14.39,6.8 14.93,6.68 15.5,6.68 C17.71,6.68 19.5,8.45 19.5,10.64 C19.5,12.83 17.71,14.6 15.5,14.6 L12.5,14.6\"></path> <polyline fill=\"none\" stroke=\"#000\" points=\"7.25 11.75 9.5 9.5 11.75 11.75\"></polyline> <path fill=\"none\" stroke=\"#000\" d=\"M9.5,18 L9.5,9.5\"></path></svg>",
+	"credit-card": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <rect fill=\"none\" stroke=\"#000\" x=\"1.5\" y=\"4.5\" width=\"17\" height=\"12\"></rect> <rect x=\"1\" y=\"7\" width=\"18\" height=\"3\"></rect></svg>",
+	"file-edit": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" d=\"M18.65,1.68 C18.41,1.45 18.109,1.33 17.81,1.33 C17.499,1.33 17.209,1.45 16.98,1.68 L8.92,9.76 L8,12.33 L10.55,11.41 L18.651,3.34 C19.12,2.87 19.12,2.15 18.65,1.68 L18.65,1.68 L18.65,1.68 Z\"></path> <polyline fill=\"none\" stroke=\"#000\" points=\"16.5 8.482 16.5 18.5 3.5 18.5 3.5 1.5 14.211 1.5\"></polyline></svg>",
+	"git-branch": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.2\" cx=\"7\" cy=\"3\" r=\"2\"></circle> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.2\" cx=\"14\" cy=\"6\" r=\"2\"></circle> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.2\" cx=\"7\" cy=\"17\" r=\"2\"></circle> <path fill=\"none\" stroke=\"#000\" stroke-width=\"2\" d=\"M14,8 C14,10.41 12.43,10.87 10.56,11.25 C9.09,11.54 7,12.06 7,15 L7,5\"></path></svg>",
+	"git-fork": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.2\" cx=\"5.79\" cy=\"2.79\" r=\"1.79\"></circle> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.2\" cx=\"14.19\" cy=\"2.79\" r=\"1.79\"></circle> <ellipse fill=\"none\" stroke=\"#000\" stroke-width=\"1.2\" cx=\"10.03\" cy=\"16.79\" rx=\"1.79\" ry=\"1.79\"></ellipse> <path fill=\"none\" stroke=\"#000\" stroke-width=\"2\" d=\"M5.79,4.57 L5.79,6.56 C5.79,9.19 10.03,10.22 10.03,13.31 C10.03,14.86 10.04,14.55 10.04,14.55 C10.04,14.37 10.04,14.86 10.04,13.31 C10.04,10.22 14.2,9.19 14.2,6.56 L14.2,4.57\"></path></svg>",
+	"github-alt": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M10,0.5 C4.75,0.5 0.5,4.76 0.5,10.01 C0.5,15.26 4.75,19.51 10,19.51 C15.24,19.51 19.5,15.26 19.5,10.01 C19.5,4.76 15.25,0.5 10,0.5 L10,0.5 Z M12.81,17.69 C12.81,17.69 12.81,17.7 12.79,17.69 C12.47,17.75 12.35,17.59 12.35,17.36 L12.35,16.17 C12.35,15.45 12.09,14.92 11.58,14.56 C12.2,14.51 12.77,14.39 13.26,14.21 C13.87,13.98 14.36,13.69 14.74,13.29 C15.42,12.59 15.76,11.55 15.76,10.17 C15.76,9.25 15.45,8.46 14.83,7.8 C15.1,7.08 15.07,6.29 14.75,5.44 L14.51,5.42 C14.34,5.4 14.06,5.46 13.67,5.61 C13.25,5.78 12.79,6.03 12.31,6.35 C11.55,6.16 10.81,6.05 10.09,6.05 C9.36,6.05 8.61,6.15 7.88,6.35 C7.28,5.96 6.75,5.68 6.26,5.54 C6.07,5.47 5.9,5.44 5.78,5.44 L5.42,5.44 C5.06,6.29 5.04,7.08 5.32,7.8 C4.7,8.46 4.4,9.25 4.4,10.17 C4.4,11.94 4.96,13.16 6.08,13.84 C6.53,14.13 7.05,14.32 7.69,14.43 C8.03,14.5 8.32,14.54 8.55,14.55 C8.07,14.89 7.82,15.42 7.82,16.16 L7.82,17.51 C7.8,17.69 7.7,17.8 7.51,17.8 C4.21,16.74 1.82,13.65 1.82,10.01 C1.82,5.5 5.49,1.83 10,1.83 C14.5,1.83 18.17,5.5 18.17,10.01 C18.18,13.53 15.94,16.54 12.81,17.69 L12.81,17.69 Z\"></path></svg>",
+	"google-plus": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M12.9,9c0,2.7-0.6,5-3.2,6.3c-3.7,1.8-8.1,0.2-9.4-3.6C-1.1,7.6,1.9,3.3,6.1,3c1.7-0.1,3.2,0.3,4.6,1.3 c0.1,0.1,0.3,0.2,0.4,0.4c-0.5,0.5-1.2,1-1.7,1.6c-1-0.8-2.1-1.1-3.5-0.9C5,5.6,4.2,6,3.6,6.7c-1.3,1.3-1.5,3.4-0.5,5 c1,1.7,2.6,2.3,4.6,1.9c1.4-0.3,2.4-1.2,2.6-2.6H6.9V9H12.9z\"></path> <polygon points=\"20,9 20,11 18,11 18,13 16,13 16,11 14,11 14,9 16,9 16,7 18,7 18,9 \"></polygon></svg>",
+	"minus-circle": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"9.5\" cy=\"9.5\" r=\"9\"></circle> <line fill=\"none\" stroke=\"#000\" x1=\"5\" y1=\"9.5\" x2=\"14\" y2=\"9.5\"></line></svg>",
+	"more-vertical": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle cx=\"10\" cy=\"3\" r=\"2\"></circle> <circle cx=\"10\" cy=\"10\" r=\"2\"></circle> <circle cx=\"10\" cy=\"17\" r=\"2\"></circle></svg>",
+	"paint-bucket": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M10.21,1 L0,11.21 L8.1,19.31 L18.31,9.1 L10.21,1 L10.21,1 Z M16.89,9.1 L15,11 L1.7,11 L10.21,2.42 L16.89,9.1 Z\"></path> <path fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" d=\"M6.42,2.33 L11.7,7.61\"></path> <path d=\"M18.49,12 C18.49,12 20,14.06 20,15.36 C20,16.28 19.24,17 18.49,17 L18.49,17 C17.74,17 17,16.28 17,15.36 C17,14.06 18.49,12 18.49,12 L18.49,12 Z\"></path></svg>",
+	"phone-landscape": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" d=\"M17,5.5 C17.8,5.5 18.5,6.2 18.5,7 L18.5,14 C18.5,14.8 17.8,15.5 17,15.5 L3,15.5 C2.2,15.5 1.5,14.8 1.5,14 L1.5,7 C1.5,6.2 2.2,5.5 3,5.5 L17,5.5 L17,5.5 L17,5.5 Z\"></path> <circle cx=\"3.8\" cy=\"10.5\" r=\"0.8\"></circle></svg>",
+	"play-circle": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" points=\"8.5 7 13.5 10 8.5 13\"></polygon> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"10\" cy=\"10\" r=\"9\"></circle></svg>",
+	"plus-circle": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <circle fill=\"none\" stroke=\"#000\" stroke-width=\"1.1\" cx=\"9.5\" cy=\"9.5\" r=\"9\"></circle> <line fill=\"none\" stroke=\"#000\" x1=\"9.5\" y1=\"5\" x2=\"9.5\" y2=\"14\"></line> <line fill=\"none\" stroke=\"#000\" x1=\"5\" y1=\"9.5\" x2=\"14\" y2=\"9.5\"></line></svg>",
+	"quote-right": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M17.27,7.79 C17.27,9.45 16.97,10.43 15.99,12.02 C14.98,13.64 13,15.23 11.56,15.97 L11.1,15.08 C12.34,14.2 13.14,13.51 14.02,11.82 C14.27,11.34 14.41,10.92 14.49,10.54 C14.3,10.58 14.09,10.6 13.88,10.6 C12.06,10.6 10.59,9.12 10.59,7.3 C10.59,5.48 12.06,4 13.88,4 C15.39,4 16.67,5.02 17.05,6.42 C17.19,6.82 17.27,7.27 17.27,7.79 L17.27,7.79 Z\"></path> <path d=\"M8.68,7.79 C8.68,9.45 8.38,10.43 7.4,12.02 C6.39,13.64 4.41,15.23 2.97,15.97 L2.51,15.08 C3.75,14.2 4.55,13.51 5.43,11.82 C5.68,11.34 5.82,10.92 5.9,10.54 C5.71,10.58 5.5,10.6 5.29,10.6 C3.47,10.6 2,9.12 2,7.3 C2,5.48 3.47,4 5.29,4 C6.8,4 8.08,5.02 8.46,6.42 C8.6,6.82 8.68,7.27 8.68,7.79 L8.68,7.79 Z\"></path></svg>",
+	"sign-in": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"7 2 17 2 17 17 7 17 7 16 16 16 16 3 7 3\"></polygon> <polygon points=\"9.1 13.4 8.5 12.8 11.28 10 4 10 4 9 11.28 9 8.5 6.2 9.1 5.62 13 9.5\"></polygon></svg>",
+	"sign-out": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"13.1 13.4 12.5 12.8 15.28 10 8 10 8 9 15.28 9 12.5 6.2 13.1 5.62 17 9.5\"></polygon> <polygon points=\"13 2 3 2 3 17 13 17 13 16 4 16 4 3 13 3\"></polygon></svg>",
+	"tablet-landscape": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill=\"none\" stroke=\"#000\" d=\"M1.5,5 C1.5,4.2 2.2,3.5 3,3.5 L17,3.5 C17.8,3.5 18.5,4.2 18.5,5 L18.5,16 C18.5,16.8 17.8,17.5 17,17.5 L3,17.5 C2.2,17.5 1.5,16.8 1.5,16 L1.5,5 L1.5,5 L1.5,5 Z\"></path> <circle cx=\"3.7\" cy=\"10.5\" r=\"0.8\"></circle></svg>",
+	"triangle-down": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"5 7 15 7 10 12\"></polygon></svg>",
+	"triangle-left": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"12 5 7 10 12 15\"></polygon></svg>",
+	"triangle-right": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"8 5 13 10 8 15\"></polygon></svg>",
+	"triangle-up": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"5 13 10 8 15 13\"></polygon></svg>",
+	"video-camera": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"> <polygon points=\"18,6 18,14 12,10 \"></polygon> <rect x=\"2\" y=\"5\" width=\"12\" height=\"10\"></rect></svg>"
+};
+
+function plugin(UIkit) {
+
+    if (plugin.installed) {
+        return;
+    }
+
+    UIkit.icon.add(Icons);
+
+}
+
+if (typeof window !== 'undefined' && window.UIkit) {
+    window.UIkit.use(plugin);
+}
+
+return plugin;
+
+})));
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ })
+],[10]);
