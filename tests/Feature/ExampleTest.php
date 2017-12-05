@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Feature;
 
 use Tests\TestCase;
@@ -15,6 +14,8 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
+        $foo = 'bar';
+        
         $response->assertStatus(200);
     }
 }

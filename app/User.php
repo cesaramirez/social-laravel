@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Request;
 
 class User extends Authenticatable
 {
@@ -32,8 +33,8 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function social()
-    {
+    public function social(Request $request)
+    {   
         return $this->hasMany(UserSocial::class);
     }
 
