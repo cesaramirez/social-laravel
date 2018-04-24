@@ -1701,21 +1701,21 @@
         },
         {
             "name": "socialiteproviders/twitter",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocialiteProviders/Twitter.git",
-                "reference": "5ad2155d76b68b25cf8a6505ac36bff6bc0415f7"
+                "reference": "9572f5851246919e26a34a2952a9b7ad2ab2fc3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Twitter/zipball/5ad2155d76b68b25cf8a6505ac36bff6bc0415f7",
-                "reference": "5ad2155d76b68b25cf8a6505ac36bff6bc0415f7",
+                "url": "https://api.github.com/repos/SocialiteProviders/Twitter/zipball/9572f5851246919e26a34a2952a9b7ad2ab2fc3d",
+                "reference": "9572f5851246919e26a34a2952a9b7ad2ab2fc3d",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
-                "socialiteproviders/manager": "~3.0"
+                "socialiteproviders/manager": "~2.0 || ~3.0"
             },
             "type": "library",
             "autoload": {
@@ -1734,7 +1734,7 @@
                 }
             ],
             "description": "Twitter OAuth1 Provider for Laravel Socialite",
-            "time": "2017-01-25T09:48:29+00:00"
+            "time": "2018-04-23T04:02:35+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
