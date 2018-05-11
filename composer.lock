@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "06f0e367ead9c801b6ff096dc9c2e199",
@@ -1615,21 +1615,21 @@
         },
         {
             "name": "socialiteproviders/gitlab",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocialiteProviders/GitLab.git",
-                "reference": "c96dc004563a3caf157608fe9aa9e45c79065d00"
+                "reference": "bab80e8e16853e062c58013b1c1f474bd5a5c49a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/GitLab/zipball/c96dc004563a3caf157608fe9aa9e45c79065d00",
-                "reference": "c96dc004563a3caf157608fe9aa9e45c79065d00",
+                "url": "https://api.github.com/repos/SocialiteProviders/GitLab/zipball/bab80e8e16853e062c58013b1c1f474bd5a5c49a",
+                "reference": "bab80e8e16853e062c58013b1c1f474bd5a5c49a",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
-                "socialiteproviders/manager": "~3.0"
+                "socialiteproviders/manager": "~2.0 || ~3.0"
             },
             "type": "library",
             "autoload": {
@@ -1648,7 +1648,7 @@
                 }
             ],
             "description": "GitLab OAuth2 Provider for Laravel Socialite",
-            "time": "2017-01-31T05:06:13+00:00"
+            "time": "2018-05-11T03:10:27+00:00"
         },
         {
             "name": "socialiteproviders/manager",
