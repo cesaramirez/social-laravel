@@ -19,6 +19,6 @@
         "lodash": "^4.17.5"
     },
     "dependencies": {
-        "uikit": "^3.0.0-beta.40"
+        "uikit": "^3.0.0-rc.4"
     }
 }
