@@ -1624,16 +1624,16 @@
         },
         {
             "name": "socialiteproviders/gitlab",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocialiteProviders/GitLab.git",
-                "reference": "bab80e8e16853e062c58013b1c1f474bd5a5c49a"
+                "reference": "7839d22fad3179cd77f1b35af62f81d15d78e93b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/GitLab/zipball/bab80e8e16853e062c58013b1c1f474bd5a5c49a",
-                "reference": "bab80e8e16853e062c58013b1c1f474bd5a5c49a",
+                "url": "https://api.github.com/repos/SocialiteProviders/GitLab/zipball/7839d22fad3179cd77f1b35af62f81d15d78e93b",
+                "reference": "7839d22fad3179cd77f1b35af62f81d15d78e93b",
                 "shasum": ""
             },
             "require": {
@@ -1657,7 +1657,7 @@
                 }
             ],
             "description": "GitLab OAuth2 Provider for Laravel Socialite",
-            "time": "2018-05-11T03:10:27+00:00"
+            "time": "2018-06-20T11:00:01+00:00"
         },
         {
             "name": "socialiteproviders/manager",
