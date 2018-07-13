@@ -7409,9 +7409,9 @@ uid-number@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
 
-uikit@^3.0.0-rc.6:
-  version "3.0.0-rc.6"
-  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.0-rc.6.tgz#6e121d4fbfd823896904490cf239249b68f0be31"
+uikit@^3.0.0-rc.9:
+  version "3.0.0-rc.9"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.0-rc.9.tgz#94ee229adab370079394a33d3eaedc3e9ee897c5"
 
 ultron@~1.1.0:
   version "1.1.1"
